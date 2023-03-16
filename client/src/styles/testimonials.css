@@ -1,0 +1,72 @@
+.testimonials-container {
+    width: 99%;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: var(--fs-xl);
+    margin-bottom: var(--sp-2xl);
+  }
+
+  .reviews{
+    width: 87vw;
+  }
+  
+  .swiper {
+    display: grid;
+    place-items: center;
+    grid-gap: 2rem;
+    grid-auto-rows: 1fr;
+  }
+
+  .swiper-slide{
+    height: 330px;
+  }
+  
+  .review-card {
+    background-color: #112332;
+    color: white;
+    padding: var(--sp-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-sm);
+  }
+  
+  .review-card .icon {
+    font-size: 5rem;
+    color: var(--clr-mute);
+  }
+  
+  .review-card .card-title {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-md);
+    margin-top: var(--sp-xl);
+    margin-bottom: var(--sp-sm);
+  }
+  
+  .review-card .card-body {
+    margin-bottom: var(--sp-xl);
+  }
+  
+  .review-card .card-footer {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: var(--sp-sm);
+    align-items: center;
+  }
+  
+  .review-card .profile-photo {
+    max-width: 60px;
+    border-radius: 50%;
+  }
+  
+  .review-card .name {
+    display: block;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-md);
+    margin-bottom: var(--sp-xs);
+  }
+
+  .quote-icon{
+    width: 50px;
+    color: var(--clr-mute);
+  }
