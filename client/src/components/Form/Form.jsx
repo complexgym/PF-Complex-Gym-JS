@@ -5,9 +5,10 @@ export default function Form() {
 				<div className='md:grid md:grid-cols-3 md:gap-6'>
 					<div className='md:col-span-1'>
 						<div className='px-4 sm:px-0'>
-							<h3 className='text-base font-semibold leading-6 text-gray-900'>Profile</h3>
+							<h3 className='text-base font-semibold leading-6 text-gray-900'>Perfil</h3>
 							<p className='mt-1 text-sm text-gray-600'>
-								This information will be displayed publicly so be careful what you share.
+								Esta información se mostrará públicamente, así que ten cuidado con lo que
+								compartes.
 							</p>
 						</div>
 					</div>
@@ -20,7 +21,7 @@ export default function Form() {
 											htmlFor='first-name'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
-											User Name
+											Nombre de usuario
 										</label>
 										<input
 											type='text'
@@ -33,15 +34,15 @@ export default function Form() {
 
 									<div className='col-span-6 sm:col-span-4'>
 										<label
-											htmlFor='email-address'
+											htmlFor='email'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
-											Email address
+											Correo electrónico
 										</label>
 										<input
 											type='text'
-											name='email-address'
-											id='email-address'
+											name='email'
+											id='email'
 											autoComplete='email'
 											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 										/>
@@ -49,7 +50,7 @@ export default function Form() {
 
 									<div>
 										<label className='block text-sm font-medium leading-6 text-gray-900'>
-											Photo
+											Foto
 										</label>
 										<div className='mt-2 flex items-center'>
 											<span className='inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100'>
@@ -65,14 +66,14 @@ export default function Form() {
 												type='button'
 												className='ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50'
 											>
-												Change
+												Cambiar
 											</button>
 										</div>
 									</div>
 
 									<div>
 										<label className='block text-sm font-medium leading-6 text-gray-900'>
-											Cover photo
+											Foto de portada
 										</label>
 										<div className='mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
 											<div className='space-y-1 text-center'>
@@ -95,7 +96,7 @@ export default function Form() {
 														htmlFor='file-upload'
 														className='relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500'
 													>
-														<span>Upload a file</span>
+														<span>Cargar un archivo</span>
 														<input
 															id='file-upload'
 															name='file-upload'
@@ -103,7 +104,7 @@ export default function Form() {
 															className='sr-only'
 														/>
 													</label>
-													<p className='pl-1'>or drag and drop</p>
+													<p className='pl-1'>o arrastrar y soltar</p>
 												</div>
 												<p className='text-xs text-gray-500'>PNG, JPG, GIF up to 10MB</p>
 											</div>
@@ -115,7 +116,7 @@ export default function Form() {
 											htmlFor='about'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
-											About
+											Descripción
 										</label>
 										<div className='mt-2'>
 											<textarea
@@ -128,7 +129,7 @@ export default function Form() {
 											/>
 										</div>
 										<p className='mt-2 text-sm text-gray-500'>
-											Brief description for your profile. URLs are hyperlinked.
+											Breve descripción de su perfil. URL con hipervínculos.
 										</p>
 									</div>
 								</div>
@@ -137,7 +138,7 @@ export default function Form() {
 										type='submit'
 										className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
 									>
-										Save
+										Guardar
 									</button>
 								</div>
 							</div>
@@ -157,10 +158,10 @@ export default function Form() {
 					<div className='md:col-span-1'>
 						<div className='px-4 sm:px-0'>
 							<h3 className='text-base font-semibold leading-6 text-gray-900'>
-								Personal Information
+								Información Personal
 							</h3>
 							<p className='mt-1 text-sm text-gray-600'>
-								Use a permanent address where you can receive mail.
+								Esta información espara el uso unico y exclusivo de la página
 							</p>
 						</div>
 					</div>
@@ -171,15 +172,15 @@ export default function Form() {
 									<div className='grid grid-cols-6 gap-6'>
 										<div className='col-span-6 sm:col-span-3'>
 											<label
-												htmlFor='first-name'
+												htmlFor='name'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												First name
+												Nombre
 											</label>
 											<input
 												type='text'
-												name='first-name'
-												id='first-name'
+												name='name'
+												id='name'
 												autoComplete='given-name'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											/>
@@ -190,7 +191,7 @@ export default function Form() {
 												htmlFor='last-name'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												Last name
+												Apellido
 											</label>
 											<input
 												type='text'
@@ -201,7 +202,7 @@ export default function Form() {
 											/>
 										</div>
 
-										<div className='col-span-6 sm:col-span-3'>
+										{/* <div className='col-span-6 sm:col-span-3'>
 											<label
 												htmlFor='country'
 												className='block text-sm font-medium leading-6 text-gray-900'
@@ -218,6 +219,54 @@ export default function Form() {
 												<option>Canada</option>
 												<option>Mexico</option>
 											</select>
+										</div> */}
+
+										<div className='col-span-6 sm:col-span-6 lg:col-span-2'>
+											<label
+												htmlFor='age'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												Edad
+											</label>
+											<input
+												type='text'
+												name='age'
+												id='age'
+												autoComplete='age'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											/>
+										</div>
+
+										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
+											<label
+												htmlFor='weight'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												Peso
+											</label>
+											<input
+												type='text'
+												name='weight'
+												id='weight'
+												autoComplete='weight'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											/>
+										</div>
+
+										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
+											<label
+												htmlFor='height'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												Altura
+											</label>
+											<input
+												type='text'
+												name='height'
+												id='height'
+												autoComplete='height'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											/>
 										</div>
 
 										<div className='col-span-6'>
@@ -225,7 +274,7 @@ export default function Form() {
 												htmlFor='street-address'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												Street address
+												Dirección
 											</label>
 											<input
 												type='text'
@@ -241,7 +290,7 @@ export default function Form() {
 												htmlFor='city'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												City
+												Ciudad
 											</label>
 											<input
 												type='text'
@@ -257,7 +306,7 @@ export default function Form() {
 												htmlFor='region'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												State / Province
+												Estado / Provincia
 											</label>
 											<input
 												type='text'
@@ -273,7 +322,7 @@ export default function Form() {
 												htmlFor='postal-code'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												ZIP / Postal code
+												ZIP / Código Postal
 											</label>
 											<input
 												type='text'
@@ -290,7 +339,7 @@ export default function Form() {
 										type='submit'
 										className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
 									>
-										Save
+										Guardar
 									</button>
 								</div>
 							</div>
