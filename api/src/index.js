@@ -5,13 +5,14 @@
 //                      0\  =  /0
 // murio el buda
 
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require('./app.js');
+const { conn } = require('./db.js');
 
+require('dotenv').config()
 
 conn.sync({ force: true }).then( async () => {
-  server.listen(3001, () => {
-    console.log('Listening at: http://localhost:3001/');
+  server.listen(process.env.PORT, () => {
+    console.log(`Listening at: http://localhost:${process.env.PORT}/`);
   })
 })
 .catch((error) => console.log(error.message))

@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+const { DataTypes } = require("sequelize");
 
 const activities = (sequelize) => {
     sequelize.define('activities', {   

@@ -4,13 +4,13 @@ dotenv.config()
 
 // MODELS
 const {
-    activities,
-    admin,
-    blog,
-    client,
-    payments,
-    trainer,
-    memberships 
+    Activities,
+    Admin,
+    Blog,
+    Client,
+    Payments,
+    Trainer,
+    Memberships 
 } = require("./models/index")
 
 // 5432
@@ -24,13 +24,13 @@ const db = new Sequelize(
     }
 );
 
-activities(db)
-admin(db)
-blog(db)
-client(db)
-payments(db)
-trainer(db)
-memberships(db)
+Activities(db)
+Admin(db)
+Blog(db)
+Client(db)
+Payments(db)
+Trainer(db)
+Memberships(db)
 
 
 const {activities, blog, client, payments, trainer, memberships} = db.models // falta charlar con los chicos de front blog y memberships
@@ -44,8 +44,8 @@ payments.belongsTo(client)
 trainer.belongsToMany(activities, {through: 'ActivitiesTrainer'})
 activities.belongsToMany(trainer, {through: 'ActivitiesTrainer'})
 
-trainer.hasMany(publication)
-publication.belongsTo(trainer)
+trainer.hasMany(blog)
+blog.belongsTo(trainer)
 
 module.exports = { 
     ...db.models,

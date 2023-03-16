@@ -1,18 +1,18 @@
-const activities = require("./Activities.")
-const admin = require("./Admin")
-const blog = require("./Blog")
-const client = require("./Client")
-const payments = require("./Payments")
-const trainer = require("./Trainer")
-const memberships = require("./Memberships")
+const Activities = require("./Activities.")
+const Admin = require("./Admin")
+const Blog = require("./Blog")
+const Client = require("./Client")
+const Payments = require("./Payments")
+const Trainer = require("./Trainer")
+const Memberships = require("./Memberships")
 
 
 module.exports = {
-    activities,
-    admin,
-    blog,
-    client,
-    payments,
-    trainer,
-    memberships
+    Activities,
+    Admin,
+    Blog,
+    Client,
+    Payments,
+    Trainer,
+    Memberships
 }
