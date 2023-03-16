@@ -1,7 +1,4 @@
-import { Router } from "express"
-import getActivitiesById from '../controllers/activities/getActivitiesById'
-import getActivitiesByName from "../controllers/activities/getActivitiesByName"
-import getAllActivities from "../controllers/activities/getAllActivities"
+const { Router } = require("express")
 
 const router = Router()
 
@@ -14,4 +11,4 @@ router.get('/', (req, res)=>{})
 router.get('/:id', (req, res)=>{})
 router.get('/:name', (req, res)=>{})
 
-export default router
+module.exports = router

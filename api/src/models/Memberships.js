@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+const { DataTypes } = require("sequelize");
 
 const memberships = (sequelize) => {
     sequelize.define('memberships', {   

@@ -1,8 +1,4 @@
-import { Router } from "express"
-import getAllClients from "../controllers/clients/getAllClients"
-import getClientById from "../controllers/clients/getClientById"
-import getClientByName from "../controllers/clients/getClientByName"
-import updateClientById from "../controllers/clients/updateClientById"
+const { Router } = require("express")
 
 const {
     deleteClient,
@@ -32,4 +28,4 @@ router.delete('/:id', deleteClient)
 
 //router.put('/:id', (req, res)=>{})
 
-export default router
+module.exports = router

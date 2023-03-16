@@ -1,10 +1,10 @@
-import { Router } from "express"
+const { Router } = require("express")
 const router = Router()
 
-import clients from './clients.router'
-import activities from './activities.router'
+const clients = require('./clients.router')
+const activities = require('./activities.router')
 
 router.use('/clients', clients)
 router.use('/activities', activities)
 
-export default router
+module.exports = router

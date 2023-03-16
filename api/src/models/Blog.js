@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
+const { DataTypes } = require("sequelize");
 
 const publication = (sequelize) => {
-    sequelize.define('publication', {   
+    sequelize.define('blog', {   
         authorId: {
             type: DataTypes.INTEGER,
             allowNull: false,
