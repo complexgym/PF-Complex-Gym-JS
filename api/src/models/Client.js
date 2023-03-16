@@ -53,7 +53,16 @@ const clients = (sequelize) => {
             allowNull: false,
         },
         city: {
-
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        region: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        postalCode: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
         active: {
             type: DataTypes.BOOLEAN,
