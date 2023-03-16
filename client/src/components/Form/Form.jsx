@@ -1,7 +1,12 @@
+import React, { useState, useEffect } from 'react';
+import Validate from './Validations';
+
 export default function Form() {
+	const [input, setInput] = useState({});
+
 	return (
 		<>
-			<div className=' relative'>
+			<div className=' relative pt-28'>
 				<div className='md:grid md:grid-cols-3 md:gap-6'>
 					<div className='md:col-span-1'>
 						<div className='px-4 sm:px-0'>
@@ -18,7 +23,7 @@ export default function Form() {
 								<div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
 									<div className='col-span-6 sm:col-span-3'>
 										<label
-											htmlFor='first-name'
+											htmlFor='username'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
 											Nombre de usuario
@@ -72,9 +77,9 @@ export default function Form() {
 									</div>
 
 									<div>
-										<label className='block text-sm font-medium leading-6 text-gray-900'>
+										{/* <label className='block text-sm font-medium leading-6 text-gray-900'>
 											Foto de portada
-										</label>
+										</label> */}
 										<div className='mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
 											<div className='space-y-1 text-center'>
 												<svg
@@ -124,13 +129,11 @@ export default function Form() {
 												name='about'
 												rows={3}
 												className='mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6'
-												placeholder='you@example.com'
+												placeholder=' Breve descripción de su perfil'
 												defaultValue={''}
 											/>
 										</div>
-										<p className='mt-2 text-sm text-gray-500'>
-											Breve descripción de su perfil. URL con hipervínculos.
-										</p>
+										<p className='mt-2 text-sm text-gray-500'>URL con hipervínculos.</p>
 									</div>
 								</div>
 								<div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
@@ -188,15 +191,15 @@ export default function Form() {
 
 										<div className='col-span-6 sm:col-span-3'>
 											<label
-												htmlFor='last-name'
+												htmlFor='lastName'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												Apellido
 											</label>
 											<input
 												type='text'
-												name='last-name'
-												id='last-name'
+												name='lastName'
+												id='lastName'
 												autoComplete='family-name'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											/>
@@ -271,16 +274,16 @@ export default function Form() {
 
 										<div className='col-span-6'>
 											<label
-												htmlFor='street-address'
+												htmlFor='address'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												Dirección
 											</label>
 											<input
 												type='text'
-												name='street-address'
-												id='street-address'
-												autoComplete='street-address'
+												name='address'
+												id='address'
+												autoComplete='address'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											/>
 										</div>
@@ -319,16 +322,16 @@ export default function Form() {
 
 										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
 											<label
-												htmlFor='postal-code'
+												htmlFor='postalCode'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												ZIP / Código Postal
 											</label>
 											<input
 												type='text'
-												name='postal-code'
-												id='postal-code'
-												autoComplete='postal-code'
+												name='postalCode'
+												id='postalCode'
+												autoComplete='postalCode'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											/>
 										</div>
