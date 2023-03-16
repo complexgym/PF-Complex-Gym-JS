@@ -16,7 +16,11 @@ const trainer = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        avatar: {
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        picture: {
             type: DataTypes.TEXT,
             allowNull: false,
         },

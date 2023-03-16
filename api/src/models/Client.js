@@ -16,11 +16,15 @@ const clients = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         dni:  { 
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        avatar: {
+        picture: {
             type: DataTypes.TEXT,
             allowNull: false,
         },
@@ -48,6 +52,9 @@ const clients = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        city: {
+
+        },
         active: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
@@ -64,6 +71,10 @@ const clients = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        about: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        }
 
 
     }, {timestamps: false})
