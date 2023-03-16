@@ -5,7 +5,9 @@ module.exports = {
 	content: ['./src/**/*.{html,js,jsx}'],
 	theme: {
 		extend: {},
-	},plugins: [
+	},
+
+	plugins: [
 		plugin(function ({ addComponents }) {
 			addComponents({
 				//*** buttons ***
@@ -18,6 +20,7 @@ module.exports = {
 					backgroundColor: 'var(--primary-color)' /* red */,
 					color: 'white',
 				},
+        
 				//*backgrounds
 				'.nav-footer': {
 					backgroundColor: 'var(--nav-footer)' /* red */,
@@ -64,9 +67,6 @@ module.exports = {
 				},
 				'.bg-card-image-plans': {
 					backgroundColor: '#031728',
-				},
-				'.border-lighter-blue-plans': {
-					backgroundColor: 'var(--lighter-blue-plans)'
 				},
 
 				//*fonts
