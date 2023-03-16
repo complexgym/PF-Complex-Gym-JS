@@ -4,8 +4,8 @@ const clients = (sequelize) => {
     sequelize.define('client', {
         id: {
             type: DataTypes.UUID,
-            defaultValue:DataTypes.UUID,
-            allowNull: false,
+            defaultValue:DataTypes.UUIDV4,
+            allowNull: true,
             primaryKey: true,
         },
         user: {
