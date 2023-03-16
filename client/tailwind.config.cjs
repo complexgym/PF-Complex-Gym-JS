@@ -20,6 +20,7 @@ module.exports = {
 					backgroundColor: 'var(--primary-color)' /* red */,
 					color: 'white',
 				},
+        
 				//*backgrounds
 				'.nav-footer': {
 					backgroundColor: 'var(--nav-footer)' /* red */,
@@ -73,6 +74,10 @@ module.exports = {
 					color: 'var(--lighter-blue)',
 					fontWeight: 'bold',
 				},
+				'.font-lighter-blue-plans': {
+					color: 'var(--lighter-blue-plans)',
+					fontWeight: 'bold',
+				},
 
 				//*borders
 				'.border-gold': {
@@ -80,6 +85,11 @@ module.exports = {
 				},
 				'.border-blue': {
 					borderColor: 'var(--lighter-blue)',
+				},
+				'.border-lighter-blue-plans': {
+					border: '1px solid var(--lighter-blue-plans)',
+					borderRadius: "10px",
+					padding: "5px 15px"
 				},
 
 				//*buttons
