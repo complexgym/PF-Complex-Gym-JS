@@ -1,14 +1,43 @@
 const { Router } = require("express")
+const {
+    getAllActivities,
+    getActivitiesById,
+    getActivitiesByName
+} = require("../controllers/index")
 
 const router = Router()
 
-/*
-GET - all activities
-GET - find by name
-*/
+router.get('/', async (req, res) => {
+    try {
+      const activities = await getAllActivities();
+      res.status(200).json({ activities });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server Error' });
+    }
+  });
 
-router.get('/', (req, res)=>{})
-router.get('/:id', (req, res)=>{})
-router.get('/:name', (req, res)=>{})
+  router.get('/name', async (req, res) => {
+    try {
+      const activities = await getActivitiesByName(req.query.name);
+      res.status(200).json({ activities });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: ' Error' });
+    }
+  });
+
+router.get('/:id', async (req, res) => {
+  try {
+    const activity = await getActivitiesById(req.params.id);
+    if (!activity) {
+      return res.status(404).json({ error: 'Activity not found' });
+    }
+    res.status(200).json({ activity });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+});
 
 module.exports = router

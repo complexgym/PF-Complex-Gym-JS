@@ -11,11 +11,11 @@ const {
 
 const router = Router()
 
-router.get('/', (req, res)=>{})
-router.get('/:id', (req, res)=>{})
-router.get('/:name', )
-router.post('/', )
-router.delete('/:id', )
-router.put('/:id', )
+router.get('/all', getAllPublications)
+router.get('/:id', getPublicationsByID)
+router.get('/', getPublicationsByName)
+router.post("/", createPublication)
+router.delete('/:id', deletePublication)
+router.put('/:id', editPublication)
 
 module.exports = router
