@@ -4,8 +4,8 @@ const clients = (sequelize) => {
     sequelize.define('client', {
         id: {
             type: DataTypes.UUID,
-            defaultValue:DataTypes.UUID,
-            allowNull: false,
+            defaultValue:DataTypes.UUIDV4,
+            allowNull: true,
             primaryKey: true,
         },
         user: {
@@ -16,11 +16,15 @@ const clients = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         dni:  { 
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        avatar: {
+        picture: {
             type: DataTypes.TEXT,
             allowNull: false,
         },
@@ -48,6 +52,18 @@ const clients = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        region: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        postalCode: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         active: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
@@ -64,6 +80,10 @@ const clients = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        about: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        }
 
 
     }, {timestamps: false})

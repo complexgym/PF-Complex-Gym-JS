@@ -24,7 +24,7 @@ export default function Blog() {
 				</div>
 			</section>
 
-			<InstagramEmbed
+			{/* <InstagramEmbed
 				url='https://www.instagram.com/p/CpkRaEKjOsA/'
 				// clientAccessToken='3404509329817188|IGQVJYUlp4anBUaktoZADRIUGhwblVEekdBWTZAFWVVSUjFLV1U3SGZAwN1ljcWd2STNWNUpDN0ZAWX2NLT01FSGpyUkNIMVdtQ0ZA3bVk5Um1qbU11SGFqbTNFWmtmRWlvT0RxTVVneU82M1hyZAG1RZAWgyUgZDZD'
 				maxWidth={320}
@@ -36,7 +36,7 @@ export default function Blog() {
 				onSuccess={() => {}}
 				onAfterRender={() => {}}
 				onFailure={() => {}}
-			/>
+			/> */}
 
 		</div>
 	);
