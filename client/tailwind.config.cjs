@@ -5,7 +5,8 @@ module.exports = {
 	content: ['./src/**/*.{html,js,jsx}'],
 	theme: {
 		extend: {},
-	},plugins: [
+	}, 
+	plugins: [
 		plugin(function ({ addComponents }) {
 			addComponents({
 				//*** buttons ***
@@ -64,9 +65,6 @@ module.exports = {
 				},
 				'.bg-card-image-plans': {
 					backgroundColor: '#031728',
-				},
-				'.border-lighter-blue-plans': {
-					backgroundColor: 'var(--lighter-blue-plans)'
 				},
 
 				//*fonts
