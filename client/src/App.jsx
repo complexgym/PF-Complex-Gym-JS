@@ -13,6 +13,7 @@ import axios from "axios"
 import { useEffect } from 'react';
 import {useDispatch} from "react-redux"
 import { getAllPosts } from './redux/actions/actions';
+import Landing from "./components/Landing/Landing.jsx"
 axios.defaults.baseURL = 'http://localhost:3001';
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
 			{location.pathname !== '/' && <Navbar />}
 			{location.pathname === '/' && <Link to='/home'>home</Link>}
 			<Routes>
-				<Route path={'/'} element={''} />
+				<Route path={'/'} element={<Landing/>} />
 				<Route path={'/home'} element={<Home />} />
 				<Route path={'/nosotros'} element={<About />} />
 				<Route path={'/calendario'} element={<Calendar />} />
