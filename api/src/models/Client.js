@@ -4,7 +4,7 @@ const clients = (sequelize) => {
     sequelize.define('client', {
         id: {
             type: DataTypes.UUID,
-            defaultValue:DataTypes.UUIDV4,
+            defaultValue: DataTypes.UUIDV4,
             allowNull: true,
             primaryKey: true,
         },
@@ -12,7 +12,7 @@ const clients = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        name: { 
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -20,7 +20,7 @@ const clients = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        dni:  { 
+        dni: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
@@ -43,7 +43,7 @@ const clients = (sequelize) => {
         phone: {
             type: DataTypes.STRING,
             allowNull: false,
-        }, 
+        },
         mail: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -84,5 +84,7 @@ const clients = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: true
         }
+    })
+}
 
 module.exports = clients;
