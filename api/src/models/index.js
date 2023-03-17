@@ -1,4 +1,4 @@
-const Activities = require("./Activities.")
+const Activities = require("./Activities")
 const Admin = require("./Admin")
 const Blog = require("./Blog")
 const Client = require("./Client")
