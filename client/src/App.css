@@ -1,6 +1,7 @@
 :root {
 	--darker-blue: #1d459d;
 	--lighter-blue: #4a78ad;
+	--lighter-blue-plans: #4ab4ab;
 	--marine-dark-blue: rgb(7, 7, 10, 0.5);
 	--nav-footer: #231f20;
 	--marine-blue: #041c2d;
@@ -141,4 +142,8 @@
 	background: #1abc9c;
 	border-radius: 10px;
 	box-shadow: inset 0 0 6px #0f1011;
+}
+
+input:checked{
+	accent-color: var(--lighter-blue-plans);
 }

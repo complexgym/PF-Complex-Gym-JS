@@ -4,16 +4,21 @@ const { client, activities } = require("../../db")
 const postClient = async ({ 
     user,
     name,
+    lastName,
     dni,
-    avatar,
+    picture,
     height,
     weight,
     age,
     phone,
     mail,
     adress,
+    city,
+    region,
+    postalCode,
     activitie,
-    routine }) => {
+    routine,
+    about }) => {
 
     const active = true
     const debt = false
@@ -22,16 +27,21 @@ const postClient = async ({
     const newClient = await client.create({
         user,
         name,
+        lastName,
         dni,
-        avatar,
+        picture,
         height,
         weight,
         age,
         phone,
         mail,
         adress,
+        city,
+        region,
+        postalCode,
         activitie,
         routine,
+        about,
         active,
         debt,
         debtAmount

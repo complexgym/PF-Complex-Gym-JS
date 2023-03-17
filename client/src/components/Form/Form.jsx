@@ -1,13 +1,50 @@
+import React, { useState, useEffect } from 'react';
+import Validate from './Validations';
+
 export default function Form() {
+	const [input, setInput] = useState({
+		user: '',
+		mail: '',
+		picture: '',
+		about: '',
+		name: '',
+		lastName: '',
+		dni: 0,
+		height: 0,
+		weight: 0,
+		age: 0,
+		phone: 0,
+		address: '',
+		city: '',
+		region: '',
+		postalCode: 0,
+	});
+
+	const [errors, setErrors] = useState({});
+
+	const handleChange = (e) => {
+		setInput({
+			...input,
+			[e.target.name]: e.target.value,
+		});
+		setErrors(
+			Validate({
+				...input,
+				[e.target.name]: e.target.value,
+			})
+		);
+	};
+
 	return (
 		<>
-			<div className=' relative'>
+			<div className=' relative pt-28'>
 				<div className='md:grid md:grid-cols-3 md:gap-6'>
 					<div className='md:col-span-1'>
 						<div className='px-4 sm:px-0'>
-							<h3 className='text-base font-semibold leading-6 text-gray-900'>Profile</h3>
+							<h3 className='text-base font-semibold leading-6 text-gray-900'>Perfil</h3>
 							<p className='mt-1 text-sm text-gray-600'>
-								This information will be displayed publicly so be careful what you share.
+								Esta información se mostrará públicamente, así que ten cuidado con lo que
+								compartes.
 							</p>
 						</div>
 					</div>
@@ -17,39 +54,41 @@ export default function Form() {
 								<div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
 									<div className='col-span-6 sm:col-span-3'>
 										<label
-											htmlFor='first-name'
+											htmlFor='user'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
-											User Name
+											Nombre de usuario
 										</label>
 										<input
 											type='text'
-											name='username'
-											id='username'
+											name='user'
+											id='user'
 											autoComplete='given-name'
 											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											onChange={handleChange}
 										/>
 									</div>
 
 									<div className='col-span-6 sm:col-span-4'>
 										<label
-											htmlFor='email-address'
+											htmlFor='mail'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
-											Email address
+											Correo electrónico
 										</label>
 										<input
 											type='text'
-											name='email-address'
-											id='email-address'
-											autoComplete='email'
+											name='mail'
+											id='mail'
+											autoComplete='mail'
 											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											onChange={handleChange}
 										/>
 									</div>
 
 									<div>
 										<label className='block text-sm font-medium leading-6 text-gray-900'>
-											Photo
+											Foto
 										</label>
 										<div className='mt-2 flex items-center'>
 											<span className='inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100'>
@@ -65,15 +104,15 @@ export default function Form() {
 												type='button'
 												className='ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50'
 											>
-												Change
+												Cambiar
 											</button>
 										</div>
 									</div>
 
 									<div>
-										<label className='block text-sm font-medium leading-6 text-gray-900'>
-											Cover photo
-										</label>
+										{/* <label className='block text-sm font-medium leading-6 text-gray-900'>
+											Foto de portada
+										</label> */}
 										<div className='mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
 											<div className='space-y-1 text-center'>
 												<svg
@@ -92,18 +131,19 @@ export default function Form() {
 												</svg>
 												<div className='flex text-sm text-gray-600'>
 													<label
-														htmlFor='file-upload'
+														htmlFor='picture'
 														className='relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500'
 													>
-														<span>Upload a file</span>
+														<span>Cargar un archivo</span>
 														<input
-															id='file-upload'
-															name='file-upload'
+															id='picture'
+															name='picture'
 															type='file'
 															className='sr-only'
+															onChange={handleChange}
 														/>
 													</label>
-													<p className='pl-1'>or drag and drop</p>
+													<p className='pl-1'>o arrastrar y soltar</p>
 												</div>
 												<p className='text-xs text-gray-500'>PNG, JPG, GIF up to 10MB</p>
 											</div>
@@ -115,7 +155,7 @@ export default function Form() {
 											htmlFor='about'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
-											About
+											Descripción
 										</label>
 										<div className='mt-2'>
 											<textarea
@@ -123,13 +163,12 @@ export default function Form() {
 												name='about'
 												rows={3}
 												className='mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6'
-												placeholder='you@example.com'
+												placeholder=' Breve descripción de su perfil'
 												defaultValue={''}
+												onChange={handleChange}
 											/>
 										</div>
-										<p className='mt-2 text-sm text-gray-500'>
-											Brief description for your profile. URLs are hyperlinked.
-										</p>
+										<p className='mt-2 text-sm text-gray-500'>URL con hipervínculos.</p>
 									</div>
 								</div>
 								<div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
@@ -137,7 +176,7 @@ export default function Form() {
 										type='submit'
 										className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
 									>
-										Save
+										Guardar
 									</button>
 								</div>
 							</div>
@@ -157,10 +196,10 @@ export default function Form() {
 					<div className='md:col-span-1'>
 						<div className='px-4 sm:px-0'>
 							<h3 className='text-base font-semibold leading-6 text-gray-900'>
-								Personal Information
+								Información Personal
 							</h3>
 							<p className='mt-1 text-sm text-gray-600'>
-								Use a permanent address where you can receive mail.
+								Esta información espara el uso unico y exclusivo de la página
 							</p>
 						</div>
 					</div>
@@ -171,37 +210,39 @@ export default function Form() {
 									<div className='grid grid-cols-6 gap-6'>
 										<div className='col-span-6 sm:col-span-3'>
 											<label
-												htmlFor='first-name'
+												htmlFor='name'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												First name
+												Nombre
 											</label>
 											<input
 												type='text'
-												name='first-name'
-												id='first-name'
+												name='name'
+												id='name'
 												autoComplete='given-name'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
 										<div className='col-span-6 sm:col-span-3'>
 											<label
-												htmlFor='last-name'
+												htmlFor='lastName'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												Last name
+												Apellido
 											</label>
 											<input
 												type='text'
-												name='last-name'
-												id='last-name'
+												name='lastName'
+												id='lastName'
 												autoComplete='family-name'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
-										<div className='col-span-6 sm:col-span-3'>
+										{/* <div className='col-span-6 sm:col-span-3'>
 											<label
 												htmlFor='country'
 												className='block text-sm font-medium leading-6 text-gray-900'
@@ -218,21 +259,109 @@ export default function Form() {
 												<option>Canada</option>
 												<option>Mexico</option>
 											</select>
+										</div> */}
+
+										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
+											<label
+												htmlFor='phone'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												Teléfono
+											</label>
+											<input
+												type='text'
+												name='phone'
+												id='phone'
+												autoComplete='phone'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
+											<label
+												htmlFor='dni'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												DNI
+											</label>
+											<input
+												type='text'
+												name='dni'
+												id='dni'
+												autoComplete='dni'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
+											<label
+												htmlFor='age'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												Edad
+											</label>
+											<input
+												type='text'
+												name='age'
+												id='age'
+												autoComplete='age'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
+											<label
+												htmlFor='weight'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												Peso
+											</label>
+											<input
+												type='text'
+												name='weight'
+												id='weight'
+												autoComplete='weight'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												placeholder='  kg'
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
+											<label
+												htmlFor='height'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												Altura
+											</label>
+											<input
+												type='text'
+												name='height'
+												id='height'
+												autoComplete='height'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												placeholder='  cm'
+												onChange={handleChange}
+											/>
 										</div>
 
 										<div className='col-span-6'>
 											<label
-												htmlFor='street-address'
+												htmlFor='address'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												Street address
+												Dirección
 											</label>
 											<input
 												type='text'
-												name='street-address'
-												id='street-address'
-												autoComplete='street-address'
+												name='address'
+												id='address'
+												autoComplete='address'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
@@ -241,7 +370,7 @@ export default function Form() {
 												htmlFor='city'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												City
+												Ciudad
 											</label>
 											<input
 												type='text'
@@ -249,6 +378,7 @@ export default function Form() {
 												id='city'
 												autoComplete='address-level2'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
@@ -257,7 +387,7 @@ export default function Form() {
 												htmlFor='region'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												State / Province
+												Estado / Provincia
 											</label>
 											<input
 												type='text'
@@ -265,22 +395,24 @@ export default function Form() {
 												id='region'
 												autoComplete='address-level1'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
 										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
 											<label
-												htmlFor='postal-code'
+												htmlFor='postalCode'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												ZIP / Postal code
+												ZIP / Código Postal
 											</label>
 											<input
 												type='text'
-												name='postal-code'
-												id='postal-code'
-												autoComplete='postal-code'
+												name='postalCode'
+												id='postalCode'
+												autoComplete='postalCode'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 									</div>
@@ -290,7 +422,7 @@ export default function Form() {
 										type='submit'
 										className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
 									>
-										Save
+										Guardar
 									</button>
 								</div>
 							</div>
