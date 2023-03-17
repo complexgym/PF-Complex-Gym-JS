@@ -13,6 +13,8 @@ const editPublication = require("./publications/editPublication")
 const getAllPublications = require("./publications/getAllPublications")
 const getPublicationsByID = require("./publications/getPublicationsByID")
 const getPublicationsByName = require("./publications/getPublicationsByName")
+const filterByDate = require('./publications/filterByDate')
+const filterByTag = require('./publications/filterByTag')
 
 
 module.exports = {
@@ -30,5 +32,7 @@ module.exports = {
     editPublication,
     getAllPublications,
     getPublicationsByID,
-    getPublicationsByName
+    getPublicationsByName,
+    filterByDate,
+    filterByTag
 }
