@@ -2,7 +2,38 @@ import React, { useState, useEffect } from 'react';
 import Validate from './Validations';
 
 export default function Form() {
-	const [input, setInput] = useState({});
+	const [input, setInput] = useState({
+		user: '',
+		mail: '',
+		picture: '',
+		about: '',
+		name: '',
+		lastName: '',
+		dni: 0,
+		height: 0,
+		weight: 0,
+		age: 0,
+		phone: 0,
+		address: '',
+		city: '',
+		region: '',
+		postalCode: 0,
+	});
+
+	const [errors, setErrors] = useState({});
+
+	const handleChange = (e) => {
+		setInput({
+			...input,
+			[e.target.name]: e.target.value,
+		});
+		setErrors(
+			Validate({
+				...input,
+				[e.target.name]: e.target.value,
+			})
+		);
+	};
 
 	return (
 		<>
@@ -23,33 +54,35 @@ export default function Form() {
 								<div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
 									<div className='col-span-6 sm:col-span-3'>
 										<label
-											htmlFor='username'
+											htmlFor='user'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
 											Nombre de usuario
 										</label>
 										<input
 											type='text'
-											name='username'
-											id='username'
+											name='user'
+											id='user'
 											autoComplete='given-name'
 											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											onChange={handleChange}
 										/>
 									</div>
 
 									<div className='col-span-6 sm:col-span-4'>
 										<label
-											htmlFor='email'
+											htmlFor='mail'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
 											Correo electrónico
 										</label>
 										<input
 											type='text'
-											name='email'
-											id='email'
-											autoComplete='email'
+											name='mail'
+											id='mail'
+											autoComplete='mail'
 											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											onChange={handleChange}
 										/>
 									</div>
 
@@ -98,15 +131,16 @@ export default function Form() {
 												</svg>
 												<div className='flex text-sm text-gray-600'>
 													<label
-														htmlFor='file-upload'
+														htmlFor='picture'
 														className='relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500'
 													>
 														<span>Cargar un archivo</span>
 														<input
-															id='file-upload'
-															name='file-upload'
+															id='picture'
+															name='picture'
 															type='file'
 															className='sr-only'
+															onChange={handleChange}
 														/>
 													</label>
 													<p className='pl-1'>o arrastrar y soltar</p>
@@ -131,6 +165,7 @@ export default function Form() {
 												className='mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6'
 												placeholder=' Breve descripción de su perfil'
 												defaultValue={''}
+												onChange={handleChange}
 											/>
 										</div>
 										<p className='mt-2 text-sm text-gray-500'>URL con hipervínculos.</p>
@@ -186,6 +221,7 @@ export default function Form() {
 												id='name'
 												autoComplete='given-name'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
@@ -202,6 +238,7 @@ export default function Form() {
 												id='lastName'
 												autoComplete='family-name'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
@@ -224,7 +261,41 @@ export default function Form() {
 											</select>
 										</div> */}
 
-										<div className='col-span-6 sm:col-span-6 lg:col-span-2'>
+										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
+											<label
+												htmlFor='phone'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												Teléfono
+											</label>
+											<input
+												type='text'
+												name='phone'
+												id='phone'
+												autoComplete='phone'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
+											<label
+												htmlFor='dni'
+												className='block text-sm font-medium leading-6 text-gray-900'
+											>
+												DNI
+											</label>
+											<input
+												type='text'
+												name='dni'
+												id='dni'
+												autoComplete='dni'
+												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
+											/>
+										</div>
+
+										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='age'
 												className='block text-sm font-medium leading-6 text-gray-900'
@@ -237,10 +308,11 @@ export default function Form() {
 												id='age'
 												autoComplete='age'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
-										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
+										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='weight'
 												className='block text-sm font-medium leading-6 text-gray-900'
@@ -253,10 +325,12 @@ export default function Form() {
 												id='weight'
 												autoComplete='weight'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												placeholder='  kg'
+												onChange={handleChange}
 											/>
 										</div>
 
-										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
+										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='height'
 												className='block text-sm font-medium leading-6 text-gray-900'
@@ -269,6 +343,8 @@ export default function Form() {
 												id='height'
 												autoComplete='height'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												placeholder='  cm'
+												onChange={handleChange}
 											/>
 										</div>
 
@@ -285,6 +361,7 @@ export default function Form() {
 												id='address'
 												autoComplete='address'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
@@ -301,6 +378,7 @@ export default function Form() {
 												id='city'
 												autoComplete='address-level2'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
@@ -317,6 +395,7 @@ export default function Form() {
 												id='region'
 												autoComplete='address-level1'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 
@@ -333,6 +412,7 @@ export default function Form() {
 												id='postalCode'
 												autoComplete='postalCode'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												onChange={handleChange}
 											/>
 										</div>
 									</div>
