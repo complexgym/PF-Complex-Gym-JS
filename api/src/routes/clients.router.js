@@ -4,7 +4,9 @@ const {
     deleteClient,
     postClient,
     getClientByName,
-    updateClientById
+    updateClientById,
+    getAllClients,
+    getClientById
 } = require("../controllers/index")
 
 const router = Router()
@@ -34,14 +36,23 @@ router.get('/', async (req, res)=>{
             message: 'find by name',
             response
         })
-    }
-    // TEST DATA
-    // testData()
-    res.json({
-        message: 'find all clients'
-    })
+    }else{
+        const responseAll = await getAllClients()
+        return res.json({
+        message: 'find all clients',
+        responseAll
+    })}
 }) 
-//router.get('/:id', (req, res)=>{})
+
+router.get('/:id', async(req, res)=>{
+    const { id } = req.params;
+  try {
+    let clientid = await getClientById(id);
+      return res.status(200).send(clientid);
+  }catch (error) {
+    res.status(400).send("Something went wrong");
+  }
+})
 
 router.post('/', async(req, res)=>{
     try {
