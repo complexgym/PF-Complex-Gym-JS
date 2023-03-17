@@ -87,4 +87,5 @@ const clients = (sequelize) => {
 	});
 };
 
+
 module.exports = clients;
