@@ -7,6 +7,6 @@ const publications = require('./publications.router')
 
 router.use('/clients', clients)
 router.use('/activities', activities)
-router.use('publications', publications)
+router.use('/publications', publications)
 
 module.exports = router

@@ -41,7 +41,7 @@ const clients = (sequelize) => {
             allowNull: false,
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         }, 
         mail: {
@@ -61,7 +61,7 @@ const clients = (sequelize) => {
             allowNull: true,
         },
         postalCode: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true,
         },
         active: {
