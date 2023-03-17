@@ -4,7 +4,7 @@ export const dataBlogs = [
         image: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/blog/office-laptops.png",
         title: "How to quickly deploy a static website",
         released_date: "11/19/2022",
-        tag: ["Salud"],
+        tag: ["Fitness"],
         content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
     {

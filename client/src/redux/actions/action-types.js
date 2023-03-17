@@ -1,1 +1,4 @@
-import ""
+export let GET_ALL_POSTS = 'GET_ALL_POSTS'
+export let GET_POST_BY_ID = 'GET_POST_BY_ID'
+export let SEARCH_POSTS = 'SEARCH_POSTS'
+export let UPDATE_SEARCH = 'UPDATE_SEARCH'
