@@ -84,5 +84,7 @@ const clients = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: true
         }
+    })
+}
 
 module.exports = clients;
