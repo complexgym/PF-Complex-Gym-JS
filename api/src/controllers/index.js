@@ -7,6 +7,12 @@ const getClientById = require("./clients/getClientById")
 const getClientByName = require("./clients/getClientByName")
 const postClient = require("./clients/postClient")
 const updateClientById = require("./clients/updateClientById")
+const createPublication = require("./publications/createPublication")
+const deletePublication = require("./publications/deletePublication")
+const editPublication = require("./publications/editPublication")
+const getAllPublications = require("./publications/getAllPublications")
+const getPublicationsByID = require("./publications/getPublicationsByID")
+const getPublicationsByName = require("./publications/getPublicationsByName")
 
 
 module.exports = {
@@ -18,5 +24,11 @@ module.exports = {
     getClientById,
     getClientByName,
     postClient,
-    updateClientById
+    updateClientById,
+    createPublication,
+    deletePublication,
+    editPublication,
+    getAllPublications,
+    getPublicationsByID,
+    getPublicationsByName
 }
