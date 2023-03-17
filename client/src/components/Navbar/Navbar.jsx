@@ -3,6 +3,7 @@ import logo from '../../assets/logo/logo.png';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginBtn from '../LoginBtn/LoginBtn';
 import LogoutBtn from '../LogoutBtn/LogoutBtn';
+import Spline from '@splinetool/react-spline';
 
 export default function Navbar() {
 	const { user, isAuthenticated } = useAuth0();
@@ -11,7 +12,12 @@ export default function Navbar() {
 
 	return (
 		<div className='fixed z-30 flex flex-row  w-full h-20 bg-black bg-opacity-90 justify-between '>
-			<img className=' h-22 ml-40  ' src={logo} alt='logo' />
+			{/* <img className=' h-22 ml-40  ' src={logo} alt='logo' /> */}
+			<div>
+				<Link to='/'>
+					<Spline scene='https://prod.spline.design/ffORQphusIoT5k1H/scene.splinecode' />
+				</Link>
+			</div>
 			<div className=' flex flex-row text-white gap-16 items-center mr-10  '>
 				<Link to='/home'>Inicio</Link>
 				<ul>
