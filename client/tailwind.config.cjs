@@ -5,8 +5,7 @@ module.exports = {
 	content: ['./src/**/*.{html,js,jsx}'],
 	theme: {
 		extend: {},
-	},
-
+	}, 
 	plugins: [
 		plugin(function ({ addComponents }) {
 			addComponents({
