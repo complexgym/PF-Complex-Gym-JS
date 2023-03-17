@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 const clients = (sequelize) => {
+
 	sequelize.define('client', {
 		id: {
 			type: DataTypes.UUID,
@@ -86,6 +87,5 @@ const clients = (sequelize) => {
 		},
 	});
 };
-
 
 module.exports = clients;

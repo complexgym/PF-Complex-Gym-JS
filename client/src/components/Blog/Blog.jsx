@@ -1,24 +1,66 @@
 import { dataBlogs } from "../../assets/utils/dataBlogs";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPosts, searchPosts, updateSearch } from "../../redux/actions/actions";
+import { useEffect, useState } from "react";
 // import InstagramEmbed from 'react-instagram-embed';
 
 //todo blog container
 export default function Blog() {
+	const dispatch = useDispatch()
+	const {matched_posts, search_value} = useSelector(s=>s)
+	const [search, setSearch] = useState("")
+
+	const handleChangeSearch = (e)=>{
+		setSearch(e.target.value)
+		dispatch(updateSearch(e.target.value))
+	}
+
+	useEffect(()=>{
+		if(search_value===""){
+			dispatch(getAllPosts())
+		} else{
+			dispatch(searchPosts(search))
+		}
+	}, [search_value])
+
 	return (
 		<div>
 			<section className="bg-white dark:bg-gray-900 pt-12 min-h-[80vh]">
-				<div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+				<div className="py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6">
 					<div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
 						<h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-							Our Blog
+							Nuestro Blog
 						</h2>
-						<p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-							We use an agile approach to test assumptions and connect with the
-							needs of your audience early and often.
-						</p>
 					</div>
-					<div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
-						{dataBlogs.map((b, index)=>{
-							return <SingleBlog blog={b}/>
+					<form className="flex justify-center mb-4">
+						<div className="mr-4">
+            				<label for="search" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Búsqueda por título</label>
+            				<input type="text" id="search" onChange={handleChangeSearch} value={search}
+							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="5 ejercicios para tonificar" required/>
+						</div>
+
+						<div className="mr-4">
+						<label for="tag" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Por tema</label>
+							<select id="tag" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+								<option selected>Seleccione una opción...</option>
+								<option value="fitness">Fitness</option>
+								<option value="entrenamiento">Entrenamiento</option>
+								<option value="administrativo">Administrativo</option>
+							</select>
+						</div>
+
+						<div className="mr-4">
+							<label for="per_date" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orden por fecha</label>
+							<select id="per_date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+								<option selected>Seleccione una opción...</option>
+								<option value="newer">Más nuevos</option>
+								<option value="older">Más antiguos</option>
+							</select>
+						</div>
+					</form>
+					<div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8">
+						{matched_posts?.map((b, index)=>{
+							return <SingleBlog key={index} blog={b}/>
 						})}
 					</div>
 				</div>
@@ -42,21 +84,23 @@ export default function Blog() {
 	);
 }
 
+
+
 //todo single blog
 
 function SingleBlog({ blog }) {
 	return (
 		<article
 			className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700
-		flex flex-col justify-between"
+			flex flex-col justify-between w-10/12 md:w-11/12 mx-auto"
 		>
 			<div className="flex justify-between items-center mb-5 text-gray-500">
-				<img className="rounded-xl" src={blog.image} />
+				<img className="rounded-xl w-full" src={blog?.image} />
 				{/* <span className="text-sm">14 days ago</span> */}
 			</div>
 			<div className="flex justify-between items-center mb-5 text-gray-500">
 				<span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-					{blog.tag.map((b, index) => {
+					{blog?.tag?.map((b, index) => {
 						return (
 							<div key={index} className="flex items-center">
 								<svg
@@ -77,22 +121,22 @@ function SingleBlog({ blog }) {
 						);
 					})}
 				</span>
-				<span className="text-sm">{blog.released_date}</span>
+				<span className="text-sm">{blog?.released_date}</span>
 			</div>
 			<h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-				<a href="#">How to quickly deploy a static website</a>
+				<a href="#">{blog?.title}</a>
 			</h2>
 			<p className="mb-5 font-light text-gray-500 dark:text-gray-400">
-				{blog.content}
+				{blog?.content}
 			</p>
 			<div className="flex justify-between items-center">
 				<div className="flex items-center space-x-4">
 					<img
 						className="w-7 h-7 rounded-full"
-						src={blog.author.image}
-						alt={`${blog.author.name} avatar`}
+						src={blog?.authorId?.image}
+						alt={`${blog?.authorId?.name} avatar`}
 					/>
-					<span className="font-medium dark:text-white">{blog.author.name}</span>
+					<span className="font-medium dark:text-white">{blog?.author?.name}</span>
 				</div>
 				<a
 					href="#"

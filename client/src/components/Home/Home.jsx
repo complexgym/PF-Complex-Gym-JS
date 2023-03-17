@@ -12,7 +12,7 @@ export default function Home() {
 		<div>
 			<div>
 				{/* desktop */}
-				<div className='z-20 absolute text-6xl hidden 2xl:block  text-white w-1/2 top-1/2 left-36'>
+				<div className='z-20 absolute text-6xl hidden 2xl:block text-white w-1/2 top-1/2 left-36'>
 					<h1 className='mb-10 text-5xl' >¿Qué es para nosotros? </h1>
 					<p className='text-xl'>
 						Es un centro de movimiento, especializado en preparación física deportiva,

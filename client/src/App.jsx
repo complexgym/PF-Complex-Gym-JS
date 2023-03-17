@@ -9,19 +9,29 @@ import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import Plans from './components/Plans/Plans';
 import Profile from './components/Profile/Profile';
-import axios from 'axios';
+import axios from "axios"
+import { useEffect } from 'react';
+import {useDispatch} from "react-redux"
+import { getAllPosts } from './redux/actions/actions';
+import Landing from "./components/Landing/Landing.jsx"
 
-axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = 'http://localhost:3001';
 
 function App() {
 	const location = useLocation();
+
+	const dispatch = useDispatch()
+
+	useEffect(()=>{
+		dispatch(getAllPosts())
+	}, [dispatch])
 
 	return (
 		<div className='App'>
 			{location.pathname !== '/' && <Navbar />}
 			{location.pathname === '/' && <Link to='/home'>home</Link>}
 			<Routes>
-				<Route path={'/'} element={''} />
+				<Route path={'/'} element={<Landing/>} />
 				<Route path={'/home'} element={<Home />} />
 				<Route path={'/nosotros'} element={<About />} />
 				<Route path={'/calendario'} element={<Calendar />} />
