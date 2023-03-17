@@ -1,4 +1,4 @@
-import {GET_ALL_POSTS, GET_POST_BY_ID, SEARCH_POSTS, UPDATE_SEARCH} from "./action-types.js"
+import {GET_ALL_POSTS, GET_POST_BY_ID, SEARCH_POSTS, UPDATE_SEARCH, GET_CLIENT_DETAIL, POST_CLIENT} from "./action-types.js"
 import axios from "axios"
 
 export function getAllPosts(){
@@ -28,3 +28,25 @@ export function updateSearch(title){
         payload: title
     }
 }
+
+export const getClientDetail = (id) => async (dispatch) => {
+	try {
+		let json = await axios(`/clients/${id}`);
+
+		return dispatch({
+			type: GET_CLIENT_DETAIL,
+			payload: json.data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postClient = (client) => async () => {
+	try {
+		const data = await axios.post('/clients', client);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};

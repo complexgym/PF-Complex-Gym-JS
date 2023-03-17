@@ -1,14 +1,10 @@
+const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
+const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/;
+const regexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const regexPhone = /^\+?54\d{10}$/;
+const regexDni = /^[0-9]{8}$/;
+
 export default function Validate(input) {
-	const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
-	const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/;
-	const regexMail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-	const regexPhone = /^\+(?:[0-9]●?){6,14}[0-9]$/;
-	const regexDni = /^[0-9]{8}$/;
-
-	// USER /^[a-zA-Z0-9-() .]+$/
-	// EMAIL /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-	// NAME /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
-
 	let errors = {};
 
 	if (!input.user) {
@@ -21,8 +17,8 @@ export default function Validate(input) {
 		errors.user = 'El Nombre de usuario es demasiado largo, Max 16 caracteres.';
 	} else if (!input.mail) {
 		errors.mail = 'El campo Correo electrónico debe rellenarse obligatoriamente';
-	} else if (!regexMail.test(!input.mail)) {
-		errors.mail = '';
+	} else if (!regexMail.test(input.mail)) {
+		errors.mail = 'Ingrese un email valido';
 	} else if (!input.name) {
 		errors.name = 'El campo Nombre debe rellenarse obligatoriamente';
 	} else if (!regexName.test(input.name)) {
@@ -51,10 +47,10 @@ export default function Validate(input) {
 		errors.dni = 'El DNI debe ser de 8 dígitos.';
 	} else if (!input.age) {
 		errors.age = 'El campo Edad debe rellenarse obligatoriamente';
-	} else if (!input.height) {
-		errors.height = 'El campo Estatura debe rellenarse obligatoriamente';
 	} else if (!input.weight) {
 		errors.weight = 'El campo Peso debe rellenarse obligatoriamente';
+	} else if (!input.height) {
+		errors.height = 'El campo Estatura debe rellenarse obligatoriamente';
 	} else if (!input.address) {
 		errors.address = 'El campo Dirección debe rellenarse obligatoriamente';
 	}

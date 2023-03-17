@@ -1,6 +1,7 @@
-import {GET_ALL_POSTS, SEARCH_POSTS, UPDATE_SEARCH} from "../actions/action-types.js"
+import {GET_ALL_POSTS, SEARCH_POSTS, UPDATE_SEARCH, GET_CLIENT_DETAIL, POST_CLIENT} from "../actions/action-types.js"
 
 const initialState = {
+  client: [],
 	initial_posts: [],
 	matched_posts: [],
 	post_details: {},
@@ -24,6 +25,15 @@ const rootReducer = (state = initialState, action) => {
 			...state,
 			search_value: payload
 		}
+    case GET_CLIENT_DETAIL:
+			return {
+				...state,
+				client: payload,
+			};
+		case POST_CLIENT:
+			return {
+				...state,
+			};
 		default: return {
 			...state
 		}

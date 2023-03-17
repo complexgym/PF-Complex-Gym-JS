@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import {useDispatch} from "react-redux"
 import { getAllPosts } from './redux/actions/actions';
 import Landing from "./components/Landing/Landing.jsx"
+
 axios.defaults.baseURL = 'http://localhost:3001';
 
 function App() {
