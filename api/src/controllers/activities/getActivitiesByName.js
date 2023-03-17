@@ -1,3 +1,11 @@
-const getActivitiesByName = ()=>{}
+const { activities } = require("../../db")
 
-module.exports = getActivitiesByName
+const getActivitiesByName = async (name) => {
+    const response = await activities.findAll({
+      where: {
+        name: name,
+      },
+    });
+    return response;
+  };
+module.exports = getActivitiesByName;

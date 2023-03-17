@@ -22,7 +22,7 @@ const publication = (sequelize) => {
             type: DataTypes.ARRAY(DataTypes.STRING),
             default: ["fitness"]
         }
-     }, {timestamps: false})
+     })
 }
 
 module.exports = publication

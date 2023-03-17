@@ -52,7 +52,14 @@ router.post('/', async(req, res)=>{
     }
 })
 
-router.delete('/:id', deleteClient)
+router.delete('/:id', async(req, res) => {
+    try {
+        const result = await deleteClient(req.params)
+        res.status(200).send(result)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
 
 router.put('/:id', async (req, res)=>{
     const { id } = req.params

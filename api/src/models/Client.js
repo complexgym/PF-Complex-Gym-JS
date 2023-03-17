@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 const clients = (sequelize) => {
     sequelize.define('client', {
@@ -41,14 +41,14 @@ const clients = (sequelize) => {
             allowNull: false,
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         }, 
         mail: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        adress: {
+        address: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -85,8 +85,4 @@ const clients = (sequelize) => {
             allowNull: true
         }
 
-
-    }, {timestamps: false})
-}
-
-module.exports = clients
+module.exports = clients;
