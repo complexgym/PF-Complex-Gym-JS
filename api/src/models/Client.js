@@ -61,7 +61,7 @@ const clients = (sequelize) => {
             allowNull: true,
         },
         postalCode: {
-            type: DataTypes.STRING,
+            type: DataTypes.NUMBER,
             allowNull: true,
         },
         active: {
