@@ -9,15 +9,15 @@ export default function Form() {
 		about: '',
 		name: '',
 		lastName: '',
-		dni: 0,
-		height: 0,
-		weight: 0,
-		age: 0,
-		phone: 0,
+		phone: '',
+		dni: '',
+		age: '',
+		height: '',
+		weight: '',
 		address: '',
 		city: '',
 		region: '',
-		postalCode: 0,
+		postalCode: '',
 	});
 
 	const [errors, setErrors] = useState({});
@@ -35,9 +35,31 @@ export default function Form() {
 		);
 	};
 
+	const handleSubmitProfile = (e) => {
+		e.preventDefault();
+		setErrors(Validate(input));
+		let error = Validate(input);
+		if (Object.values(error).length !== 0) {
+			alert('Falta información obligatoria');
+		} else {
+			alert('¡Información actualizada correctamente!');
+		}
+	};
+
+	// const handleSubmitPersonalData = (e) => {
+	// 	e.preventDefault();
+	// 	setErrors(Validate(input));
+	// 	let error = Validate(input);
+	// 	if (Object.values(error).length !== 0) {
+	// 		alert('Falta información obligatoria');
+	// 	} else {
+	// 		alert('¡Información actualizada correctamente!');
+	// 	}
+	// };
+
 	return (
 		<>
-			<div className=' relative pt-28'>
+			<div className=' relative pt-28 px-10'>
 				<div className='md:grid md:grid-cols-3 md:gap-6'>
 					<div className='md:col-span-1'>
 						<div className='px-4 sm:px-0'>
@@ -49,7 +71,7 @@ export default function Form() {
 						</div>
 					</div>
 					<div className='mt-5 md:col-span-2 md:mt-0'>
-						<form action='#' method='POST'>
+						<form onSubmit={(e) => handleSubmitProfile(e)}>
 							<div className='shadow sm:overflow-hidden sm:rounded-md'>
 								<div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
 									<div className='col-span-6 sm:col-span-3'>
@@ -62,16 +84,22 @@ export default function Form() {
 										<input
 											type='text'
 											name='user'
-											id='user'
+											id='input'
+											value={input.user}
 											autoComplete='given-name'
 											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
 										/>
+										{errors?.user && (
+											<p className=' text-red-500'>
+												<i>{errors.user}</i>
+											</p>
+										)}
 									</div>
 
 									<div className='col-span-6 sm:col-span-4'>
 										<label
-											htmlFor='mail'
+											// htmlFor='mail'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
 											Correo electrónico
@@ -80,10 +108,16 @@ export default function Form() {
 											type='text'
 											name='mail'
 											id='mail'
+											value={input.mail}
 											autoComplete='mail'
 											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
 										/>
+										{errors?.mail && (
+											<p className=' text-red-500'>
+												<i>{errors.mail}</i>
+											</p>
+										)}
 									</div>
 
 									<div>
@@ -139,8 +173,9 @@ export default function Form() {
 															id='picture'
 															name='picture'
 															type='file'
+															value={input.picture}
 															className='sr-only'
-															onChange={handleChange}
+															// onChange={handleChange}
 														/>
 													</label>
 													<p className='pl-1'>o arrastrar y soltar</p>
@@ -161,6 +196,7 @@ export default function Form() {
 											<textarea
 												id='about'
 												name='about'
+												value={input.about}
 												rows={3}
 												className='mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6'
 												placeholder=' Breve descripción de su perfil'
@@ -191,7 +227,7 @@ export default function Form() {
 				</div>
 			</div>
 
-			<div className='mt-10 sm:mt-0'>
+			<div className='mt-10 sm:mt-0 px-10'>
 				<div className='md:grid md:grid-cols-3 md:gap-6'>
 					<div className='md:col-span-1'>
 						<div className='px-4 sm:px-0'>
@@ -204,7 +240,7 @@ export default function Form() {
 						</div>
 					</div>
 					<div className='mt-5 md:col-span-2 md:mt-0'>
-						<form action='#' method='POST'>
+						<form onSubmit={(e) => handleSubmitProfile(e)}>
 							<div className='overflow-hidden shadow sm:rounded-md'>
 								<div className='bg-white px-4 py-5 sm:p-6'>
 									<div className='grid grid-cols-6 gap-6'>
@@ -219,10 +255,16 @@ export default function Form() {
 												type='text'
 												name='name'
 												id='name'
+												value={input.name}
 												autoComplete='given-name'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
+											{errors?.name && (
+												<p className=' text-red-500'>
+													<i>{errors.name}</i>
+												</p>
+											)}
 										</div>
 
 										<div className='col-span-6 sm:col-span-3'>
@@ -236,10 +278,16 @@ export default function Form() {
 												type='text'
 												name='lastName'
 												id='lastName'
+												value={input.lastName}
 												autoComplete='family-name'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
+											{errors?.lastName && (
+												<p className=' text-red-500'>
+													<i>{errors.lastName}</i>
+												</p>
+											)}
 										</div>
 
 										{/* <div className='col-span-6 sm:col-span-3'>
@@ -272,10 +320,17 @@ export default function Form() {
 												type='text'
 												name='phone'
 												id='phone'
+												value={input.phone}
 												autoComplete='phone'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												placeholder='  Ej: +54 3442 48-0617'
 												onChange={handleChange}
 											/>
+											{errors?.phone && (
+												<p className=' text-red-500'>
+													<i>{errors.phone}</i>
+												</p>
+											)}
 										</div>
 
 										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
@@ -289,10 +344,16 @@ export default function Form() {
 												type='text'
 												name='dni'
 												id='dni'
+												value={input.dni}
 												autoComplete='dni'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
+											{errors?.dni && (
+												<p className=' text-red-500'>
+													<i>{errors.dni}</i>
+												</p>
+											)}
 										</div>
 
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
@@ -306,10 +367,16 @@ export default function Form() {
 												type='text'
 												name='age'
 												id='age'
+												value={input.age}
 												autoComplete='age'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
+											{errors?.age && (
+												<p className=' text-red-500'>
+													<i>{errors.age}</i>
+												</p>
+											)}
 										</div>
 
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
@@ -323,11 +390,17 @@ export default function Form() {
 												type='text'
 												name='weight'
 												id='weight'
+												value={input.weight}
 												autoComplete='weight'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												placeholder='  kg'
 												onChange={handleChange}
 											/>
+											{errors?.height && (
+												<p className=' text-red-500'>
+													<i>{errors.height}</i>
+												</p>
+											)}
 										</div>
 
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
@@ -335,17 +408,23 @@ export default function Form() {
 												htmlFor='height'
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
-												Altura
+												Estatura
 											</label>
 											<input
 												type='text'
 												name='height'
 												id='height'
+												value={input.height}
 												autoComplete='height'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												placeholder='  cm'
 												onChange={handleChange}
 											/>
+											{errors?.weight && (
+												<p className=' text-red-500'>
+													<i>{errors.weight}</i>
+												</p>
+											)}
 										</div>
 
 										<div className='col-span-6'>
@@ -359,10 +438,16 @@ export default function Form() {
 												type='text'
 												name='address'
 												id='address'
+												value={input.address}
 												autoComplete='address'
 												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
+											{errors?.address && (
+												<p className=' text-red-500'>
+													<i>{errors.address}</i>
+												</p>
+											)}
 										</div>
 
 										<div className='col-span-6 sm:col-span-6 lg:col-span-2'>
