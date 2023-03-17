@@ -1,5 +1,5 @@
 import { dataBlogs } from "../../assets/utils/dataBlogs";
-import InstagramEmbed from 'react-instagram-embed';
+// import InstagramEmbed from 'react-instagram-embed';
 
 //todo blog container
 export default function Blog() {

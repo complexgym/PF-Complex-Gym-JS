@@ -5,12 +5,7 @@ module.exports = {
 	content: ['./src/**/*.{html,js,jsx}'],
 	theme: {
 		extend: {},
-<<<<<<< HEAD
 	}, 
-=======
-	},
-
->>>>>>> a94bec4e413d1d15224be7f9c453322a8322c000
 	plugins: [
 		plugin(function ({ addComponents }) {
 			addComponents({
