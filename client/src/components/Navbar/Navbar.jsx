@@ -7,7 +7,7 @@ import LogoutBtn from '../LogoutBtn/LogoutBtn';
 export default function Navbar() {
 	const { user, isAuthenticated } = useAuth0();
 
-	console.log(user);
+	// console.log(user);
 
 	return (
 		<div className='fixed z-30 flex flex-row  w-full h-20 bg-black bg-opacity-90 justify-between '>
