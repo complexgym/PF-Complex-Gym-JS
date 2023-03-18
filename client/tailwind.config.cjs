@@ -67,6 +67,17 @@ module.exports = {
 				'.bg-card-image-plans': {
 					backgroundColor: '#031728',
 				},
+				'.bg-blog': {
+					backgroundImage: 'url("https://wallpaper.dog/large/20502965.jpg")',
+					backgroundSize: 'cover',
+				},
+				'.bg-insta': {
+					backgroundImage: 'url("https://www.pixelstalk.net/wp-content/uploads/images6/HD-Wallpaper-Gym.jpg")',
+					backgroundSize: 'cover'
+				},
+				'.bg-light-gray': {
+					backgroundColor: "var(--bg-light-gray)"
+				},
 
 				//*fonts
 				'.lighter-blue': {
