@@ -57,7 +57,7 @@ export default function Form() {
 	return (
 		<>
 			<div className=' relative pt-28 px-10 '>
-				<div className='md:grid md:grid-cols-3 md:gap-6 justify-center'>
+				<div className='md:grid md:grid-cols-2 md:gap-6 justify-center'>
 					<div className='mt-5 md:col-span-2 md:mt-0'>
 						<div className='md:col-span-1'>
 							<div className='px-4 sm:px-0'>

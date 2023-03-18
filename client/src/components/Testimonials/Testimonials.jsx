@@ -37,7 +37,7 @@ export default function Testimonials() {
 	];
 	return (
 		<div className='bg-image-testimonials w-full h-full pb-16'>
-			<div className='container'>
+			<div className='testimonials-container'>
 				<section className='reviews relative left-8'>
 					<div className='flex justify-center'>
 						<h2 className='text-3xl text-center pt-8 mb-6 btn-home'>Opiniones</h2>
