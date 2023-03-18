@@ -96,15 +96,3 @@ button:hover span:nth-child(4) {
   transition-delay: 0.52s;
 }
 
-button:active {
-  background: #ae00af;
-  background: linear-gradient(to top right, #03eaff, #001eff);
-  color: #bfbfbf;
-  box-shadow: 0 0 8px #00ccff, 0 0 8px #001eff, 0 0 8px #00f2ff;
-  transition: 0.1s;
-}
-
-button:active span:nth-child(1) span:nth-child(2) span:nth-child(2) span:nth-child(2) {
-  transition: none;
-  transition-delay: none;
-}
