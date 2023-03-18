@@ -1,8 +1,9 @@
 export default function SingleBlog({ blog }) {
 	return (
 		<article
-			className="bg-white p-6 rounded-lg border border-gray-200 shadow-md
-			flex flex-col justify-between w-10/12 md:w-8/12 xl:w-11/12 mx-auto"
+			className="card bg-white p-6 rounded-lg border border-gray-200 shadow-md
+			flex flex-col justify-between w-10/12 md:w-8/12 xl:w-11/12 mx-auto
+			duration-500"
 		>
 			<div className="flex justify-between items-center mb-5 text-white">
 				<img className="bg-center bg-cover rounded-xl w-full h-48" src={blog?.image} />
@@ -10,7 +11,6 @@ export default function SingleBlog({ blog }) {
 			<div className="flex justify-between items-center mb-5 text-white">
 				<span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
 					{blog?.tag?.map((b, index) => {
-						console.log(b);
 						return (
 							<div key={index} className="flex items-center">
 								<div className={`border-2 rounded-sm px-1 
