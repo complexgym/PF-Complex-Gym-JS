@@ -2,15 +2,13 @@
   display: flex;
   height: 100vh;
   width: 100vw;
-  /* border: rgb(0, 255, 64) solid 2px; */
-  position: relative;
 }
+
 .left_container {
   width: 47%;
-  display: flex;
   flex-direction: column;
-  /* border: rgb(0, 98, 26) solid 2px; */
   height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -35,19 +33,19 @@
   font-weight: 900;
   color: #c8c9c9;
   display: flex;
-  text-align: left;
-  margin: 70px;
+  text-align: center;
   text-transform: uppercase;
-  /* border: rgb(217, 255, 0) solid 2px; */
+  margin: 20px;
 }
+
 .buttons {
+  margin-top: 20px;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
   width: 320px;
   height: 150px;
-  /* border: rgb(217, 255, 0) solid 2px; */
 }
 
 .buttonn {
@@ -56,44 +54,64 @@
   border-radius: 10px;
   width: 300px;
   height: 50px;
-  /* background-image: linear-gradient(30deg, #1d459d, #4ce3f7); */
   margin-bottom: 15px;
   color: rgb(255, 255, 255);
-  font-weight: 200;
-  /* border: rgb(217, 255, 0) solid 2px; */
-  border: 2px solid;
+  font-weight: 300;
+  transition: all 0.5s;
+  background: linear-gradient(45deg, rgb(0, 200, 255), rgb(25, 0, 255));
+  box-shadow: #010101 2px 3px 6px 1px;
+}
+
+.buttonn:hover {
+  transform: scale(1.1);
 }
 
 .gym_container {
   width: 47%;
   height: 100%;
-  display: flex;
-  /* border: rgb(162, 0, 255) solid 2px; */
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   right: 0;
 }
 
 .spline_gym_div {
-  width: 100%;
-  height: 110%;
-  margin-top: 70px;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  right: 0px;
+}
+
+.gym_spline {
+  transform: scale(0.85);
+}
+
+@media screen and (max-width: 1500px) {
+  .gym_spline {
+    transform: scale();
+    margin-left: 600px;
+  }
 }
 
 @media screen and (max-width: 1400px) {
+  .spline_gym_div {
+    position: absolute;
+  }
   .gym_spline {
-    transform: scale(0.9);
-    margin-left: 50px;
+    transform: scale(0.75);
+    margin-left: 600px;
   }
   .left_container h1 {
     font-size: 47px;
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1280px) {
   .gym_spline {
-    margin-left: 70px;
-    transform: scale(0.85);
+    margin-left: 800px;
+    transform: scale(0.66);
   }
   .left_container h1 {
     font-size: 50px;
@@ -104,11 +122,9 @@
 }
 
 @media screen and (max-width: 1100px) {
-  .spline_gym_div {
-  }
   .gym_spline {
-    transform: scale(0.7);
-    margin-left: 120px;
+    transform: scale(0.62);
+    margin-left: 800px;
   }
   .left_container h1 {
     font-size: 35px;
@@ -116,11 +132,9 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .spline_gym_div {
-  }
   .gym_spline {
-    transform: scale(0.6);
-    margin-left: 150px;
+    transform: scale(0.5);
+    margin-left: 800px;
   }
   .left_container h1 {
     font-size: 30px;
@@ -134,19 +148,20 @@
     width: 100%;
   }
   .gym_container {
-    width: 47%;
+    width: 100%;
+    height: 50%;
+    margin-top: 50vh;
   }
   .spline_gym_div {
-    display: flex;
-    margin-top: 120px;
-    width: 100vw;
+    width: 100%;
   }
   .gym_spline {
-    transform: scale(0.55);
-    margin: 0 auto;
+    transform: scale(0.48);
+    width: 100%;
+    margin: auto;
   }
   .left_container h1 {
-    font-size: 35px;
+    font-size: 30px;
     text-align: center;
     margin-top: 50px;
     margin-bottom: 30px;
@@ -161,56 +176,64 @@
   }
   .gym_container {
     width: 100%;
-    border: rgb(255, 255, 255) solid 5px;
+    height: 50%;
+    margin-top: 50vh;
   }
   .spline_gym_div {
-    display: flex;
-    margin-top: 120px;
     width: 100vw;
-    height: 630px;
-    border: rgb(255, 0, 0) solid 5px;
-    box-sizing: border-box;
   }
   .gym_spline {
-    position: none;
-    margin: 0 auto;
     transform: scale(0.4);
-    border: white solid 5px;
+    margin: 0 auto;
   }
   .left_container h1 {
-    font-size: 30px;
+    font-size: 35px;
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 30px;
     color: white;
   }
 }
 
-@media screen and (max-width: 376px) {
-  .left_container {
-    height: 50%;
-    width: 100%;
-  }
-  .gym_container {
-    width: 100%;
-  }
-  .spline_gym_div {
-    display: flex;
-    margin-top: 1px;
-    width: 100vw;
-  }
-  .gym_spline {
-    transform: scale(0.3);
-    margin: 0 auto;
-    width: 350px;
-  }
+@media screen and (max-width: 650px) {
   .left_container h1 {
-    font-size: 17px;
+    font-size: 25px;
     text-align: center;
     margin-bottom: 30px;
     margin: 15px;
     color: white;
   }
-  .button {
-    width: 150px;
+}
+
+@media screen and (max-width: 420px) {
+  .left_container {
+    height: 50%;
+    width: 100%;
+    margin-top: 90px;
+  }
+  .gym_container {
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 50vh;
+    width: 100%;
+  }
+  .spline_gym_div {
+    margin-right: 80px;
+  }
+  .gym_spline {
+    transform: scale(0.4);
+    margin: 0 auto;
+  }
+  .left_container h1 {
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 0px;
+    margin: 15px;
+    color: white;
+  }
+  .buttonn {
+    width: 220px;
+    height: 40px;
   }
 }
