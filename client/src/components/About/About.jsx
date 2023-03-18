@@ -4,7 +4,7 @@ export default function About() {
 			{/*Seccion 1*/}
 			<div className='grid md:grid-cols-2 items-center justify-center'>
 				{/*Text*/}
-				<div className=' text-center pr-[10%] items row-start-2 row-end-3 md:row-start-1 md:row-end-2'>
+				<div className='text-center pr-[10%] items row-start-2 row-end-3 md:row-start-1 md:row-end-2'>
 					<h1 className=''>Sobre Nosotros</h1>
 					<p className='font-normal text-base leading-6 text-gray-600'>
 						Complex nació de una pasión compartida entre Juli y Agus en el año 2016. Con
@@ -43,14 +43,6 @@ export default function About() {
 						todo: salud. Estamos hechos para movernos, sólo tenemos que encontrar nuestra
 						actividad.
 					</p>
-				</div>
-				{/*Mobile*/}
-				<div className='h-screen w-full '>
-					<img
-						className='w-full rounded-3xl '
-						src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679073922/IMG-20230301-WA0052_ouc60i.jpg'
-						alt='A group of People'
-					/>
 				</div>
 			</div>
 			{/*Seccion 3*/}
