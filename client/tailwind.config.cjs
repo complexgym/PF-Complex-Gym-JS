@@ -67,6 +67,9 @@ module.exports = {
 				'.bg-card-image-plans': {
 					backgroundColor: '#031728',
 				},
+				'.bg-light-gray': {
+					backgroundColor: "var(--bg-light-gray)"
+				},
 
 				//*fonts
 				'.lighter-blue': {
