@@ -3,22 +3,31 @@ import axios from "axios"
 
 export function getAllPosts(){
    return async function(dispatch){
-    const response = await axios.get("/publications/all")
-    return dispatch({
-        type: GET_ALL_POSTS,
-        payload: response.data
-    })
+    try{
+        const response = await axios.get("/publications/all")
+        return dispatch({
+            type: GET_ALL_POSTS,
+            payload: response.data
+        })
+    }
+    catch(err){
+        console.log(error);
+    }
    }
 }
 
 export function searchPosts(title){
     return async function(dispatch){
-        const response = await axios.get(`/publications?title=${title}`)
-        console.log(title);
-        return dispatch({
-            type: SEARCH_POSTS,
-            payload: response.data
-        })
+        try{
+            const response = await axios.get(`/publications?title=${title}`)
+            return dispatch({
+                type: SEARCH_POSTS,
+                payload: response.data
+            })
+        }
+        catch(err){
+            console.log(error);
+        }
     }
 }
 
