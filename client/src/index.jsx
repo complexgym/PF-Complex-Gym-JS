@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store/store';
 
 window.addEventListener('blur', () => {
-	document.title = '¡No te vayas gordito! 🏋🏼‍♂️';
+	document.title = '¡Quédate, falta una repe! 🏋🏼‍♂️';
 });
 
 window.addEventListener('focus', () => {
