@@ -11,47 +11,45 @@ export default function Navbar() {
 	// console.log(user);
 
 	return (
-		<div className='fixed z-30 flex flex-row  w-full h-20 bg-black bg-opacity-90 justify-between '>
+		<div className='flex flex-col justify-center text-[#4c5259] pb-2'>
 			{/* <img className=' h-22 ml-40  ' src={logo} alt='logo' /> */}
-			<div>
+			<div className=' h-12 overflow-hidden'>
 				<Link to='/'>
-					<Spline scene='https://prod.spline.design/ffORQphusIoT5k1H/scene.splinecode' />
+					<Spline
+						className=' scale-150 mt-2'
+						scene='https://prod.spline.design/ffORQphusIoT5k1H/scene.splinecode'
+					/>
 				</Link>
 			</div>
-			<div className=' flex flex-row text-white gap-16 items-center mr-10  '>
-				<Link to='/home'>Inicio</Link>
-				<ul>
-					<li>
-						<Link to='/nosotros'>Nosotros</Link>
-					</li>
-					<li>
-						<Link to='/calendario'>Calendario</Link>
-					</li>
-					<li>
-						<Link to='/blog'>Blog</Link>
-					</li>
-				</ul>
-				<Link to='/planes'>Planes</Link>
+			<br />
+			<div className='flex border-y-2 border-[#4c5259] border-opacity-20 w-[90%] mx-[5%] justify-center py-1 -mt-4'>
+				<div className='flex row-auto gap-12 py-3'>
+					<Link to='/home'>Inicio</Link>
 
-				{!isAuthenticated && <LoginBtn />}
+					<Link to='/nosotros'>Nosotros</Link>
 
-				{isAuthenticated && (
-					<div>
-						<img
-							className=' rounded-full max-w-[40px]'
-							src={user.picture}
-							alt={user.name}
-						/>
-						<ul>
-							<li>
-								<Link to='/perfil'>Perfil</Link>
-							</li>
-							<li>
-								<LogoutBtn />
-							</li>
-						</ul>
-					</div>
-				)}
+					<Link to='/calendario'>Calendario</Link>
+
+					<Link to='/blog'>Blog</Link>
+
+					<Link to='/planes'>Planes</Link>
+
+					{!isAuthenticated && <LoginBtn />}
+
+					{isAuthenticated && (
+						<div>
+							<img
+								className=' rounded-full max-w-[40px]'
+								src={user.picture}
+								alt={user.name}
+							/>
+
+							<Link to='/perfil'>Perfil</Link>
+
+							<LogoutBtn />
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);
