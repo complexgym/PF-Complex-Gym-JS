@@ -9,6 +9,7 @@
 	--bg-testimonials: #010e17;
 	--bg-loaging: #07070a;
 	--bg-light-gray: #4c5259;
+	--bg-blog: linear-gradient(to top, #dfe9f3 0%, white 100%);
 
 	/* COLORS */
 	--clr-text: #001122;
@@ -147,4 +148,13 @@
 
 input:checked {
 	accent-color: var(--lighter-blue-plans);
+}
+
+.blog-card{
+	transition: 4s ease-in-out;
+}
+
+.blog-card:hover{
+	bottom: 1rem;
+	transition: 4s
 }
