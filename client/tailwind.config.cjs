@@ -68,7 +68,7 @@ module.exports = {
 					backgroundColor: '#031728',
 				},
 				'.bg-light-gray': {
-					backgroundColor: "var(--bg-light-gray)"
+					background: "linear-gradient(to top, #dfe9f3 0%, white 100%)"
 				},
 
 				//*fonts

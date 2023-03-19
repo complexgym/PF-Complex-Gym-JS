@@ -24,21 +24,10 @@ export function searchPosts({tag, date}, title){
             //*only search
             if(!date && !tag && search){   
                 response = await axios.get(`/publications?title=${title}`)
-            }
-
-            //*tag and search
-            if(!date && tag  && search){
-                response = await axios(`/publications/filters?tag=${tag}&title=${search}`)
-            }
-
-            //*date and search
-            if(date && !tag && search){
-                response = await axios(`/publications/filters?date=${date}&title=${search}`)
-            }
-
-            //*three
-            if(date && tag && search){
-                response = await axios(`/publications/filters?tag=${tag}&date=${date}&title=${search}`)
+                return dispatch({
+                    type: SEARCH_POSTS,
+                    payload: response.data
+                })
             }
 
             //*tag
@@ -50,15 +39,39 @@ export function searchPosts({tag, date}, title){
             if(date && !tag && !search){
                 response = await axios(`/publications/filters?date=${date}`)
             }
+            
+            //*tag and search
+            if(!date && tag  && search){
+                response = await axios(`/publications/filters?tag=${tag}&title=${search}`)
+            }
+
+            //*date and search
+            if(date && !tag && search){
+                response = await axios(`/publications/filters?date=${date}&title=${search}`)
+            }
 
             //*date and tag
             if(date && tag && !search){
                 response = await axios(`/publications/filters?tag=${tag}&date=${date}`)
             }
 
+            //*date, tag and search
+            if(date && tag && search){
+                response = await axios(`/publications/filters?tag=${tag}&date=${date}&title=${search}`)
+            }
+
+            //*no value
+            if(!date && !tag && !search){   
+                response = await axios.get(`/publications/all`)
+                return dispatch({
+                    type: FILTER_POSTS,
+                    payload: response.data
+                })
+            }
+            
             return dispatch({
                 type: SEARCH_POSTS,
-                payload: response.data
+                payload: response.data.filteredPublication
             })
         }
         catch(error){
@@ -101,28 +114,53 @@ export function filterPosts({tag, date}, search){
         try{
             let response = []
             
+            //*tag
             if(!date && tag && !search){
                 response = await axios(`/publications/filters?tag=${tag}`)
             }
+
+            //*date
             if(date && !tag && !search){
                 response = await axios(`/publications/filters?date=${date}`)
             }
+
+            //*tag
+            if(!date && tag && !search){
+                response = await axios(`/publications/filters?tag=${tag}`)
+            }
+
+            //*date and tag
             if(date && tag && !search){
                 response = await axios(`/publications/filters?tag=${tag}&date=${date}`)
             }
+
+            //*tag and search
             if(!date && tag  && search){
                 response = await axios(`/publications/filters?tag=${tag}&title=${search}`)
             }
+            //*date and search
             if(date && !tag && search){
                 response = await axios(`/publications/filters?date=${date}&title=${search}`)
             }
+            //*date, tag and search
             if(date && tag && search){
                 response = await axios(`/publications/filters?tag=${tag}&date=${date}&title=${search}`)
             }
-            return dispatch({
-                type: FILTER_POSTS,
-                payload: response.data.filteredPublication
-            })
+
+            if(!date && !tag && !search){   
+                response = await axios.get(`/publications/all`)
+                return dispatch({
+                    type: FILTER_POSTS,
+                    payload: response.data
+                })
+            }
+
+            else{
+                return dispatch({
+                    type: FILTER_POSTS,
+                    payload: response?.data?.filteredPublication
+                })
+            }
         }
         catch(error){
             console.log(error);
