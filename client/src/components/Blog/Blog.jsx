@@ -7,7 +7,6 @@ import {
 	updateSearch,
 } from "../../redux/actions/actions";
 import { useEffect, useState } from "react";
-import notFound from "../../assets/otros/not-found-blog.png";
 import InstagramPost from "./InstaPost";
 import SingleBlog from "./SingleBlog";
 import { LoadingBlog } from "../Loading/Loading";
@@ -39,6 +38,7 @@ export default function Blog() {
 		}
 	}, [search]);
 
+	//*get all posts in case search and filters are null
 	useEffect(() => {
 		if (search_blog === "" && !Object.values(filters).find(f=>f!=="")) {
 			dispatch(getAllPosts());
@@ -49,20 +49,26 @@ export default function Blog() {
 
 
 	//*filters
+	useEffect(()=>{
+		if(search_blog){
+			setSearch(search_blog)
+		}
+	}, [dispatch])
+
 	const handleChangeFilters = (e) => {
 		setFilters({
 			...filters,
 			[e.target.name]: e.target.value
 		})
 
+		//*if there are filters, we update the global filters
 		const findFilters = Object.values(filters).find(f=>f!=="")
-		
 		if(findFilters){
-			dispatch(
-				updateFilters({
-				...filters, 
+			dispatch(updateFilters({
+				...filters,
 				[e.target.name]: e.target.value
 			}))
+
 			dispatch(filterPosts(filters, search_blog))
 		}
 		else{
@@ -140,7 +146,7 @@ export default function Blog() {
 									className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									name="tag"
 									onChange={handleChangeFilters}
-									value={filters.tag}
+									value={filters_blog.tag}
 								>
 									<option value="" selected>Seleccione una opción...</option>
 									<option value="Fitness">Fitness</option>
@@ -162,7 +168,7 @@ export default function Blog() {
 									id="per_date"
 									className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									name="date"
-									value={filters.date}
+									value={filters_blog.date}
 									onChange={handleChangeFilters}
 								>
 									<option value="" selected>Seleccione una opción...</option>
@@ -172,9 +178,10 @@ export default function Blog() {
 							</div>
 
 							{/* CLEAR FILTERS */}
-							<button onClick={handleClearFilters} className="flex justify-start">
+							<button onClick={handleClearFilters} className="flex justify-start lighter-blue underli
+							">
 								Borrar filtros
-								</button>
+							</button>
 					</form>
 
 					{/* posts, can be initial posts, filtered, or searched posts */}
@@ -188,13 +195,13 @@ export default function Blog() {
 					) : (
 					//get null posts
 					isLoaded && (
-						<div className="flex flex-col items-center pt-8 pb-4">
+						<div className="flex flex-col items-center pt-0 pb-4">
 							<img
-								src={notFound}
+								src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196370/not-found-blog_ly0lcw.png"}
 								alt="not found img"
-								className="w-[280px] md:w-[400px] rounded-xl"
+								className="w-[150px] md:w-[250px] rounded-xl"
 							/>
-							<p className="text-red-500 font-bold flex justify-center pt-8 pb-4">
+							<p className="text-red-500 font-bold flex justify-center pb-4">
 								{search_blog
 									? "Perdon, ningún blog cumple la condicion!"
 									: "Ningún blog encontrado!"}

@@ -1,5 +1,3 @@
-import quote from '../../assets/testimonials/quote.png';
-import star from '../../assets/testimonials/star.png';
 import '../../styles/testimonials.css';
 
 export default function Testimonials() {
@@ -48,7 +46,7 @@ export default function Testimonials() {
 							return (
 								<div className='swiper-wrapper w-9/12 md:w-11/12'>
 									<div className='swiper-slide w-full review-card'>
-										<img className='quote-icon' src={quote} />
+										<img className='quote-icon' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/quote_s5hblr.png"} />
 										{/* <FontAwesomeIcon className="quote-icon" icon={faQuoteLeft}/> */}
 										<h3 className='card-title'>I loved it</h3>
 										<p className='card-body'>{s.text}</p>
@@ -58,11 +56,11 @@ export default function Testimonials() {
 											<div>
 												<span className='name '>{s.name}</span>
 												<div className='flex'>
-													<img className='star w-6' src={star} />
-													<img className='star w-6' src={star} />
-													<img className='star w-6' src={star} />
-													<img className='star w-6' src={star} />
-													<img className='star w-6' src={star} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
 												</div>
 											</div>
 										</div>
