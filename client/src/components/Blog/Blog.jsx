@@ -1,11 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-	filterPosts,
-	getAllPosts,
-	searchPosts,
-	updateFilters,
-	updateSearch,
-} from "../../redux/actions/actions";
+import { filterPosts, getAllPosts, searchPosts, 
+updateFilters, updateSearch } from "../../redux/actions/actions";
 import { useEffect, useState } from "react";
 import InstagramPost from "./InstaPost";
 import SingleBlog from "./SingleBlog";
@@ -104,8 +99,8 @@ export default function Blog() {
 
 	return (
 		<div>
-			<section className="bg-light-gray pt-12 min-h-[80vh]">
-				{isLoaded ? 
+			<section className="bg-slate-100 pt-16 min-h-[80vh]">
+				{isLoaded && matched_posts.length>0 ? 
 					<div className="py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 ">
 					{/* BLOG */}
 						<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">
@@ -187,7 +182,7 @@ export default function Blog() {
 					{/* posts, can be initial posts, filtered, or searched posts */}
 					{matched_posts.length > 0 ? (
 						//get more than 1 post
-						<div className="cards grid gap-8 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8">
+						<div className="cards grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8">
 							{matched_posts?.map((b, index) => {
 								return <SingleBlog key={index} blog={b} />;
 							})}
@@ -219,7 +214,7 @@ export default function Blog() {
 				</div>
 
 				<div
-					className="w-[90vw] grid gap-8 lg:grid-cols-2 xl:grid-cols-3 
+					className="w-[90vw] grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
 					2xl:grid-cols-4 py-8"
 					>
 					{instagramPosts}

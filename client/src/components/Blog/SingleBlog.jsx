@@ -1,15 +1,17 @@
+import { NavLink } from "react-router-dom";
+
 export default function SingleBlog({ blog }) {
 	return (
 		<article
-			className="card bg-slate-100 rounded-lg border border-gray-200 shadow-md
-			flex flex-col justify-between w-10/12 md:w-8/12 xl:w-11/12 mx-auto
-			duration-500"
+			className="blog-card bg-white rounded-sm border border-gray-200 shadow-xl
+			flex flex-col justify-around pb-4 w-10/12 md:w-8/12 xl:w-11/12 mx-auto
+			relative transition ease-in-out delay-150 transform hover:-translate-y-1" 
 		>
 			<div>
 				
 			{/* img, no padding */}
 			<div className="flex justify-between items-center mb-5 text-white">
-				<img className="bg-center bg-cover rounded-tl-lg rounded-tr-lg w-full h-48" src={blog?.image} />
+				<img className="bg-center bg-cover rounded-tl-sm rounded-tr-sm w-full h-48" src={blog?.image} />
 			</div>
 
 			{/* info, padding */}
@@ -54,8 +56,10 @@ export default function SingleBlog({ blog }) {
 					</div>
 
 					{/* content's title */}
-					<h2 className="mb-2 text-2xl font-bold tracking-tight lighter-blue">
-						<a href="#">{blog?.title}</a>
+					<h2 className="flex items-center mb-2 text-lg font-bold tracking-tight lighter-blue">
+						{/* > */}
+						<img className="w-3 h-3 mr-1" src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679247513/play-blog_tctqkq.png"/>
+						<p>{blog?.title}</p>
 					</h2>
 
 					{/* content/message */}
@@ -63,7 +67,9 @@ export default function SingleBlog({ blog }) {
 						{blog.content?.length>120 ? blog?.content.substring(0, 100) + "..." :
 						blog?.content}
 					</p>
-					<div className="flex justify-between items-center">
+
+					{/* author and ream more */}
+					<div className="h-full flex justify-between items-end">
 						<div className="flex items-center space-x-4">
 							{/*<>
 								<img
@@ -75,11 +81,11 @@ export default function SingleBlog({ blog }) {
 							</>*/}
 						</div>
 						{/*  */}
-						<a
-							href="#"
+						<NavLink
+							to={`/blog/${blog.id}`}
 							className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 lighter-blue hover:underline"
 						>
-							Read more
+							Leer más
 							<svg
 								className="ml-2 w-4 h-4"
 								fill="currentColor"
@@ -92,7 +98,7 @@ export default function SingleBlog({ blog }) {
 									clip-rule="evenodd"
 								></path>
 							</svg>
-						</a>
+						</NavLink>
 					</div>
 				</div>
 			</div>

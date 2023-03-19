@@ -149,3 +149,12 @@
 input:checked {
 	accent-color: var(--lighter-blue-plans);
 }
+
+.blog-card{
+	transition: 4s ease-in-out;
+}
+
+.blog-card:hover{
+	bottom: 1rem;
+	transition: 4s
+}
