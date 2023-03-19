@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
+import CreateBlog from './components/CreateBlog/CreateBlog';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
@@ -34,10 +35,14 @@ function App() {
 	const arrIDsBlogs = initial_posts.map(blog=>"/blog/" + blog.id)
 
 	{/* condition show nav and footer */}
-	const boolAddComponent = pathname === '/home' || pathname === '/nosotros' 
-	|| pathname === '/calendario'
-	|| pathname === '/planes' || pathname === '/perfil' 
-	|| pathname === '/blog' || arrIDsBlogs.some(path=>path===pathname)
+	const boolAddComponent = pathname === '/home' 
+	|| pathname === '/nosotros' 
+	|| pathname === '/calendario' 
+	|| pathname === '/planes' 
+	|| pathname === '/perfil' 
+	|| pathname === '/blog' 
+	|| arrIDsBlogs.some(path=>path===pathname) 
+	|| pathname === "/blog/create"
 
 	return (
 		<div className='App'>
@@ -51,6 +56,7 @@ function App() {
 				<Route path={'/calendario'} element={<Calendar />} />
 				<Route path={'/blog'} element={<Blog />} />
 				<Route path={'/blog/:id'} element={<BlogDetails />} />
+				<Route path={'/blog/create'} element={<CreateBlog />} />
 				<Route path={'/planes'} element={<Plans />} />
 				<Route path={'/perfil'} element={<Profile />} />
 				<Route path={'*'} element={<Error404 />} />
