@@ -16,6 +16,12 @@ const editPublication = require("./publications/editPublication")
 const getAllPublications = require("./publications/getAllPublications")
 const getPublicationsByID = require("./publications/getPublicationsByID")
 const getPublicationsByName = require("./publications/getPublicationsByName")
+const deleteTrainer = require("./trainer/deleteTrainer")
+const postTrainer = require("./trainer/getTrainerByName")
+const getTrainerByName = require("./trainer/getTrainerByName")
+const editTrainer = require("./trainer/editTrainer")
+const getAllTrainers = require("./trainer/getAllTrainers")
+const getTrainerById = require("./trainer/getTrainerById")
 const filters = require('./publications/filters')
 const getAllMemberships = require("./memberships/getAllMemberships");
 const postMemberships = require("./memberships/postMemberships");
@@ -46,5 +52,13 @@ module.exports = {
     getAllMemberships,
     postMemberships,
     deleteMemberships,
-    updateMemberships
+    updateMemberships,
+    deleteTrainer,
+    postTrainer,
+    getTrainerByName,
+    editTrainer,
+    getAllTrainers,
+    getTrainerById,
+
+    filters
 }
