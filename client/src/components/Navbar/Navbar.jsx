@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo/logo.png';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginBtn from '../LoginBtn/LoginBtn';
 import LogoutBtn from '../LogoutBtn/LogoutBtn';
-import Spline from '@splinetool/react-spline';
+// import Spline from '@splinetool/react-spline';
+import logo from '../../assets/logo/logo.png';
 
 export default function Navbar() {
 	const { user, isAuthenticated } = useAuth0();
@@ -11,44 +11,34 @@ export default function Navbar() {
 	// console.log(user);
 
 	return (
-		<div className='flex flex-col justify-center text-[#4c5259] pb-2'>
-			{/* <img className=' h-22 ml-40  ' src={logo} alt='logo' /> */}
-			<div className=' h-12 overflow-hidden'>
-				<Link to='/'>
-					<Spline
-						className=' scale-150 mt-2'
-						scene='https://prod.spline.design/ffORQphusIoT5k1H/scene.splinecode'
-					/>
-				</Link>
-			</div>
-			<br />
-			<div className='flex border-y-2 border-[#4c5259] border-opacity-20 w-[90%] mx-[5%] justify-center py-1 -mt-4'>
-				<div className='flex row-auto gap-12 py-3'>
-					<Link to='/home'>Inicio</Link>
+		<div className=' fixed z-20 flex flex-row w-screen text-white py-2 bg-[#231f20] bg-opacity-80 items-center'>
+			<div className='flex flex-row w-[90%] mx-[5%] text-white pb-2 items-center border-y-2 border-white border-opacity-20'>
+				<div className=''>
+					{/* <Link to='/'>
+						<Spline scene='https://prod.spline.design/ffORQphusIoT5k1H/scene.splinecode' />
+					</Link> */}
+					<Link to='/'>
+						<img className='w-[10%] ml-[10%] -mb-2 ' src={logo} alt='logo' />
+					</Link>
+				</div>
+				<br />
+				<div className='flex  w-screen mr-[5%] justify-end '>
+					<div className='flex  gap-12 items-center'>
+						<Link to='/home'>Inicio</Link>
 
-					<Link to='/nosotros'>Nosotros</Link>
+						<Link to='/nosotros'>Nosotros</Link>
 
-					<Link to='/calendario'>Calendario</Link>
+						<Link to='/calendario'>Calendario</Link>
 
-					<Link to='/blog'>Blog</Link>
+						<Link to='/blog'>Blog</Link>
 
-					<Link to='/planes'>Planes</Link>
+						<Link to='/planes'>Planes</Link>
 
-					{!isAuthenticated && <LoginBtn />}
+						{!isAuthenticated && <LoginBtn />}
 
-					{isAuthenticated && (
-						<div>
-							<img
-								className=' rounded-full max-w-[40px]'
-								src={user.picture}
-								alt={user.name}
-							/>
-
-							<Link to='/perfil'>Perfil</Link>
-
-							<LogoutBtn />
-						</div>
-					)}
+						{isAuthenticated && <Link to='/perfil'>Perfil</Link>}
+						{isAuthenticated && <LogoutBtn />}
+					</div>
 				</div>
 			</div>
 		</div>
