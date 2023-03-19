@@ -1,5 +1,7 @@
-import {GET_ALL_POSTS, GET_POST_BY_ID, SEARCH_POSTS, UPDATE_SEARCH, GET_CLIENT_DETAIL, POST_CLIENT, UPDATE_FILTERS, FILTER_POSTS} from "./action-types.js"
+import {GET_ALL_POSTS, GET_POST_BY_ID, SEARCH_POSTS, UPDATE_SEARCH, GET_CLIENT_DETAIL, POST_CLIENT, UPDATE_FILTERS, FILTER_POSTS, CLEAR_POST_DETAILS} from "./action-types.js"
 import axios from "axios"
+
+//*TODO posts
 
 export function getAllPosts(){
    return async function(dispatch){
@@ -14,6 +16,27 @@ export function getAllPosts(){
         console.log(error);
     }
    }
+}
+
+export const getPostById = (id) => {
+    return async function(dispatch){
+        try{
+            const response = await axios.get(`/publications/${id}`)
+            return dispatch({
+                type: GET_POST_BY_ID, 
+                payload: response.data[0]
+            })
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+}
+
+export function clearPostDetails(){
+    return{
+        type: CLEAR_POST_DETAILS
+    }
 }
 
 export function searchPosts({tag, date}, title){
@@ -87,28 +110,6 @@ export function updateSearch(title){
     }
 }
 
-export const getClientDetail = (id) => async (dispatch) => {
-	try {
-		let json = await axios(`/clients/${id}`);
-
-		return dispatch({
-			type: GET_CLIENT_DETAIL,
-			payload: json.data,
-		});
-	} catch (error) {
-		console.log(error);
-	}
-};
-
-export const postClient = (client) => async () => {
-	try {
-		const data = await axios.post('/clients', client);
-		return data;
-	} catch (error) {
-		console.log(error);
-	}
-};
-
 export function filterPosts({tag, date}, search){
     return async function(dispatch){
         try{
@@ -168,9 +169,32 @@ export function filterPosts({tag, date}, search){
     }
 }
 
-export const updateFilters = ({tag, date}) => async () => {
+export const updateFilters = ({tag, date}) => {
     return {
         type: UPDATE_FILTERS,
         payload: {tag, date}
     }
 }
+
+//TODO clients
+export const getClientDetail = (id) => async (dispatch) => {
+	try {
+		let json = await axios(`/clients/${id}`);
+
+		return dispatch({
+			type: GET_CLIENT_DETAIL,
+			payload: json.data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postClient = (client) => async () => {
+	try {
+		const data = await axios.post('/clients', client);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};

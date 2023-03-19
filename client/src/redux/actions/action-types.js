@@ -2,6 +2,7 @@
 //*get
 export let GET_ALL_POSTS = 'GET_ALL_POSTS'
 export let GET_POST_BY_ID = 'GET_POST_BY_ID'
+export let CLEAR_POST_DETAILS = 'CLEAR_POST_DETAILS'
 
 //*search
 export let SEARCH_POSTS = 'SEARCH_POSTS'
