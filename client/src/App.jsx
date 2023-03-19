@@ -25,7 +25,7 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getAllPosts());
+		dispatch(getAllPosts()).then(()=>setIsLoaded(true));
 	}, [dispatch]);
 
 	const {pathname} = location
