@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 const memberships = (sequelize) => {
     sequelize.define('memberships', {   
-        clientid:{
+        clientId:{
             type: DataTypes.UUID,
 			allowNull: true,
         },
@@ -10,11 +10,11 @@ const memberships = (sequelize) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-        actividadId: {
-            type: DataTypes.UUID,
+        activities: {
+            type: DataTypes.STRING,
 			allowNull: true,
         },
-        Price: {
+        price: {
             type: DataTypes.INTEGER,
 			allowNull: true,
         },

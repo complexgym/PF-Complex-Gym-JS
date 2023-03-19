@@ -16,8 +16,11 @@ const editPublication = require("./publications/editPublication")
 const getAllPublications = require("./publications/getAllPublications")
 const getPublicationsByID = require("./publications/getPublicationsByID")
 const getPublicationsByName = require("./publications/getPublicationsByName")
-
 const filters = require('./publications/filters')
+const getAllMemberships = require("./memberships/getAllMemberships");
+const postMemberships = require("./memberships/postMemberships");
+const deleteMemberships = require("./memberships/deleteMemberships");
+const updateMemberships = require("./memberships/updateMemberships");
 
 
 module.exports = {
@@ -39,6 +42,9 @@ module.exports = {
     getAllPublications,
     getPublicationsByID,
     getPublicationsByName,
-
-    filters
+    filters,
+    getAllMemberships,
+    postMemberships,
+    deleteMemberships,
+    updateMemberships
 }
