@@ -1,7 +1,7 @@
 export default function SingleBlog({ blog }) {
 	return (
 		<article
-			className="card bg-white p-6 rounded-lg border border-gray-200 shadow-md
+			className="card bg-slate-100 p-6 rounded-lg border border-gray-200 shadow-md
 			flex flex-col justify-between w-10/12 md:w-8/12 xl:w-11/12 mx-auto
 			duration-500"
 		>

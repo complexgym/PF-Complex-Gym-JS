@@ -88,9 +88,17 @@ export default function Blog() {
 		<InstagramPost url={"https://www.instagram.com/p/CpyI4RXuaOI/"} />
 	</>
 
+	const handleClearFilters = (e)=> {
+		e.preventDefault()
+		setFilters({tag: "", date: ""})
+		setSearch("")
+		dispatch(updateSearch(""))
+		dispatch(updateFilters({tag: "", date: ""}))
+	}
+
 	return (
 		<div>
-			<section className="bg-white dark:bg-gray-900 pt-12 min-h-[80vh]">
+			<section className="bg-light-gray pt-12 min-h-[80vh]">
 				{isLoaded ? 
 					<div className="py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 ">
 					{/* BLOG */}
@@ -116,7 +124,6 @@ export default function Blog() {
 									value={search}
 									className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									placeholder="5 ejercicios para tonificar"
-									required
 								/>
 							</div>
 
@@ -163,6 +170,11 @@ export default function Blog() {
 									<option value="ancient">Más antiguos</option>
 								</select>
 							</div>
+
+							{/* CLEAR FILTERS */}
+							<button onClick={handleClearFilters} className="flex justify-start">
+								Borrar filtros
+								</button>
 					</form>
 
 					{/* posts, can be initial posts, filtered, or searched posts */}
