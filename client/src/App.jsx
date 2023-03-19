@@ -28,8 +28,12 @@ function App() {
 
 	return (
 		<div className='App'>
-			{(location.pathname === '/home' || location.pathname === '/nosotros' || location.pathname === '/calendario'
-			|| location.pathname === '/blog' || location.pathname === '/planes' || location.pathname === '/perfil') && <Navbar />}
+			{(location.pathname === '/home' ||
+				location.pathname === '/nosotros' ||
+				location.pathname === '/calendario' ||
+				location.pathname === '/blog' ||
+				location.pathname === '/planes' ||
+				location.pathname === '/perfil') && <Navbar />}
 			<Routes>
 				<Route path={'/'} element={<Landing />} />
 				<Route path={'/home'} element={<Home />} />
@@ -40,10 +44,12 @@ function App() {
 				<Route path={'/perfil'} element={<Profile />} />
 				<Route path={'*'} element={<Error404 />} />
 			</Routes>
-			{(location.pathname === '/home' || location.pathname === '/nosotros' || location.pathname === '/calendario'
-			|| location.pathname === '/blog' || location.pathname === '/planes' || location.pathname === '/perfil') && <Footer />}
-			
-			
+			{(location.pathname === '/home' ||
+				location.pathname === '/nosotros' ||
+				location.pathname === '/calendario' ||
+				location.pathname === '/blog' ||
+				location.pathname === '/planes' ||
+				location.pathname === '/perfil') && <Footer />}
 		</div>
 	);
 }
