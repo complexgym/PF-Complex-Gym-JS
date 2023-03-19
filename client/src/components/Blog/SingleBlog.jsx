@@ -28,6 +28,7 @@ export default function SingleBlog({ blog }) {
 									${b==="Entrenamiento" && "border-violet-500 text-violet-500"}
 									${b==="Salud" && "border-green-500 text-green-500"}
 									${b==="Fitness" && "border-yellow-500 text-yellow-500"}
+									${b==="Administrativo" && "border-black text-black"}
 									flex`}>
 										<svg
 											className="mr-1 w-3 h-3"
