@@ -1,5 +1,5 @@
 import {GET_ALL_POSTS, SEARCH_POSTS, UPDATE_SEARCH, 
-GET_CLIENT_DETAIL, POST_CLIENT, UPDATE_FILTERS, FILTER_POSTS} from "../actions/action-types.js"
+GET_CLIENT_DETAIL, POST_CLIENT, UPDATE_FILTERS, FILTER_POSTS, GET_POST_BY_ID, CLEAR_POST_DETAILS} from "../actions/action-types.js"
 
 const initialState = {
   	client: [],
@@ -22,6 +22,14 @@ const rootReducer = (state = initialState, action) => {
 			initial_posts: payload,
 			matched_posts: payload
 		}
+		case GET_POST_BY_ID: return {
+			...state, 
+			post_details: payload
+		}
+		case CLEAR_POST_DETAILS: return {
+			...state,
+			post_details: {}
+		}
 		case SEARCH_POSTS: return {
 			...state, 
 			matched_posts: payload
@@ -38,9 +46,9 @@ const rootReducer = (state = initialState, action) => {
 		case UPDATE_FILTERS: return {
 			...state,
 			filters_blog: {
-				...filters_blog,
-				tag: payload?.tag,
-				date: payload?.date
+				...state.filters_blog,
+				tag: payload.tag,
+				date: payload.date
 			}
 		}
     	case GET_CLIENT_DETAIL:
