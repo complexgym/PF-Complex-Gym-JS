@@ -64,7 +64,6 @@ function App() {
 
 			{boolAddComponent && <Footer />}
 			
-			
 		</div>
 	);
 }

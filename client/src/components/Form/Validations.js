@@ -8,8 +8,8 @@ export default function Validate(input) {
 	let errors = {};
 
 	if (!input.user) {
-		errors.user = 'El campo Nombre de usuario debe rellenarse obligatoriamente'; //
-	} else if (!regexUser.test(!input.user)) {
+		errors.user = 'El campo Nombre de usuario debe rellenarse obligatoriamente';
+	} else if (!regexUser.test(input.user)) {
 		errors.user = 'Sólo se aceptan letras y números.';
 	} else if (input.user.length < 3) {
 		errors.user = 'El Nombre de usuario es demasiado corto, Min 3 caracteres.';
