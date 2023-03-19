@@ -4,14 +4,25 @@ const { blog } = require("../../db")
  * @param {import('express').Request} req 
  * @param {import('express').Response} res 
  */
+
 const filters = async(req,res)=>{
     try {
-        const {tag, date} = req.query
+        const {tag, date, title} = req.query
         if(!tag && !date) throw Error('tag or query is required')
         if(date && date !== 'ancient' && date !== 'recent') throw Error('date criteria error')
 
-        const allPublications = await blog.findAll({})
+        let allPublications = await blog.findAll({})
+
         let filteredPublication = []
+
+        //checking if it has already a search by
+        if(title){
+            let allPublicationSearch = await blog.findAll({})
+            console.log(allPublicationSearch);
+            let publicationName = await allPublicationSearch?.filter(el => el.title.toLowerCase().includes(title.toLowerCase()))
+            allPublications = publicationName
+            console.log(allPublications);
+        }
 
         if (tag){
             filteredPublication.push(...allPublications.filter(blog => blog.tag.includes(tag)))
@@ -22,7 +33,7 @@ const filters = async(req,res)=>{
                 filteredPublication.sort((a,b)=>{
                     return a.createdAt.getTime() - b.createdAt.getTime()
                 })
-            }else if(date === 'recent'){
+            } else if(date === 'recent'){
                 filteredPublication.sort((a,b)=>{
                     return b.createdAt.getTime() - a.createdAt.getTime()
                 })
