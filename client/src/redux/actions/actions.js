@@ -168,7 +168,7 @@ export function filterPosts({tag, date}, search){
     }
 }
 
-export const updateFilters = ({tag, date}) => async () => {
+export const updateFilters = ({tag, date}) => {
     return {
         type: UPDATE_FILTERS,
         payload: {tag, date}

@@ -38,9 +38,9 @@ const rootReducer = (state = initialState, action) => {
 		case UPDATE_FILTERS: return {
 			...state,
 			filters_blog: {
-				...filters_blog,
-				tag: payload?.tag,
-				date: payload?.date
+				...state.filters_blog,
+				tag: payload.tag,
+				date: payload.date
 			}
 		}
     	case GET_CLIENT_DETAIL:
