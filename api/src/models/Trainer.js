@@ -30,7 +30,7 @@ const trainer = (sequelize) => {
         },
         classes:  {
             type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: false,
+            allowNull: true,
         },
         phone: {
             type: DataTypes.TEXT,
