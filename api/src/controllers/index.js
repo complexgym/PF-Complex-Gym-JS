@@ -23,6 +23,11 @@ const editTrainer = require("./trainer/editTrainer")
 const getAllTrainers = require("./trainer/getAllTrainers")
 const getTrainerById = require("./trainer/getTrainerById")
 const filters = require('./publications/filters')
+const getAllMemberships = require("./memberships/getAllMemberships");
+const postMemberships = require("./memberships/postMemberships");
+const deleteMemberships = require("./memberships/deleteMemberships");
+const updateMemberships = require("./memberships/updateMemberships");
+const getMembershipsById = require("./memberships/getMembershipsById")
 
 
 module.exports = {
@@ -44,12 +49,17 @@ module.exports = {
     getAllPublications,
     getPublicationsByID,
     getPublicationsByName,
+    filters,
+    getAllMemberships,
+    postMemberships,
+    deleteMemberships,
+    updateMemberships,
     deleteTrainer,
     postTrainer,
     getTrainerByName,
     editTrainer,
     getAllTrainers,
     getTrainerById,
-
+    getMembershipsById,
     filters
 }
