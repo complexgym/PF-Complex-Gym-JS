@@ -1,6 +1,7 @@
 import image from '../../assets/image/demoFigma1.jpg';
 import Carrousel from '../Carrousel/Carrousel';
 import Testimonials from '../Testimonials/Testimonials';
+import Plans from '../Plans/Plans';
 import '../../styles/whatsapp.css'
 
 export default function Home() {
@@ -13,8 +14,8 @@ export default function Home() {
 			<div>
 				{/* desktop */}
 				<div className='z-20 absolute text-6xl hidden 2xl:block text-white w-1/2 top-1/2 left-36'>
-					<h1 className='mb-10 font-title text-5xl' >¿Qué es para nosotros? </h1>
-					<p className='text-xl font-text'>
+					<h1 className='mb-10 text-5xl' >¿Qué es para nosotros? </h1>
+					<p className='text-xl'>
 						Es un centro de movimiento, especializado en preparación física deportiva,
 						actividad física para la salud y estética. Contamos con valores muy sólidos
 						con respecto a la formación y capacitación interna. No lo vendemos como una
@@ -25,10 +26,10 @@ export default function Home() {
 				<img src={image} alt='' className='relative z-10 w-full pt-20 xl:pt-0' />
 				
 				{/* mobile */}
-				<div className='z-20 text-6xl block 2xl:hidden text-white bg-carrousel'>
+				<div className='z-20 block 2xl:hidden text-white bg-black pb-16'>
 					<div className="w-10/12 mx-auto pt-8">
-						<h1 className='mb-10 font-title text-3xl' >¿Qué es para nosotros? </h1>
-						<p className='text-lg font-text'>
+						<h1 className='mb-10 text-2xl  sm:text-3xl' >¿Qué es para nosotros? </h1>
+						<p className='text-md md:text-lg'>
 							Es un centro de movimiento, especializado en preparación física deportiva,
 							actividad física para la salud y estética. Contamos con valores muy sólidos
 							con respecto a la formación y capacitación interna. No lo vendemos como una
@@ -39,7 +40,7 @@ export default function Home() {
 			</div>
 
 			<Carrousel />
-
+			<Plans/> 
 			<Testimonials />
 
 			<div className="whatsapp ml-4">
