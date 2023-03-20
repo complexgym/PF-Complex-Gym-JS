@@ -27,7 +27,6 @@ const getAllMemberships = require("./memberships/getAllMemberships");
 const postMemberships = require("./memberships/postMemberships");
 const deleteMemberships = require("./memberships/deleteMemberships");
 const updateMemberships = require("./memberships/updateMemberships");
-const getMembershipsById = require("./memberships/getMembershipsById")
 
 
 module.exports = {
@@ -60,6 +59,6 @@ module.exports = {
     editTrainer,
     getAllTrainers,
     getTrainerById,
-    getMembershipsById,
+
     filters
 }
