@@ -4,19 +4,19 @@ export default function TrainerCard() {
 			name: "Julieta",
 			text: "Profesora de educación física, entrenadora y antropometrista.",
 			image:
-				"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679235505/juelieta2_y6kcda.png",
+				"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679252398/profe1_kogpod.png",
 		},
 		{
 			name: "Agustin",
 			text: "Profesor de Educación física, entrenador, masoterapeuta, antropometrista y deportista.",
 			image:
-				"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679235505/agustin2_hft7ug.png",
+				"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679252392/profe2_sfmchz.png",
 		},
 		{
 			name: "Leonardo",
 			text: "Profesor de educación física, entrenador y deportista.",
 			image:
-				"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679235505/leonardo2_eqkvlw.png",
+				"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679252393/profe3_zl9l2k.png",
 		},
 	];
 	return (

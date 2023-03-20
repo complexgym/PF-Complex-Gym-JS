@@ -79,7 +79,7 @@ export default function Form() {
 
 	return (
 		<>
-			<div className=' relative pt-28 px-10 '>
+			<div className=' relative font-text pt-52 px-10 '>
 				<div className='md:grid md:grid-cols-2 md:gap-6 justify-center'>
 					<div className='mt-5 md:col-span-2 md:mt-0'>
 						<div className='md:col-span-1'>
