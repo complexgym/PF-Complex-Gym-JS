@@ -50,7 +50,7 @@ export default function Carrousel() {
 			</div>
 
 			{/* content carrousel */}
-			<div className='max-w-[1400px] h-[780px] w-full m-auto pt-8 pb-16 px-4 relative'>
+			<div className='max-w-[70vw] h-[80vh] m-auto pt-8 pb-16 px-4 relative'>
 				<div
 					style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
 					className='w-full h-full rounded-2xl bg-center bg-cover duration-500'
