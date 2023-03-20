@@ -4,7 +4,7 @@ export default function Plans() {
 	return (
 		<div className="cards-container bg-image-plans">
 			<div className="cards pt-36 pb-24 grid md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto w-[80vw] sm:w-[60vh]
-			md:w-[85vw] xl:w-[75vw] 2xl:w-[65vw]">
+			md:w-[85vw] xl:w-[75vw] 2xl:w-[65vw] font-mono">
 				{dataPlans.map((d, index) => {
 					return (
 						<div
@@ -13,7 +13,7 @@ export default function Plans() {
 						>
 							{/* running bg TEXT */}
 							<div className="absolute bg-black z-10"></div>
-							<label className="name-plan text-2xl absolute z-50 ml-3 text-black uppercase">
+							<label className="name-plan font-title text-2xl absolute z-50 ml-3 text-black uppercase">
 								{d[0]}
 							</label>
 

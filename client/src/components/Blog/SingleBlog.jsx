@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function SingleBlog({ blog }) {
 	return (
 		<article
-			className="blog-card bg-white rounded-sm border border-gray-200 shadow-xl
+			className="blog-card font-mono bg-white rounded-sm border border-gray-200 shadow-xl
 			flex flex-col justify-around pb-4 w-10/12 md:w-8/12 xl:w-11/12 mx-auto
 			relative transition ease-in-out delay-150 transform hover:-translate-y-1" 
 		>

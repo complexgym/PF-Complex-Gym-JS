@@ -34,21 +34,21 @@ export default function Testimonials() {
 		},
 	];
 	return (
-		<div className='bg-image-testimonials w-full h-full pb-16'>
+		<div className='bg-image-testimonials w-full h-full pb-16 font-mono'>
 			<div className='testimonials-container'>
 				<section className='reviews relative left-8'>
 					<div className='flex justify-center'>
-						<h2 className='text-3xl text-center pt-8 mb-6 btn-home'>Opiniones</h2>
+						<h2 className='text-3xl font-title text-center pt-8 mb-6 btn-home'>Opiniones</h2>
 					</div>
 
 					<div className='swiper customer-reviews grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
 						{slides.map((s) => {
 							return (
 								<div className='swiper-wrapper w-11/12 sm:w-9/12 md:w-11/12'>
-									<div className='swiper-slide w-full review-card min-h-[55vh] sm:min-h-[45vh] md:min-h-[45vh]'>
+									<div className='swiper-slide w-full review-card min-h-[55vh] sm:min-h-[45vh] md:min-h-[40vh]'>
 										<img className='quote-icon' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/quote_s5hblr.png"} />
 										{/* <FontAwesomeIcon className="quote-icon" icon={faQuoteLeft}/> */}
-										<h3 className='card-title'>I loved it</h3>
+										<h3 className='card-title lighter-blue'>I loved it</h3>
 										<p className='card-body'>{s.text}</p>
 
 										<div className='card-footer'>

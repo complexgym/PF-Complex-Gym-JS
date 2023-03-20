@@ -46,7 +46,7 @@ export default function Carrousel() {
 		<div className='bg-carrousel py-14 px-10'>
 			{/* text carousel */}
 			<div className='flex justify-center'>
-				<h2 className='btn-home'>Actualmente ofrecemos:</h2>
+				<h2 className='btn-home font-title'>Actualmente ofrecemos:</h2>
 			</div>
 
 			{/* content carrousel */}
