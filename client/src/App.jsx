@@ -16,6 +16,9 @@ import { getAllPosts } from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
 import CreateBlog from './components/CreateBlog/CreateBlog';
+import { useAuth0 } from '@auth0/auth0-react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import DashBoard from './components/DashBoard/DashBoard';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
@@ -24,31 +27,37 @@ function App() {
 
 	const dispatch = useDispatch();
 
+	const { user, isAuthenticated } = useAuth0();
+
 	useEffect(() => {
 		dispatch(getAllPosts());
 	}, [dispatch]);
 
-	const {pathname} = location
+	const { pathname } = location;
 
-	{/* we do not want to show nav and footer in blog 5 if it does not exist */}
-	const {initial_posts} = useSelector(s=>s)
-	const arrIDsBlogs = initial_posts.map(blog=>"/blog/" + blog.id)
+	{
+		/* we do not want to show nav and footer in blog 5 if it does not exist */
+	}
+	const { initial_posts } = useSelector((s) => s);
+	const arrIDsBlogs = initial_posts.map((blog) => '/blog/' + blog.id);
 
-	{/* condition show nav and footer */}
-	const boolAddComponent = pathname === '/home' 
-	|| pathname === '/nosotros' 
-	|| pathname === '/calendario' 
-	|| pathname === '/planes' 
-	|| pathname === '/perfil' 
-	|| pathname === '/blog' 
-	|| arrIDsBlogs.some(path=>path===pathname) 
-	|| pathname === "/blog/create"
+	{
+		/* condition show nav and footer */
+	}
+	const boolAddComponent =
+		pathname === '/home' ||
+		pathname === '/nosotros' ||
+		pathname === '/calendario' ||
+		pathname === '/planes' ||
+		pathname === '/perfil' ||
+		pathname === '/blog' ||
+		arrIDsBlogs.some((path) => path === pathname) ||
+		pathname === '/blog/create';
 
 	return (
 		<div className='App'>
-
 			{boolAddComponent && <Navbar />}
-			
+
 			<Routes>
 				<Route path={'/'} element={<Landing />} />
 				<Route path={'/home'} element={<Home />} />
@@ -58,12 +67,16 @@ function App() {
 				<Route path={'/blog/:id'} element={<BlogDetails />} />
 				<Route path={'/blog/create'} element={<CreateBlog />} />
 				<Route path={'/planes'} element={<Plans />} />
-				<Route path={'/perfil'} element={<Profile />} />
+				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
+					<Route path={'/perfil'} element={<Profile />} />
+				</Route>
+				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
+					<Route path={'/dashboard'} element={<DashBoard />} />
+				</Route>
 				<Route path={'*'} element={<Error404 />} />
 			</Routes>
 
 			{boolAddComponent && <Footer />}
-			
 		</div>
 	);
 }
