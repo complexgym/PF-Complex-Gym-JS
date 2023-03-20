@@ -29,8 +29,8 @@ export default function TrainerCard() {
 								src='https://us.123rf.com/450wm/kmkruthila/kmkruthila2207/kmkruthila220706882/188791605-arte-vectorial-de-fondo-de-l%C3%ADneas-brillantes-diagonales-azul-oscuro.jpg?ver=6'
 								class='absolute flex h-32 w-full justify-center rounded-xl bg-cover'
 							/>
-							<div className='absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700'>
-								<img className='h-[100%] w-[100%] rounded-full' src={card.image} alt='' />
+							<div className='absolute -bottom-12 flex  w-[40%] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700'>
+								<img className='rounded-full' src={card.image} alt='' />
 							</div>
 						</div>
 						<div className='mt-16 flex flex-col items-center'>
