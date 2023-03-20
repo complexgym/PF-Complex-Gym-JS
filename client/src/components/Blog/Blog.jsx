@@ -1,20 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-	filterPosts,
-	getAllPosts,
-	searchPosts,
-	updateFilters,
-	updateSearch,
-} from "../../redux/actions/actions";
+import { filterPosts, getAllPosts, searchPosts, 
+updateFilters, updateSearch } from "../../redux/actions/actions";
 import { useEffect, useState } from "react";
 import InstagramPost from "./InstaPost";
 import SingleBlog from "./SingleBlog";
 import { LoadingBlog } from "../Loading/Loading";
+import { NavLink } from "react-router-dom";
 
 //todo blog container
 export default function Blog() {
 	const dispatch = useDispatch();
-	const { matched_posts, search_blog, filters_blog } = useSelector((s) => s);
+	const { initial_posts, matched_posts, search_blog, filters_blog } = useSelector((s) => s);
 	const [search, setSearch] = useState("");
 	const [filters, setFilters] = useState({tag: "", date: ""})
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -104,10 +100,10 @@ export default function Blog() {
 
 	return (
 		<div>
-			<section className="bg-light-gray pt-12 min-h-[80vh]">
-				{isLoaded ? 
+			<section className="bg-slate-100 pt-16 min-h-[80vh]">
+				{isLoaded && initial_posts.length>0 ? 
 					<div className="py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 ">
-					{/* BLOG */}
+						{/* BLOG */}
 						<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">
 							<h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
 								Nuestro Blog
@@ -178,16 +174,22 @@ export default function Blog() {
 							</div>
 
 							{/* CLEAR FILTERS */}
-							<button onClick={handleClearFilters} className="flex justify-start lighter-blue underli
+							<button onClick={handleClearFilters} className="flex justify-start lighter-blue
 							">
 								Borrar filtros
 							</button>
+
+							<div>
+								<NavLink to="/blog/create" className="flex justify-start lighter-blue underline">
+									Create blog
+								</NavLink>
+							</div>
 					</form>
 
 					{/* posts, can be initial posts, filtered, or searched posts */}
 					{matched_posts.length > 0 ? (
 						//get more than 1 post
-						<div className="cards grid gap-8 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8">
+						<div className="cards grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8">
 							{matched_posts?.map((b, index) => {
 								return <SingleBlog key={index} blog={b} />;
 							})}
@@ -219,7 +221,7 @@ export default function Blog() {
 				</div>
 
 				<div
-					className="w-[90vw] grid gap-8 lg:grid-cols-2 xl:grid-cols-3 
+					className="w-[90vw] grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
 					2xl:grid-cols-4 py-8"
 					>
 					{instagramPosts}

@@ -15,13 +15,16 @@ window.addEventListener('focus', () => {
 	document.title = 'COMPLEX GYM';
 });
 
+const domain = import.meta.env.VITE_REACT_APP_AUTH0_DOMAIN;
+const clientId = import.meta.env.VITE_REACT_APP_AUTH0_CLIENT_ID;
+
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<BrowserRouter>
 				<Auth0Provider
-					domain='dev-o2lihq5f3ltnq4we.us.auth0.com'
-					clientId='Hzhyp48SllnDorLA7hv50kNPAf9CWsPv'
+					domain={domain}
+					clientId={clientId}
 					authorizationParams={{
 						redirect_uri: window.location.origin,
 					}}

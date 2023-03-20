@@ -44,8 +44,8 @@ export default function Testimonials() {
 					<div className='swiper customer-reviews grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
 						{slides.map((s) => {
 							return (
-								<div className='swiper-wrapper w-9/12 md:w-11/12'>
-									<div className='swiper-slide w-full review-card'>
+								<div className='swiper-wrapper w-11/12 sm:w-9/12 md:w-11/12'>
+									<div className='swiper-slide w-full review-card min-h-[55vh] sm:min-h-[45vh] md:min-h-[45vh]'>
 										<img className='quote-icon' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/quote_s5hblr.png"} />
 										{/* <FontAwesomeIcon className="quote-icon" icon={faQuoteLeft}/> */}
 										<h3 className='card-title'>I loved it</h3>
