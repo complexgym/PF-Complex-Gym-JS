@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Validate from "./Validations";
 import { useAuth0 } from "@auth0/auth0-react";
+import swal from 'sweetalert';
 
 export default function CreateBlog() {
 	const dispatch = useDispatch();
 
-	const { user } = useAuth0();
+	// const { user } = useAuth0();
 
 	const [input, setInput] = useState({
 		title: "",
@@ -17,20 +18,31 @@ export default function CreateBlog() {
 		author_image: "",
 	});
 
+	// useEffect(()=>{
+	// 	swal({
+	// 		title: "¡Info adicional!",
+	// 		text: `
+	// 			Escriba:
+	// 			-La url de una imagen para fotos, 
+	// 			-"Subtitle:" para subtítulos.
+	// 		`,
+	// 		icon: "info",
+	// 	});
+	// }, [])
+
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
-		if(e.target.name!=="tags"){
+		if (e.target.name !== "tags") {
 			setInput({
 				...input,
 				[e.target.name]: e.target.value,
 			});
-		}
-		else{
-			if(!input.tags.find(tag=>tag===e.target.value)){
+		} else {
+			if (!input.tags.find((tag) => tag === e.target.value)) {
 				setInput({
 					...input,
-					tags: [...input.tags, e.target.value]
+					tags: [...input.tags, e.target.value],
 				});
 			}
 		}
@@ -42,30 +54,44 @@ export default function CreateBlog() {
 		);
 	};
 
-	const handleRemoveTag = (tagRemove)=>{
+	const handleRemoveTag = (tagRemove) => {
 		setInput({
-			...input, 
-			tags: input?.tags?.filter(tag=>{
-				return tag!==tagRemove
-			}
-		)})
-	}
+			...input,
+			tags: input?.tags?.filter((tag) => {
+				return tag !== tagRemove;
+			}),
+		});
+	};
+
+	console.log(input);
 
 	const handleSubmit = (e) => {
-		// e.preventDefault();
-		// setErrors(Validate(input));
-		// let error = Validate(input);
-		// if (Object.values(error).length !== 0) {
-		// 	alert('Falta información obligatoria');
-		// } else {
-		// 	dispatch(postClient(input));
-		// 	alert('¡Información actualizada correctamente!');
-		// }
+		setErrors(Validate(input));
+		let error = Validate(input);
+		if (Object.values(error).length !== 0) {
+			swal({
+				title: 'Faltan Información',
+				text: `${
+					error.title ||
+					error.content ||
+					error.tags ||
+					error.image 
+				}`,
+				icon: 'warning',
+				dangerMode: true,
+			});
+		} else {
+			swal({
+				title: 'Gracias!',
+				text: '¡Información creada correctamente!',
+				icon: 'success',
+			});
+		}
 	};
 
 	return (
 		<>
-			<div className=" relative pt-36 px-10 ">
+			<div className=" relative pt-48 px-10 ">
 				<div className="md:grid md:grid-cols-2 md:gap-6 justify-center">
 					<div className="mt-5 md:col-span-2 md:mt-0">
 						<div className="md:col-span-1">
@@ -76,7 +102,7 @@ export default function CreateBlog() {
 							</div>
 						</div>
 						<form onSubmit={(e) => handleSubmit(e)}>
-							<div className="shadow sm:overflow-hidden sm:rounded-md">
+							<div className="shadow-lg bg-slate-100 sm:overflow-hidden sm:rounded-md ">
 								<div className="space-y-6 bg-white px-4 py-5 sm:p-6">
 									{/* post title */}
 									<div className="col-span-6 sm:col-span-3">
@@ -156,15 +182,19 @@ export default function CreateBlog() {
 										</select>
 
 										<div className="flex">
-											{input?.tags?.length>0 && 
-											input?.tags?.map(tag=>{
-												return( 
-													<div className="flex mr-2 mt-4">
-														<img className="w-5 h-5 mr-1 cursor-pointer" src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679262195/delete_2_nh2we5.png" onClick={()=>handleRemoveTag(tag)}/>
-														<span>{tag}</span>
-													</div>
-												)
-											})}
+											{input?.tags?.length > 0 &&
+												input?.tags?.map((tag) => {
+													return (
+														<div className="flex mr-2 mt-4">
+															<img
+																className="w-5 h-5 mr-1 cursor-pointer"
+																src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679262195/delete_2_nh2we5.png"
+																onClick={() => handleRemoveTag(tag)}
+															/>
+															<span>{tag}</span>
+														</div>
+													);
+												})}
 										</div>
 									</div>
 
@@ -211,7 +241,7 @@ export default function CreateBlog() {
 															name="blog_image"
 															type="file"
 															className="sr-only"
-															// onChange={handleChange}
+															onChange={handleChange}
 														/>
 													</label>
 													<p className="pl-1">o arrastrar y soltar</p>
@@ -221,6 +251,22 @@ export default function CreateBlog() {
 												</p>
 											</div>
 										</div>
+										{!errors.blog_image &&
+										<p className=" text-red-500">
+											<i>{errors.content}</i>
+										</p>}
+										{!errors.blog_image && input.blog_image && 
+										<>
+											<div className="flex">
+												<img
+													className="w-5 h-5 mr-1 cursor-pointer"
+													src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679262195/delete_2_nh2we5.png"
+													onClick={() => setInput({...input, blog_image: ""})}
+												/>
+												<span>{input?.blog_image}</span>
+											</div>
+										</>
+										}
 									</div>
 								</div>
 							</div>
@@ -229,10 +275,13 @@ export default function CreateBlog() {
 				</div>
 			</div>
 
-			<div className="hidden sm:block" aria-hidden="true">
-				<div className="py-5">
-					<div className="border-t border-gray-200" />
-				</div>
+			<div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+				<button
+					type="submit"
+					className="inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+				>
+					Guardar
+				</button>
 			</div>
 		</>
 	);
