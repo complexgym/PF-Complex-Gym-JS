@@ -5,14 +5,15 @@ import LogoutBtn from '../LogoutBtn/LogoutBtn';
 // import Spline from '@splinetool/react-spline';
 import logo from '../../assets/logo/logo.png';
 
+
 export default function Navbar() {
 	const { user, isAuthenticated } = useAuth0();
 
 	// console.log(user);
 
 	return (
-		<div className=' fixed z-20 flex flex-row w-screen text-white py-2 bg-[#231f20] bg-opacity-80 items-center'>
-			<div className='flex flex-row w-[90%] mx-[5%] text-white pb-2 items-center border-y-2 border-white border-opacity-20'>
+		<div className='fixed z-20 flex flex-row w-screen text-white py-2 bg-[#231f20] bg-opacity-80 items-center'>
+			<div className='flex flex-row w-[90%] mx-[5%] text-white pb-2 items-center border-y-2 border-white border-opacity-20' >
 				<div className=''>
 					{/* <Link to='/'>
 						<Spline scene='https://prod.spline.design/ffORQphusIoT5k1H/scene.splinecode' />

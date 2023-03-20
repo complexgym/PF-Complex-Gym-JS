@@ -2,7 +2,7 @@ import TrainerCard from "../TrainerCard/TrainerCard";
 
 export default function About() {
 	return (
-		<div className='grid px-16 '>
+		<div className='grid px-16 bg-slate-100'>
 			{/*Seccion 1*/}
 			<div className='grid md:grid-cols-2 items-center justify-center pt-16'>
 				{/*Text*/}
