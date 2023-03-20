@@ -11,15 +11,15 @@ export default function Navbar() {
 	const [scrollTop, setScrollTop] = useState(0);
 
 	const handleScroll = () => {
-		const position = window.pageYOffset;
-		setScrollTop(position);
+		const ubiActual = window.pageYOffset;
+		setScrollTop(ubiActual);
 	};
 
 	window.addEventListener("scroll", handleScroll);
 
 	return (
 		<div
-			className={`navApp fixed z-20 flex flex-row w-screen text-white py-2 bg-[#231f20] bg-opacity-80 items-center
+			className={` fixed z-20 flex flex-row w-screen text-white py-2 bg-[#231f20] bg-opacity-80 items-center
 		${scrollTop > 80 && "hidden"}`}
 		>
 			<div
