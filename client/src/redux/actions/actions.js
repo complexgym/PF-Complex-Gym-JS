@@ -9,7 +9,6 @@ import {
 	FILTER_POSTS,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
-	CLIENT_SESION,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -187,17 +186,6 @@ export const updateFilters = ({ tag, date }) => {
 };
 
 //TODO clients
-export const getSesion = () => async () => {
-	try {
-		return {
-			type: CLIENT_SESION,
-			payload: payload,
-		};
-	} catch (error) {
-		console.log(error);
-	}
-};
-
 export const getAllClients = () => async (dispatch) => {
 	try {
 		let response = await axios('/clients');

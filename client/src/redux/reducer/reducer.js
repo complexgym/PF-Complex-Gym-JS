@@ -9,12 +9,10 @@ import {
 	GET_POST_BY_ID,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
-	CLIENT_SESION,
 } from '../actions/action-types.js';
 
 const initialState = {
 	allClients: [],
-	clientSesion: [],
 	clientDetail: [],
 	initial_posts: [],
 	matched_posts: [],
@@ -71,11 +69,6 @@ const rootReducer = (state = initialState, action) => {
 				},
 			};
 
-		case CLIENT_SESION:
-			return {
-				...state,
-				clientSesion,
-			};
 		case GET_CLIENTS:
 			return {
 				...state,

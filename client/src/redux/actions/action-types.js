@@ -13,7 +13,6 @@ export let FILTER_POSTS = 'FILTER_POSTS';
 export let UPDATE_FILTERS = 'UPDATE_FILTERS';
 
 //todo CLIENTS
-export const CLIENT_SESION = 'CLIENT_SESION';
 export const GET_CLIENT_DETAIL = 'GET_CLIENT_DETAIL';
 export const POST_CLIENT = 'POST_CLIENT';
 export const GET_CLIENTS = 'GET_CLIENTS';
