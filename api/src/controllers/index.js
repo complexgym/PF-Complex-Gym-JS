@@ -23,6 +23,7 @@ const editTrainer = require("./trainer/editTrainer")
 const getAllTrainers = require("./trainer/getAllTrainers")
 const getTrainerById = require("./trainer/getTrainerById")
 const filters = require('./publications/filters')
+const postPaymentsMP = require('./payments/postPaymentsMP')
 
 
 module.exports = {
@@ -51,5 +52,6 @@ module.exports = {
     getAllTrainers,
     getTrainerById,
 
-    filters
+    filters,
+    postPaymentsMP
 }
