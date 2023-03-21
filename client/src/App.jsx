@@ -19,7 +19,6 @@ import CreateBlog from './components/CreateBlog/CreateBlog';
 import { useAuth0 } from '@auth0/auth0-react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import DashBoard from './components/DashBoard/DashBoard';
-import ClientDetail from './components/Profile/ClientDetail';
 import Form from './components/Form/Form';
 
 axios.defaults.baseURL = 'http://localhost:3001';
