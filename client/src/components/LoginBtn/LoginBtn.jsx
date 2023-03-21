@@ -7,7 +7,13 @@ const LoginBtn = () => {
 
 	return (
 		<div>
-			<button onClick={() => loginWithRedirect()}>Ingresar</button>
+			<button
+				onClick={() =>
+					loginWithRedirect({ redirect_uri: 'http://localhost:5173/registro' })
+				}
+			>
+				Ingresar
+			</button>
 		</div>
 	);
 };

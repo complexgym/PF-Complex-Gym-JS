@@ -10,19 +10,24 @@ const {
     Client,
     Payments,
     Trainer,
-    Memberships 
+    Memberships,
+    Testimonials
 } = require("./models/index")
 
 // 5432
-const {DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = process.env
+//const {DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = process.env
 
-const db = new Sequelize(
-    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-    {
-       logging: false, // set to console.log to see the raw SQL queries
-       native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-    }
-);
+const {DB_DEPLOY} = process.env
+
+// const db = new Sequelize(
+//     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+//     {
+//        logging: false, // set to console.log to see the raw SQL queries
+//        native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//     }
+// );
+
+const sequelize = new Sequelize(BD_DEPLOY, {logging: false,native: false,});
 
 Activities(db)
 Admin(db)
@@ -31,9 +36,10 @@ Client(db)
 Payments(db)
 Trainer(db)
 Memberships(db)
+Testimonials(db)
 
 
-const {activities, blog, client, payments, trainer, memberships} = db.models // falta charlar con los chicos de front blog y memberships
+const {activities, admin, testimonials, blog, client, payments, trainer, memberships} = db.models // falta charlar con los chicos de front blog y memberships
 
 activities.belongsToMany(client, {through: 'ActivitiesClient'})
 client.belongsToMany(activities, {through: 'ActivitiesClient'})
