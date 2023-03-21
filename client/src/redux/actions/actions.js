@@ -1,4 +1,4 @@
-import {GET_ALL_POSTS, GET_POST_BY_ID, SEARCH_POSTS, UPDATE_SEARCH, GET_CLIENT_DETAIL, POST_CLIENT, UPDATE_FILTERS, FILTER_POSTS, CLEAR_POST_DETAILS} from "./action-types.js"
+import {GET_ALL_POSTS, GET_POST_BY_ID, SEARCH_POSTS, UPDATE_SEARCH, GET_CLIENT_DETAIL, POST_CLIENT, UPDATE_FILTERS, FILTER_POSTS, CLEAR_POST_DETAILS, POST_BLOG} from "./action-types.js"
 import axios from "axios"
 
 //*TODO posts
@@ -107,6 +107,19 @@ export function updateSearch(title){
     return {
         type: UPDATE_SEARCH,
         payload: title
+    }
+}
+ 
+export const postBlog = (data) => {
+    return async function(dispatch){
+        try {
+            const response = await axios.post('/publications', data);
+            return dispatch({
+                type: POST_BLOG
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 

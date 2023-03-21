@@ -1,21 +1,25 @@
 const { blog } = require("../../db")
 
-
 const createPublication = async (req, res) => {
     try {
         const {
-            authorId,
             title,
             content,
             image,
-            tag
+            tag,
+            author_name,
+            author_picture,
         } = req.body
+
+        console.log(req.body);
+
         const newPublication = await blog.create({
-            authorId,
             title,
             content,
             image,
-            tag
+            tag,
+            author_name,
+            author_picture,
         })
 
         //falta crear la relacion con trainer

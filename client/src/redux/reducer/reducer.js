@@ -1,5 +1,5 @@
 import {GET_ALL_POSTS, SEARCH_POSTS, UPDATE_SEARCH, 
-GET_CLIENT_DETAIL, POST_CLIENT, UPDATE_FILTERS, FILTER_POSTS, GET_POST_BY_ID, CLEAR_POST_DETAILS} from "../actions/action-types.js"
+GET_CLIENT_DETAIL, POST_CLIENT, UPDATE_FILTERS, FILTER_POSTS, GET_POST_BY_ID, CLEAR_POST_DETAILS, POST_BLOG} from "../actions/action-types.js"
 
 const initialState = {
   	client: [],
@@ -60,6 +60,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 		};
+		case POST_BLOG: {
+			return {
+				...state
+			}
+		}
 		default: return {
 			...state
 		}

@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 //todo blog container
 export default function Blog() {
 	const dispatch = useDispatch();
-	const { matched_posts, search_blog, filters_blog } = useSelector((s) => s);
+	const { initial_posts, matched_posts, search_blog, filters_blog } = useSelector((s) => s);
 	const [search, setSearch] = useState("");
 	const [filters, setFilters] = useState({tag: "", date: ""})
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -100,8 +100,8 @@ export default function Blog() {
 
 	return (
 		<div>
-			<section className="bg-slate-100 pt-16 min-h-[80vh]">
-				{isLoaded && matched_posts.length>0 ? 
+			<section className="bg-slate-100 w-screen pt-16 min-h-[80vh]">
+				{isLoaded  ? 
 					<div className="py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 ">
 						{/* BLOG */}
 						<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">

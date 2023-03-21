@@ -31,6 +31,12 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getAllPosts());
+
+		if(!localStorage.getItem("user") && user){
+			localStorage.setItem("user", JSON.stringify(user))
+		}
+		
+		
 	}, [dispatch]);
 
 	const { pathname } = location;
