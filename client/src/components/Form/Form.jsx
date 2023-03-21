@@ -4,6 +4,7 @@ import { postClient } from '../../redux/actions/actions';
 import Validate from './Validations';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
+import UploadToCloudinary from '../UploadToCloudinary/UploadToCloudinary';
 
 export default function Form() {
 	const dispatch = useDispatch();
@@ -84,6 +85,7 @@ export default function Form() {
 					<div className='mt-5 md:col-span-2 md:mt-0'>
 						<div className='md:col-span-1'>
 							<div className='px-4 sm:px-0'>
+								{/* PROFILE INFO */}
 								<h3 className='text-base font-semibold leading-6 text-gray-900'>
 									Perfil
 								</h3>
@@ -96,6 +98,7 @@ export default function Form() {
 						<form onSubmit={(e) => handleSubmit(e)}>
 							<div className='shadow sm:overflow-hidden sm:rounded-md'>
 								<div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
+									{/* USERNAME */}
 									<div className='col-span-6 sm:col-span-3'>
 										<label
 											htmlFor='user'
@@ -120,6 +123,7 @@ export default function Form() {
 										)}
 									</div>
 
+									{/* EMAIL */}
 									<div className='col-span-6 sm:col-span-4'>
 										<label
 											htmlFor='mail'
@@ -145,6 +149,7 @@ export default function Form() {
 										)}
 									</div>
 
+									{/* IMAGE */}
 									<div>
 										<label className='block text-sm font-medium leading-6 text-gray-900'>
 											Foto
@@ -167,7 +172,7 @@ export default function Form() {
 										{/* <label className='block text-sm font-medium leading-6 text-gray-900'>
 											Foto de portada
 										</label> */}
-										<div className='mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
+										{/* <div className='mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
 											<div className='space-y-1 text-center'>
 												<svg
 													className='mx-auto h-12 w-12 text-gray-400'
@@ -194,16 +199,20 @@ export default function Form() {
 															name='picture'
 															type='file'
 															className='sr-only'
-															// onChange={handleChange}
 														/>
 													</label>
 													<p className='pl-1'>o arrastrar y soltar</p>
 												</div>
 												<p className='text-xs text-gray-500'>PNG, JPG, GIF up to 10MB</p>
 											</div>
-										</div>
+										</div> */}
+
+										{/* UPLOAD IMAGE */}
+
+										<UploadToCloudinary />
 									</div>
 
+									{/* ABOUT */}
 									<div>
 										<label
 											htmlFor='about'
@@ -238,6 +247,7 @@ export default function Form() {
 									</div>
 								</div>
 
+								{/* PERSONAL INFO */}
 								<div className='md:col-span-1'>
 									<div className='px-4 sm:px-0'>
 										<h3 className='text-base font-semibold leading-6 text-gray-900'>
@@ -249,6 +259,7 @@ export default function Form() {
 									</div>
 								</div>
 
+								{/* NAME */}
 								<div className='bg-white px-4 py-5 sm:p-6'>
 									<div className='grid grid-cols-6 gap-6'>
 										<div className='col-span-6 sm:col-span-3'>
@@ -275,6 +286,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* LASTNAME */}
 										<div className='col-span-6 sm:col-span-3'>
 											<label
 												htmlFor='lastName'
@@ -299,6 +311,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* PHONE */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
 											<label
 												htmlFor='phone'
@@ -324,6 +337,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* DNI */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
 											<label
 												htmlFor='dni'
@@ -348,6 +362,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* AGE */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='age'
@@ -372,6 +387,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* WEIGHT */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='weight'
@@ -397,6 +413,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* HEIGHT */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='height'
@@ -422,6 +439,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* ADDRESS */}
 										<div className='col-span-6'>
 											<label
 												htmlFor='address'
@@ -446,6 +464,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* CITY */}
 										<div className='col-span-6 sm:col-span-6 lg:col-span-2'>
 											<label
 												htmlFor='city'
@@ -470,6 +489,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* REGION */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
 											<label
 												htmlFor='region'
@@ -488,6 +508,7 @@ export default function Form() {
 											/>
 										</div>
 
+										{/* POSTALCODE */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
 											<label
 												htmlFor='postalCode'
@@ -507,6 +528,8 @@ export default function Form() {
 										</div>
 									</div>
 								</div>
+
+								{/* BUTTON-CREATE */}
 								<div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
 									<button
 										type='submit'
