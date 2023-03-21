@@ -10,7 +10,8 @@ const {
     Client,
     Payments,
     Trainer,
-    Memberships 
+    Memberships,
+    Testimonials
 } = require("./models/index")
 
 // 5432
@@ -31,9 +32,10 @@ Client(db)
 Payments(db)
 Trainer(db)
 Memberships(db)
+Testimonials(db)
 
 
-const {activities, admin, blog, client, payments, trainer, memberships} = db.models // falta charlar con los chicos de front blog y memberships
+const {activities, admin, testimonials, blog, client, payments, trainer, memberships} = db.models // falta charlar con los chicos de front blog y memberships
 
 activities.belongsToMany(client, {through: 'ActivitiesClient'})
 client.belongsToMany(activities, {through: 'ActivitiesClient'})

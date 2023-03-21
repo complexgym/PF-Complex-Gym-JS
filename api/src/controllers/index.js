@@ -32,6 +32,10 @@ const deleteAdmin = require("./admin/deleteAdmin")
 const getAllAdmins = require("./admin/getAllAdmins")
 const postAdmin = require("./admin/postAdmin")
 const putAdmin = require("./admin/putAdmin")
+const getAllTestimonials = require("./testimonials/getAllTestimonials")
+const deleteTestimonials = require("./testimonials/deleteTestimonials")
+const postTestimonials = require("./testimonials/postTestimonials")
+const putTestimonials = require("./testimonials/putTestimonials")
 
 
 module.exports = {
@@ -69,5 +73,9 @@ module.exports = {
     deleteAdmin,
     getAllAdmins,
     postAdmin,
-    putAdmin
+    putAdmin,
+    getAllTestimonials,
+    deleteTestimonials,
+    postTestimonials,
+    putTestimonials
 }
