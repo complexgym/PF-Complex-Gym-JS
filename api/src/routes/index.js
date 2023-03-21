@@ -13,7 +13,7 @@ router.use('/clients', clients)
 router.use('/activities', activities)
 router.use('/publications', publications)
 router.use('/menberships',memberships)
-router.use('./trainer', trainer)
+router.use('/trainer', trainer)
 router.use('/admin', admin)
 router.use('/testimonials', testimonials)
 
