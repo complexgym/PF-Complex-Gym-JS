@@ -1,4 +1,4 @@
-import TrainerCard from "../TrainerCard/TrainerCard";
+import TrainerCard from '../TrainerCard/TrainerCard';
 
 export default function About() {
 	return (

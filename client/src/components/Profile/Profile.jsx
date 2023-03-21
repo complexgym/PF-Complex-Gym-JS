@@ -1,16 +1,41 @@
-import Form from '../Form/Form';
 import { useAuth0 } from '@auth0/auth0-react';
-import ClientDetail from '../ClientDetail/ClientDetail';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllClients, getClientDetail } from '../../redux/actions/actions';
 
 export default function Profile() {
-	const { user, isAuthenticated } = useAuth0();
-	return (
-		<div className='grid grid-cols-1 col-span-6 sm:col-span-3'>
-			{/* <div className=''>
-				<ClientDetail />
-			</div> */}
+	const dispatch = useDispatch();
 
-			<div className=''>{isAuthenticated && <Form />}</div>
+	const { user } = useAuth0();
+
+	const allClient = useSelector((state) => state.allClients);
+
+	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+
+	const matchId = matchEmail && matchEmail.id;
+
+	useEffect(() => {
+		dispatch(getAllClients());
+		dispatch(getClientDetail(matchId));
+	}, []);
+
+	return (
+		<div className='grid grid-cols-2'>
+			<div className=''>
+				<div>
+					<div>
+						<img src={user.picture} alt={user.name} />
+						<h1>{user.name}</h1>
+						<h2>{user.email}</h2>
+					</div>
+					<br />
+					<div>
+						<Link>
+							<button>Editar info</button>
+						</Link>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }
