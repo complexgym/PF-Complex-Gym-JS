@@ -5,7 +5,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Landing2() {
-	const { loginWithRedirect, isAuthenticated } = useAuth0();
+	const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
 
 	return (
 		<div className={style.container}>
@@ -24,6 +24,16 @@ export default function Landing2() {
 					{!isAuthenticated && (
 						<button className={style.buttonn} onClick={() => loginWithRedirect()}>
 							INICIAR SESIÓN
+						</button>
+					)}
+					{isAuthenticated && (
+						<button
+							className={style.buttonn}
+							onClick={() =>
+								logout({ logoutParams: { returnTo: window.location.origin } })
+							}
+						>
+							CERRAR SESIÓN
 						</button>
 					)}
 				</div>

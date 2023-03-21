@@ -12,7 +12,7 @@ export default function UploadWidget() {
 				upload_preset: 'gp0cjncm',
 			},
 			function (err, res) {
-				console.log(res);
+				// console.log(res);
 			}
 		);
 	}, []);
