@@ -5,6 +5,7 @@ const memberships = (sequelize) => {
         clientId:{
             type: DataTypes.UUID,
 			allowNull: true,
+            primaryKey: true,
         },
         planName: {
 			type: DataTypes.STRING,

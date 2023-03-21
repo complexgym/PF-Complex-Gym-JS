@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import About from './components/About/About';
 import Blog from './components/Blog/Blog';
@@ -30,7 +30,7 @@ function App() {
 	const { user, isAuthenticated } = useAuth0();
 
 	useEffect(() => {
-		dispatch(getAllPosts())
+		dispatch(getAllPosts());
 	}, [dispatch]);
 
 	const { pathname } = location;
