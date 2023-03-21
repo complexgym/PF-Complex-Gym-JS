@@ -33,7 +33,7 @@ Trainer(db)
 Memberships(db)
 
 
-const {activities, blog, client, payments, trainer, memberships} = db.models // falta charlar con los chicos de front blog y memberships
+const {activities, admin, blog, client, payments, trainer, memberships} = db.models // falta charlar con los chicos de front blog y memberships
 
 activities.belongsToMany(client, {through: 'ActivitiesClient'})
 client.belongsToMany(activities, {through: 'ActivitiesClient'})
