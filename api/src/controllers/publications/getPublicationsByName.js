@@ -3,7 +3,7 @@ const { blog } = require("../../db")
 const getPublicationsByName = async (req, res) => {
     try {
         const { title, tag, date } = req.query
-        console.log("getname")
+        // console.log("getname")
         const allPublications = await blog.findAll({})
 
         let publicationName = await allPublications?.filter(el => el.title.toLowerCase().includes(title.toLowerCase()))

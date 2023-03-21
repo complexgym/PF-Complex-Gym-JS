@@ -1,3 +1,4 @@
+
 import {
 	GET_ALL_POSTS,
 	GET_POST_BY_ID,
@@ -9,6 +10,7 @@ import {
 	FILTER_POSTS,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
+  POST_BLOG
 } from './action-types.js';
 import axios from 'axios';
 
@@ -118,6 +120,19 @@ export function updateSearch(title) {
 		type: UPDATE_SEARCH,
 		payload: title,
 	};
+}
+ 
+export const postBlog = (data) => {
+    return async function(dispatch){
+        try {
+            const response = await axios.post('/publications', data);
+            return dispatch({
+                type: POST_BLOG
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 export function filterPosts({ tag, date }, search) {

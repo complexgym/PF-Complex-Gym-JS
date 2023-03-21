@@ -20,12 +20,8 @@ export default function Validate(input) {
 		errors.content = "El contenido debe ser tener un mínimo de 100 letras!"
 	}
 
-	if(input?.tags?.length===0){
-		errors.tags = "Debe seleccionar por lo menos un tag!"
-	}
-
-	if(input?.image?.match(regexImg)){
-		errors.image = "La imagen de fondo debe ser de tipo jpeg, jpg, fig o png!"
+	if(input?.tag?.length===0){
+		errors.tag = "Debe seleccionar por lo menos un tag!"
 	}
 
 	return errors;
