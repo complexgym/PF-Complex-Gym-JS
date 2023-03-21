@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { postClient } from '../../redux/actions/actions';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllClients, postClient } from '../../redux/actions/actions';
 import Validate from './Validations';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
 import UploadToCloudinary from '../UploadToCloudinary/UploadToCloudinary';
+import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
 	const dispatch = useDispatch();
 
+	const navigate = useNavigate();
+
 	const { user } = useAuth0();
+
+	const allClient = useSelector((state) => state.allClients);
+
+	// console.log(allClient);
+
+	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+
+	const matchId = matchEmail && matchEmail.id;
 
 	const [input, setInput] = useState({
 		user: user.name,
@@ -75,12 +86,17 @@ export default function Form() {
 				text: '¡Información creada correctamente!',
 				icon: 'success',
 			});
+			navigate(`/perfil/${matchId}`);
 		}
 	};
 
+	useEffect(() => {
+		dispatch(getAllClients());
+	}, []);
+
 	return (
 		<>
-			<div className=' relative font-text pt-52 px-10 '>
+			<div className=' relative font-text pt-12 px-10 '>
 				<div className='md:grid md:grid-cols-2 md:gap-6 justify-center'>
 					<div className='mt-5 md:col-span-2 md:mt-0'>
 						<div className='md:col-span-1'>
@@ -140,7 +156,6 @@ export default function Form() {
 											autoComplete='mail'
 											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
-											readOnly
 										/>
 										{errors?.mail && (
 											<p className=' text-red-500'>
