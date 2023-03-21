@@ -111,8 +111,8 @@ export default function Blog() {
 				{isLoaded && matched_posts.length > 0 ? (
 					<div className='py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 '>
 						{/* BLOG */}
-						<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
-							<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>
+						<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">
+							<h2 className="mb-4 mt-16 font-title text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
 								Nuestro Blog
 							</h2>
 						</div>
@@ -120,11 +120,10 @@ export default function Blog() {
 						{/* FORM: Search and filters */}
 						<form className='form-blog mb-4 grid grid-cols-2 md:grid-cols-3 md:w-[60vw] lg:w-[70%] xl:w-[50%] 2xlxl:w-[40%] w-[80vw] gap-2 mx-auto'>
 							{/* SEARCH */}
-							<div className='mr-4'>
-								<label
-									for='search'
-									className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-								>
+							<div className="mr-4">
+								<label 
+									for="search"
+									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white">
 									Búsqueda por título
 								</label>
 								<input
@@ -140,8 +139,8 @@ export default function Blog() {
 							{/* FILTER BY TAG */}
 							<div className='mr-4'>
 								<label
-									for='tag'
-									className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+									for="tag"
+									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white"
 								>
 									Por tema
 								</label>
@@ -165,8 +164,8 @@ export default function Blog() {
 							{/* ORDER BY DATE */}
 							<div className='mr-4'>
 								<label
-									for='per_date'
-									className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+									for="per_date"
+									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white"
 								>
 									Orden por fecha
 								</label>
@@ -195,11 +194,8 @@ export default function Blog() {
 							</button>
 
 							<div>
-								<NavLink
-									to='/blog/create'
-									className='flex justify-start lighter-blue underline'
-								>
-									Create blog
+								<NavLink to="/blog/create" className="flex justify-start lighter-blue underline">
+									Crear blog
 								</NavLink>
 							</div>
 						</form>
@@ -248,7 +244,24 @@ export default function Blog() {
 					</div>
 				) : (
 					<LoadingBlog />
-				)}
+				)}				
+
+				{/* REDES */}
+				<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">
+					<h2 className="mb-4 font-title text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+						Nuestras redes
+					</h2>
+				</div>
+
+				<div
+					className="w-[90vw] grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
+					2xl:grid-cols-4 py-8"
+					>
+					{instagramPosts}
+				</div>
+			</div>
+			: <LoadingBlog/>
+			}
 			</section>
 		</div>
 	);

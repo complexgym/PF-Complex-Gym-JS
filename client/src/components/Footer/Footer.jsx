@@ -14,9 +14,9 @@ export default function Footer() {
 	};
 
 	return (
-		<div className='nav-footer flex flex-col w-full items-center pt-10 pb-6'>
+		<div className='nav-footer font-mono flex flex-col w-full items-center pt-10 pb-6'>
 			<div className='section-top flex'>
-				<h1 className='text-2xl'>Contacto</h1>
+				<h1 className='text-2xl font-title underline'>Contacto</h1>
 			</div>
 
 			<div
