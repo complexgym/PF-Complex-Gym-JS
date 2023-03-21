@@ -1,6 +1,4 @@
-import Form from '../Form/Form';
 import { useAuth0 } from '@auth0/auth0-react';
-import ClientDetail from './ClientDetail';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllClients, getClientDetail } from '../../redux/actions/actions';
