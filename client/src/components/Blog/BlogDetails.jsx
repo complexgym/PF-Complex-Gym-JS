@@ -18,7 +18,7 @@ export default function BlogDetails() {
 
 	const details = post_details;
 
-    const textArr = details?.content?.split(" ")
+    const contentArr = details?.content?.split(" ")
 
 	return (
 		<div className="bg-slate-100">
@@ -55,7 +55,7 @@ export default function BlogDetails() {
                 </div>
 
                 <div>
-                    {textArr?.map(word=>{
+                    {contentArr?.map(word=>{
                         if(word.match(/\.(jpeg|jpg|gif|png)$/)) return <img src={word} className="pt-8 pb-8 rounded-md h-80 w-full" alt="text img"/>
                         else if(word?.toLowerCase()?.startsWith("subtitle:")) return <h1 className="text-3xl capitalize lighter-blue pt-6">{word.substring(9)} </h1>
                         else return <span>{word} </span>

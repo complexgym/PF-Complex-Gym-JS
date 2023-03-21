@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { postClient } from '../../redux/actions/actions';
 import Validate from './Validations';
 import { useAuth0 } from '@auth0/auth0-react';
+import swal from 'sweetalert';
 
 export default function Form() {
 	const dispatch = useDispatch();
@@ -47,16 +48,38 @@ export default function Form() {
 		setErrors(Validate(input));
 		let error = Validate(input);
 		if (Object.values(error).length !== 0) {
-			alert('Falta información obligatoria');
+			swal({
+				title: 'Faltan Información',
+				text: `${
+					error.mail ||
+					error.user ||
+					error.mail ||
+					error.name ||
+					error.lastName ||
+					error.phone ||
+					error.dni ||
+					error.age ||
+					error.weight ||
+					error.height ||
+					error.address ||
+					error.city
+				}`,
+				icon: 'warning',
+				dangerMode: true,
+			});
 		} else {
 			dispatch(postClient(input));
-			alert('¡Información actualizada correctamente!');
+			swal({
+				title: 'Gracias!',
+				text: '¡Información creada correctamente!',
+				icon: 'success',
+			});
 		}
 	};
 
 	return (
 		<>
-			<div className=' relative pt-28 px-10 '>
+			<div className=' relative font-text pt-52 px-10 '>
 				<div className='md:grid md:grid-cols-2 md:gap-6 justify-center'>
 					<div className='mt-5 md:col-span-2 md:mt-0'>
 						<div className='md:col-span-1'>
@@ -85,7 +108,7 @@ export default function Form() {
 											name='user'
 											id='input'
 											value={input.user}
-											required
+											// required
 											autoComplete='given-name'
 											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
@@ -109,7 +132,7 @@ export default function Form() {
 											name='mail'
 											id='mail'
 											value={input.mail}
-											required
+											// required
 											autoComplete='mail'
 											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
@@ -239,7 +262,7 @@ export default function Form() {
 												name='name'
 												id='name'
 												value={input.name}
-												required
+												// required
 												autoComplete='given-name'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -263,7 +286,7 @@ export default function Form() {
 												name='lastName'
 												id='lastName'
 												value={input.lastName}
-												required
+												// required
 												autoComplete='family-name'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -287,7 +310,7 @@ export default function Form() {
 												name='phone'
 												id='phone'
 												value={input.phone}
-												required
+												// required
 												autoComplete='phone'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												placeholder='Ej: +54 3442 48-0617'
@@ -312,7 +335,7 @@ export default function Form() {
 												name='dni'
 												id='dni'
 												value={input.dni}
-												required
+												// required
 												autoComplete='dni'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -336,7 +359,7 @@ export default function Form() {
 												name='age'
 												id='age'
 												value={input.age}
-												required
+												// required
 												autoComplete='age'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -360,7 +383,7 @@ export default function Form() {
 												name='weight'
 												id='weight'
 												value={input.weight}
-												required
+												// required
 												autoComplete='weight'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												placeholder='kg'
@@ -385,7 +408,7 @@ export default function Form() {
 												name='height'
 												id='height'
 												value={input.height}
-												required
+												// required
 												autoComplete='height'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												placeholder='cm'
@@ -410,7 +433,7 @@ export default function Form() {
 												name='address'
 												id='address'
 												value={input.address}
-												required
+												// required
 												autoComplete='address'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -434,7 +457,7 @@ export default function Form() {
 												name='city'
 												id='city'
 												value={input.city}
-												required
+												// required
 												autoComplete='address-level2'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -485,7 +508,6 @@ export default function Form() {
 								</div>
 								<div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
 									<button
-										disabled={Object.keys(errors).length !== 0}
 										type='submit'
 										className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
 									>

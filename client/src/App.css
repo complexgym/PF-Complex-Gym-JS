@@ -1,3 +1,20 @@
+@font-face {
+	font-family: 'Capture';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Capture'), url('https://res.cloudinary.com/dpxucxgwg/raw/upload/v1679322066/Capture_it_he6f1r.ttf') format('woff');
+}
+
+@font-face {
+	font-family: 'Myriad';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad'), url('https://res.cloudinary.com/dpxucxgwg/raw/upload/v1679322069/Myriad_Condensed_ycjuyj.otf') format('woff');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap');
+/*font-family: 'Lato', sans-serif;*/
+
 :root {
 	--darker-blue: #1d459d;
 	--lighter-blue: #4a78ad;

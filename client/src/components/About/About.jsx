@@ -2,12 +2,12 @@ import TrainerCard from "../TrainerCard/TrainerCard";
 
 export default function About() {
 	return (
-		<div className='grid px-16 '>
+		<div className='grid px-16 font-text'>
 			{/*Seccion 1*/}
 			<div className='grid md:grid-cols-2 items-center justify-center pt-16'>
 				{/*Text*/}
 				<div className='text-center pr-[10%] items row-start-2 row-end-3 md:row-start-1 md:row-end-2'>
-					<h1 className='font-bold text-6xl pb-8 italic tracking-widest'>Sobre Nosotros</h1>
+					<h1 className='font-bold font-title text-6xl pb-8 italic tracking-widest'>Sobre Nosotros</h1>
 					<p className='font-normal leading-6 text-gray-600 text-2xl'>
 						Complex nació de una pasión compartida entre Juli y Agus en el año 2016. Con
 						otro nombre y otro lugar de residencia, la esencia de Complex fue desde su
@@ -38,7 +38,7 @@ export default function About() {
 				</div>
 				{/*Text*/}
 				<div className='pl-[10%] text-center'>
-					<h1 className='font-bold text-6xl pb-8 italic tracking-widest'>¿Qué es para nosotros el movimiento?</h1>
+					<h1 className='font-bold font-title text-6xl pb-8 italic tracking-widest'>¿Qué es para nosotros el movimiento?</h1>
 					<p className='font-normal leading-6 text-gray-600 text-2xl '>
 						Es la manera de comunicarnos y de vivir la vida a través de nuestro cuerpo. A
 						través de él encontramos bienestar físico, logros deportivos, y por sobre
@@ -51,7 +51,7 @@ export default function About() {
 			<div className='grid md:grid-cols-2 items-center justify-center '>
 				{/*Text*/}
 				<div className=' text-center pr-[10%] items row-start-2 row-end-3 md:row-start-1 md:row-end-2'>
-					<h1 className='font-bold text-6xl pb-8 italic tracking-widest'>
+					<h1 className='font-bold font-title text-6xl pb-8 italic tracking-widest'>
 						No hace falta que seas un experto, nosotros podemos guiarte!
 					</h1>
 					<p className='font-normal leading-6 text-gray-600 text-2xl '>
@@ -71,7 +71,7 @@ export default function About() {
 			</div>
 			{/*Seccion 4*/}
 			<div className='items-center justify-center py-20'>
-				<h1 className="text-center py-12 font-bold text-6xl pb-8 italic tracking-widest">Nuestros Entrenadores</h1>
+				<h1 className="text-center font-title py-12 font-bold text-6xl pb-8 italic tracking-widest">Nuestros Entrenadores</h1>
 				<TrainerCard />
 			</div>
 		</div>

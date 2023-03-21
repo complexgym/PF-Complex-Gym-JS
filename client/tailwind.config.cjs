@@ -80,6 +80,9 @@ module.exports = {
 					color: 'var(--lighter-blue-plans)',
 					fontWeight: 'bold',
 				},
+				'.font-title': {fontFamily: "Capture"},
+				'.font-subtitle': {fontFamily: "Myriad"},
+				'.font-text': {fontFamily: "Lato"},
 
 				//*borders
 				'.border-gold': {

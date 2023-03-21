@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import InstagramPost from "./InstaPost";
 import SingleBlog from "./SingleBlog";
 import { LoadingBlog } from "../Loading/Loading";
+import { NavLink } from "react-router-dom";
 
 //todo blog container
 export default function Blog() {
@@ -102,9 +103,9 @@ export default function Blog() {
 			<section className="bg-slate-100 pt-16 min-h-[80vh]">
 				{isLoaded && matched_posts.length>0 ? 
 					<div className="py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 ">
-					{/* BLOG */}
+						{/* BLOG */}
 						<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">
-							<h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+							<h2 className="mb-4 mt-16 font-title text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
 								Nuestro Blog
 							</h2>
 						</div>
@@ -115,7 +116,7 @@ export default function Blog() {
 							<div className="mr-4">
 								<label 
 									for="search"
-									className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white">
 									Búsqueda por título
 								</label>
 								<input
@@ -132,7 +133,7 @@ export default function Blog() {
 							<div className="mr-4">
 								<label
 									for="tag"
-									className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white"
 								>
 									Por tema
 								</label>
@@ -155,7 +156,7 @@ export default function Blog() {
 							<div className="mr-4">
 								<label
 									for="per_date"
-									className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white"
 								>
 									Orden por fecha
 								</label>
@@ -173,10 +174,16 @@ export default function Blog() {
 							</div>
 
 							{/* CLEAR FILTERS */}
-							<button onClick={handleClearFilters} className="flex justify-start lighter-blue underli
+							<button onClick={handleClearFilters} className="flex justify-start lighter-blue
 							">
 								Borrar filtros
 							</button>
+
+							<div>
+								<NavLink to="/blog/create" className="flex justify-start lighter-blue underline">
+									Crear blog
+								</NavLink>
+							</div>
 					</form>
 
 					{/* posts, can be initial posts, filtered, or searched posts */}
@@ -208,7 +215,7 @@ export default function Blog() {
 
 				{/* REDES */}
 				<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">
-					<h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+					<h2 className="mb-4 font-title text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
 						Nuestras redes
 					</h2>
 				</div>
