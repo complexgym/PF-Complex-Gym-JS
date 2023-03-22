@@ -17,7 +17,11 @@ export default function Navbar() {
 
 	let matchEmail = user && allClient.find((m) => m.mail === user.email);
 
+	const active = matchEmail && matchEmail.active;
+
 	const matchId = matchEmail && matchEmail.id;
+
+	console.log(active);
 
 	useEffect(() => {
 		dispatch(getAllClients());
@@ -51,7 +55,7 @@ export default function Navbar() {
 						{!isAuthenticated && <LoginBtn />}
 
 						{isAuthenticated && <Link to={`/perfil/${matchId}`}>Perfil</Link>}
-						{isAuthenticated && <Link to={'/registro'}>registro</Link>}
+						{isAuthenticated && active ? null : <Link to={'/registro'}>registro</Link>}
 						{isAuthenticated && <LogoutBtn />}
 					</div>
 				</div>

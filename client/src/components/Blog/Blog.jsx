@@ -9,13 +9,15 @@ import {
 import { useEffect, useState } from 'react';
 import InstagramPost from './InstaPost';
 import SingleBlog from './SingleBlog';
-import { LoadingBlog } from '../Loading/Loading';
+// import { LoadingBlog } from '../Loading/Loading';
 import { NavLink } from 'react-router-dom';
 
 //todo blog container
 export default function Blog() {
 	const dispatch = useDispatch();
-	const { matched_posts, search_blog, filters_blog } = useSelector((s) => s);
+	const { initial_posts, matched_posts, search_blog, filters_blog } = useSelector(
+		(s) => s
+	);
 	const [search, setSearch] = useState('');
 	const [filters, setFilters] = useState({ tag: '', date: '' });
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -107,161 +109,144 @@ export default function Blog() {
 
 	return (
 		<div>
-			<section className='bg-slate-100 pt-16 min-h-[80vh]'>
-				{isLoaded && matched_posts.length > 0 ? (
-					<div className='py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 '>
-						{/* BLOG */}
-						<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">
-							<h2 className="mb-4 mt-16 font-title text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-								Nuestro Blog
-							</h2>
-						</div>
-
-						{/* FORM: Search and filters */}
-						<form className='form-blog mb-4 grid grid-cols-2 md:grid-cols-3 md:w-[60vw] lg:w-[70%] xl:w-[50%] 2xlxl:w-[40%] w-[80vw] gap-2 mx-auto'>
-							{/* SEARCH */}
-							<div className="mr-4">
-								<label 
-									for="search"
-									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white">
-									Búsqueda por título
-								</label>
-								<input
-									type='text'
-									id='search'
-									onChange={handleChangeSearch}
-									value={search}
-									className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-									placeholder='5 ejercicios para tonificar'
-								/>
-							</div>
-
-							{/* FILTER BY TAG */}
-							<div className='mr-4'>
-								<label
-									for="tag"
-									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white"
-								>
-									Por tema
-								</label>
-								<select
-									id='tag'
-									className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-									name='tag'
-									onChange={handleChangeFilters}
-									value={filters_blog.tag}
-								>
-									<option value='' selected>
-										Seleccione una opción...
-									</option>
-									<option value='Fitness'>Fitness</option>
-									<option value='Entrenamiento'>Entrenamiento</option>
-									<option value='Salud'>Salud</option>
-									<option value='Administrativo'>Administrativo</option>
-								</select>
-							</div>
-
-							{/* ORDER BY DATE */}
-							<div className='mr-4'>
-								<label
-									for="per_date"
-									className="block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white"
-								>
-									Orden por fecha
-								</label>
-								<select
-									id='per_date'
-									className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-									name='date'
-									value={filters_blog.date}
-									onChange={handleChangeFilters}
-								>
-									<option value='' selected>
-										Seleccione una opción...
-									</option>
-									<option value='recent'>Más nuevos</option>
-									<option value='ancient'>Más antiguos</option>
-								</select>
-							</div>
-
-							{/* CLEAR FILTERS */}
-							<button
-								onClick={handleClearFilters}
-								className='flex justify-start lighter-blue
-							'
-							>
-								Borrar filtros
-							</button>
-
-							<div>
-								<NavLink to="/blog/create" className="flex justify-start lighter-blue underline">
-									Crear blog
-								</NavLink>
-							</div>
-						</form>
-
-						{/* posts, can be initial posts, filtered, or searched posts */}
-						{matched_posts.length > 0 ? (
-							//get more than 1 post
-							<div className='cards grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8'>
-								{matched_posts?.map((b, index) => {
-									return <SingleBlog key={index} blog={b} />;
-								})}
-							</div>
-						) : (
-							//get null posts
-							isLoaded && (
-								<div className='flex flex-col items-center pt-0 pb-4'>
-									<img
-										src={
-											'https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196370/not-found-blog_ly0lcw.png'
-										}
-										alt='not found img'
-										className='w-[150px] md:w-[250px] rounded-xl'
-									/>
-									<p className='text-red-500 font-bold flex justify-center pb-4'>
-										{search_blog
-											? 'Perdon, ningún blog cumple la condicion!'
-											: 'Ningún blog encontrado!'}
-									</p>
-								</div>
-							)
-						)}
-
-						{/* REDES */}
-						<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
-							<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>
-								Nuestras redes
-							</h2>
-						</div>
-
-						<div
-							className='w-[90vw] grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
-					2xl:grid-cols-4 py-8'
-						>
-							{instagramPosts}
-						</div>
+			<section className='bg-slate-100 w-screen pt-16 min-h-[80vh]'>
+				<div className='py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 '>
+					{/* BLOG */}
+					<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
+						<h2 className='mb-4 mt-16 font-title text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>
+							Nuestro Blog
+						</h2>
 					</div>
-				) : (
-					<LoadingBlog />
-				)}				
 
-				{/* REDES */}
-				<div className="mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4">
-					<h2 className="mb-4 font-title text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-						Nuestras redes
-					</h2>
-				</div>
+					{/* FORM: Search and filters */}
+					<form className='form-blog mb-4 grid grid-cols-2 md:grid-cols-3 md:w-[60vw] lg:w-[70%] xl:w-[50%] 2xlxl:w-[40%] w-[80vw] gap-2 mx-auto'>
+						{/* SEARCH */}
+						<div className='mr-4'>
+							<label
+								for='search'
+								className='block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white'
+							>
+								Búsqueda por título
+							</label>
+							<input
+								type='text'
+								id='search'
+								onChange={handleChangeSearch}
+								value={search}
+								className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+								placeholder='5 ejercicios para tonificar'
+							/>
+						</div>
 
-				<div
-					className="w-[90vw] grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
-					2xl:grid-cols-4 py-8"
+						{/* FILTER BY TAG */}
+						<div className='mr-4'>
+							<label
+								for='tag'
+								className='block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white'
+							>
+								Por tema
+							</label>
+							<select
+								id='tag'
+								className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+								name='tag'
+								onChange={handleChangeFilters}
+								value={filters_blog.tag}
+							>
+								<option value='' selected>
+									Seleccione una opción...
+								</option>
+								<option value='Fitness'>Fitness</option>
+								<option value='Entrenamiento'>Entrenamiento</option>
+								<option value='Salud'>Salud</option>
+								<option value='Administrativo'>Administrativo</option>
+							</select>
+						</div>
+
+						{/* ORDER BY DATE */}
+						<div className='mr-4'>
+							<label
+								for='per_date'
+								className='block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white'
+							>
+								Orden por fecha
+							</label>
+							<select
+								id='per_date'
+								className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+								name='date'
+								value={filters_blog.date}
+								onChange={handleChangeFilters}
+							>
+								<option value='' selected>
+									Seleccione una opción...
+								</option>
+								<option value='recent'>Más nuevos</option>
+								<option value='ancient'>Más antiguos</option>
+							</select>
+						</div>
+
+						{/* CLEAR FILTERS */}
+						<button
+							onClick={handleClearFilters}
+							className='flex justify-start lighter-blue
+							'
+						>
+							Borrar filtros
+						</button>
+
+						<div>
+							<NavLink
+								to='/blog/create'
+								className='flex justify-start lighter-blue underline'
+							>
+								Crear blog
+							</NavLink>
+						</div>
+					</form>
+
+					{/* posts, can be initial posts, filtered, or searched posts */}
+					{matched_posts.length > 0 ? (
+						//get more than 1 post
+						<div className='cards grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8'>
+							{matched_posts?.map((b, index) => {
+								return <SingleBlog key={index} blog={b} />;
+							})}
+						</div>
+					) : (
+						//get null posts
+						isLoaded && (
+							<div className='flex flex-col items-center pt-0 pb-4'>
+								<img
+									src={
+										'https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196370/not-found-blog_ly0lcw.png'
+									}
+									alt='not found img'
+									className='w-[150px] md:w-[250px] rounded-xl'
+								/>
+								<p className='text-red-500 font-bold flex justify-center pb-4'>
+									{search_blog
+										? 'Perdon, ningún blog cumple la condicion!'
+										: 'Ningún blog encontrado!'}
+								</p>
+							</div>
+						)
+					)}
+
+					{/* REDES */}
+					<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
+						<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>
+							Nuestras redes
+						</h2>
+					</div>
+
+					<div
+						className='w-[90vw] grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
+					2xl:grid-cols-4 py-8'
 					>
-					{instagramPosts}
+						{instagramPosts}
+					</div>
 				</div>
-			</div>
-			: <LoadingBlog/>
-			}
 			</section>
 		</div>
 	);

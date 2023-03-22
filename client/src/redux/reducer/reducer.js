@@ -9,6 +9,7 @@ import {
 	GET_POST_BY_ID,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
+  POST_BLOG
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -82,11 +83,15 @@ const rootReducer = (state = initialState, action) => {
 		case POST_CLIENT:
 			return {
 				...state,
-			};
-		default:
+		};
+		case POST_BLOG: {
 			return {
-				...state,
-			};
+				...state
+			}
+		}
+		default: return {
+			...state
+		}
 	}
 };
 export default rootReducer;
