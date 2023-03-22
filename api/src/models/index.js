@@ -6,6 +6,7 @@ const Payments = require("./Payments")
 const Trainer = require("./Trainer")
 const Memberships = require("./Memberships")
 const Testimonials = require("./Testimonials")
+const Plans = require("./Plans")
 
 
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
     Payments,
     Trainer,
     Memberships,
-    Testimonials
+    Testimonials,
+    Plans
 }

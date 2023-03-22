@@ -9,6 +9,7 @@ const trainer = require('./trainer.router')
 const payments = require('./payments.router')
 const admin = require('./admin.router')
 const testimonials = require('./testimonials.router')
+const plans = require('./plans.router')
 
 router.use('/clients', clients)
 router.use('/activities', activities)
@@ -19,5 +20,6 @@ router.use('/menberships',memberships)
 router.use('/trainer', trainer)
 router.use('/admin', admin)
 router.use('/testimonials', testimonials)
+router.use('/plans', plans)
 
 module.exports = router
