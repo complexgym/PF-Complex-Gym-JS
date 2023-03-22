@@ -13,7 +13,7 @@ const payments = (sequelize) => {
 			allowNull: false,
 		},
         tags: {
-            type: DataTypes.ARRAY,
+            type: DataTypes.ARRAY(DataTypes.STRING),
 			allowNull: true,
         },
         price: {
