@@ -1,5 +1,5 @@
 import { dataPlans } from "../../assets/utils/dataPlans";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Spline from "@splinetool/react-spline";
 
 export default function Plans() {
@@ -51,30 +51,21 @@ export default function Plans() {
                   {d[0] === "Otros" && "¡De Lunes a Sábado sólo una actividad!"}
                 </h3>
 
-                <form className="flex flex-col justify-between">
+                <ul className="flex flex-col justify-between list-disc">
                   {d[1].map((s, index) => {
                     return (
-                      <div key={index}>
-                        <input
-                          type="checkbox"
-                          name={s.plan}
-                          value={s.plan}
-                          id=""
-                          className=""
-                        />
-                        <label className="pl-2">
-                          {s.plan} (${s.price})
-                        </label>
-                      </div>
+                      <li className="ml-8">
+                        {s.plan} (${s.price})
+                      </li>
                     );
                   })}
-                </form>
+                </ul>
 
                 <div className="flex">
                   {/* <button className="text-[#04209A] border-lighter-blue-plans mt-4"> */}
-                  <button className="bg-blue-600 hover:bg-blue-300 text-white font-bold py-2 px-4 border rounded mt-4">
+                  <NavLink to="/planes" className="bg-blue-600 hover:bg-blue-300 text-white font-bold py-2 px-4 border rounded mt-4">
                     Inscribirse
-                  </button>
+                  </NavLink>
                 </div>
               </div>
             </div>
