@@ -9,7 +9,9 @@ import {
 	GET_POST_BY_ID,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
-  POST_BLOG
+  POST_BLOG,
+  GET_ALL_TESTIMONIALS,
+  GET_ALL_ACTIVITIES
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -23,6 +25,8 @@ const initialState = {
 		tag: '',
 		date: '',
 	},
+	testimonials: [],
+	activities: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -84,10 +88,16 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 		};
-		case POST_BLOG: {
-			return {
-				...state
-			}
+		case POST_BLOG: return {
+			...state
+		}
+		case GET_ALL_TESTIMONIALS: return {
+			...state, 
+			testimonials: payload
+		}
+		case GET_ALL_ACTIVITIES: return {
+			...state, 
+			activities: payload
 		}
 		default: return {
 			...state
