@@ -1,22 +1,22 @@
 import { NavLink } from "react-router-dom";
 
 export default function SingleBlog({ blog }) {
-	// let splitContent = []
-    // let newContent = ""
-	// let content = blog?.content
+	let splitContent = []
+    let newContent = ""
+	let contentSplitted = blog?.content?.substring(0, 100)
 
-    // if(content){
-    //     splitContent = content?.split(" ")
-    // }
+    if(contentSplitted){
+        splitContent = contentSplitted?.split(" ")
+    }
 
-    // if(content && splitContent.length===1){
-    //     const counter = content?.length / 50
+    if(contentSplitted && splitContent.length===1){
+        const counter = contentSplitted?.length / 50
 
-    //     for(let i = 1; i <= Math.ceil(counter); i++){
-    //         newContent=newContent + content?.substring(50*(i-1), 50*i) + "\n" //30*(1-1),30*(2-1) = 0, 30
-    //     }
+        for(let i = 1; i <= Math.ceil(counter); i++){
+            newContent=newContent + contentSplitted?.substring(35*(i-1), 35*i) + "\n" //30*(1-1),30*(2-1) = 0, 30
+        }
 
-    // }
+    }
 
 	return (
 		<article
@@ -83,8 +83,7 @@ export default function SingleBlog({ blog }) {
 					{/* content/message */}
 					<div className="flex flex-wrap">
 						<p className="mb-5 font-light text-black dark:text-gray-400">
-							{blog.content?.length>120 ? blog?.content.substring(0, 100) + "..." :
-							blog?.content}
+							{newContent}
 						</p>
 					</div>
 					{/* author and read more */}

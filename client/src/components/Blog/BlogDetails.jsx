@@ -54,12 +54,23 @@ export default function BlogDetails() {
                     <img className="w-full rounded-md" src={details?.image} alt="details img"/>
                 </div>
 
-                <div>
-                    {contentArr?.map(word=>{
-                        if(word.match(/\.(jpeg|jpg|gif|png)$/)) return <img src={word} className="pt-8 pb-8 rounded-md h-80 w-full" alt="text img"/>
-                        else if(word?.toLowerCase()?.startsWith("subtitle:")) return <h1 className="text-3xl capitalize lighter-blue pt-6">{word.substring(9)} </h1>
-                        else return <span>{word} </span>
-                    })}
+                <div className="whitespace-nowrap text-clip">
+                    <p className="mb-5 font-light text-black dark:text-gray-400">
+						{details?.content}
+					</p>
+                    {/* {contentArr?.map((word, index)=>{
+                        // if(word.match(/\.(jpeg|jpg|gif|png)$/)) {
+                        //     return <img src={word} className="pt-8 pb-8 rounded-md h-80 w-full" alt="text img"/>
+                        // }
+                        // else if(word?.toLowerCase()?.startsWith("subtitle:")) {
+                        //     return <h1 className="text-3xl capitalize lighter-blue pt-6">{word.substring(9)} </h1>
+                        // }
+                        // else {
+                            return(
+                                <span>{newContent}</span>
+                            )
+                        // }
+                    })} */}
                 </div>
 
 			</div> 

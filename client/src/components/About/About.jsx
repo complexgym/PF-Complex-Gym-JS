@@ -2,11 +2,11 @@ import TrainerCard from '../TrainerCard/TrainerCard';
 
 export default function About() {
 	return (
-		<div className='grid px-16 font-text'>
+		<div className='px-8 font-text overflow-hidden'>
 			{/*Seccion 1*/}
 			<div className='grid md:grid-cols-2 items-center justify-center pt-16'>
 				{/*Text*/}
-				<div className='text-center pr-[10%] items row-start-2 row-end-3 md:row-start-1 md:row-end-2'>
+				<div className='w-full text-center pr-[10%] items row-start-2 row-end-3 md:row-start-1 md:row-end-2'>
 					<h1 className='font-bold font-title text-6xl pb-8 italic tracking-widest'>Sobre Nosotros</h1>
 					<p className='font-normal leading-6 text-gray-600 text-2xl'>
 						Complex nació de una pasión compartida entre Juli y Agus en el año 2016. Con
@@ -17,9 +17,9 @@ export default function About() {
 					</p>
 				</div>
 				{/*Img*/}
-				<div>
+				<div className='w-screen'>
 					<img
-						className='w-full rounded-3xl'
+						className='rounded-3xl'
 						src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679166413/complexlogo_cmb03x.png'
 						alt='A group of People'
 					/>
