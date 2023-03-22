@@ -6,7 +6,7 @@ const getFeedback = async(req,res)=>{
     });
 }
 
-module.exports = getFeedback
+// module.exports = getFeedback
 
 
 

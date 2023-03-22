@@ -1,7 +1,8 @@
 import Carrousel from '../Carrousel/Carrousel';
 import Testimonials from '../Testimonials/Testimonials';
-import Plans from '../Plans/Plans';
-import '../../styles/whatsapp.css';
+import {PlansHome} from '../Plans/Plans';
+import '../../styles/whatsapp.css'
+
 
 export default function Home() {
 	const openWpp = () => {
@@ -45,7 +46,9 @@ export default function Home() {
 			</div>
 
 			<Carrousel />
-			<Plans />
+
+			<PlansHome/> 
+
 			<Testimonials />
 
 			<div className='whatsapp ml-4'>
