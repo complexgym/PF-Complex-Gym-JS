@@ -23,7 +23,6 @@ const editTrainer = require("./trainer/editTrainer")
 const getAllTrainers = require("./trainer/getAllTrainers")
 const getTrainerById = require("./trainer/getTrainerById")
 const filters = require('./publications/filters')
-const postPaymentsMP = require('./payments/postPaymentsMP')
 const getAllMemberships = require("./memberships/getAllMemberships");
 const postMemberships = require("./memberships/postMemberships");
 const deleteMemberships = require("./memberships/deleteMemberships");
@@ -37,6 +36,8 @@ const getAllTestimonials = require("./testimonials/getAllTestimonials")
 const deleteTestimonials = require("./testimonials/deleteTestimonials")
 const postTestimonials = require("./testimonials/postTestimonials")
 const putTestimonials = require("./testimonials/putTestimonials")
+const postPayments = require("./payments/postPayments")
+const getFeedback = require("./payments/getFeedback")
 
 
 module.exports = {
@@ -70,7 +71,7 @@ module.exports = {
     getAllTrainers,
     getTrainerById,
     filters,
-    postPaymentsMP
+    postPayments,
     getMembershipsById,
     filters,
     deleteAdmin,
@@ -80,5 +81,6 @@ module.exports = {
     getAllTestimonials,
     deleteTestimonials,
     postTestimonials,
-    putTestimonials
+    putTestimonials,
+    getFeedback
 }

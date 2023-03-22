@@ -27,7 +27,7 @@ const {DB_DEPLOY} = process.env
 //     }
 // );
 
-const sequelize = new Sequelize(BD_DEPLOY, {logging: false,native: false,});
+const db = new Sequelize(DB_DEPLOY, {logging: false,native: false,});
 
 Activities(db)
 Admin(db)
