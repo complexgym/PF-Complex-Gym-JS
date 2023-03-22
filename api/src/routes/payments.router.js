@@ -9,4 +9,6 @@ router.post('/', postPayments)
 
 router.get('/feedback', getFeedback)
 
+router.post('/notification', postPayments)
+
 module.exports = router

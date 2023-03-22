@@ -15,11 +15,12 @@ const postPayments = async(req,res)=>{
 			}
 		],
 		back_urls: {
-			"success": "http://localhost:3001/feedback",
-			"failure": "http://localhost:3001/feedback",
-			"pending": "http://localhost:3001/feedback"
+			"success": "http://localhost:3001/payments/feedback",
+			"failure": "http://localhost:3001/payments/feedback",
+			"pending": "http://localhost:3001/payments/feedback"
 		},
 		auto_return: "approved",
+		//notification_url:"http://localhost:3001/pagos/notification"
 	};
 
 	mercadopago.preferences.create(preference)

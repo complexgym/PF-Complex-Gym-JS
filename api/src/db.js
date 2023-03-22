@@ -12,6 +12,7 @@ const {
 	Trainer,
 	Memberships,
 	Testimonials,
+	Plans
 } = require('./models/index');
 
 // 5432
@@ -37,8 +38,9 @@ Payments(db);
 Trainer(db);
 Memberships(db);
 Testimonials(db);
+Plans(db);
 
-const { activities, admin, testimonials, blog, client, payments, trainer, memberships } =
+const { activities, admin, testimonials, blog, client, payments, trainer, memberships,plans } =
 	db.models; // falta charlar con los chicos de front blog y memberships
 
 activities.belongsToMany(client, { through: 'ActivitiesClient' });
