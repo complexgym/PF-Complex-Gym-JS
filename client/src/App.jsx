@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import About from './components/About/About';
 import Blog from './components/Blog/Blog';
@@ -10,9 +10,9 @@ import Navbar from './components/Navbar/Navbar';
 import Plans from './components/Plans/Plans';
 import Profile from './components/Profile/Profile';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts } from './redux/actions/actions';
+import { getAllActivities, getAllPosts, getAllTestimonials } from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
 import CreateBlog from './components/CreateBlog/CreateBlog';
@@ -25,14 +25,21 @@ axios.defaults.baseURL = 'http://localhost:3001';
 
 function App() {
 	const location = useLocation();
-
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
+	const [hasRedirected, setHasRedirected] = useState(false);
 	const { user, isAuthenticated } = useAuth0();
 
 	useEffect(() => {
 		dispatch(getAllPosts());
-	}, [dispatch]);
+		dispatch(getAllTestimonials())
+		dispatch(getAllActivities())
+
+		if (isAuthenticated && !hasRedirected) {
+			navigate('/home');
+			setHasRedirected(true);
+		}
+	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
 
 	const { pathname } = location;
 
@@ -69,8 +76,8 @@ function App() {
 				<Route path={'/blog/create'} element={<CreateBlog />} />
 				<Route path={'/planes'} element={<Plans />} />
 				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
-					<Route path={'/registro'} element={<Form />} />
-					<Route path={'/perfil/:id'} element={<Profile />} />
+				<Route path={'/registro'} element={<Form />} />
+				<Route path={'/perfil/:id'} element={<Profile />} />
 				</Route>
 				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
 					<Route path={'/dashboard'} element={<DashBoard />} />

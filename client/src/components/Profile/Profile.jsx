@@ -106,13 +106,13 @@ export default function Profile() {
 								</div>
 							</div>
 							<div className='text-center mt-12'>
-								<h3 className='text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2'>
+								<h3 className='text-4xl font-semibold leading-normal text-blueGray-700 mb-2'>
 									{`${matchEmail.name} ${matchEmail.lastName}`}
 								</h3>
-								<h4 className='text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2'>
+								<h4 className='text-xl font-semibold leading-normal text-blueGray-700 mb-2'>
 									{matchEmail.user}
 								</h4>
-								<h4 className='text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2'>
+								<h4 className='text-xl font-semibold leading-normal text-blueGray-700 mb-2'>
 									<i className='fas fa-envelope  mr-2 text-lg text-blueGray-400'></i>
 									{matchEmail.mail}
 								</h4>
