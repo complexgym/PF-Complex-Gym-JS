@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Validate from "./Validations";
 import { useAuth0 } from "@auth0/auth0-react";
+import UploadToCloudinary from "../UploadToCloudinary/UploadToCloudinary";
+import {postBlog} from "../../redux/actions/actions"
 
 export default function CreateBlog() {
 	const dispatch = useDispatch();
@@ -11,26 +13,25 @@ export default function CreateBlog() {
 	const [input, setInput] = useState({
 		title: "",
 		content: "",
-		blog_image: "",
-		tags: [],
-		author_name: "",
-		author_image: "",
+		image: "",
+		tag: [],
+		author_name: user?.name,
+		author_image: user?.picture,
 	});
 
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
-		if(e.target.name!=="tags"){
+		if (e.target.name !== "tag") {
 			setInput({
 				...input,
 				[e.target.name]: e.target.value,
 			});
-		}
-		else{
-			if(!input.tags.find(tag=>tag===e.target.value)){
+		} else {
+			if (!input.tag.find((tag) => tag === e.target.value)) {
 				setInput({
 					...input,
-					tags: [...input.tags, e.target.value]
+					tag: [...input.tag, e.target.value],
 				});
 			}
 		}
@@ -42,30 +43,63 @@ export default function CreateBlog() {
 		);
 	};
 
-	const handleRemoveTag = (tagRemove)=>{
+	const handleRemoveTag = (e, tagRemove) => {
 		setInput({
-			...input, 
-			tags: input?.tags?.filter(tag=>{
-				return tag!==tagRemove
-			}
-		)})
-	}
+			...input,
+			tag: input?.tag?.filter((tag) => {
+				return tag !== tagRemove;
+			}),
+		});
+		setErrors(
+			Validate({
+				...input,
+				tag: input.tag,
+			})
+		);
+	};
 
 	const handleSubmit = (e) => {
-		// e.preventDefault();
-		// setErrors(Validate(input));
-		// let error = Validate(input);
-		// if (Object.values(error).length !== 0) {
-		// 	alert('Falta información obligatoria');
-		// } else {
-		// 	dispatch(postClient(input));
-		// 	alert('¡Información actualizada correctamente!');
-		// }
+		e.preventDefault();
+
+		setErrors(Validate(input));
+
+		let error = Validate(input);
+
+		if (Object.values(error).length !== 0) {
+			swal({
+				title: 'Falta Información',
+				text: `${
+					error.title ||
+					error.content || 
+					error.tag ||
+					error.image
+				}`,
+				icon: 'warning',
+				dangerMode: true,
+			});
+
+		} else {
+			dispatch(postBlog(input));
+			swal({
+				title: 'Gracias!',
+				text: '¡Información creada correctamente!',
+				icon: 'success',
+			});
+		}
 	};
+
+	function handleUpload(res) {
+		if (res.info.secure_url) {
+			setInput({
+				...input,
+				image: res.info.secure_url,
+			});
+		}
+	}
 
 	return (
 		<>
-			<div className=" relative pt-36 px-10 ">
+			<div className=" relative pt-56 pb-10 px-10 ">
 				<div className="md:grid md:grid-cols-2 md:gap-6 justify-center">
 					<div className="mt-5 md:col-span-2 md:mt-0">
 						<div className="md:col-span-1">
@@ -120,29 +154,29 @@ export default function CreateBlog() {
 											defaultValue={""}
 											onChange={handleChange}
 										/>
-										{errors?.content && (
+										{errors?.content && !errors.title && (
 											<p className=" text-red-500">
 												<i>{errors.content}</i>
 											</p>
 										)}
 									</div>
 
-									{/* post  */}
+									{/* post tag  */}
 									<div className="mr-4">
 										<label
 											htmlFor="tag"
 											className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 										>
-											Por tema
+											Temas
 										</label>
 										<select
-											id="tags"
+											id="tag"
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-											name="tags"
+											name="tag"
 											onChange={handleChange}
 											value={
-												input?.tags?.length > 0
-													? input?.tags[input?.tags?.length - 1]
+												input?.tag?.length > 0
+													? input?.tag[input?.tag?.length - 1]
 													: ""
 											}
 										>
@@ -155,74 +189,60 @@ export default function CreateBlog() {
 											<option value="Administrativo">Administrativo</option>
 										</select>
 
+										{errors?.tag && !errors?.content && !errors?.title && (
+											<p className=" text-red-500">
+												<i>{errors.tag}</i>
+											</p>
+										)}
+
 										<div className="flex">
-											{input?.tags?.length>0 && 
-											input?.tags?.map(tag=>{
-												return( 
-													<div className="flex mr-2 mt-4">
-														<img className="w-5 h-5 mr-1 cursor-pointer" src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679262195/delete_2_nh2we5.png" onClick={()=>handleRemoveTag(tag)}/>
-														<span>{tag}</span>
-													</div>
-												)
-											})}
+											{input?.tag?.length > 0 &&
+												input?.tag?.map((tag) => {
+													return (
+														<div className="flex mr-2 mt-4">
+															<img
+																className="w-5 h-5 mr-1 cursor-pointer"
+																src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679262195/delete_2_nh2we5.png"
+																onClick={(e) => handleRemoveTag(e, tag)}
+															/>
+															<span>{tag}</span>
+														</div>
+													);
+												})}
 										</div>
 									</div>
 
 									{/* post image */}
-									<div>
-										<label className="block text-sm font-medium leading-6 text-gray-900">
-											Imagen de fondo
+
+									<div className="">
+										<label
+											htmlFor="image"
+											className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+										>
+											Imagen de fondo del blog
 										</label>
-										<div className="mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-											<div className="space-y-1 text-center">
-												<svg
-													className="mx-auto h-12 w-12 text-gray-400"
-													stroke="currentColor"
-													fill="none"
-													viewBox="0 0 48 48"
-													aria-hidden="true"
-												>
-													<path
-														d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-													/>
-												</svg>
-
-												<div className="flex text-sm text-gray-600">
-													<label
-														htmlFor="tag"
-														className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
-													>
-														<span>Agregar un tag</span>
-													</label>
-													<p className="pl-1">o arrastrar y soltar</p>
-												</div>
-
-												<div className="flex text-sm text-gray-600">
-													<label
-														htmlFor="blog_image"
-														className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
-													>
-														<span>Cargar un archivo</span>
-														<input
-															id="blog_image"
-															name="blog_image"
-															type="file"
-															className="sr-only"
-															// onChange={handleChange}
-														/>
-													</label>
-													<p className="pl-1">o arrastrar y soltar</p>
-												</div>
-												<p className="text-xs text-gray-500">
-													PNG, JPG, GIF up to 10MB
-												</p>
-											</div>
-										</div>
+										<UploadToCloudinary onUpload={handleUpload} name="image" onClick={handleChange}
+										className="pb-10"/>
+										{input.image && (
+											<a
+												href={input.image}
+												className="lighter-blue underline"
+												target="_blank"
+											>
+												<img src={input?.image} className="pt-2 pl-4 w-24" alt="blog image"/>
+											</a>
+										)}
 									</div>
+									
 								</div>
+							</div>
+							<div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
+								<button
+									type='submit'
+									className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
+								>
+								Guardar
+								</button>
 							</div>
 						</form>
 					</div>

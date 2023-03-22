@@ -1,16 +1,33 @@
 import { NavLink } from "react-router-dom";
 
 export default function SingleBlog({ blog }) {
+	let splitContent = []
+    let newContent = ""
+	let contentSplitted = blog?.content?.substring(0, 100)
+
+    if(contentSplitted){
+        splitContent = contentSplitted?.split(" ")
+    }
+
+    if(contentSplitted && splitContent.length===1){
+        const counter = contentSplitted?.length / 50
+
+        for(let i = 1; i <= Math.ceil(counter); i++){
+            newContent=newContent + contentSplitted?.substring(35*(i-1), 35*i) + "\n" //30*(1-1),30*(2-1) = 0, 30
+        }
+
+    }
+
 	return (
 		<article
-			className="blog-card font-mono bg-white rounded-sm border border-gray-200 shadow-xl
+			className="blog-cardn font-mono bg-white rounded-sm border border-gray-200 shadow-xl
 			flex flex-col justify-around pb-4 w-10/12 md:w-8/12 xl:w-11/12 mx-auto
 			relative transition ease-in-out delay-150 transform hover:-translate-y-1" 
 		>
 			<div>
 				
 			{/* img, no padding */}
-			<div className="flex justify-between items-center mb-5 text-white">
+			<div className="flex justify-between w-full items-center mb-5 text-white">
 				<img className="bg-center bg-cover rounded-tl-sm rounded-tr-sm w-full h-48" src={blog?.image} />
 			</div>
 
@@ -64,22 +81,22 @@ export default function SingleBlog({ blog }) {
 					</h2>
 
 					{/* content/message */}
-					<p className="mb-5 font-light text-black dark:text-gray-400">
-						{blog.content?.length>120 ? blog?.content.substring(0, 100) + "..." :
-						blog?.content}
-					</p>
-
-					{/* author and ream more */}
+					<div className="flex flex-wrap">
+						<p className="mb-5 font-light text-black dark:text-gray-400">
+							{newContent}
+						</p>
+					</div>
+					{/* author and read more */}
 					<div className="h-full flex justify-between items-end">
 						<div className="flex items-center space-x-4">
-							{/*<>
+							<>
 								<img
 								className="w-7 h-7 rounded-full"
-								src={blog?.authorId?.image}
-								alt={`${blog?.authorId?.name} avatar`}
+								src={blog?.author_image}
+								alt={`${blog?.author_image} avatar`}
 								/>
-								<span className="font-medium lighter-blue">{blog?.authorId?.name}</span>
-							</>*/}
+								<span className="font-medium lighter-blue">{blog?.author_name}</span>
+							</>
 						</div>
 						{/*  */}
 						<NavLink
