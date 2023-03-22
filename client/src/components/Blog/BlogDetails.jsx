@@ -39,7 +39,7 @@ export default function BlogDetails() {
                     <p className="text-xs md:text-sm font-normal">{details?.createdAt?.substring(0,10).replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1')} &nbsp;</p>
                     
                     {/* author */}
-                    {details?.author && <p>by {details?.author}</p>}
+                    {details?.author_name && <p>by {details?.author_name} &nbsp; </p>}
 
                     {/* tag */}
                     {details?.tag?.map(tag=>{

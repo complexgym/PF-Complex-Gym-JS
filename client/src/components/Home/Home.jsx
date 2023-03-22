@@ -1,7 +1,7 @@
 import image from '../../assets/image/demoFigma1.jpg';
 import Carrousel from '../Carrousel/Carrousel';
 import Testimonials from '../Testimonials/Testimonials';
-import Plans from '../Plans/Plans';
+import {PlansHome} from '../Plans/Plans';
 import '../../styles/whatsapp.css'
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
 					</p>
 				</div>
 
-				<img src={image} alt='' className='relative z-10 w-full pt-20 xl:pt-0' />
+				<img src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1678822750/demoFigma1_ckzzli.jpg"} alt='' className='relative z-10 w-full pt-20 xl:pt-0' />
 
 				{/* mobile */}
 				<div className='z-20 block 2xl:hidden text-white bg-black pb-16'>
@@ -42,7 +42,7 @@ export default function Home() {
 			</div>
 
 			<Carrousel />
-			<Plans/> 
+			<PlansHome/> 
 			<Testimonials />
 
 			<div className='whatsapp ml-4'>
