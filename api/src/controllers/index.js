@@ -37,6 +37,7 @@ const getAllTestimonials = require("./testimonials/getAllTestimonials")
 const deleteTestimonials = require("./testimonials/deleteTestimonials")
 const postTestimonials = require("./testimonials/postTestimonials")
 const putTestimonials = require("./testimonials/putTestimonials")
+const sendMail = require('./mails/sendMail')
 
 
 module.exports = {
@@ -70,7 +71,7 @@ module.exports = {
     getAllTrainers,
     getTrainerById,
     filters,
-    postPaymentsMP
+    postPaymentsMP,
     getMembershipsById,
     filters,
     deleteAdmin,
@@ -80,5 +81,6 @@ module.exports = {
     getAllTestimonials,
     deleteTestimonials,
     postTestimonials,
-    putTestimonials
+    putTestimonials,
+    sendMail
 }
