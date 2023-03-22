@@ -174,12 +174,6 @@ export default function Form() {
 												<img src={user.picture} alt='' />
 												<path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
 											</span>
-											<button
-												type='button'
-												className='ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50'
-											>
-												Cambiar
-											</button>
 										</div>
 									</div>
 
