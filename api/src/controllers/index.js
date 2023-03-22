@@ -36,8 +36,14 @@ const getAllTestimonials = require("./testimonials/getAllTestimonials")
 const deleteTestimonials = require("./testimonials/deleteTestimonials")
 const postTestimonials = require("./testimonials/postTestimonials")
 const putTestimonials = require("./testimonials/putTestimonials")
+const sendMail = require('./mails/sendMail')
 const postPayments = require("./payments/postPayments")
 const getFeedback = require("./payments/getFeedback")
+const postNotification = require("./payments/postNotification")
+const deletePlans = require("./plans/deletePlans")
+const getAllPlans = require("./plans/getAllPlans")
+const postPlans = require("./plans/postPlans")
+const updatePlans = require("./plans/updatePlans")
 
 
 module.exports = {
@@ -82,5 +88,13 @@ module.exports = {
     deleteTestimonials,
     postTestimonials,
     putTestimonials,
+    getFeedback,
+    postNotification,
+    deletePlans,
+    getAllPlans,
+    postPlans,
+    updatePlans,
+    sendMail,
     getFeedback
 }
+
