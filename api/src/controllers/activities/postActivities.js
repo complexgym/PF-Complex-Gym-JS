@@ -1,13 +1,14 @@
 const { activities } = require('../../db');
 
-const postActivities = async (req, res) => {
-    const { 
-        name, 
-        description, 
-        days, 
-        schedule, 
-        trainerId, 
-        clientId } = req.body;
+const postActivities = async ({ 
+    name, 
+    description, 
+    days, 
+    schedule, 
+    trainerId, 
+    clientId,
+    image 
+  }) => {
     
     const newActivity = await activities.create({
       name,
@@ -15,7 +16,8 @@ const postActivities = async (req, res) => {
       days,
       schedule,
       trainerId,
-      clientId
+      clientId,
+      image
     })
 
     return newActivity;
