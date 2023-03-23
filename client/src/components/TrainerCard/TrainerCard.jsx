@@ -20,7 +20,7 @@ export default function TrainerCard() {
 		},
 	];
 	return (
-		<div className='flex flex-row justify-center items-center'>
+		<div className='grid md:grid-cols-2 w-screen xl:grid-cols-3 xl:w-11/12 2xl:w-9/12 gap-16 mx-auto items-center'>
 			{cards.map((card) => {
 				return (
 					<div className='relative flex flex-col items-center rounded-[20px] w-[400px] mx-auto p-4 bg-zinc-200 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none'>

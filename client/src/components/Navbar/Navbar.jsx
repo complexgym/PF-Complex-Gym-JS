@@ -8,11 +8,28 @@ import logo from "../../assets/logo/logo.png";
 import { useState } from "react";
 
 import logo from '../../assets/logo/logo.png';
+import { getAllClients, getClientDetail } from '../../redux/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 
 export default function Navbar() {
+	const dispatch = useDispatch();
+
 	const { user, isAuthenticated } = useAuth0();
 
+	const allClient = useSelector((state) => state.allClients);
+
+	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+
+	const isActive = matchEmail && matchEmail.active;
+
+	const matchId = matchEmail && matchEmail.id;
+
+	useEffect(() => {
+		dispatch(getAllClients());
+		dispatch(getClientDetail(matchId));
+	}, []);
 
 	return (
 		<div className=' fixed z-20 flex flex-row w-screen text-white py-2 bg-[#231f20] bg-opacity-80 items-center'>
@@ -40,7 +57,9 @@ export default function Navbar() {
 
 						{!isAuthenticated && <LoginBtn />}
 
-						{isAuthenticated && <Link to='/perfil'>Perfil</Link>}
+						{isActive && <Link to={`/perfil/${matchId}`}>Perfil</Link>}
+						{isActive && <Link to={'/dashboard'}>Dashboard</Link>}
+						{isActive ? null : <Link to={'/registro'}>registro</Link>}
 						{isAuthenticated && <LogoutBtn />}
 					</div>
 				</div>
