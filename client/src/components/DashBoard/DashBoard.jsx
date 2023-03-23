@@ -1,4 +1,5 @@
 import React from 'react';
+import SideNav from './SideNav';
 
 const DashBoard = () => {
 	return (
@@ -6,85 +7,7 @@ const DashBoard = () => {
 			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
 				<div className='absolute w-full bg-blue-500 dark:hidden min-h-75'></div>
 				{/* <!-- sidenav  --> */}
-				<aside
-					className='fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0'
-					aria-expanded='false'
-				>
-					<div className='h-19'>
-						<i
-							className='absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times dark:text-white text-slate-400 xl:hidden'
-							sidenav-close
-						></i>
-						<a
-							className='block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700'
-							href='https://demos.creative-tim.com/argon-dashboard-tailwind/pages/dashboard.html'
-							target='_blank'
-						>
-							<img
-								src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196389/logo_blanco_hk1eb4.jpg"}
-								className='inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8'
-								alt='main_logo'
-							/>
-							<img
-								src='./assets/img/logo-ct.png'
-								className='hidden h-full max-w-full transition-all duration-200 dark:inline ease-nav-brand max-h-8'
-								alt='main_logo'
-							/>
-							<span className='ml-1 font-semibold transition-all duration-200 ease-nav-brand'>
-								COMPLEX
-							</span>
-						</a>
-					</div>
-
-					<hr className='h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent' />
-
-					<div className='items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full'>
-						<ul className='flex flex-col pl-0 mb-0'>
-							<li className='mt-0.5 w-full'>
-								<a
-									className='py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors'
-									href='#'
-								>
-									<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-										<i className='relative top-0 text-sm leading-normal text-blue-500 ni ni-tv-2'></i>
-									</div>
-									<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'>
-										Dashboard
-									</span>
-								</a>
-							</li>
-
-							<li className='mt-0.5 w-full'>
-								<a
-									className=' dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors'
-									href='#'
-								>
-									<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-										<i className='relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58'></i>
-									</div>
-									<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'>
-										Clientes
-									</span>
-								</a>
-							</li>
-
-							<li className='mt-0.5 w-full'>
-								<a
-									className=' dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors'
-									href='#'
-								>
-									<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-										<i className='relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card'></i>
-									</div>
-									<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'>
-										Publicaciones
-									</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</aside>
-
+				<SideNav />
 				{/* <!-- end sidenav --> */}
 
 				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
@@ -291,21 +214,22 @@ const DashBoard = () => {
 										<table className='items-center w-full mb-4 align-top border-collapse border-gray-200 dark:border-white/40'>
 											<tbody>
 												<tr>
-													<td className='p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap dark:border-white/40'>
-														<div className='flex items-center px-2 py-1'>
+													<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src='./assets/img/icons/flags/US.png'
-																	alt='Country flag'
+																	src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679529677/test_complex/team-2_mz5rnj.jpg'
+																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
+																	alt='user1'
 																/>
 															</div>
-															<div className='ml-6'>
-																<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60'>
-																	Country:
-																</p>
+															<div className='flex flex-col justify-center'>
 																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
-																	United States
+																	John Michael
 																</h6>
+																<p className='mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400'>
+																	Admin
+																</p>
 															</div>
 														</div>
 													</td>
@@ -341,21 +265,22 @@ const DashBoard = () => {
 													</td>
 												</tr>
 												<tr>
-													<td className='p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap dark:border-white/40'>
-														<div className='flex items-center px-2 py-1'>
+													<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src='./assets/img/icons/flags/DE.png'
-																	alt='Country flag'
+																	src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679529677/test_complex/team-1_kbys7i.jpg'
+																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
+																	alt='user2'
 																/>
 															</div>
-															<div className='ml-6'>
-																<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60'>
-																	Country:
-																</p>
+															<div className='flex flex-col justify-center'>
 																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
-																	Germany
+																	Alexa Liras
 																</h6>
+																<p className='mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400'>
+																	Entrenador
+																</p>
 															</div>
 														</div>
 													</td>
@@ -391,21 +316,22 @@ const DashBoard = () => {
 													</td>
 												</tr>
 												<tr>
-													<td className='p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap dark:border-white/40'>
-														<div className='flex items-center px-2 py-1'>
+													<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src='./assets/img/icons/flags/GB.png'
-																	alt='Country flag'
+																	src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679529677/test_complex/team-4_g4o6sg.jpg'
+																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
+																	alt='user3'
 																/>
 															</div>
-															<div className='ml-6'>
-																<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60'>
-																	Country:
-																</p>
+															<div className='flex flex-col justify-center'>
 																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
-																	Great Britain
+																	Laurent Perrier
 																</h6>
+																<p className='mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400'>
+																	Cliente
+																</p>
 															</div>
 														</div>
 													</td>
@@ -441,21 +367,22 @@ const DashBoard = () => {
 													</td>
 												</tr>
 												<tr>
-													<td className='p-2 align-middle bg-transparent border-0 w-3/10 whitespace-nowrap'>
-														<div className='flex items-center px-2 py-1'>
+													<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src='./assets/img/icons/flags/BR.png'
-																	alt='Country flag'
+																	src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679529677/test_complex/team-3_ns198o.jpg'
+																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
+																	alt='user4'
 																/>
 															</div>
-															<div className='ml-6'>
-																<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60'>
-																	Country:
-																</p>
+															<div className='flex flex-col justify-center'>
 																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
-																	Brasil
+																	Michael Levi
 																</h6>
+																<p className='mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400'>
+																	Cliente
+																</p>
 															</div>
 														</div>
 													</td>
@@ -498,7 +425,7 @@ const DashBoard = () => {
 							<div className='w-full max-w-full px-3 mt-0 lg:w-5/12 lg:flex-none'>
 								<div className='border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border'>
 									<div className='p-4 pb-0 rounded-t-4'>
-										<h6 className='mb-0 dark:text-white'>Categories</h6>
+										<h6 className='mb-0 dark:text-white'>Publicaciones</h6>
 									</div>
 									<div className='flex-auto p-4'>
 										<ul className='flex flex-col pl-0 mb-0 rounded-lg'>
