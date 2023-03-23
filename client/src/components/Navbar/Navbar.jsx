@@ -62,7 +62,11 @@ export default function Navbar() {
 
 						{isActive && <NavLink to={`/perfil/${matchId}`}>Perfil</NavLink>}
 						{isActive && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
-						{isActive ? null : (
+						{!isAuthenticated ? null : (
+								<NavLink to={'/registro'} className={isActiveStyle}>
+									registro
+								</NavLink>
+						  ) && isActive ? null : (
 							<NavLink to={'/registro'} className={isActiveStyle}>
 								registro
 							</NavLink>
