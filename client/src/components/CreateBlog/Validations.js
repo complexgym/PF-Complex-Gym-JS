@@ -1,5 +1,5 @@
 // const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
-const regexTitle = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{4,40}$/;
+const regexTitle = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ¿?¡!.,\s]{4,80}$/;
 const regexImg = /\.(jpeg|jpg|gif|png)$/
 // const regexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 // const regexPhone = /^\+?54\d{10}$/;
@@ -9,7 +9,7 @@ export default function Validate(input) {
 	let errors = {};
 
 	if(!regexTitle.test(input.title)){
-		errors.title = "El título debe ser sólo letras y tener un mínimo de 4 y máximo de 40 letras!"
+		errors.title = "El título debe ser sólo letras y tener un mínimo de 4 y máximo de 80 letras!"
 	}
 
 	if(input?.content?.length<100){

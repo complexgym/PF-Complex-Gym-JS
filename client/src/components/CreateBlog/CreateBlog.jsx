@@ -82,7 +82,7 @@ export default function CreateBlog() {
 				text: '¡Información creada correctamente!',
 				icon: 'success',
 			});
-			navigate('/dashboard/publicaciones');
+			navigate('/blog');
 		}
 	};
 

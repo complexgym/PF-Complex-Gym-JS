@@ -41,7 +41,7 @@ export default function Carrousel() {
 			</div>
 
 			{/* content carrousel */}
-			<div className='max-w-[1000px] h-[700px] w-full m-auto pt-8 pb-16 px-4 relative z-0'>
+			<div className='max-w-[1000px] h-[700px] w-full m-auto pt-16 pb-16 px-4 relative z-0'>
 				<figure>
 					<img
 						src={activities[currentIndex]?.image}

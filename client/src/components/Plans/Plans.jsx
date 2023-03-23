@@ -11,7 +11,7 @@ export default function Plans() {
 	const plans = useSelector(s=>s.plans)
   
 	return (
-		<div className="relative w-full h-full pt-36 pb-8">
+		<div className="relative w-full h-full pt-36 pb-8 font-text">
 			<div className="absolute hidden w-full lg:block h-96" />
 			
 			<div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-[85vw] md:px-24 lg:px-8 lg:py-20">
@@ -19,7 +19,7 @@ export default function Plans() {
 				<div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
 					<h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
 						<span className="relative inline-block">
-							<span className="relative">Planes actuales</span>
+							<span className="relative uppercase">Planes actuales</span>
 						</span>{" "}
 					</h2>
 				</div>
@@ -130,6 +130,9 @@ function SinglePlan({ plan, option }) {
 
 //todo PLAN FROM HOME
 export function PlansHome() {
+
+	const {plans} = useSelector(s=>s)
+
 	return (
 		<div className="relative w-[100vw] min-h-[190vh] md:min-h-[140vh] xl:min-h-screen">
 			<div className="absolute w-[100%] h-[99%]">
@@ -144,7 +147,7 @@ export function PlansHome() {
 				className="absolute left-1/2 transform -translate-x-1/2 my-32 cards pt-20 pb-32 grid md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto w-[80vw] sm:w-[60vh]
 			md:w-[85vw] xl:w-[75vw] 2xl:w-[65vw] "
 			>
-				{dataPlans.map((d, index) => {
+				{plans && Object?.entries(plans)?.slice(0, 3)?.map((d, index) => {
 					return (
 						<div
 							className="card text-grey text-md rounded-xl bg-white pb-10"
@@ -153,7 +156,7 @@ export function PlansHome() {
 							{/* running bg TEXT */}
 							<div className="absolute bg-black z-10"></div>
 							<label className="name-plan text-2xl absolute z-50 ml-3 text-black uppercase">
-								{d[0]}
+								{d?.[0]}
 							</label>
 
 							{/* running bg */}
@@ -182,7 +185,7 @@ export function PlansHome() {
 									{d[1].map((s, index) => {
 										return (
 											<li className="ml-8">
-												{s.plan} (${s.price})
+												{s?.name} (${s?.price})
 											</li>
 										);
 									})}
