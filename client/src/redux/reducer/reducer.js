@@ -11,7 +11,8 @@ import {
 	GET_CLIENTS,
   POST_BLOG,
   GET_ALL_TESTIMONIALS,
-  GET_ALL_ACTIVITIES
+  GET_ALL_ACTIVITIES,
+	GET_ALL_PLANS
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -98,6 +99,10 @@ const rootReducer = (state = initialState, action) => {
 		case GET_ALL_ACTIVITIES: return {
 			...state, 
 			activities: payload
+		}
+		case GET_ALL_PLANS: return {
+			...state, 
+			plans: payload
 		}
 		default: return {
 			...state

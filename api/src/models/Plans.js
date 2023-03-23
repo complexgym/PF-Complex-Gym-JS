@@ -3,7 +3,8 @@ const { DataTypes } = require("sequelize");
 const payments = (sequelize) => {
     sequelize.define('plans', {   
         id:{
-            type: DataTypes.STRING,
+            type: DataTypes.UUID,
+            defaultValue:DataTypes.UUIDV4,
 			allowNull: true,
             primaryKey: true,
             unique: true,

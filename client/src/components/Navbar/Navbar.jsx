@@ -21,8 +21,6 @@ export default function Navbar() {
 
 	const matchId = matchEmail && matchEmail.id;
 
-	console.log(isActive);
-
 	useEffect(() => {
 		dispatch(getAllClients());
 		dispatch(getClientDetail(matchId));
