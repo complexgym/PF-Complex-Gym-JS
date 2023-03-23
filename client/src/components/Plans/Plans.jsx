@@ -1,60 +1,23 @@
 import { dataPlans } from "../../assets/utils/dataPlans";
 import { Link, NavLink } from "react-router-dom";
 import Spline from "@splinetool/react-spline";
+import {useSelector} from "react-redux"
+import { useState } from "react";
 
+//todo ALL PLANS
 export default function Plans() {
-  {/* datos */}
-  const data = [
-    {
-      plan: "2 por semana",
-      tags: ["2 veces por semana", "Accesible"],
-      price: 3300,
-    },
-    {
-      plan: "2 por semana + masajes",
-      tags: ["2 veces por semana", "Accesible"],
-      price: 5000,
-    },
-    {
-      plan: "2 por semana + running",
-      tags: ["2 veces por semana", "Accesible"],
-      price: 5000,
-    },
-    {
-      plan: "Libre",
-      tags: ["Libre", "Accesible"],
-      price: 5000,
-    },
-    {
-      plan: "Libre + running",
-      tags: ["Libre + running", "Accesible"],
-      price: 3300,
-    },
-    {
-      plan: "Running",
-      tags: ["Running", "Accesible"],
-      price: 2800,
-    },
-    {
-      plan: "Zumba",
-      tags: ["Zumba", "Accesible"],
-      price: 2800,
-    },
-    {
-      plan: "Pilates",
-      tags: ["Pilates", "Accesible"],
-      price: 2800,
-    }
-  ];
+	const [option, setOption] = useState("Libre")
 
+	const plans = useSelector(s=>s.plans)
   
 	return (
 		<div className="relative w-full h-full pt-36 pb-8">
-			<div className="absolute hidden w-full bg-gray-50 lg:block h-96" />
-			<div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+			<div className="absolute hidden w-full lg:block h-96" />
+			
+			<div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-[85vw] md:px-24 lg:px-8 lg:py-20">
         {/* initial msg */}
 				<div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-					<h2 className="max-w-lg mb-6font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+					<h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
 						<span className="relative inline-block">
 							<span className="relative">Planes actuales</span>
 						</span>{" "}
@@ -62,48 +25,55 @@ export default function Plans() {
 				</div>
         
         {/* content */}
-				<div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+				<div className="mb-4 border-b border-gray-200 dark:border-gray-700">
 
           {/* tabs */}
 					<ul
-						class="flex flex-wrap justify-center -mb-px text-sm font-medium text-center"
+						className="flex flex-wrap justify-center text-sm font-medium text-center"
 						id="myTab"
 						data-tabs-toggle="#myTabContent"
 						role="tablist"
 					>
-						<li class="mr-2" role="presentation">
+						<li className="mr-2" role="presentation">
 							<button
-								class="inline-block p-4 border-b-2 rounded-t-lg"
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Libre" && "text-yellow-400 border-yellow-400 font-bold  border-b-4"}`}
+								onClick={()=>setOption("Libre")}
 							>
 								Libre
 							</button>
 						</li>
-						<li class="mr-2" role="presentation">
+
+						<li className="mr-2" role="presentation">
 							<button
-								class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="2 por semana" && "text-green-700 border-green-700 font-bold border-b-4"}`}
+								onClick={()=>setOption("2 por semana")}
 							>
 								2 por semana
 							</button>
 						</li>
-						<li class="mr-2" role="presentation">
+
+						<li className="mr-2" role="presentation">
 							<button
-								class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Otros" && "lighter-blue border-blue font-bold border-b-4"}`}
+								onClick={()=>setOption("Otros")}
 							>
 								Otros
 							</button>
 						</li>
-            <li class="mr-2" role="presentation">
+
+						<li className="mr-2" role="presentation">
 							<button
-								class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Todos" && "text-red-400 border-red-400 font-bold border-b-4"}`}
+								onClick={()=>setOption("Todos")}
 							>
 								Todos
 							</button>
 						</li>
 					</ul>
 				</div>
-				<div className="grid max-w-screen gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 sm:mx-auto">
-					{data?.map((plan) => {
-						return <SinglePlan plan={plan} />;
+				<div className="grid max-w-screen row-gap gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 sm:mx-auto">
+					{plans?.[option].map((plan) => {
+						return <SinglePlan plan={plan} option={option}/>;
 					})}
 				</div>
 			</div>
@@ -111,29 +81,46 @@ export default function Plans() {
 	);
 }
 
-function SinglePlan({ plan }) {
+//todo PLAN CARD
+function SinglePlan({ plan, option }) {
 	return (
-		<div className="flex flex-col justify-between p-8 transition-shadow duration-300 bg-white border rounded shadow-sm sm:items-center hover:shadow">
+		<div className="flex flex-col justify-between transition-shadow duration-300 bg-white border rounded shadow-sm hover:shadow pb-8">
 			<div className="text-center">
-				<div className="text-lg font-semibold">{plan?.plan}</div>
-				<div className="flex items-center justify-center mt-2">
-					<div className="mr-1 text-5xl font-bold">
-						<p className="pb-2">${plan?.price}</p>
+				<div className={`w-full pt-4 
+				${option==="Libre" && "bg-yellow-400 text-black"}
+				${option==="2 por semana" && "bg-green-700 text-white"}
+				${option==="Otros" && "bg-lighter-blue text-white"}
+				${option==="Todos" && "bg-red-400 text-white"}
+				`}>
+					<div className="w-full text-lg font-semibold">{plan?.name}</div>
+					<div className="w-full flex items-center justify-center mt-2">
+						<div className="mr-1 text-5xl font-bold">
+							<p className="pb-2">${plan?.price}</p>
+						</div>
 					</div>
 				</div>
-				<div className="mt-2 space-y-3">
+				<div className="mt-2 space-y-3 px-8 py-2">
 					{plan?.tags?.map((tag) => {
 						return (
 							<div className="flex items-center">
-								<i className="fa fa-check text-green-600 mr-1" aria-hidden="true"></i>
+								<i className={`fa fa-check mr-1
+								${option==="Libre" && "text-yellow-400"}
+								${option==="2 por semana" && "text-green-700"}
+								${option==="Otros" && "lighter-blue"}
+								${option==="Todos" && "text-red-400"}`} aria-hidden="true"></i>
 								<p className="text-gray-700">{tag}</p>
 							</div>
 						);
 					})}
 				</div>
 			</div>
-			<div>
-				<button className="inline-flex items-center justify-center w-full h-12 px-12 mt-6 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none bg-lighter-blue">
+			<div className="w-full flex justify-center">
+				<button className={`inline-flex items-center justify-center w-2/3 h-12 px-12 mt-6 font-medium tracking-wide transition duration-200 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none text-black
+				${option==="Libre" && "bg-yellow-400 hover:bg-yellow-300 text-black"}
+				${option==="2 por semana" && "bg-green-700 hover:bg-green-600 text-white"}
+				${option==="Otros" && "bg-lighter-blue hover:bg-blue-400 text-white"}
+				${option==="Todos" && "bg-red-400 hover:bg-red-400 text-white"}
+				`}>
 					Inscribirse
 				</button>
 			</div>
@@ -141,6 +128,7 @@ function SinglePlan({ plan }) {
 	);
 }
 
+//todo PLAN FROM HOME
 export function PlansHome() {
 	return (
 		<div className="relative w-[100vw] min-h-[190vh] md:min-h-[140vh] xl:min-h-screen">

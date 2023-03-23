@@ -12,6 +12,7 @@ import {
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
+	GET_ALL_PLANS,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -273,6 +274,44 @@ export const getAllActivities = ()=>{
 				payload: response.data,
 			});
 		}
+		catch(error){
+			console.log(error);
+		}
+	}
+}
+
+export const getAllPlans = ()=>{
+	return async function(dispatch){
+		try{
+			//*response
+			const response = await axios.get("/plans")
+			let newData = {}
+
+			//*segmenting by 2 week, libre, etc
+			response.data.responseAll.forEach(el=>{
+				if(el.name.includes("2")){
+					if(!newData["2 por semana"]) newData["2 por semana"] = [el]
+					else newData["2 por semana"] = [...newData["2 por semana"], el]
+				}
+				else if(el.name.includes("Libre")){
+					if(!newData["Libre"]) newData["Libre"] = [el]
+					else newData["Libre"] = [...newData["Libre"], el]
+				}
+				else{
+					if(!newData["Otros"]) newData["Otros"] = [el]
+					else newData["Otros"] = [...newData["Otros"], el]
+				}
+			})
+
+			newData["Todos"] = response.data.responseAll
+
+			//*response
+			return dispatch({
+				type: GET_ALL_PLANS,
+				payload: newData,
+			});
+		}
+		
 		catch(error){
 			console.log(error);
 		}

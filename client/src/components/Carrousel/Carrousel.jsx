@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import Spline from "@splinetool/react-spline";
-import style from "../../styles/carrousel.css"
+import "../../styles/carrousel.css"
 
 export default function Carrousel() {
 	const slides = [

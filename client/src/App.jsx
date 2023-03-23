@@ -12,7 +12,7 @@ import Profile from './components/Profile/Profile';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllActivities, getAllPosts, getAllTestimonials } from './redux/actions/actions';
+import { getAllActivities, getAllPlans, getAllPosts, getAllTestimonials } from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
 import CreateBlog from './components/CreateBlog/CreateBlog';
@@ -34,6 +34,7 @@ function App() {
 		dispatch(getAllPosts());
 		dispatch(getAllTestimonials())
 		dispatch(getAllActivities())
+		dispatch(getAllPlans())
 
 		if (isAuthenticated && !hasRedirected) {
 			navigate('/home');

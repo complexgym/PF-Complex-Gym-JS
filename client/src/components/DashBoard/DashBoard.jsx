@@ -21,7 +21,7 @@ const DashBoard = () => {
 							target='_blank'
 						>
 							<img
-								src={logodark}
+								src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196389/logo_blanco_hk1eb4.jpg"}
 								className='inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8'
 								alt='main_logo'
 							/>
