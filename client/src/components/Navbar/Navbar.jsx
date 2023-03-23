@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
-import LoginBtn from '../LoginBtn/LoginBtn';
-import LogoutBtn from '../LogoutBtn/LogoutBtn';
+import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginBtn from "../LoginBtn/LoginBtn";
+import LogoutBtn from "../LogoutBtn/LogoutBtn";
 // import Spline from '@splinetool/react-spline';
+
+import logo from "../../assets/logo/logo.png";
+import { useState } from "react";
+
 import logo from '../../assets/logo/logo.png';
 import { getAllClients, getClientDetail } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
 
 export default function Navbar() {
 	const dispatch = useDispatch();
