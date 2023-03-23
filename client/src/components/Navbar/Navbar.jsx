@@ -7,8 +7,6 @@ import LogoutBtn from "../LogoutBtn/LogoutBtn";
 import logo from "../../assets/logo/logo.png";
 import { useState } from "react";
 
-import logo from '../../assets/logo/logo.png';
-
 
 export default function Navbar() {
 	const { user, isAuthenticated } = useAuth0();
