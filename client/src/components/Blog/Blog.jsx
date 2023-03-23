@@ -194,15 +194,6 @@ export default function Blog() {
 						>
 							Borrar filtros
 						</button>
-
-						<div>
-							<NavLink
-								to='/blog/create'
-								className='flex justify-start lighter-blue underline'
-							>
-								Crear blog
-							</NavLink>
-						</div>
 					</form>
 
 					{/* posts, can be initial posts, filtered, or searched posts */}
