@@ -109,7 +109,7 @@ export default function Blog() {
 
 	return (
 		<div>
-			<section className='bg-slate-100 w-screen pt-16 min-h-[80vh]'>
+			<section className='bg-gray-100 w-screen pt-16 min-h-[80vh]'>
 				<div className='py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 '>
 					{/* BLOG */}
 					<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
@@ -119,7 +119,7 @@ export default function Blog() {
 					</div>
 
 					{/* FORM: Search and filters */}
-					<form className='form-blog mb-4 grid grid-cols-2 md:grid-cols-3 md:w-[60vw] lg:w-[70%] xl:w-[50%] 2xlxl:w-[40%] w-[80vw] gap-2 mx-auto'>
+					<form className='form-blog mb-4 grid grid-cols-2 md:grid-cols-3 md:w-[60vw] lg:w-[70%] xl:w-[50%] 2xl:w-[40%] w-[80vw] gap-2 mx-auto'>
 						{/* SEARCH */}
 						<div className='mr-4'>
 							<label
@@ -133,7 +133,7 @@ export default function Blog() {
 								id='search'
 								onChange={handleChangeSearch}
 								value={search}
-								className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+								className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder:text-gray-700'
 								placeholder='5 ejercicios para tonificar'
 							/>
 						</div>
@@ -226,7 +226,7 @@ export default function Blog() {
 
 					{/* REDES */}
 					<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
-						<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>
+						<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white font-title'>
 							Nuestras redes
 						</h2>
 					</div>

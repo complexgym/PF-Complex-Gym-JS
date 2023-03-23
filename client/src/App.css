@@ -179,7 +179,3 @@ input:checked {
 	bottom: 1rem;
 	transition: 4s;
 }
-
-.carrousel-img:hover{
-	background-color: red;
-}
