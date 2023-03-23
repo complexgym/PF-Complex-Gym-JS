@@ -1,0 +1,80 @@
+figure {
+	position: relative;
+	top: 15vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  width: 100%;
+  height: 100%;
+	border-radius: 10px;
+	box-shadow: 0 5px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	overflow: hidden;
+}
+
+figure:hover {
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24), 0 10px 10px rgba(0, 0, 0, 0.48);
+}
+
+figure:hover figcaption, figure:active figcaption {
+	bottom: 0;
+}
+
+figure img {
+	height: 100%;
+	width: 100%;
+	transition: 0.25s;
+}
+
+figure figcaption {
+	position: absolute;
+	bottom: -70%;
+	left: 0;
+	width: 100%;
+	margin: 0;
+	padding: 1rem;
+	background-color: #1a1a1a;
+	box-shadow: 0 0 20px rgba(black, 0.4);
+	color: #e6e6e6;
+	line-height: 1;
+	transition: 0.25s;
+	box-shadow: inset 0 0 10px #0f1011;
+}
+
+figure figcaption h3 {
+	margin: 0 0 20px;
+	padding: 0;
+	cursor: default;
+}
+figure figcaption h4 {
+	margin: 0 0 20px;
+	padding: 0;
+	cursor: default;
+}
+figure figcaption p {
+	font-size: 14px;
+	line-height: 1.75;
+	cursor: default;
+}
+figure figcaption button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 30px;
+	background-color: #1abc9c;
+	border: none;
+	border-radius: 5px;
+	color: #1a1a1a;
+	font-size: 14px;
+	cursor: pointer;
+	font-weight: bold;
+	box-shadow: inset 0 0 6px #0f1011;
+}
+
+figure figcaption button:hover {
+	background: #28e2bc;
+}
+
+.linkbutton {
+	text-decoration: none;
+}

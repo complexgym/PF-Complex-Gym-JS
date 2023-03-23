@@ -8,7 +8,8 @@ const editActivities = async (req, res) => {
     days, 
     schedule, 
     trainerId, 
-    clientId } = req.body;
+    clientId,
+  image } = req.body;
 
   try {
     const activity = await activities.findOne({ where: { id } });
@@ -23,7 +24,8 @@ const editActivities = async (req, res) => {
         days, 
         schedule, 
         trainerId, 
-        clientId 
+        clientId,
+        image 
     },
       { where: { 
         id:id 

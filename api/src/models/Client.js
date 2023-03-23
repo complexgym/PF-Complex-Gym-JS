@@ -47,6 +47,7 @@ const clients = (sequelize) => {
 		},
 		mail: {
 			type: DataTypes.STRING,
+			unique: true,
 			allowNull: false,
 		},
 		address: {
