@@ -1,8 +1,7 @@
 import Carrousel from '../Carrousel/Carrousel';
 import Testimonials from '../Testimonials/Testimonials';
-import {PlansHome} from '../Plans/Plans';
-import '../../styles/whatsapp.css'
-
+import { PlansHome } from '../Plans/Plans';
+import '../../styles/whatsapp.css';
 
 export default function Home() {
 	const openWpp = () => {
@@ -15,8 +14,10 @@ export default function Home() {
 		<div>
 			<div>
 				{/* desktop */}
-				<div className='z-20 absolute text-6xl hidden 2xl:block text-white w-1/2 top-1/2 left-36'>
-					<h1 className='mb-10 text-5xl'>¿Qué es para nosotros? </h1>
+				<div className='z-20 absolute text-6xl hidden 2xl:block text-white w-1/2 top-1/2 left-36 bg-[#231f20] bg-opacity-40 p-6 rounded-4 drop-shadow-2xl '>
+					<h1 className='mb-10 text-5xl text-white font-title tracking-wider'>
+						¿Qué es para nosotros?{' '}
+					</h1>
 					<p className='text-xl'>
 						Es un centro de movimiento, especializado en preparación física deportiva,
 						actividad física para la salud y estética. Contamos con valores muy sólidos
@@ -26,9 +27,9 @@ export default function Home() {
 				</div>
 
 				<img
-					src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196392/demoFigma1_qwnnex.jpg'
+					src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196392/demoFigma1_qwnnex.jpg '
 					alt=''
-					className='relative z-10 w-full pt-20 xl:pt-0'
+					className='relative z-10 w-full pt-20 xl:pt-0 brightness-50'
 				/>
 
 				{/* mobile */}
@@ -47,7 +48,7 @@ export default function Home() {
 
 			<Carrousel />
 
-			<PlansHome/> 
+			<PlansHome />
 
 			<Testimonials />
 

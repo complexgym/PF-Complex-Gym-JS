@@ -28,7 +28,7 @@ export default function Carrousel() {
 
 	return (
 		// <div className='bg-[#ededed] py-14 px-10'>
-		<div className='min-h-[120vh] w-[98.5vw] relative'>
+		<div className='min-h-[100vh] w-[98.5vw] relative'>
 			<div className='absolute w-[100%] h-[90%] left-0'>
 				<Spline
 					className='min-h-[120vh]'
