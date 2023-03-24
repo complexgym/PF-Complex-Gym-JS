@@ -5,10 +5,10 @@ const {postPayments, getFeedback} = require('../controllers/index')
 
 //router.get('/', (req, res)=>{})
 
-router.post('/', postPayments)
+//router.post('/', postPayments)
 
-router.get('/feedback', getFeedback)
+//router.get('/feedback', getFeedback)
 
-router.post('/notification', postPayments)
+//router.post('/notification', postPayments)
 
 module.exports = router
