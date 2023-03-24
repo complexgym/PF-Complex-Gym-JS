@@ -1,8 +1,10 @@
 //todo BLOG
-//*get
+//*crud
 export let GET_ALL_POSTS = 'GET_ALL_POSTS';
 export let GET_POST_BY_ID = 'GET_POST_BY_ID';
 export let CLEAR_POST_DETAILS = 'CLEAR_POST_DETAILS';
+export const POST_BLOG = 'POST_BLOG';
+export const DELETE_BLOG = 'DELETE_BLOG'
 
 //*search
 export let SEARCH_POSTS = 'SEARCH_POSTS';
@@ -15,11 +17,10 @@ export let UPDATE_FILTERS = 'UPDATE_FILTERS';
 //todo CLIENTS
 export const GET_CLIENT_DETAIL = 'GET_CLIENT_DETAIL';
 export const POST_CLIENT = 'POST_CLIENT';
-export const UPDATE_CLIENT = 'UPDATE_CLIENT';
 
 //todo CREATE BLOG
-export const POST_BLOG = 'POST_BLOG';
 export const GET_CLIENTS = 'GET_CLIENTS';
+export const UPDATE_CLIENT = 'UPDATE_CLIENT';
 
 //todo TESTIMONIALS, ACTIVITIES and PLANS
 export const GET_ALL_TESTIMONIALS = 'GET_ALL_TESTIMONIALS';
