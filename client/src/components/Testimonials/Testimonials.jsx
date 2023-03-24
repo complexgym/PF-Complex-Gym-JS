@@ -38,11 +38,11 @@ export default function Testimonials() {
 	const {testimonials} = useSelector(s=>s)
 
 	return (
-		<div className='flex w-100vw h-[80vh] pb-16 font-sans bg-[#E1E1E1]'>
+		<div className='bg-image-testimonials flex w-100vw h-[80vh] pb-16 font-sans bg-[#E1E1E1]'>
 			<div className='flex justify-center testimonials-container'>
 				<section className='reviews mt-20'>
 					<div className='flex justify-center'>
-						<h2 className=' text-black text-5xl font-bold font-sans mb-20'>OPINIONES</h2>
+						<h2 className='text-5xl text-white font-bold font-sans mb-20'>OPINIONES</h2>
 					</div>
 
 					<div className='swiper customer-reviews grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
