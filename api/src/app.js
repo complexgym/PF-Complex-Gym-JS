@@ -9,13 +9,13 @@ const server = express();
 
 server.name = 'API';
 
-
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', 'https://pf-complex-gym-henry.vercel.app/'); // ?????????????????
+	// res.header('Access-Control-Allow-Origin', 'https://pf-complex-gym-henry.vercel.app/'); // ?????????????????
+	res.header('Access-Control-Allow-Origin', 'http://localhost:5173'); // ?????????????????
 	res.header('Access-Control-Allow-Credentials', 'true');
 	res.header(
 		'Access-Control-Allow-Headers',
