@@ -274,7 +274,6 @@ export const getAllTestimonials = () => {
 	return async function (dispatch) {
 		try {
 			const response = await axios.get('/testimonials');
-			console.log(response.dat);
 			return dispatch({
 				type: GET_ALL_TESTIMONIALS,
 				payload: response.data,
