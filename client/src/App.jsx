@@ -29,7 +29,7 @@ import Publications from './components/DashBoard/pages/Publications';
 import Form from './components/Form/Form';
 import UpdateClient from './components/Profile/EditInfo/UpdateClient';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
 function App() {
 	const location = useLocation();
