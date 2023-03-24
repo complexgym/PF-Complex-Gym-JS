@@ -20,25 +20,25 @@ export default function Testimonials() {
 			text: `There are many variations of passages of Lorem Ipsum available,
             but the majority have suffered alteration`,
 		},
-		{
-			url: 'https://i1.sndcdn.com/avatars-46GF1rag02JyR6y8-zIUu6w-t500x500.jpg',
-			name: 'Saul Goodman',
-			text: `There are many variations of passages of Lorem Ipsum available,
-            but the majority have suffered alteration`,
-		},
-		{
-			url: 'https://i1.sndcdn.com/avatars-46GF1rag02JyR6y8-zIUu6w-t500x500.jpg',
-			name: 'Saul Goodman',
-			text: `There are many variations of passages of Lorem Ipsum available,
-            but the majority have suffered alteration`,
-		},
+		// {
+		// 	url: 'https://i1.sndcdn.com/avatars-46GF1rag02JyR6y8-zIUu6w-t500x500.jpg',
+		// 	name: 'Saul Goodman',
+		// 	text: `There are many variations of passages of Lorem Ipsum available,
+    //         but the majority have suffered alteration`,
+		// },
+		// {
+		// 	url: 'https://i1.sndcdn.com/avatars-46GF1rag02JyR6y8-zIUu6w-t500x500.jpg',
+		// 	name: 'Saul Goodman',
+		// 	text: `There are many variations of passages of Lorem Ipsum available,
+    //         but the majority have suffered alteration`,
+		// },
 	];
 	return (
-		<div className='bg-image-testimonials w-full h-full pb-16 font-mono'>
-			<div className='testimonials-container'>
-				<section className='reviews relative left-8'>
+		<div className='flex w-100vw h-[80vh] pb-16 font-sans bg-[#E1E1E1]'>
+			<div className='flex justify-center testimonials-container'>
+				<section className='reviews mt-20'>
 					<div className='flex justify-center'>
-						<h2 className='text-3xl font-title text-center pt-8 mb-6 btn-home'>Opiniones</h2>
+						<h2 className=' text-black text-5xl font-bold font-sans mb-20'>OPINIONES</h2>
 					</div>
 
 					<div className='swiper customer-reviews grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>

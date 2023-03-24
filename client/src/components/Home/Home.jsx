@@ -3,6 +3,7 @@ import Carrousel from '../Carrousel/Carrousel';
 import Testimonials from '../Testimonials/Testimonials';
 import Plans from '../Plans/Plans';
 import '../../styles/whatsapp.css'
+import style from "./style.module.css"
 
 export default function Home() {
     const openWpp = ()=>{
@@ -22,7 +23,6 @@ export default function Home() {
 						receta mágica, valoramos mucho la disciplina, constancia y dedicación
 					</p>
 				</div>
-
 				<img src={image} alt='' className='relative z-10 w-full pt-20 xl:pt-0' />
 				
 				{/* mobile */}
@@ -39,10 +39,12 @@ export default function Home() {
 				</div>
 			</div>
 
+			<div className={style.lineBlue}></div>
 			<Carrousel />
+			<div className={style.lineBlue}></div>
 			<Plans/> 
+			<div className={style.lineBlue}></div>
 			<Testimonials />
-
 			<div className="whatsapp ml-4">
 				<div className="phone-call cbh-phone cbh-green cbh-show  cbh-static" id="clbh_phone_div">
 					<button id="WhatsApp-button" className="phoneJs" title="WhatsApp 360imagem"

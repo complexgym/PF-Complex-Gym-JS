@@ -4,25 +4,22 @@ import Spline from "@splinetool/react-spline";
 
 export default function Plans() {
   return (
-    <div className="relative w-[100vw] min-h-[190vh] md:min-h-[140vh] xl:min-h-screen">
-      <div className="absolute w-[100%] h-[99%]">
+    <div className="relative w-[100vw] min-h-[100vh] md:min-h-[100vh] xl:min-h-screen">
+      <div className="absolute lg:w-[100%] lg:h-[100%] md:h-[140%]">
         <Spline scene="https://prod.spline.design/jxjOOkSio3UDciBE/scene.splinecode" />
       </div>
-      <div className="absolute left-1/2 transform -translate-x-1/2 z-10 my-20">
+      <div className=" absolute left-1/2 transform -translate-x-1/2 z-10 lg:my-30 md:my-24 sm:my-20">
         <Link to="/planes" className="">
-          <a className=" text-white text-5xl font-bold mt-20">PLANES</a>
+          <a className=" text-white text-5xl font-bold  ">PLANES</a>
         </Link>
       </div>
       <div
-        className="absolute left-1/2 transform -translate-x-1/2 my-32 cards pt-20 pb-32 grid md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto w-[80vw] sm:w-[60vh]
-			md:w-[85vw] xl:w-[75vw] 2xl:w-[65vw] "
+        className="absolute left-1/2 transform -translate-x-1/2 lg:my-40 sm:my-24 cards pt-20 pb-32 grid md:grid-cols-2 xl:grid-cols-3 gap-20 mx-auto w-[80vw] sm:w-[60vh]
+			md:w-[85vw] xl:w-[75vw] 2xl:w-[65vw] border-4 "
       >
         {dataPlans.map((d, index) => {
           return (
-            <div
-              className="card text-grey text-md rounded-xl bg-white pb-10"
-              key={index}
-            >
+            <div className="card text-grey text-md rounded-xl bg-white pb-10" key={index}>
               {/* running bg TEXT */}
               <div className="absolute bg-black z-10"></div>
               <label className="name-plan text-2xl absolute z-50 ml-3 text-black uppercase">
