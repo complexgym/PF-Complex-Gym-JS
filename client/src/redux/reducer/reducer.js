@@ -9,10 +9,11 @@ import {
 	GET_POST_BY_ID,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
-  POST_BLOG,
-  GET_ALL_TESTIMONIALS,
-  GET_ALL_ACTIVITIES,
-	GET_ALL_PLANS
+	POST_BLOG,
+	GET_ALL_TESTIMONIALS,
+	GET_ALL_ACTIVITIES,
+	GET_ALL_PLANS,
+	UPDATE_CLIENT,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -27,7 +28,7 @@ const initialState = {
 		date: '',
 	},
 	testimonials: [],
-	activities: []
+	activities: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -88,25 +89,34 @@ const rootReducer = (state = initialState, action) => {
 		case POST_CLIENT:
 			return {
 				...state,
-		};
-		case POST_BLOG: return {
-			...state
-		}
-		case GET_ALL_TESTIMONIALS: return {
-			...state, 
-			testimonials: payload
-		}
-		case GET_ALL_ACTIVITIES: return {
-			...state, 
-			activities: payload
-		}
-		case GET_ALL_PLANS: return {
-			...state, 
-			plans: payload
-		}
-		default: return {
-			...state
-		}
+			};
+		case POST_BLOG:
+			return {
+				...state,
+			};
+		case GET_ALL_TESTIMONIALS:
+			return {
+				...state,
+				testimonials: payload,
+			};
+		case GET_ALL_ACTIVITIES:
+			return {
+				...state,
+				activities: payload,
+			};
+		case GET_ALL_PLANS:
+			return {
+				...state,
+				plans: payload,
+			};
+		case UPDATE_CLIENT:
+			return {
+				...state,
+			};
+		default:
+			return {
+				...state,
+			};
 	}
 };
 export default rootReducer;
