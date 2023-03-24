@@ -7,6 +7,7 @@ const Trainer = require("./Trainer")
 const Memberships = require("./Memberships")
 const Testimonials = require("./Testimonials")
 const Plans = require("./Plans")
+const CalendarDate = require('./CalendarDate')
 
 
 module.exports = {
@@ -18,5 +19,6 @@ module.exports = {
     Trainer,
     Memberships,
     Testimonials,
-    Plans
+    Plans,
+    CalendarDate
 }

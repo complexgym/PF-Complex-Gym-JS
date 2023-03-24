@@ -45,6 +45,9 @@ const getAllPlans = require("./plans/getAllPlans")
 const postPlans = require("./plans/postPlans")
 const updatePlans = require("./plans/updatePlans")
 
+const getAllCalendar = require('./calendar/getAllCalendars')
+const postCalendar = require('./calendar/postCalendar')
+
 
 module.exports = {
     getActivitiesById,
@@ -95,6 +98,9 @@ module.exports = {
     postPlans,
     updatePlans,
     sendMail,
-    getFeedback
+    getFeedback,
+
+    getAllCalendar,
+    postCalendar
 }
 
