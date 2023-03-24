@@ -22,10 +22,13 @@ import axios from 'axios';
 export function getAllPosts() {
 	return async function (dispatch) {
 		try {
-			const response = await axios.get('/publications/all');
+      const response = await axios.get("/publications/all");
+			const blogPosts = response.data.filter(el=>!el.isInstagram)
+			const igPosts = response.data.filter(el=>el.isInstagram)
+
 			return dispatch({
 				type: GET_ALL_POSTS,
-				payload: response.data,
+				payload: {igPosts, blogPosts},
 			});
 		} catch (error) {
 			console.log(error);
@@ -63,7 +66,7 @@ export function searchPosts({ tag, date }, title) {
 				response = await axios.get(`/publications?title=${title}`);
 				return dispatch({
 					type: SEARCH_POSTS,
-					payload: response.data,
+					payload: response.data.filter(el=>!el.isInstagram),
 				});
 			}
 
@@ -104,13 +107,13 @@ export function searchPosts({ tag, date }, title) {
 				response = await axios.get(`/publications/all`);
 				return dispatch({
 					type: FILTER_POSTS,
-					payload: response.data,
+					payload: response.data.filter(el=>!el.isInstagram),
 				});
 			}
 
 			return dispatch({
 				type: SEARCH_POSTS,
-				payload: response.data.filteredPublication,
+				payload: response.data.filteredPublication.filter(el=>!el.isInstagram),
 			});
 		} catch (error) {
 			console.log(error);
@@ -182,12 +185,12 @@ export function filterPosts({ tag, date }, search) {
 				response = await axios.get(`/publications/all`);
 				return dispatch({
 					type: FILTER_POSTS,
-					payload: response.data,
+					payload: response.data.filter(el=>!el.isInstagram),
 				});
 			} else {
 				return dispatch({
 					type: FILTER_POSTS,
-					payload: response?.data?.filteredPublication,
+					payload: response?.data?.filteredPublication.filter(el=>!el.isInstagram),
 				});
 			}
 		} catch (error) {
