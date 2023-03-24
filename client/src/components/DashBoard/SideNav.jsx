@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const SideNav = () => {
+	const location = useLocation().pathname
+	
 	return (
 		<aside
 			className='fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0'
@@ -37,33 +39,33 @@ const SideNav = () => {
 				<ul className='flex flex-col pl-0 mb-0'>
 					<li className='mt-0.5 w-full'>
 						<a
-							className='py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors'
+							className={`${location==="/dashboard" && "bg-blue-500/13"} py-2.7 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors`}
 							href='#'
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
 								<i className='relative top-0 text-sm leading-normal text-blue-500 ni ni-tv-2'></i>
 							</div>
-							<Link to='/dashboard'>Dashboard</Link>
+							<NavLink to='/dashboard'>Dashboard</NavLink>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
 						</a>
 					</li>
 
 					<li className='mt-0.5 w-full'>
 						<a
-							className=' dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors'
+							className={`${location==="/dashboard/clientes" && "bg-blue-500/13"} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 							href='#'
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
 								<i className='relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58'></i>
 							</div>
-							<Link to='/dashboard/clientes'>Clientes</Link>
+							<NavLink to='/dashboard/clientes'>Clientes</NavLink>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
 						</a>
 					</li>
 
 					<li className='mt-0.5 w-full'>
 						<a
-							className=' dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors'
+							className={`${location==="/dashboard/publicaciones" && "bg-blue-500/13"} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 							href='/dashboard/publicaciones'
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>

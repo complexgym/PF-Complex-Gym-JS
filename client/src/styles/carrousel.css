@@ -1,4 +1,5 @@
 figure {
+	background-color: black;
 	position: relative;
 	top: 15vh;
 	display: flex;

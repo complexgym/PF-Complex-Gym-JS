@@ -6,12 +6,12 @@ import { useState } from "react";
 
 //todo ALL PLANS
 export default function Plans() {
-	const [option, setOption] = useState("Libre")
+	const [option, setOption] = useState("Todos")
 
 	const plans = useSelector(s=>s.plans)
   
 	return (
-		<div className="relative w-full h-full pt-36 pb-8">
+		<div className="bg-image-testimonials relative w-full h-full pt-36 pb-8 font-text">
 			<div className="absolute hidden w-full lg:block h-96" />
 			
 			<div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-[85vw] md:px-24 lg:px-8 lg:py-20">
@@ -19,7 +19,7 @@ export default function Plans() {
 				<div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
 					<h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
 						<span className="relative inline-block">
-							<span className="relative">Planes actuales</span>
+							<span className="relative uppercase text-white">Planes actuales</span>
 						</span>{" "}
 					</h2>
 				</div>
@@ -29,17 +29,17 @@ export default function Plans() {
 
           {/* tabs */}
 					<ul
-						className="flex flex-wrap justify-center text-sm font-medium text-center"
+						className="flex flex-wrap justify-center text-sm text-white font-medium text-center"
 						id="myTab"
 						data-tabs-toggle="#myTabContent"
 						role="tablist"
 					>
 						<li className="mr-2" role="presentation">
 							<button
-								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Libre" && "text-yellow-400 border-yellow-400 font-bold  border-b-4"}`}
-								onClick={()=>setOption("Libre")}
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Todos" && "lighter-blue border-blue font-bold border-b-4"}`}
+								onClick={()=>setOption("Todos")}
 							>
-								Libre
+								Todos
 							</button>
 						</li>
 
@@ -54,21 +54,22 @@ export default function Plans() {
 
 						<li className="mr-2" role="presentation">
 							<button
-								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Otros" && "lighter-blue border-blue font-bold border-b-4"}`}
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Libre" && "text-yellow-400 border-yellow-400 font-bold  border-b-4"}`}
+								onClick={()=>setOption("Libre")}
+							>
+								Libre
+							</button>
+						</li>
+
+						<li className="mr-2" role="presentation">
+							<button
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Otros" && "text-slate-400 border-blue font-bold border-b-4"}`}
 								onClick={()=>setOption("Otros")}
 							>
 								Otros
 							</button>
 						</li>
 
-						<li className="mr-2" role="presentation">
-							<button
-								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Todos" && "text-red-400 border-red-400 font-bold border-b-4"}`}
-								onClick={()=>setOption("Todos")}
-							>
-								Todos
-							</button>
-						</li>
 					</ul>
 				</div>
 				<div className="grid max-w-screen row-gap gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 sm:mx-auto">
@@ -89,8 +90,8 @@ function SinglePlan({ plan, option }) {
 				<div className={`w-full pt-4 
 				${option==="Libre" && "bg-yellow-400 text-black"}
 				${option==="2 por semana" && "bg-green-700 text-white"}
-				${option==="Otros" && "bg-lighter-blue text-white"}
-				${option==="Todos" && "bg-red-400 text-white"}
+				${option==="Otros" && "bg-slate-300 text-white"}
+				${option==="Todos" && "bg-lighter-blue text-white"}
 				`}>
 					<div className="w-full text-lg font-semibold">{plan?.name}</div>
 					<div className="w-full flex items-center justify-center mt-2">
@@ -106,8 +107,8 @@ function SinglePlan({ plan, option }) {
 								<i className={`fa fa-check mr-1
 								${option==="Libre" && "text-yellow-400"}
 								${option==="2 por semana" && "text-green-700"}
-								${option==="Otros" && "lighter-blue"}
-								${option==="Todos" && "text-red-400"}`} aria-hidden="true"></i>
+								${option==="Otros" && "text-slate-300"}
+								${option==="Todos" && "lighter-blue"}`} aria-hidden="true"></i>
 								<p className="text-gray-700">{tag}</p>
 							</div>
 						);
@@ -118,8 +119,8 @@ function SinglePlan({ plan, option }) {
 				<button className={`inline-flex items-center justify-center w-2/3 h-12 px-12 mt-6 font-medium tracking-wide transition duration-200 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none text-black
 				${option==="Libre" && "bg-yellow-400 hover:bg-yellow-300 text-black"}
 				${option==="2 por semana" && "bg-green-700 hover:bg-green-600 text-white"}
-				${option==="Otros" && "bg-lighter-blue hover:bg-blue-400 text-white"}
-				${option==="Todos" && "bg-red-400 hover:bg-red-400 text-white"}
+				${option==="Otros" && "bg-slate-300 hover:bg-slate-400 text-white"}
+				${option==="Todos" && "bg-lighter-blue hover:bg-blue-400 text-white"}
 				`}>
 					Inscribirse
 				</button>
@@ -130,6 +131,9 @@ function SinglePlan({ plan, option }) {
 
 //todo PLAN FROM HOME
 export function PlansHome() {
+
+	const {plans} = useSelector(s=>s)
+
 	return (
 		<div className="relative w-[100vw] min-h-[190vh] md:min-h-[140vh] xl:min-h-screen">
 			<div className="absolute w-[100%] h-[99%]">
@@ -144,7 +148,7 @@ export function PlansHome() {
 				className="absolute left-1/2 transform -translate-x-1/2 my-32 cards pt-20 pb-32 grid md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto w-[80vw] sm:w-[60vh]
 			md:w-[85vw] xl:w-[75vw] 2xl:w-[65vw] "
 			>
-				{dataPlans.map((d, index) => {
+				{plans && Object?.entries(plans)?.slice(0, 3)?.map((d, index) => {
 					return (
 						<div
 							className="card text-grey text-md rounded-xl bg-white pb-10"
@@ -153,7 +157,7 @@ export function PlansHome() {
 							{/* running bg TEXT */}
 							<div className="absolute bg-black z-10"></div>
 							<label className="name-plan text-2xl absolute z-50 ml-3 text-black uppercase">
-								{d[0]}
+								{d?.[0]}
 							</label>
 
 							{/* running bg */}
@@ -182,14 +186,14 @@ export function PlansHome() {
 									{d[1].map((s, index) => {
 										return (
 											<li className="ml-8">
-												{s.plan} (${s.price})
+												{s?.name} (${s?.price})
 											</li>
 										);
 									})}
 								</ul>
 
 								<div className="flex">
-									{/* <button className="text-[#04209A] border-lighter-blue-plans mt-4"> */}
+									{/* <button className="text-[#04209A] border-slate-300-plans mt-4"> */}
 									<NavLink
 										to="/planes"
 										className="bg-blue-600 hover:bg-blue-300 text-white font-bold py-2 px-4 border rounded mt-4"
@@ -205,57 +209,3 @@ export function PlansHome() {
 		</div>
 	);
 }
-
-
-// const data = [
-//   {
-//     plan: "2 por semana",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 3300,
-//   },
-//   {
-//     plan: "2 por semana + masajes",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 5000,
-//   },
-//   {
-//     plan: "2 por semana + running",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 5000,
-//   },
-//   {
-//     plan: "2 por semana + zumba",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 5000,
-//   },
-//   {
-//     plan: "2 por semana",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 3300,
-//   },
-//   {
-//     plan: "2 por semana + masajes",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 5000,
-//   },
-//   {
-//     plan: "2 por semana + running",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 5000,
-//   },
-//   {
-//     plan: "2 por semana + zumba",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 5000,
-//   },
-//   {
-//     plan: "2 por semana",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 3300,
-//   },
-//   {
-//     plan: "2 por semana + masajes",
-//     tags: ["2 veces por semana", "Accesible"],
-//     price: 5000,
-//   },
-// ];

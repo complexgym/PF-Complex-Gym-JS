@@ -12,8 +12,12 @@ import Profile from './components/Profile/Profile';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllActivities, getAllPlans, getAllPosts, getAllTestimonials } from './redux/actions/actions';
-
+import {
+	getAllActivities,
+	getAllPlans,
+	getAllPosts,
+	getAllTestimonials,
+} from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
 import CreateBlog from './components/CreateBlog/CreateBlog';
@@ -23,8 +27,9 @@ import DashBoard from './components/DashBoard/DashBoard';
 import Clients from './components/DashBoard/pages/Clients';
 import Publications from './components/DashBoard/pages/Publications';
 import Form from './components/Form/Form';
+import UpdateClient from './components/Profile/EditInfo/UpdateClient';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
 function App() {
 	const location = useLocation();
@@ -35,15 +40,14 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getAllPosts());
-		dispatch(getAllTestimonials())
-		dispatch(getAllActivities())
-		dispatch(getAllPlans())
+		dispatch(getAllTestimonials());
+		dispatch(getAllActivities());
+		dispatch(getAllPlans());
 
-
-		if (isAuthenticated && !hasRedirected) {
-			navigate('/home');
-			setHasRedirected(true);
-		}
+		// if (isAuthenticated && !hasRedirected) {
+		// 	navigate('/home');
+		// 	setHasRedirected(true);
+		// }
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
 
 	const { pathname } = location;
@@ -83,6 +87,7 @@ function App() {
 				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
 					<Route path={'/registro'} element={<Form />} />
 					<Route path={'/perfil/:id'} element={<Profile />} />
+					<Route path={'/editar/:id'} element={<UpdateClient />} />
 				</Route>
 				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
 					<Route path={'/dashboard'} element={<DashBoard />} />
