@@ -1,7 +1,7 @@
 const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
 const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/;
-const regexPhone = /^\+?54\d{10}$/;
-const regexDni = /^[0-9]{8}$/;
+const regexPhone = /^\+?5\d{8,11}$/;
+const regexDni = /^[0-9]{6,9}$/;
 
 export default function Validate(input) {
 	let errors = {};
@@ -40,8 +40,10 @@ export default function Validate(input) {
 		errors.dni = 'El campo DNI debe rellenarse obligatoriamente';
 	} else if (!regexDni.test(input.dni)) {
 		errors.dni = 'Debe ingresar un Dni valido';
-	} else if (input.dni.length !== 8) {
-		errors.dni = 'El DNI debe ser de 8 dígitos.';
+	} else if (input.dni.length > 9) {
+		errors.dni = 'El DNI muy largo.';
+	} else if (input.dni.length < 6) {
+		errors.dni = 'El DNI muy corto.';
 	} else if (!input.age) {
 		errors.age = 'El campo Edad debe rellenarse obligatoriamente';
 	} else if (!input.weight) {
