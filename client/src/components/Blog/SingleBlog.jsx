@@ -76,7 +76,7 @@ export default function SingleBlog({ blog }) {
 					{/* content/message */}
 					<div className="flex flex-wrap">
 						<p className="mb-5 font-light text-black dark:text-gray-400">
-							{newContent}
+							{newContent + "..."}
 						</p>
 					</div>
 					

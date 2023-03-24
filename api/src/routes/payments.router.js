@@ -3,7 +3,7 @@ const router = Router()
 
 const {postPayments, getFeedback} = require('../controllers/index')
 
-//router.get('/', (req, res)=>{})
+router.get('/', (req, res)=>{})
 
 router.post('/', postPayments)
 

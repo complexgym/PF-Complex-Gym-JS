@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SideNav from "../SideNav";
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import { deleteBlog } from "../../../redux/actions/actions";
 
 const Publications = () => {
 	const {initial_posts, ig_posts} = useSelector(s=>s)
@@ -135,9 +136,17 @@ const Publications = () => {
 	);
 };
 
+
 const SinglePublication = ({ post }) => {
+	const dispatch = useDispatch()
+
+	const handleDelete = () => {
+		dispatch(deleteBlog(post.id))
+	}
+
 	return (
 		<tr>
+			{/* type of publication */}
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<div className="flex px-2">
 					<div>
@@ -154,11 +163,15 @@ const SinglePublication = ({ post }) => {
 					</div>
 				</div>
 			</td>
+
+			{/* title */}
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<p className="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60 capitalize">
 					{post?.title}
 				</p>
 			</td>
+
+			{/* tag */}
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-60">
 					{post?.tag?.map((el,index)=>{
@@ -167,6 +180,8 @@ const SinglePublication = ({ post }) => {
 					})}
 				</span>
 			</td>
+
+			{/* qualification*/}
 			<td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<div className="flex items-center justify-center">
 					<span className="mr-2 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">
@@ -185,9 +200,12 @@ const SinglePublication = ({ post }) => {
 					</div>
 				</div>
 			</td>
+
+			{/* delete btn */}
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<button className="inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400">
-					<i className="fa fa-times mr-4 text-red-500" aria-hidden="true"></i>
+					<i className="fa fa-times mr-4 text-red-500" aria-hidden="true"
+					onClick={handleDelete}></i>
 					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
 				</button>
 			</td>
