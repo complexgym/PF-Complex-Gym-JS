@@ -15,6 +15,7 @@ import {
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
 	DELETE_BLOG,
+	GET_ALL_ADMIN,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -331,3 +332,29 @@ export const getAllPlans = () => {
 		}
 	};
 };
+
+
+export const getAllAdmin = ()=> {
+	return async function (dispatch) {
+		try {
+      const response = await axios.get("/admin");
+			return dispatch({
+				type: GET_ALL_ADMIN,
+				payload: response.data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export const postAdmin = (data)=> {
+	return async function () {
+		try {
+      const response = await axios.post("/admin", data);
+			return response
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}

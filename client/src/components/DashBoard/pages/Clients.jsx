@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SideNav from "../SideNav";
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 
 const Clients = () => {
 	const {allClients} = useSelector(s=>s)
@@ -102,7 +102,10 @@ const Clients = () => {
 														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
 															Edad / Peso / Estatura
 														</th>
-														<th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
+														<th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xxs">
+															Make Admin / Block
+															{/* Edit / Admin / Block */}
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -124,6 +127,12 @@ const Clients = () => {
 };
 
 const SingleClient = ({client}) => {
+	const dispatch = useDispatch()
+
+	useEffect(()=>{
+		
+	}, [dispatch])
+
 	return (
 		<tr>
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
@@ -165,16 +174,19 @@ const SingleClient = ({client}) => {
 			</td>
 			<td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
-					{client?.age}/ {client?.weight}kg/ {client?.height}cm
+					{client?.age} / {client?.weight}kg / {client?.height}cm
 				</span>
 			</td>
-			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-				<a
-					href="javascript:;"
-					className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"
-				>
-					Edit
-				</a>
+			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+				{/* <div className="mr-2">
+					<i className="fa fa-pencil text-sm cursor-pointer" aria-hidden="true"></i>
+				</div> */}
+				<i className="fa fa-key text-sm cursor-pointer mr-2" aria-hidden="true"
+				onClick={""}></i> {/* make admin */}
+				
+				<i className="fa fa-ban text-sm cursor-pointer" aria-hidden="true"
+				onClick={""}></i>
+				
 			</td>
 		</tr>
 	);
