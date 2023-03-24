@@ -27,9 +27,9 @@ import DashBoard from './components/DashBoard/DashBoard';
 import Clients from './components/DashBoard/pages/Clients';
 import Publications from './components/DashBoard/pages/Publications';
 import Form from './components/Form/Form';
-import UpdateClient from './components/Profile/EditInfo/UpdateClient';
+import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
 
-axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
 	const location = useLocation();
