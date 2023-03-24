@@ -9,6 +9,7 @@ const createPublication = async (req, res) => {
             tag,
             author_name,
             author_picture,
+            isInstagram
         } = req.body
 
         console.log(req.body);
@@ -20,6 +21,7 @@ const createPublication = async (req, res) => {
             tag,
             author_name,
             author_picture,
+            isInstagram
         })
 
         //falta crear la relacion con trainer

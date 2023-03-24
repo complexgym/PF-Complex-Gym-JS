@@ -21,6 +21,7 @@ const initialState = {
 	clientDetail: [],
 	initial_posts: [],
 	matched_posts: [],
+	ig_posts: [],
 	post_details: {},
 	search_blog: '',
 	filters_blog: {
@@ -38,8 +39,9 @@ const rootReducer = (state = initialState, action) => {
 		case GET_ALL_POSTS:
 			return {
 				...state,
-				initial_posts: payload,
-				matched_posts: payload,
+				initial_posts: payload.blogPosts,
+				matched_posts: payload.blogPosts,
+				ig_posts: payload.igPosts
 			};
 		case GET_POST_BY_ID:
 			return {
