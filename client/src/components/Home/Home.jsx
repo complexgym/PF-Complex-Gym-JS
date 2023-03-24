@@ -1,7 +1,8 @@
 import Carrousel from '../Carrousel/Carrousel';
 import Testimonials from '../Testimonials/Testimonials';
-import { PlansHome } from '../Plans/Plans';
-import '../../styles/whatsapp.css';
+import {PlansHome} from '../Plans/Plans';
+import '../../styles/whatsapp.css'
+import style from "./style.module.css"
 
 export default function Home() {
 	const openWpp = () => {
@@ -46,9 +47,15 @@ export default function Home() {
 				</div>
 			</div>
 
+			<div className={style.lineBlue}></div>
+
 			<Carrousel />
 
+			<div className={style.lineBlue}></div>
+
 			<PlansHome />
+        
+			<div className={style.lineBlue}></div>
 
 			<Testimonials />
 
@@ -66,6 +73,7 @@ export default function Home() {
 						<div className='cbh-ph-circle'></div>
 						<div className='cbh-ph-circle-fill'></div>
 						<div className='cbh-ph-img-circle1'></div>
+
 					</button>
 				</div>
 			</div>
