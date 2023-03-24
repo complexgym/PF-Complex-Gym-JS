@@ -29,7 +29,7 @@ router.use('/trainer', trainer)
 router.use('/menberships',memberships)
 router.use('/trainer', trainer)
 router.use('/admin', admin)
-router.use('/testimonials', checkJwt, testimonials)
+router.use('/testimonials',  testimonials)
 router.use('/plans', plans)
 router.use('/mail', mails)
 
