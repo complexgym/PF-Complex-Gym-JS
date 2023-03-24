@@ -9,7 +9,6 @@ const server = express();
 
 server.name = 'API';
 
-
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
 server.use(cookieParser());
