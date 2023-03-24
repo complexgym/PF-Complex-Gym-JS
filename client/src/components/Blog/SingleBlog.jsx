@@ -1,27 +1,36 @@
 import { NavLink } from "react-router-dom";
 
 export default function SingleBlog({ blog }) {
+	let splitContent = blog?.content?.split(".")
+
+	let newContent = splitContent[0]
+
+	if(newContent.length>120){
+		newContent = newContent.substring(0, 120)
+	}
+
+
 	return (
 		<article
-			className="blog-card font-mono bg-white rounded-sm border border-gray-200 shadow-xl
+			className="blog-cardn font-mono bg-white rounded-sm border border-gray-200 shadow-xl
 			flex flex-col justify-around pb-4 w-10/12 md:w-8/12 xl:w-11/12 mx-auto
 			relative transition ease-in-out delay-150 transform hover:-translate-y-1" 
 		>
 			<div>
 				
 			{/* img, no padding */}
-			<div className="flex justify-between items-center mb-5 text-white">
-				<img className="bg-center bg-cover rounded-tl-sm rounded-tr-sm w-full h-48" src={blog?.image} />
+			<div className="flex justify-between w-full items-center mb-5 text-white overflow-hidden">
+				<img className="bg-center bg-cover rounded-tl-sm rounded-tr-sm w-full h-48 hover:scale-110 duration-300 " src={blog?.image} />
 			</div>
 
 			{/* info, padding */}
 			<div className="info-blog px-4">
-				<div className="flex justify-between items-center mb-5 text-white">
-					<span className="bg-primary-100 text-primary-800 text-xs 
+				<div className="flex flex-col justify-between mb-5 text-white">
+					{/* <span className="bg-primary-100 text-primary-800 text-xs 
 					font-medium inline-flex items-center px-2.5 py-0.5 rounded 
-					">
+					">  */}
 						{/* tags */}
-						{blog?.tag?.map((b, index) => {
+						{/* {blog?.tag?.map((b, index) => {
 							return (
 								<div key={index} className="flex items-center">
 									<div className={`border-2 rounded-sm px-1 
@@ -47,44 +56,46 @@ export default function SingleBlog({ blog }) {
 									</div>
 								</div>
 							);
-						})}
-					</span>
-					{/* released date */}
-					<span className="text-sm text-gray-400">{
-					blog?.createdAt.substring(0,10).replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1')}
-												{/* pasando a formato 17/03/2023 */ }
-					</span>
+						})} */}
+					{/* </span> */}
+
+
+						{/* content's title */}
+						<h2 className="flex items-center mb-2 text-lg font-bold tracking-tight lighter-blue">
+							{/* > */}
+							{/* <img className="w-3 h-3 mr-1" src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679247513/play-blog_tctqkq.png"/> */}
+							<p className="font-bold text-black">{blog?.title}</p>
+						</h2>
+
+						{/* released date, pasando a formato 17/03/2023 */}
+						<span className="text-sm lighter-blue">{
+							blog?.createdAt.substring(0,10).replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1')}
+						</span>
 					</div>
 
-					{/* content's title */}
-					<h2 className="flex items-center mb-2 text-lg font-bold tracking-tight lighter-blue">
-						{/* > */}
-						<img className="w-3 h-3 mr-1" src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679247513/play-blog_tctqkq.png"/>
-						<p>{blog?.title}</p>
-					</h2>
-
 					{/* content/message */}
-					<p className="mb-5 font-light text-black dark:text-gray-400">
-						{blog.content?.length>120 ? blog?.content.substring(0, 100) + "..." :
-						blog?.content}
-					</p>
-
-					{/* author and ream more */}
+					<div className="flex flex-wrap">
+						<p className="mb-5 font-light text-black dark:text-gray-400">
+							{newContent}
+						</p>
+					</div>
+					
+					{/* author and read more */}
 					<div className="h-full flex justify-between items-end">
-						<div className="flex items-center space-x-4">
-							{/*<>
+						{/* <div className="flex items-center space-x-4">
+							<>
 								<img
 								className="w-7 h-7 rounded-full"
-								src={blog?.authorId?.image}
-								alt={`${blog?.authorId?.name} avatar`}
+								src={blog?.author_image}
+								alt={`${blog?.author_image} avatar`}
 								/>
-								<span className="font-medium lighter-blue">{blog?.authorId?.name}</span>
-							</>*/}
-						</div>
+								<span className="font-medium lighter-blue">{blog?.author_name}</span>
+							</>
+						</div> */}
 						{/*  */}
 						<NavLink
 							to={`/blog/${blog.id}`}
-							className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 lighter-blue hover:underline"
+							className="inline-flex items-center font-medium dark:text-primary-500 lighter-blue uppercase hover:underline"
 						>
 							Leer más
 							<svg

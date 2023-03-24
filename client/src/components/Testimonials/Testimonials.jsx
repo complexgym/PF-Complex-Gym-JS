@@ -1,4 +1,5 @@
 import '../../styles/testimonials.css';
+import {useSelector} from "react-redux"
 
 export default function Testimonials() {
 	let slides = [
@@ -33,6 +34,9 @@ export default function Testimonials() {
     //         but the majority have suffered alteration`,
 		// },
 	];
+
+	const {testimonials} = useSelector(s=>s)
+
 	return (
 		<div className='flex w-100vw h-[80vh] pb-16 font-sans bg-[#E1E1E1]'>
 			<div className='flex justify-center testimonials-container'>
@@ -42,19 +46,19 @@ export default function Testimonials() {
 					</div>
 
 					<div className='swiper customer-reviews grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-						{slides.map((s) => {
+						{testimonials?.map((s, index) => {
 							return (
-								<div className='swiper-wrapper w-11/12 sm:w-9/12 md:w-11/12'>
-									<div className='swiper-slide w-full review-card min-h-[55vh] sm:min-h-[45vh] md:min-h-[40vh]'>
+								<div key={index} className='swiper-wrapper w-11/12 sm:w-9/12 md:w-11/12'>
+									<div className='swiper-slide w-full review-card min-h-[55vh] sm:min-h-[45vh] md:min-h-[55vh] xl:min-h-[50vh] 2xl:min-h-[45vh]'>
 										<img className='quote-icon' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/quote_s5hblr.png"} />
 										{/* <FontAwesomeIcon className="quote-icon" icon={faQuoteLeft}/> */}
-										<h3 className='card-title lighter-blue'>I loved it</h3>
-										<p className='card-body'>{s.text}</p>
+										{/* <h3 className='card-title lighter-blue'>I loved it</h3> */}
+										<p className='card-body pt-4'>{s?.text}</p>
 
 										<div className='card-footer'>
-											<img src={s.url} alt='profile photo' className='profile-photo' />
+											<img src={s?.url} alt='profile photo' className='profile-photo' />
 											<div>
-												<span className='name '>{s.name}</span>
+												<span className='name '>{s?.name}</span>
 												<div className='flex'>
 													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
 													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />

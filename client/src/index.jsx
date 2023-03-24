@@ -28,7 +28,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 					authorizationParams={{
 						redirect_uri: window.location.origin,
 					}}
-				>
+					useRefreshTokens={ true }
+      				cacheLocation="localstorage" 
+				>                 {/* storing user data in login */}
 					<App />
 				</Auth0Provider>
 			</BrowserRouter>

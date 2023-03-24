@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { postClient } from '../../redux/actions/actions';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllClients, postClient } from '../../redux/actions/actions';
 import Validate from './Validations';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
+import UploadToCloudinary from '../UploadToCloudinary/UploadToCloudinary';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Form() {
 	const dispatch = useDispatch();
 
+	const navigate = useNavigate();
+
 	const { user } = useAuth0();
+
+	const allClient = useSelector((state) => state.allClients);
+
+	// console.log(allClient);
+
+	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+
+	const matchId = matchEmail && matchEmail.id;
 
 	const [input, setInput] = useState({
 		user: user.name,
@@ -74,16 +86,31 @@ export default function Form() {
 				text: '¡Información creada correctamente!',
 				icon: 'success',
 			});
+			navigate(`/home`);
 		}
 	};
 
+	function handleUpload(res) {
+		if (res.info.secure_url) {
+			setInput({
+				...input,
+				picture: res.info.secure_url,
+			});
+		}
+	}
+
+	useEffect(() => {
+		dispatch(getAllClients());
+	}, []);
+
 	return (
 		<>
-			<div className=' relative font-text pt-52 px-10 '>
+			<div className=' relative font-text pt-12 px-10 '>
 				<div className='md:grid md:grid-cols-2 md:gap-6 justify-center'>
 					<div className='mt-5 md:col-span-2 md:mt-0'>
 						<div className='md:col-span-1'>
 							<div className='px-4 sm:px-0'>
+								{/* PROFILE INFO */}
 								<h3 className='text-base font-semibold leading-6 text-gray-900'>
 									Perfil
 								</h3>
@@ -96,6 +123,7 @@ export default function Form() {
 						<form onSubmit={(e) => handleSubmit(e)}>
 							<div className='shadow sm:overflow-hidden sm:rounded-md'>
 								<div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
+									{/* USERNAME */}
 									<div className='col-span-6 sm:col-span-3'>
 										<label
 											htmlFor='user'
@@ -108,7 +136,6 @@ export default function Form() {
 											name='user'
 											id='input'
 											value={input.user}
-											// required
 											autoComplete='given-name'
 											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
@@ -120,6 +147,7 @@ export default function Form() {
 										)}
 									</div>
 
+									{/* EMAIL */}
 									<div className='col-span-6 sm:col-span-4'>
 										<label
 											htmlFor='mail'
@@ -132,10 +160,10 @@ export default function Form() {
 											name='mail'
 											id='mail'
 											value={input.mail}
-											// required
 											autoComplete='mail'
 											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
+											readOnly
 										/>
 										{errors?.mail && (
 											<p className=' text-red-500'>
@@ -144,65 +172,31 @@ export default function Form() {
 										)}
 									</div>
 
-									<div>
-										<label className='block text-sm font-medium leading-6 text-gray-900'>
-											Foto
-										</label>
-										<div className='mt-2 flex items-center'>
-											<span className='inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100'>
-												<img src={user.picture} alt='' />
-												<path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
-											</span>
-											<button
-												type='button'
-												className='ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50'
+									{/* UPLOAD IMAGE */}
+									<div className=''>
+										{input.picture && (
+											<a
+												href={input.picture}
+												className='lighter-blue underline'
+												target='_blank'
 											>
-												Cambiar
-											</button>
-										</div>
+												<img
+													src={input?.picture}
+													className='pt-2 pl-4 w-24'
+													alt='blog image'
+												/>
+											</a>
+										)}
+										<br />
+										<UploadToCloudinary
+											onUpload={handleUpload}
+											name='image'
+											onClick={handleChange}
+											className='pb-10'
+										/>
 									</div>
 
-									<div>
-										{/* <label className='block text-sm font-medium leading-6 text-gray-900'>
-											Foto de portada
-										</label> */}
-										<div className='mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
-											<div className='space-y-1 text-center'>
-												<svg
-													className='mx-auto h-12 w-12 text-gray-400'
-													stroke='currentColor'
-													fill='none'
-													viewBox='0 0 48 48'
-													aria-hidden='true'
-												>
-													<path
-														d='M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02'
-														strokeWidth={2}
-														strokeLinecap='round'
-														strokeLinejoin='round'
-													/>
-												</svg>
-												<div className='flex text-sm text-gray-600'>
-													<label
-														htmlFor='picture'
-														className='relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500'
-													>
-														<span>Cargar un archivo</span>
-														<input
-															id='picture'
-															name='picture'
-															type='file'
-															className='sr-only'
-															// onChange={handleChange}
-														/>
-													</label>
-													<p className='pl-1'>o arrastrar y soltar</p>
-												</div>
-												<p className='text-xs text-gray-500'>PNG, JPG, GIF up to 10MB</p>
-											</div>
-										</div>
-									</div>
-
+									{/* ABOUT */}
 									<div>
 										<label
 											htmlFor='about'
@@ -237,6 +231,7 @@ export default function Form() {
 									</div>
 								</div>
 
+								{/* PERSONAL INFO */}
 								<div className='md:col-span-1'>
 									<div className='px-4 sm:px-0'>
 										<h3 className='text-base font-semibold leading-6 text-gray-900'>
@@ -248,6 +243,7 @@ export default function Form() {
 									</div>
 								</div>
 
+								{/* NAME */}
 								<div className='bg-white px-4 py-5 sm:p-6'>
 									<div className='grid grid-cols-6 gap-6'>
 										<div className='col-span-6 sm:col-span-3'>
@@ -262,7 +258,6 @@ export default function Form() {
 												name='name'
 												id='name'
 												value={input.name}
-												// required
 												autoComplete='given-name'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -274,6 +269,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* LASTNAME */}
 										<div className='col-span-6 sm:col-span-3'>
 											<label
 												htmlFor='lastName'
@@ -286,7 +282,6 @@ export default function Form() {
 												name='lastName'
 												id='lastName'
 												value={input.lastName}
-												// required
 												autoComplete='family-name'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -298,6 +293,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* PHONE */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
 											<label
 												htmlFor='phone'
@@ -310,7 +306,6 @@ export default function Form() {
 												name='phone'
 												id='phone'
 												value={input.phone}
-												// required
 												autoComplete='phone'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												placeholder='Ej: +54 3442 48-0617'
@@ -323,6 +318,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* DNI */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
 											<label
 												htmlFor='dni'
@@ -335,7 +331,6 @@ export default function Form() {
 												name='dni'
 												id='dni'
 												value={input.dni}
-												// required
 												autoComplete='dni'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -347,6 +342,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* AGE */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='age'
@@ -359,7 +355,6 @@ export default function Form() {
 												name='age'
 												id='age'
 												value={input.age}
-												// required
 												autoComplete='age'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -371,6 +366,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* WEIGHT */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='weight'
@@ -383,7 +379,6 @@ export default function Form() {
 												name='weight'
 												id='weight'
 												value={input.weight}
-												// required
 												autoComplete='weight'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												placeholder='kg'
@@ -396,6 +391,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* HEIGHT */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='height'
@@ -408,7 +404,6 @@ export default function Form() {
 												name='height'
 												id='height'
 												value={input.height}
-												// required
 												autoComplete='height'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												placeholder='cm'
@@ -421,6 +416,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* ADDRESS */}
 										<div className='col-span-6'>
 											<label
 												htmlFor='address'
@@ -433,7 +429,6 @@ export default function Form() {
 												name='address'
 												id='address'
 												value={input.address}
-												// required
 												autoComplete='address'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -445,6 +440,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* CITY */}
 										<div className='col-span-6 sm:col-span-6 lg:col-span-2'>
 											<label
 												htmlFor='city'
@@ -457,7 +453,6 @@ export default function Form() {
 												name='city'
 												id='city'
 												value={input.city}
-												// required
 												autoComplete='address-level2'
 												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
@@ -469,6 +464,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* REGION */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
 											<label
 												htmlFor='region'
@@ -487,6 +483,7 @@ export default function Form() {
 											/>
 										</div>
 
+										{/* POSTALCODE */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
 											<label
 												htmlFor='postalCode'
@@ -506,13 +503,27 @@ export default function Form() {
 										</div>
 									</div>
 								</div>
-								<div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
-									<button
-										type='submit'
-										className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
-									>
-										Guardar
-									</button>
+
+								{/* BUTTONS */}
+								<div className='grid grid-cols-2 bg-gray-50 px-4 py-3 sm:px-6'>
+									{/* BUTTON BACK */}
+									<div className=''>
+										<Link to={`/home`}>
+											<button className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'>
+												Volver
+											</button>
+										</Link>
+									</div>
+
+									{/* BUTTON-CREATE */}
+									<div className=' text-right cols-start-2'>
+										<button
+											type='submit'
+											className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
+										>
+											Crear
+										</button>
+									</div>
 								</div>
 							</div>
 						</form>

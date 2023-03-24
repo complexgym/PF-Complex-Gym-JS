@@ -19,6 +19,15 @@ export default function BlogDetails() {
 	const details = post_details;
 
     const contentArr = details?.content?.split(" ")
+    let newContent = []
+
+    const counter = 8
+
+    for(let i = 0; i < Math.ceil(contentArr?.length / counter); i ++){
+        if(i===0 ) newContent.push(contentArr?.slice(0, counter * 1).join(" "), "\n")
+        else if(i===1) newContent.push(contentArr?.slice(counter, counter * 2).join(" "), "\n")
+        else newContent.push(contentArr?.slice(counter*(i), counter * (i+1)).join(" "), "\n")
+    }
 
 	return (
 		<div className="bg-slate-100">
@@ -39,7 +48,7 @@ export default function BlogDetails() {
                     <p className="text-xs md:text-sm font-normal">{details?.createdAt?.substring(0,10).replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1')} &nbsp;</p>
                     
                     {/* author */}
-                    {details?.author && <p>by {details?.author}</p>}
+                    {details?.author_name && <p>by {details?.author_name} &nbsp; </p>}
 
                     {/* tag */}
                     {details?.tag?.map(tag=>{
@@ -54,12 +63,27 @@ export default function BlogDetails() {
                     <img className="w-full rounded-md" src={details?.image} alt="details img"/>
                 </div>
 
-                <div>
-                    {contentArr?.map(word=>{
-                        if(word.match(/\.(jpeg|jpg|gif|png)$/)) return <img src={word} className="pt-8 pb-8 rounded-md h-80 w-full" alt="text img"/>
-                        else if(word?.toLowerCase()?.startsWith("subtitle:")) return <h1 className="text-3xl capitalize lighter-blue pt-6">{word.substring(9)} </h1>
-                        else return <span>{word} </span>
-                    })}
+                <div className="whitespace-nowrap text-clip">
+                    <p className="mb-5 font-light text-black dark:text-gray-400
+                    ">
+						{newContent.map(el=>{
+                            if(el==="\n") return <br></br>
+                            else return <span>{el}</span>
+                        })}
+					</p>
+                    {/* {contentArr?.map((word, index)=>{
+                        // if(word.match(/\.(jpeg|jpg|gif|png)$/)) {
+                        //     return <img src={word} className="pt-8 pb-8 rounded-md h-80 w-full" alt="text img"/>
+                        // }
+                        // else if(word?.toLowerCase()?.startsWith("subtitle:")) {
+                        //     return <h1 className="text-3xl capitalize lighter-blue pt-6">{word.substring(9)} </h1>
+                        // }
+                        // else {
+                            return(
+                                <span>{newContent}</span>
+                            )
+                        // }
+                    })} */}
                 </div>
 
 			</div> 

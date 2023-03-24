@@ -11,6 +11,10 @@ const activities = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false,
         }, 
+        image: {
+            type: DataTypes.TEXT,
+            allowNull: false
+        },
         days: {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
