@@ -1,6 +1,5 @@
-import quote from '../../assets/testimonials/quote.png';
-import star from '../../assets/testimonials/star.png';
 import '../../styles/testimonials.css';
+import {useSelector} from "react-redux"
 
 export default function Testimonials() {
 	let slides = [
@@ -22,47 +21,50 @@ export default function Testimonials() {
 			text: `There are many variations of passages of Lorem Ipsum available,
             but the majority have suffered alteration`,
 		},
-		{
-			url: 'https://i1.sndcdn.com/avatars-46GF1rag02JyR6y8-zIUu6w-t500x500.jpg',
-			name: 'Saul Goodman',
-			text: `There are many variations of passages of Lorem Ipsum available,
-            but the majority have suffered alteration`,
-		},
-		{
-			url: 'https://i1.sndcdn.com/avatars-46GF1rag02JyR6y8-zIUu6w-t500x500.jpg',
-			name: 'Saul Goodman',
-			text: `There are many variations of passages of Lorem Ipsum available,
-            but the majority have suffered alteration`,
-		},
+		// {
+		// 	url: 'https://i1.sndcdn.com/avatars-46GF1rag02JyR6y8-zIUu6w-t500x500.jpg',
+		// 	name: 'Saul Goodman',
+		// 	text: `There are many variations of passages of Lorem Ipsum available,
+    //         but the majority have suffered alteration`,
+		// },
+		// {
+		// 	url: 'https://i1.sndcdn.com/avatars-46GF1rag02JyR6y8-zIUu6w-t500x500.jpg',
+		// 	name: 'Saul Goodman',
+		// 	text: `There are many variations of passages of Lorem Ipsum available,
+    //         but the majority have suffered alteration`,
+		// },
 	];
+
+	const {testimonials} = useSelector(s=>s)
+
 	return (
-		<div className='bg-image-testimonials w-full h-full pb-16'>
-			<div className='testimonials-container'>
-				<section className='reviews relative left-8'>
+		<div className='flex w-100vw h-[80vh] pb-16 font-sans bg-[#E1E1E1]'>
+			<div className='flex justify-center testimonials-container'>
+				<section className='reviews mt-20'>
 					<div className='flex justify-center'>
-						<h2 className='text-3xl text-center pt-8 mb-6 btn-home'>Opiniones</h2>
+						<h2 className=' text-black text-5xl font-bold font-sans mb-20'>OPINIONES</h2>
 					</div>
 
 					<div className='swiper customer-reviews grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-						{slides.map((s) => {
+						{testimonials?.map((s, index) => {
 							return (
-								<div className='swiper-wrapper w-9/12 md:w-11/12'>
-									<div className='swiper-slide w-full review-card'>
-										<img className='quote-icon' src={quote} />
+								<div key={index} className='swiper-wrapper w-11/12 sm:w-9/12 md:w-11/12'>
+									<div className='swiper-slide w-full review-card min-h-[55vh] sm:min-h-[45vh] md:min-h-[55vh] xl:min-h-[50vh] 2xl:min-h-[45vh]'>
+										<img className='quote-icon' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/quote_s5hblr.png"} />
 										{/* <FontAwesomeIcon className="quote-icon" icon={faQuoteLeft}/> */}
-										<h3 className='card-title'>I loved it</h3>
-										<p className='card-body'>{s.text}</p>
+										{/* <h3 className='card-title lighter-blue'>I loved it</h3> */}
+										<p className='card-body pt-4'>{s?.text}</p>
 
 										<div className='card-footer'>
-											<img src={s.url} alt='profile photo' className='profile-photo' />
+											<img src={s?.url} alt='profile photo' className='profile-photo' />
 											<div>
-												<span className='name '>{s.name}</span>
+												<span className='name '>{s?.name}</span>
 												<div className='flex'>
-													<img className='star w-6' src={star} />
-													<img className='star w-6' src={star} />
-													<img className='star w-6' src={star} />
-													<img className='star w-6' src={star} />
-													<img className='star w-6' src={star} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
+													<img className='star w-6' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/star_ewmvol.png"} />
 												</div>
 											</div>
 										</div>

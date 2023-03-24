@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { postClient } from '../../redux/actions/actions';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllClients, postClient } from '../../redux/actions/actions';
 import Validate from './Validations';
 import { useAuth0 } from '@auth0/auth0-react';
+import swal from 'sweetalert';
+import UploadToCloudinary from '../UploadToCloudinary/UploadToCloudinary';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Form() {
 	const dispatch = useDispatch();
 
+	const navigate = useNavigate();
+
 	const { user } = useAuth0();
+
+	const allClient = useSelector((state) => state.allClients);
+
+	// console.log(allClient);
+
+	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+
+	const matchId = matchEmail && matchEmail.id;
 
 	const [input, setInput] = useState({
 		user: user.name,
@@ -47,20 +60,57 @@ export default function Form() {
 		setErrors(Validate(input));
 		let error = Validate(input);
 		if (Object.values(error).length !== 0) {
-			alert('Falta información obligatoria');
+			swal({
+				title: 'Faltan Información',
+				text: `${
+					error.mail ||
+					error.user ||
+					error.mail ||
+					error.name ||
+					error.lastName ||
+					error.phone ||
+					error.dni ||
+					error.age ||
+					error.weight ||
+					error.height ||
+					error.address ||
+					error.city
+				}`,
+				icon: 'warning',
+				dangerMode: true,
+			});
 		} else {
 			dispatch(postClient(input));
-			alert('¡Información actualizada correctamente!');
+			swal({
+				title: 'Gracias!',
+				text: '¡Información creada correctamente!',
+				icon: 'success',
+			});
+			navigate(`/home`);
 		}
 	};
 
+	function handleUpload(res) {
+		if (res.info.secure_url) {
+			setInput({
+				...input,
+				picture: res.info.secure_url,
+			});
+		}
+	}
+
+	useEffect(() => {
+		dispatch(getAllClients());
+	}, []);
+
 	return (
 		<>
-			<div className=' relative pt-28 px-10 '>
-				<div className='md:grid md:grid-cols-3 md:gap-6 justify-center'>
+			<div className=' relative font-text pt-12 px-10 '>
+				<div className='md:grid md:grid-cols-2 md:gap-6 justify-center'>
 					<div className='mt-5 md:col-span-2 md:mt-0'>
 						<div className='md:col-span-1'>
 							<div className='px-4 sm:px-0'>
+								{/* PROFILE INFO */}
 								<h3 className='text-base font-semibold leading-6 text-gray-900'>
 									Perfil
 								</h3>
@@ -73,6 +123,7 @@ export default function Form() {
 						<form onSubmit={(e) => handleSubmit(e)}>
 							<div className='shadow sm:overflow-hidden sm:rounded-md'>
 								<div className='space-y-6 bg-white px-4 py-5 sm:p-6'>
+									{/* USERNAME */}
 									<div className='col-span-6 sm:col-span-3'>
 										<label
 											htmlFor='user'
@@ -86,7 +137,7 @@ export default function Form() {
 											id='input'
 											value={input.user}
 											autoComplete='given-name'
-											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
 										/>
 										{errors?.user && (
@@ -96,6 +147,7 @@ export default function Form() {
 										)}
 									</div>
 
+									{/* EMAIL */}
 									<div className='col-span-6 sm:col-span-4'>
 										<label
 											htmlFor='mail'
@@ -109,8 +161,9 @@ export default function Form() {
 											id='mail'
 											value={input.mail}
 											autoComplete='mail'
-											className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 											onChange={handleChange}
+											readOnly
 										/>
 										{errors?.mail && (
 											<p className=' text-red-500'>
@@ -119,65 +172,31 @@ export default function Form() {
 										)}
 									</div>
 
-									<div>
-										<label className='block text-sm font-medium leading-6 text-gray-900'>
-											Foto
-										</label>
-										<div className='mt-2 flex items-center'>
-											<span className='inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100'>
-												<img src={user.picture} alt='' />
-												<path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
-											</span>
-											<button
-												type='button'
-												className='ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50'
+									{/* UPLOAD IMAGE */}
+									<div className=''>
+										{input.picture && (
+											<a
+												href={input.picture}
+												className='lighter-blue underline'
+												target='_blank'
 											>
-												Cambiar
-											</button>
-										</div>
+												<img
+													src={input?.picture}
+													className='pt-2 pl-4 w-24'
+													alt='blog image'
+												/>
+											</a>
+										)}
+										<br />
+										<UploadToCloudinary
+											onUpload={handleUpload}
+											name='image'
+											onClick={handleChange}
+											className='pb-10'
+										/>
 									</div>
 
-									<div>
-										{/* <label className='block text-sm font-medium leading-6 text-gray-900'>
-											Foto de portada
-										</label> */}
-										<div className='mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
-											<div className='space-y-1 text-center'>
-												<svg
-													className='mx-auto h-12 w-12 text-gray-400'
-													stroke='currentColor'
-													fill='none'
-													viewBox='0 0 48 48'
-													aria-hidden='true'
-												>
-													<path
-														d='M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02'
-														strokeWidth={2}
-														strokeLinecap='round'
-														strokeLinejoin='round'
-													/>
-												</svg>
-												<div className='flex text-sm text-gray-600'>
-													<label
-														htmlFor='picture'
-														className='relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500'
-													>
-														<span>Cargar un archivo</span>
-														<input
-															id='picture'
-															name='picture'
-															type='file'
-															className='sr-only'
-															// onChange={handleChange}
-														/>
-													</label>
-													<p className='pl-1'>o arrastrar y soltar</p>
-												</div>
-												<p className='text-xs text-gray-500'>PNG, JPG, GIF up to 10MB</p>
-											</div>
-										</div>
-									</div>
-
+									{/* ABOUT */}
 									<div>
 										<label
 											htmlFor='about'
@@ -191,27 +210,20 @@ export default function Form() {
 												name='about'
 												value={input.about}
 												rows={3}
-												className='mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6'
-												placeholder=' Breve descripción de su perfil'
+												className=' indent-2 mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6'
+												placeholder='Breve descripción de su perfil'
 												defaultValue={''}
 												onChange={handleChange}
 											/>
+											{errors?.about && (
+												<p className=' text-red-500'>
+													<i>{errors.about}</i>
+												</p>
+											)}
 										</div>
 										<p className='mt-2 text-sm text-gray-500'>URL con hipervínculos.</p>
 									</div>
 								</div>
-								{/* <div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
-									<button
-										type='submit'
-										className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
-									>
-										Guardar
-									</button>
-								</div> */}
-								{/* </div> */}
-
-								{/* </div>
-			</div> */}
 
 								<div className='hidden sm:block' aria-hidden='true'>
 									<div className='py-5'>
@@ -219,8 +231,7 @@ export default function Form() {
 									</div>
 								</div>
 
-								{/* <div className='mt-10 sm:mt-0 px-10'>
-						<div className='md:grid md:grid-cols-3 md:gap-6'> */}
+								{/* PERSONAL INFO */}
 								<div className='md:col-span-1'>
 									<div className='px-4 sm:px-0'>
 										<h3 className='text-base font-semibold leading-6 text-gray-900'>
@@ -231,9 +242,8 @@ export default function Form() {
 										</p>
 									</div>
 								</div>
-								{/* <div className='mt-5 md:col-span-2 md:mt-0'> */}
-								{/* <form onSubmit={(e) => handleSubmitProfile(e)}> */}
-								{/* <div className='overflow-hidden shadow sm:rounded-md'> */}
+
+								{/* NAME */}
 								<div className='bg-white px-4 py-5 sm:p-6'>
 									<div className='grid grid-cols-6 gap-6'>
 										<div className='col-span-6 sm:col-span-3'>
@@ -249,7 +259,7 @@ export default function Form() {
 												id='name'
 												value={input.name}
 												autoComplete='given-name'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.name && (
@@ -259,6 +269,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* LASTNAME */}
 										<div className='col-span-6 sm:col-span-3'>
 											<label
 												htmlFor='lastName'
@@ -272,7 +283,7 @@ export default function Form() {
 												id='lastName'
 												value={input.lastName}
 												autoComplete='family-name'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.lastName && (
@@ -282,6 +293,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* PHONE */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
 											<label
 												htmlFor='phone'
@@ -295,8 +307,8 @@ export default function Form() {
 												id='phone'
 												value={input.phone}
 												autoComplete='phone'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-												placeholder='  Ej: +54 3442 48-0617'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												placeholder='Ej: +54 3442 48-0617'
 												onChange={handleChange}
 											/>
 											{errors?.phone && (
@@ -306,6 +318,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* DNI */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-3'>
 											<label
 												htmlFor='dni'
@@ -319,7 +332,7 @@ export default function Form() {
 												id='dni'
 												value={input.dni}
 												autoComplete='dni'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.dni && (
@@ -329,6 +342,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* AGE */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='age'
@@ -342,7 +356,7 @@ export default function Form() {
 												id='age'
 												value={input.age}
 												autoComplete='age'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.age && (
@@ -352,6 +366,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* WEIGHT */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='weight'
@@ -365,8 +380,8 @@ export default function Form() {
 												id='weight'
 												value={input.weight}
 												autoComplete='weight'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-												placeholder='  kg'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												placeholder='kg'
 												onChange={handleChange}
 											/>
 											{errors?.weight && (
@@ -376,6 +391,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* HEIGHT */}
 										<div className='col-span-6 sm:col-span-2 lg:col-span-2'>
 											<label
 												htmlFor='height'
@@ -389,8 +405,8 @@ export default function Form() {
 												id='height'
 												value={input.height}
 												autoComplete='height'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-												placeholder='  cm'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												placeholder='cm'
 												onChange={handleChange}
 											/>
 											{errors?.height && (
@@ -400,6 +416,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* ADDRESS */}
 										<div className='col-span-6'>
 											<label
 												htmlFor='address'
@@ -413,7 +430,7 @@ export default function Form() {
 												id='address'
 												value={input.address}
 												autoComplete='address'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.address && (
@@ -423,6 +440,7 @@ export default function Form() {
 											)}
 										</div>
 
+										{/* CITY */}
 										<div className='col-span-6 sm:col-span-6 lg:col-span-2'>
 											<label
 												htmlFor='city'
@@ -436,11 +454,17 @@ export default function Form() {
 												id='city'
 												value={input.city}
 												autoComplete='address-level2'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
+											{errors?.city && (
+												<p className=' text-red-500'>
+													<i>{errors.city}</i>
+												</p>
+											)}
 										</div>
 
+										{/* REGION */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
 											<label
 												htmlFor='region'
@@ -454,11 +478,12 @@ export default function Form() {
 												id='region'
 												value={input.region}
 												autoComplete='address-level1'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 										</div>
 
+										{/* POSTALCODE */}
 										<div className='col-span-6 sm:col-span-3 lg:col-span-2'>
 											<label
 												htmlFor='postalCode'
@@ -472,20 +497,33 @@ export default function Form() {
 												id='postalCode'
 												value={input.postalCode}
 												autoComplete='postalCode'
-												className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 										</div>
 									</div>
 								</div>
-								<div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
-									<button
-										disabled={Object.keys(errors).length !== 0}
-										type='submit'
-										className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
-									>
-										Guardar
-									</button>
+
+								{/* BUTTONS */}
+								<div className='grid grid-cols-2 bg-gray-50 px-4 py-3 sm:px-6'>
+									{/* BUTTON BACK */}
+									<div className=''>
+										<Link to={`/home`}>
+											<button className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'>
+												Volver
+											</button>
+										</Link>
+									</div>
+
+									{/* BUTTON-CREATE */}
+									<div className=' text-right cols-start-2'>
+										<button
+											type='submit'
+											className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
+										>
+											Crear
+										</button>
+									</div>
 								</div>
 							</div>
 						</form>

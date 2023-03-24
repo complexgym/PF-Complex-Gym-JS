@@ -1,16 +1,4 @@
-import ig from '../../assets/footer/instagram.png';
-import location from '../../assets/footer/location.png';
-import email from '../../assets/footer/email.png';
-import phone from '../../assets/footer/phone.png';
-import time from '../../assets/footer/time.png';
-
 export default function Footer() {
-	const openWpp = () => {
-		window.open(
-			'https://api.whatsapp.com/send?phone=543442480617&text=%C2%A1Hola!%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20info%20sobre%20los%20entrenamientos%20semi-personalizados%20en%20COMPLEX%20%F0%9F%92%AA%F0%9F%8F%BB%F0%9F%8F%8B%F0%9F%8F%BB%E2%80%8D%E2%99%80%EF%B8%8F%F0%9F%8F%8B%F0%9F%8F%BB'
-		);
-	};
-
 	const openIg = () => {
 		window.open('https://www.instagram.com/complex.cdm/');
 	};
@@ -26,46 +14,52 @@ export default function Footer() {
 	};
 
 	return (
-		<div className='nav-footer flex flex-col w-full items-center pt-10 pb-6'>
+		// <div className='bg-black text-[#d6d6d6] font-mono flex flex-col w-full items-center pt-10 pb-6'>
+		<div className='bg-black text-[#d6d6d6] font-sans flex flex-col w-full items-center pt-10 pb-6'>
 			<div className='section-top flex'>
-				<h1 className='text-2xl'>Contacto</h1>
+				<h1 className='text-2xl font-title underline'>Contacto</h1>
 			</div>
 
 			<div
 				className='section-bottom grid grid-cols-2 w-4/5 gap-4 my-4
             md:flex justify-between'
 			>
+{/* 
+			<div
+				className='section-bottom grid grid-cols-2 w-4/5 gap-4 my-4
+            md:flex justify-between'
+			> */}
 				<div className='flex'>
-					<img className='w-5 h-6 mr-1' src={location} />
+					<img className='w-5 h-6 mr-1' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196394/location_ixacvq.png"} />
 					<label className='cursor-pointer underline' onClick={openMap}>
 						Calle 114 entre 29 / 31
 					</label>
 				</div>
 
 				<div className='flex w-full justify-end md:w-auto'>
-					<img className='w-5 h-6 mr-1' src={email} />
+					<img className='w-5 h-6 mr-1' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196395/email_zfgv3n.png"} />
 					<label>Email</label>
 				</div>
 
 				<div className='flex'>
-					<img className='w-5 h-6 mr-1' src={phone} />
+					<img className='w-5 h-6 mr-1' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196394/phone_zfwnlt.png"} />
 					<label>+54 3442 48-0617</label>
 				</div>
 
 				<div className='flex w-full justify-end md:w-auto'>
-					<img className='w-5 h-6 mr-1' src={time} />
+					<img className='w-5 h-6 mr-1' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196394/time_dkrieu.png"} />
 					<label>07-12 / 15-21 hs</label>
 				</div>
 			</div>
 
 			<div className='section-bottom w-4/5 flex justify-between'>
 				<div>
-					<p>
-						Creada por alumnos de
-						<label className='lighter-blue cursor-pointer' onClick={openHenry}>
+					<span>
+						Creada por alumnos de&nbsp; {/* space */}
+						<span className='lighter-blue cursor-pointer' onClick={openHenry}>
 							Soy Henry
-						</label>
-					</p>
+						</span>
+					</span>
 				</div>
 
 				<div className='flex'>
@@ -76,7 +70,7 @@ export default function Footer() {
 					<div className='ml-2'>
 						<img
 							className='w-8 cursor-pointer'
-							src={ig}
+							src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196395/instagram_pozow5.png"}
 							alt='instagram'
 							onClick={openIg}
 						/>

@@ -8,9 +8,9 @@ export default function Validate(input) {
 	let errors = {};
 
 	if (!input.user) {
-		errors.user = 'El campo Nombre de usuario debe rellenarse obligatoriamente'; //
-	} else if (!regexUser.test(!input.user)) {
-		errors.user = 'Sólo se aceptan letras y números.';
+		errors.user = 'El campo Nombre de usuario debe rellenarse obligatoriamente';
+	} else if (!regexUser.test(input.user)) {
+		errors.user = 'Sólo se aceptan letras y números sin espacios.';
 	} else if (input.user.length < 3) {
 		errors.user = 'El Nombre de usuario es demasiado corto, Min 3 caracteres.';
 	} else if (input.user.length > 16) {
@@ -19,6 +19,8 @@ export default function Validate(input) {
 		errors.mail = 'El campo Correo electrónico debe rellenarse obligatoriamente';
 	} else if (!regexMail.test(input.mail)) {
 		errors.mail = 'Ingrese un email valido';
+	} else if (input.about.length > 500) {
+		errors.about = 'La Descripción es demasiado larga, Max 500 caracteres.';
 	} else if (!input.name) {
 		errors.name = 'El campo Nombre debe rellenarse obligatoriamente';
 	} else if (!regexName.test(input.name)) {
@@ -53,6 +55,8 @@ export default function Validate(input) {
 		errors.height = 'El campo Estatura debe rellenarse obligatoriamente';
 	} else if (!input.address) {
 		errors.address = 'El campo Dirección debe rellenarse obligatoriamente';
+	} else if (!input.city) {
+		errors.city = 'El campo Ciudad debe rellenarse obligatoriamente';
 	}
 
 	return errors;

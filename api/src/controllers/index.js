@@ -16,8 +16,37 @@ const editPublication = require("./publications/editPublication")
 const getAllPublications = require("./publications/getAllPublications")
 const getPublicationsByID = require("./publications/getPublicationsByID")
 const getPublicationsByName = require("./publications/getPublicationsByName")
-const filterByDate = require('./publications/filterByDate')
-const filterByTag = require('./publications/filterByTag')
+const deleteTrainer = require("./trainer/deleteTrainer")
+const postTrainer = require("./trainer/getTrainerByName")
+const getTrainerByName = require("./trainer/getTrainerByName")
+const editTrainer = require("./trainer/editTrainer")
+const getAllTrainers = require("./trainer/getAllTrainers")
+const getTrainerById = require("./trainer/getTrainerById")
+const filters = require('./publications/filters')
+const getAllMemberships = require("./memberships/getAllMemberships");
+const postMemberships = require("./memberships/postMemberships");
+const deleteMemberships = require("./memberships/deleteMemberships");
+const updateMemberships = require("./memberships/updateMemberships");
+const getMembershipsById = require("./memberships/getMembershipsById")
+const deleteAdmin = require("./admin/deleteAdmin")
+const getAllAdmins = require("./admin/getAllAdmins")
+const postAdmin = require("./admin/postAdmin")
+const putAdmin = require("./admin/putAdmin")
+const getAllTestimonials = require("./testimonials/getAllTestimonials")
+const deleteTestimonials = require("./testimonials/deleteTestimonials")
+const postTestimonials = require("./testimonials/postTestimonials")
+const putTestimonials = require("./testimonials/putTestimonials")
+const sendMail = require('./mails/sendMail')
+const postPayments = require("./payments/postPayments")
+const getFeedback = require("./payments/getFeedback")
+const postNotification = require("./payments/postNotification")
+const deletePlans = require("./plans/deletePlans")
+const getAllPlans = require("./plans/getAllPlans")
+const postPlans = require("./plans/postPlans")
+const updatePlans = require("./plans/updatePlans")
+
+const getAllCalendar = require('./calendar/getAllCalendars')
+const postCalendar = require('./calendar/postCalendar')
 
 
 module.exports = {
@@ -39,6 +68,39 @@ module.exports = {
     getAllPublications,
     getPublicationsByID,
     getPublicationsByName,
-    filterByDate,
-    filterByTag
+    filters,
+    getAllMemberships,
+    postMemberships,
+    deleteMemberships,
+    updateMemberships,
+    deleteTrainer,
+    postTrainer,
+    getTrainerByName,
+    editTrainer,
+    getAllTrainers,
+    getTrainerById,
+    filters,
+    postPayments,
+    getMembershipsById,
+    filters,
+    deleteAdmin,
+    getAllAdmins,
+    postAdmin,
+    putAdmin,
+    getAllTestimonials,
+    deleteTestimonials,
+    postTestimonials,
+    putTestimonials,
+    getFeedback,
+    postNotification,
+    deletePlans,
+    getAllPlans,
+    postPlans,
+    updatePlans,
+    sendMail,
+    getFeedback,
+
+    getAllCalendar,
+    postCalendar
 }
+

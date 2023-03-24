@@ -7,19 +7,15 @@ const {
     getAllPublications,
     getPublicationsByID,
     getPublicationsByName,
-    filterByDate,
-    filterByTag
+    filters
 } = require("../controllers/index")
 
 const router = Router()
-
+router.get('/filters', filters) // filtros
 router.get('/all', getAllPublications)
 router.get('/:id', getPublicationsByID)
 router.get('/', getPublicationsByName)
 
-// FILTER BLOG
-router.get('/filters/tag/:tag', filterByTag)
-router.get('/filters/date/:date', filterByDate)
 
 router.post("/", createPublication)
 router.delete('/:id', deletePublication)
