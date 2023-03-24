@@ -40,10 +40,10 @@ function App() {
 		dispatch(getAllPlans())
 
 
-		if (isAuthenticated && !hasRedirected) {
-			navigate('/home');
-			setHasRedirected(true);
-		}
+		// if (isAuthenticated && !hasRedirected) {
+		// 	navigate('/home');
+		// 	setHasRedirected(true);
+		// }
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
 
 	const { pathname } = location;
@@ -81,8 +81,8 @@ function App() {
 				<Route path={'/blog/create'} element={<CreateBlog />} />
 				<Route path={'/planes'} element={<Plans />} />
 				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
-					<Route path={'/registro'} element={<Form />} />
-					<Route path={'/perfil/:id'} element={<Profile />} />
+				<Route path={'/registro'} element={<Form />} />
+				<Route path={'/perfil/:id'} element={<Profile />} />
 				</Route>
 				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
 					<Route path={'/dashboard'} element={<DashBoard />} />

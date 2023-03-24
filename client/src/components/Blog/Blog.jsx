@@ -15,7 +15,7 @@ import { NavLink } from 'react-router-dom';
 //todo blog container
 export default function Blog() {
 	const dispatch = useDispatch();
-	const { initial_posts, matched_posts, search_blog, filters_blog } = useSelector(
+	const { matched_posts, ig_posts, search_blog, filters_blog } = useSelector(
 		(s) => s
 	);
 	const [search, setSearch] = useState('');
@@ -90,14 +90,14 @@ export default function Blog() {
 	}, [filters]);
 
 	//todo to load the ig posts before (no andaaa)
-	const instagramPosts = (
-		<>
-			<InstagramPost url={'https://www.instagram.com/p/CpSkKuMgP_u/'} />
-			<InstagramPost url={'https://www.instagram.com/p/CpkRaEKjOsA/'} />
-			<InstagramPost url={'https://www.instagram.com/p/CoqESveJj-b/'} />
-			<InstagramPost url={'https://www.instagram.com/p/CpyI4RXuaOI/'} />
-		</>
-	);
+	// const instagramPosts = (
+	// 	<>
+	// 		<InstagramPost url={'https://www.instagram.com/p/CpSkKuMgP_u/'} />
+	// 		<InstagramPost url={'https://www.instagram.com/p/CpkRaEKjOsA/'} />
+	// 		<InstagramPost url={'https://www.instagram.com/p/CoqESveJj-b/'} />
+	// 		<InstagramPost url={'https://www.instagram.com/p/CpyI4RXuaOI/'} />
+	// 	</>
+	// );
 
 	const handleClearFilters = (e) => {
 		e.preventDefault();
@@ -113,7 +113,7 @@ export default function Blog() {
 				<div className='py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 '>
 					{/* BLOG */}
 					<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
-						<h2 className='mb-4 mt-16 font-title text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>
+						<h2 className='mb-4 mt-16 font-subtitle text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>
 							Nuestro Blog
 						</h2>
 					</div>
@@ -124,7 +124,7 @@ export default function Blog() {
 						<div className='mr-4'>
 							<label
 								for='search'
-								className='block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white'
+								className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
 							>
 								Búsqueda por título
 							</label>
@@ -142,7 +142,7 @@ export default function Blog() {
 						<div className='mr-4'>
 							<label
 								for='tag'
-								className='block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white'
+								className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
 							>
 								Por tema
 							</label>
@@ -167,7 +167,7 @@ export default function Blog() {
 						<div className='mr-4'>
 							<label
 								for='per_date'
-								className='block font-title mb-2 text-sm font-medium text-gray-900 dark:text-white'
+								className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
 							>
 								Orden por fecha
 							</label>
@@ -208,14 +208,14 @@ export default function Blog() {
 						//get null posts
 						isLoaded && (
 							<div className='flex flex-col items-center pt-0 pb-4'>
-								<img
+								{/* <img
 									src={
 										'https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196370/not-found-blog_ly0lcw.png'
 									}
 									alt='not found img'
 									className='w-[150px] md:w-[250px] rounded-xl'
-								/>
-								<p className='text-red-500 font-bold flex justify-center pb-4'>
+								/> */}
+								<p className='text-red-500 font-text font-bold flex justify-center pb-4'>
 									{search_blog
 										? 'Perdon, ningún blog cumple la condicion!'
 										: 'Ningún blog encontrado!'}
@@ -226,7 +226,7 @@ export default function Blog() {
 
 					{/* REDES */}
 					<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
-						<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white font-title'>
+						<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white font-subtitle'>
 							Nuestras redes
 						</h2>
 					</div>
@@ -235,7 +235,9 @@ export default function Blog() {
 						className='w-[90vw] grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
 					2xl:grid-cols-4 py-8'
 					>
-						{instagramPosts}
+						{ig_posts.map(post=>{
+							return <InstagramPost url={post?.image}/>
+						})}
 					</div>
 				</div>
 			</section>

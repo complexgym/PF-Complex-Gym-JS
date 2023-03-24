@@ -13,7 +13,8 @@ const editPublication = async (req, res) => {
             image,
             tag,
             author_name,
-            author_picture
+            author_picture,
+            isInstagram
         } = req.body;
     
     
@@ -24,7 +25,8 @@ const editPublication = async (req, res) => {
                 image,
                 tag,
                 author_name,
-                author_picture
+                author_picture,
+                isInstagram
             }, {
             where:{
                 id: id
