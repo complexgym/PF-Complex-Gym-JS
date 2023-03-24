@@ -10,5 +10,5 @@
       ]
     }
   ],
-  "routes": [{ "source": "/[^.]+", "destination": "./index.html", "status": 200 }]
+  "routes": [{ "source": "/[^.]+", "destination": "/", "status": 200 }]
 }
