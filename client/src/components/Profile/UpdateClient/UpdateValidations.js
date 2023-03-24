@@ -1,6 +1,6 @@
 const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
 const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/;
-const regexPhone = /^\+?5\d{8,11}$/;
+const regexPhone = /^\+(?:\d[\-\s]?){8,14}\d$/;
 const regexDni = /^[0-9]{6,9}$/;
 
 export default function Validate(input) {
