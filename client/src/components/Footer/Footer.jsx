@@ -14,7 +14,8 @@ export default function Footer() {
 	};
 
 	return (
-		<div className='nav-footer font-mono flex flex-col w-full items-center pt-10 pb-6'>
+		// <div className='bg-black text-[#d6d6d6] font-mono flex flex-col w-full items-center pt-10 pb-6'>
+		<div className='bg-black text-[#d6d6d6] font-sans flex flex-col w-full items-center pt-10 pb-6'>
 			<div className='section-top flex'>
 				<h1 className='text-2xl font-title underline'>Contacto</h1>
 			</div>
@@ -23,6 +24,11 @@ export default function Footer() {
 				className='section-bottom grid grid-cols-2 w-4/5 gap-4 my-4
             md:flex justify-between'
 			>
+{/* 
+			<div
+				className='section-bottom grid grid-cols-2 w-4/5 gap-4 my-4
+            md:flex justify-between'
+			> */}
 				<div className='flex'>
 					<img className='w-5 h-6 mr-1' src={"https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196394/location_ixacvq.png"} />
 					<label className='cursor-pointer underline' onClick={openMap}>

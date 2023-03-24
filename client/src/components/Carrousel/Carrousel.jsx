@@ -26,19 +26,19 @@ export default function Carrousel() {
 		setCurrentIndex(slideIndex);
 	};
 
-	return (
-		// <div className='bg-[#ededed] py-14 px-10'>
-		<div className='min-h-[100vh] w-[98.5vw] relative'>
-			<div className='absolute w-[100%] h-[90%] left-0'>
-				<Spline
-					className='min-h-[120vh]'
-					scene='https://prod.spline.design/TPvZ3LC5QlBY7y8M/scene.splinecode'
-				/>
-			</div>
-			{/* text carousel */}
-			<div className=' absolute left-1/2 transform -translate-x-1/2 my-16'>
-				<h2 className='text-5xl font-bold text-[#1D459D]'>Actualmente ofrecemos</h2>
-			</div>
+  return (
+    // <div className='bg-[#ededed] py-14 px-10'>
+    <div className="min-h-[100vh] w-[98.5vw]">
+      <div className="absolute w-[100%] h-[90%] left-0">
+        <Spline
+          className='min-h-[100vh]'
+          scene="https://prod.spline.design/TPvZ3LC5QlBY7y8M/scene.splinecode"
+        />
+      </div>
+      {/* text carousel */}
+      <div className=" absolute left-1/2 transform -translate-x-1/2 my-14">
+        <h2 className="text-5xl font-bold text-black">ACTUALMENTE OFRECEMOS</h2>
+      </div>
 
 			{/* content carrousel */}
 			<div className='max-w-[1000px] h-[700px] w-full m-auto pt-16 pb-16 px-4 relative z-0'>
