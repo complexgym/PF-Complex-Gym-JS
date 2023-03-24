@@ -19,14 +19,17 @@ export default function BlogDetails() {
 	const details = post_details;
 
     const contentArr = details?.content?.split(" ")
-    let newContent = []
+    
+    function getNewContent(counter){
+        let newContent = []
 
-    const counter = 8
+        for(let i = 0; i < Math.ceil(contentArr?.length / counter); i ++){
+            if(i===0 ) newContent.push(contentArr?.slice(0, counter * 1).join(" "), "\n")
+            else if(i===1) newContent.push(contentArr?.slice(counter, counter * 2).join(" "), "\n")
+            else newContent.push(contentArr?.slice(counter*(i), counter * (i+1)).join(" "), "\n")
+        }
 
-    for(let i = 0; i < Math.ceil(contentArr?.length / counter); i ++){
-        if(i===0 ) newContent.push(contentArr?.slice(0, counter * 1).join(" "), "\n")
-        else if(i===1) newContent.push(contentArr?.slice(counter, counter * 2).join(" "), "\n")
-        else newContent.push(contentArr?.slice(counter*(i), counter * (i+1)).join(" "), "\n")
+        return newContent
     }
 
 	return (
@@ -64,13 +67,28 @@ export default function BlogDetails() {
                 </div>
 
                 <div className="whitespace-nowrap text-clip">
-                    <p className="mb-5 font-light text-black dark:text-gray-400
-                    ">
-						{newContent.map(el=>{
+                    <p className={`mb-5 block md:hidden font-light text-black dark:text-gray-400
+                    `}>
+						{getNewContent(5).map(el=>{
                             if(el==="\n") return <br></br>
                             else return <span>{el}</span>
                         })}
 					</p>
+                    <p className="mb-5 hidden md:block font-light text-black dark:text-gray-400
+                    ">
+						{getNewContent(8).map(el=>{
+                            if(el==="\n") return <br></br>
+                            else return <span>{el}</span>
+                        })}
+					</p>
+                    <p className={`hidden xl:block mb-5 font-light text-black dark:text-gray-400
+                    `}>
+						{getNewContent(9).map(el=>{
+                            if(el==="\n") return <br></br>
+                            else return <span>{el}</span>
+                        })}
+					</p>
+
                     {/* {contentArr?.map((word, index)=>{
                         // if(word.match(/\.(jpeg|jpg|gif|png)$/)) {
                         //     return <img src={word} className="pt-8 pb-8 rounded-md h-80 w-full" alt="text img"/>

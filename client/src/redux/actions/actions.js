@@ -14,6 +14,7 @@ import {
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
+	DELETE_BLOG,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -134,6 +135,20 @@ export const postBlog = (data) => {
 			const response = await axios.post('/publications', data);
 			return dispatch({
 				type: POST_BLOG,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const deleteBlog = (id) => {
+	return async function (dispatch) {
+		try {
+			const response = await axios.delete(`/publications/${id}`);
+			return dispatch({
+				type: DELETE_BLOG,
+				payload: id
 			});
 		} catch (error) {
 			console.log(error);

@@ -14,6 +14,7 @@ import {
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
+	DELETE_BLOG,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -96,6 +97,13 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		case DELETE_BLOG: 
+			return {
+				...state,
+				initial_posts: state.initial_posts.filter(el=>el.id!==payload),
+				matched_posts: state.matched_posts.filter(el=>el.id!==payload),
+				ig_posts: state.ig_posts.filter(el=>el.id!==payload)
+			}
 		case GET_ALL_TESTIMONIALS:
 			return {
 				...state,

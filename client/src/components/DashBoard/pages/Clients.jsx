@@ -165,7 +165,7 @@ const SingleClient = ({client}) => {
 			</td>
 			<td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
-					{client?.age}/{client?.weight}/{client?.height}
+					{client?.age}/ {client?.weight}kg/ {client?.height}cm
 				</span>
 			</td>
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
