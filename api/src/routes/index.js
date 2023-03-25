@@ -17,14 +17,13 @@ router.use('/clients', clients)
 router.use('/activities', activities)
 router.use('/publications', publications)
 router.use('/trainer', trainer)
-router.use('/payments', payments)
+// router.use('/payments', payments)
 router.use('/menberships',memberships)
 router.use('/trainer', trainer)
 router.use('/admin', admin)
 router.use('/testimonials',  testimonials)
 router.use('/plans', plans)
 router.use('/mail', mails)
-
 router.use('/calendar', calendar)
 
 module.exports = router
