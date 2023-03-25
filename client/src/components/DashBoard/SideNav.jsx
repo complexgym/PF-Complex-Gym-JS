@@ -12,7 +12,7 @@ const SideNav = () => {
 			<div className='h-19'>
 				<i
 					className='absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times dark:text-white text-slate-400 xl:hidden'
-					sidenav-close
+					// sidenav-close
 				></i>
 				<a
 					className='block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700'
