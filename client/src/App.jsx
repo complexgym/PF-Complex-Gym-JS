@@ -36,6 +36,7 @@ import Loading from './components/Loading/Loading';
 
 axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
+
 function App() {
 	const location = useLocation();
 	const navigate = useNavigate();

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { postPayment } from "../../redux/actions/actions";
 
 //todo PLAN CARD
 export default function SinglePlan({ plan, option }) {
 
 	const {user} = useAuth0()
+
+	const dispatch = useDispatch()
 
 	const allClient = useSelector((state) => state.allClients);
 
@@ -23,9 +25,9 @@ export default function SinglePlan({ plan, option }) {
 		quantity: 1,
 	})
 
-	const handleSubmit = (e)=> {
+	const handleSubmit = async (e)=> {
 		e.preventDefault()
-		console.log(purchase);
+		dispatch(postPayment(purchase))
 	}
 
 	return (
