@@ -44,7 +44,8 @@ const deletePlans = require("./plans/deletePlans")
 const getAllPlans = require("./plans/getAllPlans")
 const postPlans = require("./plans/postPlans")
 const updatePlans = require("./plans/updatePlans")
-
+const getAllPayments = require("./payments/getAllPayments")
+const getPaymentsById =require("./payments/getPaymentsById")
 const getAllCalendar = require('./calendar/getAllCalendars')
 const postCalendar = require('./calendar/postCalendar')
 
@@ -99,7 +100,8 @@ module.exports = {
     updatePlans,
     sendMail,
     getFeedback,
-
+    getAllPayments,
+    getPaymentsById,
     getAllCalendar,
     postCalendar
 }

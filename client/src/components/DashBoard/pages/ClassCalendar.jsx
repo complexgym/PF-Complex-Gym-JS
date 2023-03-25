@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
-import SideNav from "../SideNav";
-import { useSelector } from "react-redux"
-import ClientCard from "./ClientCard";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SideNav from '../SideNav';
 
-const Clients = () => {
-	const { allClients } = useSelector((s) => s);
+const ClasesCalendar = () => {
 	return (
 		<div>
 			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
@@ -14,11 +12,7 @@ const Clients = () => {
 
 				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
 					{/* <!-- Navbar --> */}
-					<nav
-						className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'
-						navbar-main
-						navbar-scroll='false'
-					>
+					<nav className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'>
 						<div className='flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit'>
 							<nav>
 								{/* <!-- breadcrumb --> */}
@@ -32,10 +26,10 @@ const Clients = () => {
 										className="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
 										aria-current='page'
 									>
-										Clientes
+										Calendario
 									</li>
 								</ol>
-								<h6 className='mb-0 font-bold text-white capitalize'>Clientes</h6>
+								<h6 className='mb-0 font-bold text-white capitalize'>Calendario</h6>
 							</nav>
 
 							<div className='flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto'>
@@ -59,37 +53,37 @@ const Clients = () => {
 						<div className='flex flex-wrap -mx-3'>
 							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
-									<div className='p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
-										<h6 className='dark:text-white'>Tabla Clientes</h6>
+									<div className=' grid grid-cols-2 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
+										<div className=''>
+											<h6 className='dark:text-white'>Calendario</h6>
+										</div>
+										<div className='grid justify-end '>
+											<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
+												Crear Clase
+											</button>
+										</div>
 									</div>
+									<div className='p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'></div>
 									<div className='flex-auto px-0 pt-0 pb-2'>
 										<div className='p-0 overflow-x-auto'>
-											<table className='items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
+											<table className='items-center justify-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
 												<thead className='align-bottom'>
 													<tr>
-														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Cliente
+														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Actividad
 														</th>
-														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Información
+														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Fecha
 														</th>
-														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Estado
+														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Hora
 														</th>
-														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Edad / Peso / Estatura
-														</th>
-
-														<th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xxs">
-															¿Es admin? / Bloquear
-														</th>
+														<th className='px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap'></th>
 													</tr>
 												</thead>
-												<tbody>
-													{allClients.map((client) => {
-														return <ClientCard client={client} />;
-													})}
-												</tbody>
+
+												{/* ALL CLASSES */}
+												<tbody className='border-t'>MAPEAR AQUI</tbody>
 											</table>
 										</div>
 									</div>
@@ -103,4 +97,4 @@ const Clients = () => {
 	);
 };
 
-export default Clients;
+export default ClasesCalendar

@@ -16,6 +16,10 @@ import {
 	UPDATE_CLIENT,
 	GET_CALENDAR,
 	POST_CALENDAR,
+	DELETE_BLOG,
+	GET_ALL_ADMIN,
+	POST_ADMIN,
+	REMOVE_ADMIN,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -33,6 +37,7 @@ const initialState = {
 	testimonials: [],
 	activities: [],
 	allCalendar: [],
+	allAdmin: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -99,6 +104,13 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		case DELETE_BLOG: 
+			return {
+				...state,
+				initial_posts: state.initial_posts.filter(el=>el.id!==payload),
+				matched_posts: state.matched_posts.filter(el=>el.id!==payload),
+				ig_posts: state.ig_posts.filter(el=>el.id!==payload)
+			}
 		case GET_ALL_TESTIMONIALS:
 			return {
 				...state,
@@ -127,6 +139,19 @@ const rootReducer = (state = initialState, action) => {
 			return{
 				...state
 					}
+		case GET_ALL_ADMIN:
+			return {
+				...state,
+				allAdmin: payload
+			}
+		case POST_ADMIN:
+			return {
+				...state
+			}
+		case REMOVE_ADMIN: 
+			return {
+				...state
+			}
 		default:
 			return {
 				...state,

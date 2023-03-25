@@ -36,7 +36,7 @@ router.get('/', async (req, res)=>{
             message: 'find by name',
             response
         })
-    }else{
+    } else{
         const responseAll = await getAllClients()
         return res.json({
         message: 'find all clients',
