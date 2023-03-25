@@ -8,7 +8,7 @@ router.post('/sendmail', async(req, res)=>{
 
         // console.log(req.body)
 
-        console.log(await sendMail(req.body))
+        console.log(await sendMail(req.body, req.query))
         res.json({
             message: 'mail enviado'
         })
