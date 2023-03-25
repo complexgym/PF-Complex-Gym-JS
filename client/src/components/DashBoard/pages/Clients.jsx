@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import SideNav from "../SideNav";
 import {useDispatch, useSelector} from "react-redux"
+import { getAllAdmin, postAdmin, removeAdmin } from "../../../redux/actions/actions";
 
 const Clients = () => {
 	const {allClients} = useSelector(s=>s)
@@ -103,7 +104,7 @@ const Clients = () => {
 															Edad / Peso / Estatura
 														</th>
 														<th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xxs">
-															Make Admin / Block
+															¿Es admin? / Bloquear
 															{/* Edit / Admin / Block */}
 														</th>
 													</tr>
@@ -129,9 +130,31 @@ const Clients = () => {
 const SingleClient = ({client}) => {
 	const dispatch = useDispatch()
 
+	const {user, name, lastName, picture} = client
+
+	const newClient = {user, name, lastName, picture, permits: []}
+
+	const {allAdmin} = useSelector(s=>s)
+
 	useEffect(()=>{
-		
-	}, [dispatch])
+		dispatch(getAllAdmin())
+	}, [allAdmin])
+
+	const handleAddAdmin = () => {
+		dispatch(postAdmin(newClient))
+	}
+
+	const handleRemoveAdmin = () => {
+		const find = allAdmin.find(a=>a.user===user)
+
+		dispatch(removeAdmin(find.id))
+	}
+
+	const handleBlockAdmin = () => {
+		return "holis"
+	}
+
+	const find = allAdmin.find(a=>a.user===user)
 
 	return (
 		<tr>
@@ -181,11 +204,15 @@ const SingleClient = ({client}) => {
 				{/* <div className="mr-2">
 					<i className="fa fa-pencil text-sm cursor-pointer" aria-hidden="true"></i>
 				</div> */}
-				<i className="fa fa-key text-sm cursor-pointer mr-2" aria-hidden="true"
-				onClick={""}></i> {/* make admin */}
 				
-				<i className="fa fa-ban text-sm cursor-pointer" aria-hidden="true"
-				onClick={""}></i>
+				{ find /* remove and add admin */
+				? <i className="fa fa-check w-8 cursor-pointer mr-2" aria-hidden="true"
+				onClick={handleRemoveAdmin}></i> 
+				: <i className="fa fa-times text-sm cursor-pointer w-8 mr-2" aria-hidden="true"
+				onClick={handleAddAdmin}></i>}
+				
+				<i className="fa fa-ban text-sm w-8 cursor-pointer" aria-hidden="true"
+				onClick={handleBlockAdmin}></i>
 				
 			</td>
 		</tr>

@@ -16,6 +16,8 @@ import {
 	UPDATE_CLIENT,
 	DELETE_BLOG,
 	GET_ALL_ADMIN,
+	POST_ADMIN,
+	REMOVE_ADMIN,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -349,10 +351,27 @@ export const getAllAdmin = ()=> {
 }
 
 export const postAdmin = (data)=> {
-	return async function () {
+	return async function (dispatch) {
 		try {
       const response = await axios.post("/admin", data);
-			return response
+			return dispatch({
+				type: POST_ADMIN, 
+				payload: data
+			})
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export const removeAdmin = (id)=> {
+	return async function (dispatch) {
+		try {
+      const response = await axios.delete(`/admin/${id}`);
+			return dispatch({
+				type: REMOVE_ADMIN, 
+				payload: id
+			})
 		} catch (error) {
 			console.log(error);
 		}
