@@ -8,6 +8,8 @@ module.exports = {
 	darkMode: 'class',
 	theme: {
 		screens: {
+			xs: '375px',
+			'xm-max': { max: '375px' },
 			sm: '576px',
 			'sm-max': { max: '576px' },
 			md: '768px',
@@ -1403,7 +1405,7 @@ module.exports = {
 				},
 				'.bg-image-testimonials': {
 					backgroundImage:
-						"url('https://res.cloudinary.com/dpxucxgwg/image/upload/v1678908756/bg-testimonios_zr761n.png')",
+						"url('https://res.cloudinary.com/dpxucxgwg/image/upload/v1679703696/fondo_qgvn3u.svg')",
 					width: '100%',
 					backgroundSize: 'cover',
 				},
