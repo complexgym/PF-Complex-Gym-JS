@@ -7,6 +7,7 @@ const {
     getAllPublications,
     getPublicationsByID,
     getPublicationsByName,
+    restorePublication,
     filters
 } = require("../controllers/index")
 
@@ -20,5 +21,15 @@ router.get('/', getPublicationsByName)
 router.post("/", createPublication)
 router.delete('/:id', deletePublication)
 router.put('/:id', editPublication)
+
+router.put('/restore/:id', async (req, res) => {
+    try {
+      const id = req.params.id;
+      const result = await restorePublication({ id });
+      res.status(200).send(result);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
 
 module.exports = router
