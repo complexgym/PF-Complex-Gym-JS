@@ -381,12 +381,18 @@ export const removeAdmin = (id)=> {
 
 export const postPayment = (data)=> {
 	return async function (dispatch) {
-    try {
-      const response = await axios.post("/payments", data);
+		try {
+      const response = await axios.post(`/payments`, data)
+				.then(d=>console.log(d))
+				.catch(e=>console.log(e))
+			console.log("hola");
 			console.log(response.data);
-      return response.data
-    } catch (error) {
-      console.log(error);
-    }
-  };
+			return dispatch({
+				type: POST_PAYMENT, 
+				payload: response.data
+			})
+		} catch (error) {
+			console.log(error);
+		}
+	};
 }

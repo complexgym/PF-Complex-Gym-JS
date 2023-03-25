@@ -3,7 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { postPayment } from "../../redux/actions/actions";
 
-
 //todo PLAN CARD
 export default function SinglePlan({ plan, option }) {
 
@@ -26,7 +25,7 @@ export default function SinglePlan({ plan, option }) {
 		quantity: 1,
 	})
 
-	const handleSubmit = (e)=> {
+	const handleSubmit = async (e)=> {
 		e.preventDefault()
 		dispatch(postPayment(purchase))
 	}

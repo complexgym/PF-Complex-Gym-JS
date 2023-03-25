@@ -35,6 +35,7 @@ const postPayments = async (req, res) => {
 			});
 		})
 		.catch(function (error) {
+			console.log(error.message);
 			return { error: error.message };
 		});
 };
