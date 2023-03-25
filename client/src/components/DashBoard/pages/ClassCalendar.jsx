@@ -1,8 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SideNav from '../SideNav';
+import { postCalendar } from '../../../redux/actions/actions';
+import ValidateCalendar from './ValidateCalendar';
+import swal from 'sweetalert';
+import { useDispatch } from 'react-redux';
 
 const ClasesCalendar = () => {
+	const dispatch = useDispatch();
+	
+	const [input, setInput] = useState({
+		day: 0,
+		month: 0,
+		year: 0,
+		hour: "",
+		class: ""
+	});
+
+	const [error, setErrors] = useState({});
+
+	const handleChange = (e) => {
+		setInput({
+			...input,
+			[e.target.name]: e.target.value,
+		});
+		setErrors(
+			ValidateCalendar({
+				...input,
+				[e.target.name]: e.target.value,
+			})
+		);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setErrors(ValidateCalendar(input));
+		let error = ValidateCalendar(input);
+		if (Object.values(error).length !== 0){
+				swal({
+					title: 'Faltan Información',
+					text: `${
+						error.day ||
+						error.month ||
+						error.year ||
+						error.hour ||
+						error.class
+					}`,
+					icon: 'warning',
+					dangerMode: true,
+			});
+		} else {
+			dispatch(postCalendar(input));
+			swal({
+				title: 'Gracias!',
+				text: '¡Clase creada correctamente!',
+				icon: 'success',
+			});
+		}
+	}
+
 	return (
 		<div>
 			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
@@ -48,6 +104,51 @@ const ClasesCalendar = () => {
 							</div>
 						</div>
 					</nav>
+
+						<div>
+							<form onSubmit={(e) => handleSubmit(e)}>
+								<input 
+								type="number"
+								name="day"
+								id="day"
+								value={input.day}
+								autoComplete="off"
+								onChange={handleChange}
+								/>
+								<input 
+								type="number"
+								name="month"
+								id="month"
+								value={input.month}
+								autoComplete="off"
+								onChange={handleChange}
+								 />
+								<input 
+								type="number"
+								name="year"
+								id="year"
+								value={input.year}
+								autoComplete="off"
+								onChange={handleChange}
+								/>
+								<input
+								 type="text"
+								 name="hour"
+								 id="hour"
+								 value={input.hour}
+								 autoComplete="off"
+								 onChange={handleChange}
+								 />
+								<input type="text"
+								name="class"
+								id="class"
+								value={input.class}
+								autoComplete="class"
+								onChange={handleChange}
+								/>
+								<button type='submit'>Crear clase</button>
+							</form>
+						</div>
 
 					<div className='w-full px-6 py-6 mx-auto'>
 						<div className='flex flex-wrap -mx-3'>

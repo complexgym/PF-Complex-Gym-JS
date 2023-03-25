@@ -30,7 +30,7 @@ import DashBoard from './components/DashBoard/DashBoard';
 import Clients from './components/DashBoard/pages/Clients';
 import Publications from './components/DashBoard/pages/Publications';
 import Form from './components/Form/Form';
-import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
+import UpdateClient from './components/Profile/EditInfo/UpdateClient';
 import ClasesCalendar from './components/DashBoard/pages/ClassCalendar';
 import Loading from './components/Loading/Loading';
 
