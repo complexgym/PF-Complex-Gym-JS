@@ -96,3 +96,5 @@ const ClasesCalendar = () => {
 		</div>
 	);
 };
+
+export default ClasesCalendar

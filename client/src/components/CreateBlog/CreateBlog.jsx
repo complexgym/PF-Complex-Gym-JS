@@ -95,7 +95,7 @@ export default function CreateBlog() {
 	};
 
 	function handleUpload(res) {
-		if (res.info.secure_url) {
+		if (res?.info?.secure_url) {
 			setInput({
 				...input,
 				image: res.info.secure_url,
@@ -155,9 +155,9 @@ export default function CreateBlog() {
 													Imagen de fondo del blog
 												</label>
 												<UploadToCloudinary
-													onUpload={handleUpload}
+													onUpload={()=>handleUpload()}
 													name="image"
-													onClick={handleChange}
+													onClick={e=>handleChange(e)}
 													className="pb-10"
 												/>
 												{input.image && (

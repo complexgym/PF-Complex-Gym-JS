@@ -45,12 +45,6 @@ export default function UpdateClient() {
 			...input,
 			[e.target.name]: e.target.value,
 		});
-		setErrors(
-			Validate({
-				...input,
-				[e.target.name]: e.target.value,
-			})
-		);
 	};
 
 	const handleSubmit = (e) => {
@@ -88,7 +82,7 @@ export default function UpdateClient() {
 	};
 
 	function handleUpload(res) {
-		if (res.info.secure_url) {
+		if (res?.info?.secure_url) {
 			setInput({
 				...input,
 				picture: res.info.secure_url,
