@@ -14,9 +14,13 @@ import {
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
+	GET_CALENDAR,
+	POST_CALENDAR,
 	DELETE_BLOG,
 	GET_ALL_ADMIN,
 	POST_ADMIN,
+	REMOVE_ADMIN,
+	POST_PAYMENT,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -33,6 +37,7 @@ const initialState = {
 	},
 	testimonials: [],
 	activities: [],
+	allCalendar: [],
 	allAdmin: []
 };
 
@@ -126,12 +131,29 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		case GET_CALENDAR:
+			return{
+				...state,
+				allCalendar: payload,
+				}
+		case POST_CALENDAR:
+			return{
+				...state
+					}
 		case GET_ALL_ADMIN:
 			return {
 				...state,
 				allAdmin: payload
 			}
-		case POST_ADMIN: 
+		case POST_ADMIN:
+			return {
+				...state
+			}
+		case REMOVE_ADMIN: 
+			return {
+				...state
+			}
+		case POST_PAYMENT:
 			return {
 				...state
 			}
@@ -139,6 +161,7 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		
 	}
 };
 export default rootReducer;

@@ -26,6 +26,7 @@ export default function CreateBlog() {
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
+		console.log(e.target.name, e.target.value);
 		if (e.target.name !== "tag") {
 			setInput({
 				...input,
@@ -95,7 +96,7 @@ export default function CreateBlog() {
 	};
 
 	function handleUpload(res) {
-		if (res.info.secure_url) {
+		if (res?.info?.secure_url) {
 			setInput({
 				...input,
 				image: res.info.secure_url,
@@ -156,9 +157,9 @@ export default function CreateBlog() {
 												</label>
 												<UploadToCloudinary
 													onUpload={handleUpload}
-													name="image"
+													name='image'
 													onClick={handleChange}
-													className="pb-10"
+													className='pb-10'
 												/>
 												{input.image && (
 													<a

@@ -3,12 +3,28 @@ import React, { useState } from "react";
 import { generateDate, months } from "./funcionCalendar";
 import cn from "./cn";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { useSelector } from "react-redux";
+import { postCalendar } from "../../redux/actions/actions";
 
 export default function Calendar() {
 	const days = ["S", "M", "T", "W", "T", "F", "S"];
 	const currentDate = dayjs();
 	const [today, setToday] = useState(currentDate);
 	const [selectDate, setSelectDate] = useState(currentDate);
+	const allCalendar = useSelector((state) => state.allCalendar);
+	const month = selectDate?.["$M"]
+	const year = selectDate?.["$y"]
+	const day = selectDate?.["$D"]
+	const filter = allCalendar.filter((c) => {
+		return (
+		 c.month === month+1 &&
+		 c.year === year &&
+		 c.day === day
+		)
+	}) 
+	
+
+	console.log(filter)
 	return (
 		<div className="flex gap-10 sm:divide-x justify-center sm:w-1/2 mx-auto  h-screen items-center sm:flex-row flex-col">
 			<div className="w-96 h-96 ">
@@ -29,7 +45,7 @@ export default function Calendar() {
 								setToday(currentDate);
 							}}
 						>
-							Today
+							Ir a Día Actual
 						</h1>
 						<GrFormNext
 							className="w-5 h-5 cursor-pointer hover:scale-105 transition-all"
@@ -88,9 +104,14 @@ export default function Calendar() {
 			</div>
 			<div className="h-96 w-96 sm:px-5">
 				<h1 className=" font-semibold">
-					Schedule for {selectDate.toDate().toDateString()}
+				Actividades para {selectDate.toDate().toDateString()}
 				</h1>
-				<p className="text-gray-400">No meetings for today.</p>
+				
+				{
+					filter?.length === 0 ? <p>No hay reuniones para hoy</p> : filter?.map((e)=>{
+					return<p>{e?.hour} - {e?.class}</p>
+					})
+				}
 			</div>
 		</div>
 	);
