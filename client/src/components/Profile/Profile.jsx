@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllClients, getClientDetail } from '../../redux/actions/actions';
+import { getClientDetail } from '../../redux/actions/actions';
 
 export default function Profile() {
 	const dispatch = useDispatch();
@@ -11,14 +11,11 @@ export default function Profile() {
 
 	const allClient = useSelector((state) => state.allClients);
 
-	// console.log(allClient);
-
 	let matchEmail = user && allClient.find((m) => m.mail === user.email);
 
 	const matchId = matchEmail && matchEmail.id;
 
 	useEffect(() => {
-		dispatch(getAllClients());
 		dispatch(getClientDetail(matchId));
 	}, []);
 
@@ -67,7 +64,7 @@ export default function Profile() {
 									<div className='relative'>
 										<img
 											alt='...'
-											src={matchEmail.picture}
+											src={matchEmail?.picture}
 											className='shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px'
 										/>
 									</div>
@@ -88,19 +85,19 @@ export default function Profile() {
 									<div className='flex justify-center py-4 lg:pt-4 pt-8'>
 										<div className='mr-4 p-3 text-center'>
 											<span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
-												{matchEmail.age}
+												{matchEmail?.age}
 											</span>
 											<span className='text-sm text-blueGray-400'>Edad</span>
 										</div>
 										<div className='mr-4 p-3 text-center'>
 											<span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
-												{matchEmail.weight}
+												{matchEmail?.weight}
 											</span>
 											<span className='text-sm text-blueGray-400'>Peso</span>
 										</div>
 										<div className='lg:mr-4 p-3 text-center'>
 											<span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
-												{matchEmail.height}
+												{matchEmail?.height}
 											</span>
 											<span className='text-sm text-blueGray-400'>Estatura</span>
 										</div>
@@ -109,41 +106,41 @@ export default function Profile() {
 							</div>
 							<div className='text-center mt-12'>
 								<h3 className='text-4xl font-semibold leading-normal text-blueGray-700 mb-2'>
-									{`${matchEmail.name} ${matchEmail.lastName}`}
+									{`${matchEmail?.name} ${matchEmail?.lastName}`}
 								</h3>
 								<h4 className='text-xl font-semibold leading-normal text-blueGray-700 mb-2'>
-									{matchEmail.user}
+									{matchEmail?.user}
 								</h4>
 								<h4 className='text-xl font-semibold leading-normal text-blueGray-700 mb-2'>
 									<i className='fas fa-envelope  mr-2 text-lg text-blueGray-400'></i>
-									{matchEmail.mail}
+									{matchEmail?.mail}
 								</h4>
 								<div className='text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase'>
 									<i className='fas fa-id-card  mr-2 text-lg text-blueGray-400'></i>
-									{matchEmail.dni}
+									{matchEmail?.dni}
 								</div>
 								<div className='text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase'>
 									<i className='fas fa-phone mr-2 text-lg text-blueGray-400'></i>
-									{matchEmail.phone}
+									{matchEmail?.phone}
 								</div>
 								<div className='text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase'>
 									<i className='fas fa-map-marker-alt mr-2 text-lg text-blueGray-400'></i>
-									{`${matchEmail.city}, ${matchEmail.region}`}
+									{`${matchEmail?.city}, ${matchEmail?.region}`}
 								</div>
 								<div className='mb-2 text-blueGray-600 mt-10'>
 									<i className='fas fa-solid fa-location-arrow mr-2 text-lg text-blueGray-400'></i>{' '}
-									{matchEmail.address}
+									{matchEmail?.address}
 								</div>
 								<div className='mb-2 text-blueGray-600'>
 									<i className='fas fa-university mr-2 text-lg text-blueGray-400'></i>
-									{matchEmail.postalCode}
+									{matchEmail?.postalCode}
 								</div>
 							</div>
 							<div className='mt-10 py-10 border-t border-blueGray-200 text-center'>
 								<div className='flex flex-wrap justify-center'>
 									<div className='w-full lg:w-9/12 px-4'>
 										<p className='mb-4 text-lg leading-relaxed text-blueGray-700'>
-											{matchEmail.about}
+											{matchEmail?.about}
 										</p>
 										{/* <a href='#pablo' className='font-normal text-pink-500'>
 											Show more

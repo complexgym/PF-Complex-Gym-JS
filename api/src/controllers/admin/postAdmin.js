@@ -11,21 +11,16 @@ const postAdmin = async (req, res) => {
             permits
         } = req.body
 
-        if(!find){
-            const newAdmin = await admin.create({
-                user,
-                name,
-                lastName,
-                picture,
-                permits
-            })
-    
-            res.status(200).send(newAdmin)
-        }
+        const newAdmin = await admin.create({
+            user,
+            name,
+            lastName,
+            picture,
+            permits
+        })
 
-        else{
-            throw new Error('User is already admin')
-        }
+        res.status(200).send(newAdmin)
+        
     } catch (error) {
         res.status(404).json({error:error.message})
     }

@@ -119,9 +119,9 @@ export default function Blog() {
 					</div>
 
 					{/* FORM: Search and filters */}
-					<form className='form-blog mb-4 grid grid-cols-2 md:grid-cols-3 md:w-[60vw] lg:w-[70%] xl:w-[50%] 2xl:w-[40%] w-[80vw] gap-2 mx-auto'>
+					<form className='form-blog mb-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:w-[60vw] lg:w-[70%] xl:w-[50%] 2xl:w-[55%] w-[80vw] gap-6 mx-auto'>
 						{/* SEARCH */}
-						<div className='mr-4'>
+						<div className='mr-4 w-full'>
 							<label
 								for='search'
 								className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
@@ -139,7 +139,7 @@ export default function Blog() {
 						</div>
 
 						{/* FILTER BY TAG */}
-						<div className='mr-4'>
+						<div className='mr-4 w-full'>
 							<label
 								for='tag'
 								className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
@@ -164,7 +164,7 @@ export default function Blog() {
 						</div>
 
 						{/* ORDER BY DATE */}
-						<div className='mr-4'>
+						<div className='mr-4 w-full'>
 							<label
 								for='per_date'
 								className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
