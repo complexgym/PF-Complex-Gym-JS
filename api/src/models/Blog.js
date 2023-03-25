@@ -30,7 +30,11 @@ const publication = (sequelize) => {
         author_image: {
             type: DataTypes.TEXT,
             // allowNull: false
-        }
+        },
+        paranoid: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: true,
+			}
      })
 }
 
