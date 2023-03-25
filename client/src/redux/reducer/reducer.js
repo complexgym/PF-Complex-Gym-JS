@@ -14,6 +14,8 @@ import {
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
+	GET_CALENDAR,
+	POST_CALENDAR,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -30,6 +32,7 @@ const initialState = {
 	},
 	testimonials: [],
 	activities: [],
+	allCalendar: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -115,10 +118,20 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		case GET_CALENDAR:
+			return{
+				...state,
+				allCalendar: payload,
+				}
+		case POST_CALENDAR:
+			return{
+				...state
+					}
 		default:
 			return {
 				...state,
 			};
+		
 	}
 };
 export default rootReducer;

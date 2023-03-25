@@ -17,6 +17,7 @@ import {
 	getAllPlans,
 	getAllPosts,
 	getAllTestimonials,
+	getCalendar
 } from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
@@ -43,6 +44,7 @@ function App() {
 		dispatch(getAllTestimonials());
 		dispatch(getAllActivities());
 		dispatch(getAllPlans());
+		dispatch(getCalendar());
 
 		// if (isAuthenticated && !hasRedirected) {
 		// 	navigate('/home');
