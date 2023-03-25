@@ -6,29 +6,32 @@ mercadopago.configure({
 
 const postPayments = async(req,res)=>{
     const data = req.body
-    let preference = {
-		items: [
-			{
-				title: data.description,
-				unit_price: Number(data.price),
-				quantity: Number(data.quantity),
-			}
-		],
+	let products = [];
+
+	let obj = {
+		category_id: data.id_User,
+		title: data.name,
+		unit_price: data.price,
+		quantity: data.amount,
+	  }
+	  products.push(obj);
+
+   let preference = {
+		items: products,
 		back_urls: {
-			"success": "http://localhost:3001/feedback",
-			"failure": "http://localhost:3001/feedback",
-			"pending": "http://localhost:3001/feedback"
+			"success": `${process.env.SUCCESS}`,
 		},
-		auto_return: "approved",
+		//auto_return: "approved",
+		notification_url:`${process.env.NOTIFICATION_URL}/payments/notification`,
 	};
 
 	mercadopago.preferences.create(preference)
 		.then(function (response) {
 			res.json({
-				id: response.body
+				id: response.body.id
 			});
 		}).catch(function (error) {
-			console.log(error);
+			return {error: error.message};
 		});
 }
 
