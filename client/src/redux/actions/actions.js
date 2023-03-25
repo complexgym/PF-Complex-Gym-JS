@@ -18,6 +18,7 @@ import {
 	GET_ALL_ADMIN,
 	POST_ADMIN,
 	REMOVE_ADMIN,
+	POST_PAYMENT,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -378,4 +379,16 @@ export const removeAdmin = (id)=> {
 	};
 }
 
-//
+export const postPayment = (data)=> {
+	return async function (dispatch) {
+    try {
+      const response = await axios.post("/payments", data);
+      return dispatch({
+        type: POST_PAYMENT, 
+        payload: data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
