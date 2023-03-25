@@ -18,21 +18,22 @@ import {
 	getAllPlans,
 	getAllPosts,
 	getAllTestimonials,
-	getAllClients
-} from "./redux/actions/actions";
-import Landing from "./components/Landing/Landing.jsx";
-import BlogDetails from "./components/Blog/BlogDetails";
-import CreateBlog from "./components/CreateBlog/CreateBlog";
-import { useAuth0 } from "@auth0/auth0-react";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import DashBoard from "./components/DashBoard/DashBoard";
-import Clients from "./components/DashBoard/pages/Clients";
-import Publications from "./components/DashBoard/pages/Publications";
-import Form from "./components/Form/Form";
-import UpdateClient from "./components/Profile/UpdateClient/UpdateClient";
+  getAllClients,
+	getCalendar
+} from './redux/actions/actions';
+import Landing from './components/Landing/Landing.jsx';
+import BlogDetails from './components/Blog/BlogDetails';
+import CreateBlog from './components/CreateBlog/CreateBlog';
+import { useAuth0 } from '@auth0/auth0-react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import DashBoard from './components/DashBoard/DashBoard';
+import Clients from './components/DashBoard/pages/Clients';
+import Publications from './components/DashBoard/pages/Publications';
+import Form from './components/Form/Form';
+import UpdateClient from './components/Profile/EditInfo/UpdateClient';
 import ClasesCalendar from "./components/DashBoard/pages/ClassCalendar";
-
 import Loading from "./components/Loading/Loading"
+
 axios.defaults.baseURL = "https://pf-complex-gym-js-production.up.railway.app/";
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
 		dispatch(getAllClients());
 		dispatch(getAllActivities());
 		dispatch(getAllPlans());
+		dispatch(getCalendar());
 		dispatch(getAllTestimonials());
 		dispatch(getAllPosts());
 		dispatch(getAllAdmin());
@@ -128,4 +130,4 @@ function App() {
 	);
 }
 export default App;
-////
+//

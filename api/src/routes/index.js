@@ -24,7 +24,6 @@ router.use('/admin', admin)
 router.use('/testimonials',  testimonials)
 router.use('/plans', plans)
 router.use('/mail', mails)
-
 router.use('/calendar', calendar)
 
 module.exports = router

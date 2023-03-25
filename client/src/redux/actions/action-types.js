@@ -27,7 +27,14 @@ export const GET_ALL_TESTIMONIALS = 'GET_ALL_TESTIMONIALS';
 export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES';
 export const GET_ALL_PLANS = 'GET_ALL_PLANS';
 
+//todo Calendario
+export const GET_CALENDAR = 'GET_CALENDAR';
+export const POST_CALENDAR = 'POST_CALENDAR';
+
 //todo ADMIN
 export const GET_ALL_ADMIN = 'GET_ALL_ADMIN'
 export const POST_ADMIN = 'POST_ADMIN'
 export const REMOVE_ADMIN = 'REMOVE_ADMIN'
+
+//todo PAYMENTS
+export const POST_PAYMENT = 'POST_PAYMENT'

@@ -8,11 +8,11 @@ const {
 	Admin,
 	Blog,
 	Client,
-	Payments,
 	Trainer,
 	Memberships,
 	Testimonials,
 	Plans,
+	Mercadopago,
 	CalendarDate,
 } = require('./models/index');
 
@@ -35,30 +35,21 @@ Activities(db);
 Admin(db);
 Blog(db);
 Client(db);
-Payments(db);
 Trainer(db);
 Memberships(db);
 Testimonials(db);
 Plans(db);
+Mercadopago(db);
 CalendarDate(db);
 
-const {
-	activities,
-	admin,
-	testimonials,
-	blog,
-	client,
-	payments,
-	trainer,
-	memberships,
-	plans,
-} = db.models; // falta charlar con los chicos de front blog y memberships
+const { activities, admin, testimonials, blog, client, trainer, memberships,plans,mercadopago,calendardate } =
+	db.models; // falta charlar con los chicos de front blog y memberships
 
 activities.belongsToMany(client, { through: 'ActivitiesClient' });
 client.belongsToMany(activities, { through: 'ActivitiesClient' });
 
-client.hasMany(payments);
-payments.belongsTo(client);
+client.hasMany(mercadopago);
+mercadopago.belongsTo(client);
 
 trainer.belongsToMany(activities, { through: 'ActivitiesTrainer' });
 activities.belongsToMany(trainer, { through: 'ActivitiesTrainer' });
