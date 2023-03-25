@@ -19,6 +19,6 @@ module.exports = {
     Memberships,
     Testimonials,
     Plans,
-    Mercadopago
-    CalendarDate
+    Mercadopago,
+    CalendarDate,
 }

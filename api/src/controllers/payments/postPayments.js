@@ -26,13 +26,13 @@ const postPayments = async(req,res)=>{
 	};
 
 	mercadopago.preferences.create(preference)
-		.then(function (response) {
-			res.json({
-				id: response.body.id
-			});
-		}).catch(function (error) {
-			return {error: error.message};
+	.then(function (response) {
+		res.json({
+			id: response.body.id
 		});
+	}).catch(function (error) {
+		return {error: error.message};
+	});
 }
 
 module.exports = postPayments
