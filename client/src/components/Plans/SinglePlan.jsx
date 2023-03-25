@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { postPayment } from "../../redux/actions/actions";
+import useScript from "./useScript";
 
 //todo PLAN CARD
 export default function SinglePlan({ plan, option }) {
@@ -19,20 +20,56 @@ export default function SinglePlan({ plan, option }) {
 	const matchId = matchEmail && matchEmail.id;
 
 	const [purchase, setPurchase] = useState({
-		category_id: matchId, //id user
-		title: `Compra del plan ${plan?.name}`, 
-		unit_price: plan?.price, 
-		quantity: 1,
+		id_User: matchId, //id user
+		name: `Compra del plan ${plan?.name}`, 
+		price: plan?.price, 
+		amount: 1,
 	})
+	
+	const { MercadoPago } = useScript(
+		"https://sdk.mercadopago.com/js/v2",
+		"MercadoPago"
+	);
+
+	const keyMP  = import.meta.env.VITE_PUBLIC_KEY;
 
 	const handleSubmit = async (e)=> {
-		e.preventDefault()
-		dispatch(postPayment(purchase))
+			e.preventDefault()
+		
+			function createCheckoutButton(preferenceId) {
+
+					const mercadopago = new MercadoPago(keyMP, {
+						locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+					});
+
+					// Initialize the checkout
+					mercadopago.checkout({
+						preference: {
+							id: matchId
+						},
+						render: {
+							container: `.render-btn`, // Class name where the payment button will be displayed
+							label: `Pagar`, // Change the payment button text (optional)
+						}
+					});
+			}
+
+			dispatch(postPayment(purchase)).then(function (response) {
+				console.log(response);
+				return response
+			}).then((preference) => {
+				console.log(preference);
+				createCheckoutButton(matchId);
+			}).catch(err=>{
+				alert(err)
+			})
+
+			// createCheckoutButton(matchId)
 	}
 
 	return (
 		<form onSubmit={handleSubmit}
-		className="flex flex-col justify-between transition-shadow duration-300 bg-white border rounded shadow-sm hover:shadow pb-8">
+		className={`form-single-plan-${matchId} flex flex-col justify-between transition-shadow duration-300 bg-white border rounded shadow-sm hover:shadow pb-8`}>
 			<div className="text-center">
 				<div className={`w-full pt-4 
 					${option==="Libre" && "bg-yellow-400 text-black"}
@@ -63,7 +100,7 @@ export default function SinglePlan({ plan, option }) {
 				</div>
 			</div>
 			<div className="w-full flex justify-center">
-				<button type="submit"
+				<button type="btn-form-submit submit"
 				className={`inline-flex items-center justify-center w-2/3 h-12 px-12 mt-6 font-medium tracking-wide transition duration-200 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none text-black
 				${option==="Libre" && "bg-yellow-400 hover:bg-yellow-300 text-black"}
 				${option==="2 por semana" && "bg-green-700 hover:bg-green-600 text-white"}

@@ -23,8 +23,6 @@ export default function Calendar() {
 		)
 	}) 
 	
-
-	console.log(filter)
 	return (
 		<div className="flex gap-10 sm:divide-x justify-center sm:w-1/2 mx-auto  h-screen items-center sm:flex-row flex-col">
 			<div className="w-96 h-96 ">

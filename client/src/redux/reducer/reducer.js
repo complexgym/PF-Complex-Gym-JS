@@ -38,7 +38,8 @@ const initialState = {
 	testimonials: [],
 	activities: [],
 	allCalendar: [],
-	allAdmin: []
+	allAdmin: [],
+	payments: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -155,7 +156,8 @@ const rootReducer = (state = initialState, action) => {
 			}
 		case POST_PAYMENT:
 			return {
-				...state
+				...state,
+				payments: [...payments, payload]
 			}
 		default:
 			return {
