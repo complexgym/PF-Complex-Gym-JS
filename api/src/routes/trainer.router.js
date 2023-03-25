@@ -5,7 +5,8 @@ const {
     getTrainerByName,
     editTrainer,
     getAllTrainers,
-    getTrainerById
+    getTrainerById,
+    restoreTrainer
 } = require("../controllers/index")
 
 const router = Router()
@@ -78,6 +79,16 @@ router.delete('/:id', async(req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
+  }
+})
+
+router.put('/restore/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = await restoreTrainer({ id });
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(400).send(error);
   }
 })
 
