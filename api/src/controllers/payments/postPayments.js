@@ -11,7 +11,7 @@ const postPayments = async (req, res) => {
 	//TODO
 	let obj = {
 		category_id: data.id_User, //id user
-		title: data.name, //?????
+		title: data.name, 
 		unit_price: data.price, 
 		quantity: data.amount,
 	};

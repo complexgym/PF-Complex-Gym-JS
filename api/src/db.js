@@ -48,8 +48,8 @@ const { activities, admin, testimonials, blog, client, trainer, memberships,plan
 activities.belongsToMany(client, { through: 'ActivitiesClient' });
 client.belongsToMany(activities, { through: 'ActivitiesClient' });
 
-client.hasMany(mercadopago);
-mercadopago.belongsTo(client);
+// client.hasMany(mercadopago);
+// mercadopago.belongsTo(client);
 
 trainer.belongsToMany(activities, { through: 'ActivitiesTrainer' });
 activities.belongsToMany(trainer, { through: 'ActivitiesTrainer' });

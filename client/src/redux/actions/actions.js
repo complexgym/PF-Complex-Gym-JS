@@ -383,10 +383,8 @@ export const postPayment = (data)=> {
 	return async function (dispatch) {
     try {
       const response = await axios.post("/payments", data);
-      return dispatch({
-        type: POST_PAYMENT, 
-        payload: data
-      })
+			console.log(response.data);
+      return response.data
     } catch (error) {
       console.log(error);
     }

@@ -3,7 +3,8 @@ const { DataTypes } = require("sequelize");
 const mercadopago = (sequelize) => {
     sequelize.define('mercadopago', {   
         clientId:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV4,
 			allowNull: true,
             primaryKey: true,
         },
