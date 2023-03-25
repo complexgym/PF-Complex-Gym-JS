@@ -32,9 +32,8 @@ import Publications from './components/DashBoard/pages/Publications';
 import Form from './components/Form/Form';
 import UpdateClient from './components/Profile/EditInfo/UpdateClient';
 import ClasesCalendar from "./components/DashBoard/pages/ClassCalendar";
-import Loading from "./components/Loading/Loading"
-
-axios.defaults.baseURL = "https://pf-complex-gym-js-production.up.railway.app/";
+import Loading from "./components/Loading/Loading
+axios.defaults.baseURL = "https://pf-complex-gym-js-production.up.railway.app";
 
 function App() {
 	const location = useLocation();

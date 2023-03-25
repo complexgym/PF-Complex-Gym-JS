@@ -20,6 +20,7 @@ import {
 	GET_ALL_ADMIN,
 	POST_ADMIN,
 	REMOVE_ADMIN,
+	POST_PAYMENT,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -149,6 +150,10 @@ const rootReducer = (state = initialState, action) => {
 				...state
 			}
 		case REMOVE_ADMIN: 
+			return {
+				...state
+			}
+		case POST_PAYMENT:
 			return {
 				...state
 			}
