@@ -355,6 +355,7 @@ export const getCalendar = () => {
 export const postCalendar = (calendar) => async () => {
 	try {
 		const data = await axios.post('/calendar', calendar);
+		console.log(calendar);
 		return data;
 	} catch (error) {
 		console.log(error);
