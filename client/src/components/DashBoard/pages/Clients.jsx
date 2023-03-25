@@ -206,9 +206,9 @@ const SingleClient = ({client}) => {
 				</div> */}
 				
 				{ find /* remove and add admin */
-				? <i className="fa fa-check w-8 cursor-pointer mr-2" aria-hidden="true"
+				? <i className="fa fa-check w-8 cursor-pointer mr-2 text-green-600" aria-hidden="true"
 				onClick={handleRemoveAdmin}></i> 
-				: <i className="fa fa-times text-sm cursor-pointer w-8 mr-2" aria-hidden="true"
+				: <i className="fa fa-times text-sm cursor-pointer w-8 mr-2 text-red-500" aria-hidden="true"
 				onClick={handleAddAdmin}></i>}
 				
 				<i className="fa fa-ban text-sm w-8 cursor-pointer" aria-hidden="true"
