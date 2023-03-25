@@ -29,6 +29,7 @@ import Clients from './components/DashBoard/pages/Clients';
 import Publications from './components/DashBoard/pages/Publications';
 import Form from './components/Form/Form';
 import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
+import ClasesCalendar from './components/DashBoard/pages/ClassCalendar';
 
 axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
@@ -44,7 +45,7 @@ function App() {
 		dispatch(getAllTestimonials());
 		dispatch(getAllActivities());
 		dispatch(getAllPlans());
-		dispatch(getAllAdmin())
+		dispatch(getAllAdmin());
 
 		// if (isAuthenticated && !hasRedirected) {
 		// 	navigate('/home');
@@ -103,6 +104,7 @@ function App() {
 					<Route path={'/dashboard'} element={<DashBoard />} />
 					<Route path={'/dashboard/clientes'} element={<Clients />} />
 					<Route path={'/dashboard/publicaciones'} element={<Publications />} />
+					<Route path={'/dashboard/calendario'} element={<ClasesCalendar />} />
 				</Route>
 				<Route path={'*'} element={<Error404 />} />
 			</Routes>
