@@ -18,6 +18,7 @@ const editPublication = require("./publications/editPublication")
 const getAllPublications = require("./publications/getAllPublications")
 const getPublicationsByID = require("./publications/getPublicationsByID")
 const getPublicationsByName = require("./publications/getPublicationsByName")
+const restorePublication = require("./publications/restorePublication")
 const deleteTrainer = require("./trainer/deleteTrainer")
 const restoreTrainer = require("./trainer/restoreTrainer")
 const postTrainer = require("./trainer/getTrainerByName")
@@ -39,7 +40,8 @@ const restoreAdmin = require("./admin/restoreAdmin")
 const getAllTestimonials = require("./testimonials/getAllTestimonials")
 const deleteTestimonials = require("./testimonials/deleteTestimonials")
 const postTestimonials = require("./testimonials/postTestimonials")
-const putTestimonials = require("./testimonials/putTestimonials")
+const putTestimonials = require("./testimonials/putTestimonials") 
+const restoreTestimonials = require("./testimonials/restoreTestimonials") 
 const sendMail = require('./mails/sendMail')
 const postPayments = require("./payments/postPayments")
 const getFeedback = require("./payments/getFeedback")
@@ -75,6 +77,7 @@ module.exports = {
     getAllPublications,
     getPublicationsByID,
     getPublicationsByName,
+    restorePublication,
     filters,
     getAllMemberships,
     postMemberships,
@@ -100,6 +103,7 @@ module.exports = {
     deleteTestimonials,
     postTestimonials,
     putTestimonials,
+    restoreTestimonials,
     getFeedback,
     postNotification,
     deletePlans,
