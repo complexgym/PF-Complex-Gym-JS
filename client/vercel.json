@@ -10,6 +10,6 @@
       ]
     },
     { "rewrites": [ { "source": "/", "destination": "/" },
-    { "source": "/(.*)", "destination": "/"}, { "source": "/home", "destination": "/home"} ] }
+    { "source": "/(.*)", "destination": "/"}, { "source": "/home", "destination": "/home"}, { "source": "/nosotros", "destination": "/nosotros"}  ] }
   ]
 }
