@@ -131,7 +131,7 @@ export default function BlogDetails() {
 					</div>
 					<div className="w-full mt-4 flex flex-col items-start mb-4">
 						<Link
-							to="/home"
+							to="/blog"
 							className={`bg-lighter-blue text-center uppercase text-white font-bold 
                             hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 ease-linear transition-all duration-150 w-24 `}
 						>

@@ -14,10 +14,13 @@ import {
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
+	GET_CALENDAR,
+	POST_CALENDAR,
 	DELETE_BLOG,
 	GET_ALL_ADMIN,
 	POST_ADMIN,
 	REMOVE_ADMIN,
+	POST_PAYMENT,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -335,6 +338,30 @@ export const getAllPlans = () => {
 	};
 };
 
+//TODO Calendario
+export const getCalendar = () => {
+	return async function (dispatch){
+		try{
+			const response = await axios.get('/calendar');
+			return dispatch({
+				type:GET_CALENDAR,
+				payload: response.data,
+			})
+		}catch(error){
+			console.log(error)
+		}
+	}
+}
+
+export const postCalendar = (calendar) => async () => {
+	try {
+		const data = await axios.post('/calendar', calendar);
+		console.log(calendar);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 export const getAllAdmin = ()=> {
 	return async function (dispatch) {
@@ -376,4 +403,18 @@ export const removeAdmin = (id)=> {
 			console.log(error);
 		}
 	};
+}
+
+export const postPayment = (data)=> {
+	return async function (dispatch) {
+    try {
+      const response = await axios.post("/payments", data);
+      return dispatch({
+        type: POST_PAYMENT, 
+        payload: data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
