@@ -29,13 +29,13 @@ import axios from 'axios';
 export function getAllPosts() {
 	return async function (dispatch) {
 		try {
-      const response = await axios.get("/publications/all");
-			const blogPosts = response.data.filter(el=>!el.isInstagram)
-			const igPosts = response.data.filter(el=>el.isInstagram)
+			const response = await axios.get('/publications/all');
+			const blogPosts = response.data.filter((el) => !el.isInstagram);
+			const igPosts = response.data.filter((el) => el.isInstagram);
 
 			return dispatch({
 				type: GET_ALL_POSTS,
-				payload: {igPosts, blogPosts},
+				payload: { igPosts, blogPosts },
 			});
 		} catch (error) {
 			console.log(error);
@@ -73,7 +73,7 @@ export function searchPosts({ tag, date }, title) {
 				response = await axios.get(`/publications?title=${title}`);
 				return dispatch({
 					type: SEARCH_POSTS,
-					payload: response.data.filter(el=>!el.isInstagram),
+					payload: response.data.filter((el) => !el.isInstagram),
 				});
 			}
 
@@ -114,13 +114,13 @@ export function searchPosts({ tag, date }, title) {
 				response = await axios.get(`/publications/all`);
 				return dispatch({
 					type: FILTER_POSTS,
-					payload: response.data.filter(el=>!el.isInstagram),
+					payload: response.data.filter((el) => !el.isInstagram),
 				});
 			}
 
 			return dispatch({
 				type: SEARCH_POSTS,
-				payload: response.data.filteredPublication.filter(el=>!el.isInstagram),
+				payload: response.data.filteredPublication.filter((el) => !el.isInstagram),
 			});
 		} catch (error) {
 			console.log(error);
@@ -154,7 +154,7 @@ export const deleteBlog = (id) => {
 			const response = await axios.delete(`/publications/${id}`);
 			return dispatch({
 				type: DELETE_BLOG,
-				payload: id
+				payload: id,
 			});
 		} catch (error) {
 			console.log(error);
@@ -206,12 +206,12 @@ export function filterPosts({ tag, date }, search) {
 				response = await axios.get(`/publications/all`);
 				return dispatch({
 					type: FILTER_POSTS,
-					payload: response.data.filter(el=>!el.isInstagram),
+					payload: response.data.filter((el) => !el.isInstagram),
 				});
 			} else {
 				return dispatch({
 					type: FILTER_POSTS,
-					payload: response?.data?.filteredPublication.filter(el=>!el.isInstagram),
+					payload: response?.data?.filteredPublication.filter((el) => !el.isInstagram),
 				});
 			}
 		} catch (error) {
@@ -261,6 +261,18 @@ export const getClientDetail = (id) => async (dispatch) => {
 export const postClient = (client) => async () => {
 	try {
 		const data = await axios.post('/clients', client);
+
+		// console.log(client);
+
+		await axios.post('/mail/sendmail', {
+			to: client.mail,
+			title: 'Bienvenid@',
+			subject: 'Bienvenid@ a Complex',
+			html: {
+				name: client.name,
+			},
+		});
+
 		return data;
 	} catch (error) {
 		console.log(error);
@@ -340,18 +352,18 @@ export const getAllPlans = () => {
 
 //TODO Calendario
 export const getCalendar = () => {
-	return async function (dispatch){
-		try{
+	return async function (dispatch) {
+		try {
 			const response = await axios.get('/calendar');
 			return dispatch({
-				type:GET_CALENDAR,
+				type: GET_CALENDAR,
 				payload: response.data,
-			})
-		}catch(error){
-			console.log(error)
+			});
+		} catch (error) {
+			console.log(error);
 		}
-	}
-}
+	};
+};
 
 export const postCalendar = (calendar) => async () => {
 	try {
@@ -363,10 +375,10 @@ export const postCalendar = (calendar) => async () => {
 	}
 };
 
-export const getAllAdmin = ()=> {
+export const getAllAdmin = () => {
 	return async function (dispatch) {
 		try {
-      const response = await axios.get("/admin");
+			const response = await axios.get('/admin');
 			return dispatch({
 				type: GET_ALL_ADMIN,
 				payload: response.data,
@@ -375,46 +387,46 @@ export const getAllAdmin = ()=> {
 			console.log(error);
 		}
 	};
-}
+};
 
-export const postAdmin = (data)=> {
+export const postAdmin = (data) => {
 	return async function (dispatch) {
 		try {
-      const response = await axios.post("/admin", data);
+			const response = await axios.post('/admin', data);
 			return dispatch({
-				type: POST_ADMIN, 
-				payload: data
-			})
+				type: POST_ADMIN,
+				payload: data,
+			});
 		} catch (error) {
 			console.log(error);
 		}
 	};
-}
+};
 
-export const removeAdmin = (id)=> {
+export const removeAdmin = (id) => {
 	return async function (dispatch) {
 		try {
-      const response = await axios.delete(`/admin/${id}`);
+			const response = await axios.delete(`/admin/${id}`);
 			return dispatch({
-				type: REMOVE_ADMIN, 
-				payload: id
-			})
+				type: REMOVE_ADMIN,
+				payload: id,
+			});
 		} catch (error) {
 			console.log(error);
 		}
 	};
-}
+};
 
-export const postPayment = (data)=> {
+export const postPayment = (data) => {
 	return async function (dispatch) {
-    try {
-      const response = await axios.post("/payments", data);
-      return dispatch({
-        type: POST_PAYMENT, 
-        payload: data
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
+		try {
+			const response = await axios.post('/payments', data);
+			return dispatch({
+				type: POST_PAYMENT,
+				payload: data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
