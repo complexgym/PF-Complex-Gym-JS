@@ -1,14 +1,6 @@
 const { Router } = require("express")
 const router = Router()
 
-const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
-
-const checkJwt = auth({
-  audience: "https://complex/api",
-  issuerBaseURL: "https://dev-o2lihq5f3ltnq4we.us.auth0.com/",
-  // tokenSigningAlg: "HS256"
-});
-
 const clients = require('./clients.router')
 const activities = require('./activities.router')
 const publications = require('./publications.router')

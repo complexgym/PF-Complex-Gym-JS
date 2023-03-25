@@ -15,6 +15,9 @@ import {
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
 	DELETE_BLOG,
+	GET_ALL_ADMIN,
+	POST_ADMIN,
+	REMOVE_ADMIN,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -274,7 +277,6 @@ export const getAllTestimonials = () => {
 	return async function (dispatch) {
 		try {
 			const response = await axios.get('/testimonials');
-			console.log(response.dat);
 			return dispatch({
 				type: GET_ALL_TESTIMONIALS,
 				payload: response.data,
@@ -332,3 +334,46 @@ export const getAllPlans = () => {
 		}
 	};
 };
+
+
+export const getAllAdmin = ()=> {
+	return async function (dispatch) {
+		try {
+      const response = await axios.get("/admin");
+			return dispatch({
+				type: GET_ALL_ADMIN,
+				payload: response.data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export const postAdmin = (data)=> {
+	return async function (dispatch) {
+		try {
+      const response = await axios.post("/admin", data);
+			return dispatch({
+				type: POST_ADMIN, 
+				payload: data
+			})
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export const removeAdmin = (id)=> {
+	return async function (dispatch) {
+		try {
+      const response = await axios.delete(`/admin/${id}`);
+			return dispatch({
+				type: REMOVE_ADMIN, 
+				payload: id
+			})
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}

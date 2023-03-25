@@ -11,8 +11,6 @@ export default function Profile() {
 
 	const allClient = useSelector((state) => state.allClients);
 
-	// console.log(allClient);
-
 	let matchEmail = user && allClient.find((m) => m.mail === user.email);
 
 	const matchId = matchEmail && matchEmail.id;

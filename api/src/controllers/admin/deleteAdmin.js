@@ -6,11 +6,16 @@ const deleteAdmin = async (req, res) => {
 
         const { id } = req.params
 
-        await admin.destroy({
-            where: {
-                id: id,
-            }
-        })
+        const find = await admin.findOne({ where: id })
+
+        if(find){
+            await admin.destroy({
+                where: {
+                    id: id,
+                }
+            })
+        }
+        else throw new Error("Admin not found")
 
         res.status(200).send("Delete Succesfull")  
     } catch (error) {

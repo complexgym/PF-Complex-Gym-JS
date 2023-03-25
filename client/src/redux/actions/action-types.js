@@ -26,3 +26,8 @@ export const UPDATE_CLIENT = 'UPDATE_CLIENT';
 export const GET_ALL_TESTIMONIALS = 'GET_ALL_TESTIMONIALS';
 export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES';
 export const GET_ALL_PLANS = 'GET_ALL_PLANS';
+
+//todo ADMIN
+export const GET_ALL_ADMIN = 'GET_ALL_ADMIN'
+export const POST_ADMIN = 'POST_ADMIN'
+export const REMOVE_ADMIN = 'REMOVE_ADMIN'

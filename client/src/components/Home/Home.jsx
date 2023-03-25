@@ -1,6 +1,6 @@
 import Carrousel from '../Carrousel/Carrousel';
 import Testimonials from '../Testimonials/Testimonials';
-import {PlansHome} from '../Plans/Plans';
+import PlansHome from '../Plans/PlansHome';
 import '../../styles/whatsapp.css'
 import style from "./style.module.css"
 

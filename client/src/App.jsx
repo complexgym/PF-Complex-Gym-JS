@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	getAllActivities,
+	getAllAdmin,
 	getAllPlans,
 	getAllPosts,
 	getAllTestimonials,
@@ -28,6 +29,7 @@ import Clients from './components/DashBoard/pages/Clients';
 import Publications from './components/DashBoard/pages/Publications';
 import Form from './components/Form/Form';
 import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
+import ClasesCalendar from './components/DashBoard/pages/ClassCalendar';
 
 axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
@@ -43,6 +45,7 @@ function App() {
 		dispatch(getAllTestimonials());
 		dispatch(getAllActivities());
 		dispatch(getAllPlans());
+		dispatch(getAllAdmin());
 
 		// if (isAuthenticated && !hasRedirected) {
 		// 	navigate('/home');
@@ -56,7 +59,7 @@ function App() {
 		/* we do not want to show nav and footer in blog 5 if it does not exist */
 	}
 	const { initial_posts } = useSelector((s) => s);
-	const arrIDsBlogs = initial_posts.map((blog) => '/blog/' + blog.id);
+	const arrIDsBlogs = initial_posts?.map((blog) => '/blog/' + blog.id);
 
 	{
 		/* condition show nav and footer */
@@ -68,8 +71,16 @@ function App() {
 		pathname === '/planes' ||
 		pathname === '/perfil' ||
 		pathname === '/blog' ||
-		arrIDsBlogs.some((path) => path === pathname) ||
+		arrIDsBlogs?.some((path) => path === pathname) ||
 		pathname === '/blog/create';
+
+	//??? checking if he is admin ???
+	// const {allAdmin} = useSelector(s=>s)
+
+	// useEffect(()=>{
+	// 	let findAdmin = allAdmin?.find(a=>a?.user===user?.nickname);
+	// 	if(findAdmin) console.log(`${user?.nickname} is admin`);
+	// }, [])
 
 	return (
 		<div className='App'>
@@ -93,6 +104,7 @@ function App() {
 					<Route path={'/dashboard'} element={<DashBoard />} />
 					<Route path={'/dashboard/clientes'} element={<Clients />} />
 					<Route path={'/dashboard/publicaciones'} element={<Publications />} />
+					<Route path={'/dashboard/calendario'} element={<ClasesCalendar />} />
 				</Route>
 				<Route path={'*'} element={<Error404 />} />
 			</Routes>

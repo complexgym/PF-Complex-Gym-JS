@@ -15,6 +15,9 @@ import {
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
 	DELETE_BLOG,
+	GET_ALL_ADMIN,
+	POST_ADMIN,
+	REMOVE_ADMIN,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -31,6 +34,7 @@ const initialState = {
 	},
 	testimonials: [],
 	activities: [],
+	allAdmin: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -123,6 +127,19 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		case GET_ALL_ADMIN:
+			return {
+				...state,
+				allAdmin: payload
+			}
+		case POST_ADMIN:
+			return {
+				...state
+			}
+		case REMOVE_ADMIN: 
+			return {
+				...state
+			}
 		default:
 			return {
 				...state,
