@@ -26,6 +26,7 @@ export default function CreateBlog() {
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
+		console.log(e.target.name, e.target.value);
 		if (e.target.name !== "tag") {
 			setInput({
 				...input,
@@ -155,10 +156,10 @@ export default function CreateBlog() {
 													Imagen de fondo del blog
 												</label>
 												<UploadToCloudinary
-													onUpload={()=>handleUpload()}
-													name="image"
-													onClick={e=>handleChange(e)}
-													className="pb-10"
+													onUpload={handleUpload}
+													name='image'
+													onClick={handleChange}
+													className='pb-10'
 												/>
 												{input.image && (
 													<a
