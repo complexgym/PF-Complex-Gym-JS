@@ -1,6 +1,5 @@
 const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
 const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/;
-const regexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const regexPhone = /^\+(?:\d[\-\s]?){8,14}\d$/;
 const regexDni = /^[0-9]{6,9}$/;
 
@@ -15,10 +14,6 @@ export default function Validate(input) {
 		errors.user = 'El Nombre de usuario es demasiado corto, Min 3 caracteres.';
 	} else if (input.user.length > 16) {
 		errors.user = 'El Nombre de usuario es demasiado largo, Max 16 caracteres.';
-	} else if (!input.mail) {
-		errors.mail = 'El campo Correo electrónico debe rellenarse obligatoriamente';
-	} else if (!regexMail.test(input.mail)) {
-		errors.mail = 'Ingrese un email valido';
 	} else if (input.about.length > 500) {
 		errors.about = 'La Descripción es demasiado larga, Max 500 caracteres.';
 	} else if (!input.name) {

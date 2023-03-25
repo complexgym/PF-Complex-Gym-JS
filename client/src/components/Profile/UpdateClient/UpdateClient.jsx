@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllClients, postClient } from '../../redux/actions/actions';
-import Validate from './Validations';
+import { getAllClients, putClient } from '../../../redux/actions/actions';
+import Validate from './UpdateValidations';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
-import UploadToCloudinary from '../UploadToCloudinary/UploadToCloudinary';
+import UploadToCloudinary from '../../UploadToCloudinary/UploadToCloudinary';
 import { useNavigate, Link } from 'react-router-dom';
 
-export default function Form() {
+export default function UpdateClient() {
 	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
@@ -16,28 +16,26 @@ export default function Form() {
 
 	const allClient = useSelector((state) => state.allClients);
 
-	// console.log(allClient);
-
 	let matchEmail = user && allClient.find((m) => m.mail === user.email);
 
 	const matchId = matchEmail && matchEmail.id;
 
 	const [input, setInput] = useState({
-		user: user.name,
-		mail: user.email,
-		picture: user.picture,
-		about: '',
-		name: user.given_name,
-		lastName: user.family_name,
-		phone: '',
-		dni: '',
-		age: '',
-		height: '',
-		weight: '',
-		address: '',
-		city: '',
-		region: '',
-		postalCode: '',
+		user: matchEmail?.user,
+		mail: matchEmail?.mail,
+		picture: matchEmail?.picture,
+		about: matchEmail?.about,
+		name: matchEmail?.name,
+		lastName: matchEmail?.lastName,
+		phone: matchEmail?.phone,
+		dni: matchEmail?.dni,
+		age: matchEmail?.age,
+		height: matchEmail?.height,
+		weight: matchEmail?.weight,
+		address: matchEmail?.address,
+		city: matchEmail?.city,
+		region: matchEmail?.region,
+		postalCode: matchEmail?.postalCode,
 	});
 
 	const [errors, setErrors] = useState({});
@@ -47,12 +45,6 @@ export default function Form() {
 			...input,
 			[e.target.name]: e.target.value,
 		});
-		setErrors(
-			Validate({
-				...input,
-				[e.target.name]: e.target.value,
-			})
-		);
 	};
 
 	const handleSubmit = (e) => {
@@ -65,7 +57,6 @@ export default function Form() {
 				text: `${
 					error.mail ||
 					error.user ||
-					error.mail ||
 					error.name ||
 					error.lastName ||
 					error.phone ||
@@ -80,10 +71,10 @@ export default function Form() {
 				dangerMode: true,
 			});
 		} else {
-			dispatch(postClient(input));
+			dispatch(putClient(input, matchId));
 			swal({
 				title: 'Gracias!',
-				text: '¡Información creada correctamente!',
+				text: '¡Información actualizada correctamente!',
 				icon: 'success',
 			});
 			navigate(`/home`);
@@ -91,7 +82,7 @@ export default function Form() {
 	};
 
 	function handleUpload(res) {
-		if (res.info.secure_url) {
+		if (res?.info?.secure_url) {
 			setInput({
 				...input,
 				picture: res.info.secure_url,
@@ -165,11 +156,6 @@ export default function Form() {
 											onChange={handleChange}
 											readOnly
 										/>
-										{errors?.mail && (
-											<p className=' text-red-500'>
-												<i>{errors.mail}</i>
-											</p>
-										)}
 									</div>
 
 									{/* UPLOAD IMAGE */}
@@ -521,7 +507,7 @@ export default function Form() {
 											type='submit'
 											className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
 										>
-											Crear
+											Guardar
 										</button>
 									</div>
 								</div>

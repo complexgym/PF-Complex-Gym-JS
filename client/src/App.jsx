@@ -12,16 +12,26 @@ import Profile from './components/Profile/Profile';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllActivities, getAllPosts, getAllTestimonials } from './redux/actions/actions';
+import {
+	getAllActivities,
+	getAllAdmin,
+	getAllPlans,
+	getAllPosts,
+	getAllTestimonials,
+} from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
 import CreateBlog from './components/CreateBlog/CreateBlog';
 import { useAuth0 } from '@auth0/auth0-react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import DashBoard from './components/DashBoard/DashBoard';
+import Clients from './components/DashBoard/pages/Clients';
+import Publications from './components/DashBoard/pages/Publications';
 import Form from './components/Form/Form';
+import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
+import ClasesCalendar from './components/DashBoard/pages/ClassCalendar';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
 function App() {
 	const location = useLocation();
@@ -32,13 +42,15 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getAllPosts());
-		dispatch(getAllTestimonials())
-		dispatch(getAllActivities())
+		dispatch(getAllTestimonials());
+		dispatch(getAllActivities());
+		dispatch(getAllPlans());
+		dispatch(getAllAdmin());
 
-		if (isAuthenticated && !hasRedirected) {
-			navigate('/home');
-			setHasRedirected(true);
-		}
+		// if (isAuthenticated && !hasRedirected) {
+		// 	navigate('/home');
+		// 	setHasRedirected(true);
+		// }
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
 
 	const { pathname } = location;
@@ -47,7 +59,7 @@ function App() {
 		/* we do not want to show nav and footer in blog 5 if it does not exist */
 	}
 	const { initial_posts } = useSelector((s) => s);
-	const arrIDsBlogs = initial_posts.map((blog) => '/blog/' + blog.id);
+	const arrIDsBlogs = initial_posts?.map((blog) => '/blog/' + blog.id);
 
 	{
 		/* condition show nav and footer */
@@ -59,8 +71,16 @@ function App() {
 		pathname === '/planes' ||
 		pathname === '/perfil' ||
 		pathname === '/blog' ||
-		arrIDsBlogs.some((path) => path === pathname) ||
+		arrIDsBlogs?.some((path) => path === pathname) ||
 		pathname === '/blog/create';
+
+	//??? checking if he is admin ???
+	// const {allAdmin} = useSelector(s=>s)
+
+	// useEffect(()=>{
+	// 	let findAdmin = allAdmin?.find(a=>a?.user===user?.nickname);
+	// 	if(findAdmin) console.log(`${user?.nickname} is admin`);
+	// }, [])
 
 	return (
 		<div className='App'>
@@ -76,11 +96,15 @@ function App() {
 				<Route path={'/blog/create'} element={<CreateBlog />} />
 				<Route path={'/planes'} element={<Plans />} />
 				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
-				<Route path={'/registro'} element={<Form />} />
-				<Route path={'/perfil/:id'} element={<Profile />} />
+					<Route path={'/registro'} element={<Form />} />
+					<Route path={'/perfil/:id'} element={<Profile />} />
+					<Route path={'/editar/:id'} element={<UpdateClient />} />
 				</Route>
 				<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
 					<Route path={'/dashboard'} element={<DashBoard />} />
+					<Route path={'/dashboard/clientes'} element={<Clients />} />
+					<Route path={'/dashboard/publicaciones'} element={<Publications />} />
+					<Route path={'/dashboard/calendario'} element={<ClasesCalendar />} />
 				</Route>
 				<Route path={'*'} element={<Error404 />} />
 			</Routes>

@@ -13,6 +13,7 @@ const {
 	Testimonials,
 	Plans,
 	Mercadopago,
+	CalendarDate,
 } = require('./models/index');
 
 // 5432
@@ -39,8 +40,9 @@ Memberships(db);
 Testimonials(db);
 Plans(db);
 Mercadopago(db);
+CalendarDate(db);
 
-const { activities, admin, testimonials, blog, client, trainer, memberships,plans,mercadopago } =
+const { activities, admin, testimonials, blog, client, trainer, memberships,plans,mercadopago,calendardate } =
 	db.models; // falta charlar con los chicos de front blog y memberships
 
 activities.belongsToMany(client, { through: 'ActivitiesClient' });

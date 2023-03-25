@@ -9,9 +9,15 @@ import {
 	GET_POST_BY_ID,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
-  POST_BLOG,
-  GET_ALL_TESTIMONIALS,
-  GET_ALL_ACTIVITIES
+	POST_BLOG,
+	GET_ALL_TESTIMONIALS,
+	GET_ALL_ACTIVITIES,
+	GET_ALL_PLANS,
+	UPDATE_CLIENT,
+	DELETE_BLOG,
+	GET_ALL_ADMIN,
+	POST_ADMIN,
+	REMOVE_ADMIN,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -19,6 +25,7 @@ const initialState = {
 	clientDetail: [],
 	initial_posts: [],
 	matched_posts: [],
+	ig_posts: [],
 	post_details: {},
 	search_blog: '',
 	filters_blog: {
@@ -26,7 +33,8 @@ const initialState = {
 		date: '',
 	},
 	testimonials: [],
-	activities: []
+	activities: [],
+	allAdmin: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -36,8 +44,9 @@ const rootReducer = (state = initialState, action) => {
 		case GET_ALL_POSTS:
 			return {
 				...state,
-				initial_posts: payload,
-				matched_posts: payload,
+				initial_posts: payload.blogPosts,
+				matched_posts: payload.blogPosts,
+				ig_posts: payload.igPosts
 			};
 		case GET_POST_BY_ID:
 			return {
@@ -87,21 +96,54 @@ const rootReducer = (state = initialState, action) => {
 		case POST_CLIENT:
 			return {
 				...state,
-		};
-		case POST_BLOG: return {
-			...state
-		}
-		case GET_ALL_TESTIMONIALS: return {
-			...state, 
-			testimonials: payload
-		}
-		case GET_ALL_ACTIVITIES: return {
-			...state, 
-			activities: payload
-		}
-		default: return {
-			...state
-		}
+			};
+		case POST_BLOG:
+			return {
+				...state,
+			};
+		case DELETE_BLOG: 
+			return {
+				...state,
+				initial_posts: state.initial_posts.filter(el=>el.id!==payload),
+				matched_posts: state.matched_posts.filter(el=>el.id!==payload),
+				ig_posts: state.ig_posts.filter(el=>el.id!==payload)
+			}
+		case GET_ALL_TESTIMONIALS:
+			return {
+				...state,
+				testimonials: payload,
+			};
+		case GET_ALL_ACTIVITIES:
+			return {
+				...state,
+				activities: payload,
+			};
+		case GET_ALL_PLANS:
+			return {
+				...state,
+				plans: payload,
+			};
+		case UPDATE_CLIENT:
+			return {
+				...state,
+			};
+		case GET_ALL_ADMIN:
+			return {
+				...state,
+				allAdmin: payload
+			}
+		case POST_ADMIN:
+			return {
+				...state
+			}
+		case REMOVE_ADMIN: 
+			return {
+				...state
+			}
+		default:
+			return {
+				...state,
+			};
 	}
 };
 export default rootReducer;

@@ -7,6 +7,7 @@ const Memberships = require("./Memberships")
 const Testimonials = require("./Testimonials")
 const Plans = require("./Plans")
 const Mercadopago = require("./MercadoPago")
+const CalendarDate = require('./CalendarDate')
 
 
 module.exports = {
@@ -19,4 +20,5 @@ module.exports = {
     Testimonials,
     Plans,
     Mercadopago
+    CalendarDate
 }

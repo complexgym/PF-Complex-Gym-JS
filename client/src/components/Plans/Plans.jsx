@@ -1,77 +1,82 @@
-import { dataPlans } from "../../assets/utils/dataPlans";
-import { Link, NavLink } from "react-router-dom";
-import Spline from "@splinetool/react-spline";
 
+import {useSelector} from "react-redux"
+import { useState } from "react";
+import SinglePlan from "./SinglePlan"
+
+//todo ALL PLANS
 export default function Plans() {
-  return (
-    <div className="relative w-[100vw] min-h-[190vh] md:min-h-[140vh] xl:min-h-screen">
-      <div className="absolute w-[100%] h-[99%]">
-        <Spline scene="https://prod.spline.design/jxjOOkSio3UDciBE/scene.splinecode" />
-      </div>
-      <div className="absolute left-1/2 transform -translate-x-1/2 z-10 my-20">
-        <Link to="/planes" className="">
-          <a className=" text-white text-5xl font-bold mt-20">PLANES</a>
-        </Link>
-      </div>
-      <div
-        className="absolute left-1/2 transform -translate-x-1/2 my-32 cards pt-20 pb-32 grid md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto w-[80vw] sm:w-[60vh]
-			md:w-[85vw] xl:w-[75vw] 2xl:w-[65vw] "
-      >
-        {dataPlans.map((d, index) => {
-          return (
-            <div
-              className="card text-grey text-md rounded-xl bg-white pb-10"
-              key={index}
-            >
-              {/* running bg TEXT */}
-              <div className="absolute bg-black z-10"></div>
-              <label className="name-plan text-2xl absolute z-50 ml-3 text-black uppercase">
-                {d[0]}
-              </label>
+	const [option, setOption] = useState("Todos")
 
-              {/* running bg */}
-              <div
-                style={{
-                  backgroundImage:
-                    "url('https://runkeeper.com/cms/wp-content/uploads/sites/4/2022/12/How-Many-Days-Per-Week-Should-You-Run.png')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-                className="w-full h-48 rounded-tr-xl rounded-tl-xl bg-gray-img"
-              ></div>
+	const plans = useSelector(s=>s.plans)
+  
+	return (
+		<div className="bg-image-testimonials relative w-full h-full pt-36 pb-8 font-text">
+			<div className="absolute hidden w-full lg:block h-96" />
+			
+			<div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-[85vw] md:px-24 lg:px-8 lg:py-20">
+        {/* initial msg */}
+				<div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+					<h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+						<span className="relative inline-block">
+							<span className="relative uppercase text-white">Planes actuales</span>
+						</span>{" "}
+					</h2>
+				</div>
+        
+        {/* content */}
+				<div className="mb-4 border-b border-gray-200 dark:border-gray-700">
 
-              {/* msg text depending the plan section */}
+          {/* tabs */}
+					<ul
+						className="flex flex-wrap justify-center text-sm text-white font-medium text-center"
+						id="myTab"
+						data-tabs-toggle="#myTabContent"
+						role="tablist"
+					>
+						<li className="mr-2" role="presentation">
+							<button
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Todos" && "lighter-blue border-blue font-bold border-b-4"}`}
+								onClick={()=>setOption("Todos")}
+							>
+								Todos
+							</button>
+						</li>
 
-              <div className="pl-2 pt-8 h-56 flex flex-col justify-between">
-                <h3 className="msg-text text-lg w-10/12 pt-2 font-bold text-[#04209A]">
-                  {d[0] === "2 por semana" && "¡Más barato!"}
+						<li className="mr-2" role="presentation">
+							<button
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="2 por semana" && "text-green-700 border-green-700 font-bold border-b-4"}`}
+								onClick={()=>setOption("2 por semana")}
+							>
+								2 por semana
+							</button>
+						</li>
 
-                  {d[0] === "Libre" && "¡De Lunes a Sábado lo que quieras!"}
+						<li className="mr-2" role="presentation">
+							<button
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Libre" && "text-yellow-400 border-yellow-400 font-bold  border-b-4"}`}
+								onClick={()=>setOption("Libre")}
+							>
+								Libre
+							</button>
+						</li>
 
-                  {d[0] === "Otros" && "¡De Lunes a Sábado sólo una actividad!"}
-                </h3>
+						<li className="mr-2" role="presentation">
+							<button
+								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Otros" && "text-slate-400 border-blue font-bold border-b-4"}`}
+								onClick={()=>setOption("Otros")}
+							>
+								Otros
+							</button>
+						</li>
 
-                <ul className="flex flex-col justify-between list-disc">
-                  {d[1].map((s, index) => {
-                    return (
-                      <li className="ml-8">
-                        {s.plan} (${s.price})
-                      </li>
-                    );
-                  })}
-                </ul>
-
-                <div className="flex">
-                  {/* <button className="text-[#04209A] border-lighter-blue-plans mt-4"> */}
-                  <NavLink to="/planes" className="bg-blue-600 hover:bg-blue-300 text-white font-bold py-2 px-4 border rounded mt-4">
-                    Inscribirse
-                  </NavLink>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+					</ul>
+				</div>
+				<div className="grid max-w-screen row-gap gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 sm:mx-auto">
+					{plans?.[option].map((plan) => {
+						return <SinglePlan plan={plan} option={option}/>;
+					})}
+				</div>
+			</div>
+		</div>
+	);
 }
