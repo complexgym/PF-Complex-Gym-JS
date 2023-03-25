@@ -4,8 +4,8 @@ const mercadopago = (sequelize) => {
     sequelize.define('mercadopago', {   
         clientId:{
             type: DataTypes.UUID,
-			defaultValue: DataTypes.UUIDV4,
-			allowNull: true,
+            defaultValue: DataTypes.UUIDV4,
+            allowNull: true,
             primaryKey: true,
         },
         paymentsId: { 
