@@ -4,12 +4,14 @@ const getAllActivities = require("./activities/getAllActivities")
 const postActivities = require("./activities/postActivities")
 const editActivities = require("./activities/editActivities")
 const deleteActivities = require("./activities/deleteActivities")
+const restoreActivities = require("./activities/restoreActivities")
 const deleteClient = require("./clients/deleteClient")
 const getAllClients = require("./clients/getAllClients")
 const getClientById = require("./clients/getClientById")
 const getClientByName = require("./clients/getClientByName")
 const postClient = require("./clients/postClient")
 const updateClientById = require("./clients/updateClientById")
+const restoreClient = require("./clients/restoreClient")
 const createPublication = require("./publications/createPublication")
 const deletePublication = require("./publications/deletePublication")
 const editPublication = require("./publications/editPublication")
@@ -17,6 +19,7 @@ const getAllPublications = require("./publications/getAllPublications")
 const getPublicationsByID = require("./publications/getPublicationsByID")
 const getPublicationsByName = require("./publications/getPublicationsByName")
 const deleteTrainer = require("./trainer/deleteTrainer")
+const restoreTrainer = require("./trainer/restoreTrainer")
 const postTrainer = require("./trainer/getTrainerByName")
 const getTrainerByName = require("./trainer/getTrainerByName")
 const editTrainer = require("./trainer/editTrainer")
@@ -32,6 +35,7 @@ const deleteAdmin = require("./admin/deleteAdmin")
 const getAllAdmins = require("./admin/getAllAdmins")
 const postAdmin = require("./admin/postAdmin")
 const putAdmin = require("./admin/putAdmin")
+const restoreAdmin = require("./admin/restoreAdmin")
 const getAllTestimonials = require("./testimonials/getAllTestimonials")
 const deleteTestimonials = require("./testimonials/deleteTestimonials")
 const postTestimonials = require("./testimonials/postTestimonials")
@@ -57,11 +61,13 @@ module.exports = {
     postActivities,
     editActivities,
     deleteActivities,
+    restoreActivities,
     deleteClient,
     getAllClients,
     getClientById,
     getClientByName,
     postClient,
+    restoreClient,
     updateClientById,
     createPublication,
     deletePublication,
@@ -80,6 +86,7 @@ module.exports = {
     editTrainer,
     getAllTrainers,
     getTrainerById,
+    restoreTrainer,
     filters,
     postPayments,
     getMembershipsById,
@@ -88,6 +95,7 @@ module.exports = {
     getAllAdmins,
     postAdmin,
     putAdmin,
+    restoreAdmin,
     getAllTestimonials,
     deleteTestimonials,
     postTestimonials,
