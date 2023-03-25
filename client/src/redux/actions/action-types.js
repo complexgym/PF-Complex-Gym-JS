@@ -31,3 +31,6 @@ export const GET_ALL_PLANS = 'GET_ALL_PLANS';
 export const GET_ALL_ADMIN = 'GET_ALL_ADMIN'
 export const POST_ADMIN = 'POST_ADMIN'
 export const REMOVE_ADMIN = 'REMOVE_ADMIN'
+
+//todo PAYMENTS
+export const POST_PAYMENT = 'POST_PAYMENT'
