@@ -139,6 +139,7 @@ export const postBlog = (data) => {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post('/publications', data);
+			console.log(response);
 			return dispatch({
 				type: POST_BLOG,
 			});
@@ -426,4 +427,3 @@ export const postPayment = (purchase) => async () => {
         console.log(error);
     }
 };
-

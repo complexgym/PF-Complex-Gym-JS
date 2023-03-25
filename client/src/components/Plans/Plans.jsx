@@ -77,6 +77,7 @@ export default function Plans() {
 					})}
 				</div>
 			</div>
+			<div className="render-btn"></div>
 		</div>
 	);
 }
