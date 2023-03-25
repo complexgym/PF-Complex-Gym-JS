@@ -198,4 +198,4 @@ const ClasesCalendar = () => {
 	);
 };
 
-export default ClasesCalendar
+export default ClasesCalendar;
