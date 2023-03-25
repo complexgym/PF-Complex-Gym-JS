@@ -5,7 +5,6 @@ const deleteAdmin = async (req, res) => {
     try {
 
         const { id } = req.params
-
         await admin.destroy({
             where: {
                 id: id,

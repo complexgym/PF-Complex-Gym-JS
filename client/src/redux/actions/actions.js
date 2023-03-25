@@ -14,6 +14,13 @@ import {
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
+	GET_CALENDAR,
+	POST_CALENDAR,
+	DELETE_BLOG,
+	GET_ALL_ADMIN,
+	POST_ADMIN,
+	REMOVE_ADMIN,
+	POST_PAYMENT,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -134,6 +141,20 @@ export const postBlog = (data) => {
 			const response = await axios.post('/publications', data);
 			return dispatch({
 				type: POST_BLOG,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const deleteBlog = (id) => {
+	return async function (dispatch) {
+		try {
+			const response = await axios.delete(`/publications/${id}`);
+			return dispatch({
+				type: DELETE_BLOG,
+				payload: id
 			});
 		} catch (error) {
 			console.log(error);
@@ -316,3 +337,84 @@ export const getAllPlans = () => {
 		}
 	};
 };
+
+//TODO Calendario
+export const getCalendar = () => {
+	return async function (dispatch){
+		try{
+			const response = await axios.get('/calendar');
+			return dispatch({
+				type:GET_CALENDAR,
+				payload: response.data,
+			})
+		}catch(error){
+			console.log(error)
+		}
+	}
+}
+
+export const postCalendar = (calendar) => async () => {
+	try {
+		const data = await axios.post('/calendar', calendar);
+		console.log(calendar);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getAllAdmin = ()=> {
+	return async function (dispatch) {
+		try {
+      const response = await axios.get("/admin");
+			return dispatch({
+				type: GET_ALL_ADMIN,
+				payload: response.data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export const postAdmin = (data)=> {
+	return async function (dispatch) {
+		try {
+      const response = await axios.post("/admin", data);
+			return dispatch({
+				type: POST_ADMIN, 
+				payload: data
+			})
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export const removeAdmin = (id)=> {
+	return async function (dispatch) {
+		try {
+      const response = await axios.delete(`/admin/${id}`);
+			return dispatch({
+				type: REMOVE_ADMIN, 
+				payload: id
+			})
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export const postPayment = (data)=> {
+	return async function (dispatch) {
+    try {
+      const response = await axios.post("/payments", data);
+      return dispatch({
+        type: POST_PAYMENT, 
+        payload: data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

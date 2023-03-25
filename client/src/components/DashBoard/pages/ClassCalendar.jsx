@@ -1,11 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SideNav from '../SideNav';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteBlog } from '../../../redux/actions/actions';
+import { postCalendar } from '../../../redux/actions/actions';
+import ValidateCalendar from './ValidateCalendar';
+import swal from 'sweetalert';
+import { useDispatch } from 'react-redux';
 
-const Publications = () => {
-	const { initial_posts, ig_posts } = useSelector((s) => s);
+const ClasesCalendar = () => {
+	const dispatch = useDispatch();
+	
+	const [input, setInput] = useState({
+		day: 0,
+		month: 0,
+		year: 0,
+		hour: "",
+		class: ""
+	});
+
+	const [error, setErrors] = useState({});
+
+	const handleChange = (e) => {
+		setInput({
+			...input,
+			[e.target.name]: e.target.value,
+		});
+		setErrors(
+			ValidateCalendar({
+				...input,
+				[e.target.name]: e.target.value,
+			})
+		);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setErrors(ValidateCalendar(input));
+		let error = ValidateCalendar(input);
+		if (Object.values(error).length !== 0){
+				swal({
+					title: 'Faltan Información',
+					text: `${
+						error.day ||
+						error.month ||
+						error.year ||
+						error.hour ||
+						error.class
+					}`,
+					icon: 'warning',
+					dangerMode: true,
+			});
+		} else {
+			dispatch(postCalendar(input));
+			swal({
+				title: 'Gracias!',
+				text: '¡Clase creada correctamente!',
+				icon: 'success',
+			});
+		}
+	}
 
 	return (
 		<div>
@@ -30,10 +82,10 @@ const Publications = () => {
 										className="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
 										aria-current='page'
 									>
-										Publicaciones
+										Calendario
 									</li>
 								</ol>
-								<h6 className='mb-0 font-bold text-white capitalize'>Publicaciones</h6>
+								<h6 className='mb-0 font-bold text-white capitalize'>Calendario</h6>
 							</nav>
 
 							<div className='flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto'>
@@ -53,20 +105,63 @@ const Publications = () => {
 						</div>
 					</nav>
 
+						<div>
+							<form onSubmit={(e) => handleSubmit(e)}>
+								<input 
+								type="number"
+								name="day"
+								id="day"
+								value={input.day}
+								autoComplete="off"
+								onChange={handleChange}
+								/>
+								<input 
+								type="number"
+								name="month"
+								id="month"
+								value={input.month}
+								autoComplete="off"
+								onChange={handleChange}
+								 />
+								<input 
+								type="number"
+								name="year"
+								id="year"
+								value={input.year}
+								autoComplete="off"
+								onChange={handleChange}
+								/>
+								<input
+								 type="text"
+								 name="hour"
+								 id="hour"
+								 value={input.hour}
+								 autoComplete="off"
+								 onChange={handleChange}
+								 />
+								<input type="text"
+								name="class"
+								id="class"
+								value={input.class}
+								autoComplete="class"
+								onChange={handleChange}
+								/>
+								<button type='submit'>Crear clase</button>
+							</form>
+						</div>
+
 					<div className='w-full px-6 py-6 mx-auto'>
 						<div className='flex flex-wrap -mx-3'>
 							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className=' grid grid-cols-2 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
 										<div className=''>
-											<h6 className='dark:text-white'>Tabla de Publicaciones</h6>
+											<h6 className='dark:text-white'>Calendario</h6>
 										</div>
 										<div className='grid justify-end '>
-											<Link to='/blog/create'>
-												<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
-													Crear Publicación
-												</button>
-											</Link>
+											<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
+												Crear Clase
+											</button>
 										</div>
 									</div>
 									<div className='p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'></div>
@@ -75,26 +170,21 @@ const Publications = () => {
 											<table className='items-center justify-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
 												<thead className='align-bottom'>
 													<tr>
-														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Tipo de publicación
+														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Actividad
 														</th>
 														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Titulo
-														</th>
-														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Tag's
+															Fecha
 														</th>
 														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Calificación
+															Hora
 														</th>
 														<th className='px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap'></th>
 													</tr>
 												</thead>
-												<tbody className='border-t'>
-													{[...initial_posts, ...ig_posts]?.map((post) => {
-														return <SinglePublication post={post} />;
-													})}
-												</tbody>
+
+												{/* ALL CLASSES */}
+												<tbody className='border-t'>MAPEAR AQUI</tbody>
 											</table>
 										</div>
 									</div>
@@ -108,87 +198,4 @@ const Publications = () => {
 	);
 };
 
-const SinglePublication = ({ post }) => {
-	const dispatch = useDispatch();
-
-	const handleDelete = () => {
-		dispatch(deleteBlog(post.id));
-	};
-
-	return (
-		<tr>
-			{/* type of publication */}
-			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<div className='flex px-2'>
-					<div>
-						<img
-							src={
-								post?.isInstagram
-									? 'https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196395/instagram_pozow5.png'
-									: post?.image
-							}
-							className='inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 ease-in-out rounded-full h-8 w-8'
-							alt='post img'
-						/>
-					</div>
-					<div className='my-auto'>
-						<h6 className='mb-0 text-sm leading-normal dark:text-white'>
-							{post?.isInstagram ? 'Instagram' : 'Blog'}
-						</h6>
-					</div>
-				</div>
-			</td>
-
-			{/* title */}
-			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<p className='mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60 capitalize'>
-					{post?.title}
-				</p>
-			</td>
-
-			{/* tag */}
-			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-60'>
-					{post?.tag?.map((el, index) => {
-						if (index === post?.tag?.length - 1) return el;
-						else return el + '\n';
-					})}
-				</span>
-			</td>
-
-			{/* qualification*/}
-			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<div className='flex items-center justify-center'>
-					<span className='mr-2 text-xs font-semibold leading-tight dark:text-white dark:opacity-60'>
-						60%
-					</span>
-					<div>
-						<div className='text-xs h-0.75 w-30 m-0 flex overflow-visible rounded-lg bg-gray-200'>
-							<div
-								className='flex flex-col justify-center w-3/5 h-auto overflow-hidden text-center text-white transition-all bg-blue-500 rounded duration-600 ease bg-gradient-to-tl from-blue-700 to-cyan-500 whitespace-nowrap'
-								role='progressbar'
-								aria-valuenow='60'
-								aria-valuemin='0'
-								aria-valuemax='100'
-							></div>
-						</div>
-					</div>
-				</div>
-			</td>
-
-			{/* delete btn */}
-			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
-					<i
-						className='fa fa-times mr-4 text-red-500'
-						aria-hidden='true'
-						onClick={handleDelete}
-					></i>
-					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
-				</button>
-			</td>
-		</tr>
-	);
-};
-
-export default Publications;
+export default ClasesCalendar

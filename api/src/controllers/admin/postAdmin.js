@@ -10,6 +10,7 @@ const postAdmin = async (req, res) => {
             picture,
             permits
         } = req.body
+
         const newAdmin = await admin.create({
             user,
             name,
@@ -19,6 +20,7 @@ const postAdmin = async (req, res) => {
         })
 
         res.status(200).send(newAdmin)
+        
     } catch (error) {
         res.status(404).json({error:error.message})
     }
