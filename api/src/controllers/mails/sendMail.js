@@ -5,12 +5,16 @@ const OAuth2 = google.auth.OAuth2
 require('dotenv').config()
 
 const { ID_CLIENTE, SECRETO_CLIENTE, REFRESH_TOKEN } = process.env
+const {defaultTemplate} = require('./templates/index')
+
+
 
 /**
  * 
- * @param {{to: string, title:string, subject: string, html: string}} email 
+ * @param {{to: string, title:string, subject: string, html: {name: string}}} email 
+ * @param {*} querys 
  */
-const sendMail = async (email) => {
+const sendMail = async (email, querys) => {
 
     const accessTransport = {
         service: 'gmail',
@@ -39,7 +43,7 @@ const sendMail = async (email) => {
         }
     })
 
-    OAuth2Client.getAccessToken(async(err, token) => {
+    OAuth2Client.getAccessToken(async (err, token) => {
         if (err) return console.log(err)
         accessTransport.auth.accessToken = token
 
@@ -53,9 +57,9 @@ const sendMail = async (email) => {
                 to: email.to, // list of receivers
                 subject: email.subject, // Subject line
                 // text: "email desde nodemailer", // plain text body
-                html: email.html, // html body
+                html: defaultTemplate(email.html.name), // html body
             });
-    
+
             console.log("Message sent: %s", info.messageId);
         } catch (error) {
             console.log('un error en el envio : ', error.message)

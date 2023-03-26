@@ -15,10 +15,12 @@ export default function Calendar() {
 	const year = selectDate?.["$y"];
 	const day = selectDate?.["$D"];
 	const filter = allCalendar.filter((c) => {
+
 		return c.month === month + 1 && c.year === year && c.day === day;
 	});
 
 	console.log(filter);
+  
 	return (
 		<div className="w-screen bg-slate-100">
 			<div className='flex gap-24 sm:divide-x justify-center sm:w-1/2 mx-auto w-screen h-screen sm:flex-row flex-col bg-slate-100 pt-40'>

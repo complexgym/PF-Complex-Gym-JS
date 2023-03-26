@@ -8,28 +8,27 @@ export default function PlansHome() {
 	const {plans} = useSelector(s=>s)
 
 	return (
-		<div className="relative w-[100vw] min-h-[190vh] md:min-h-[150vh] xl:min-h-screen">
-			<div className="absolute w-[100%] h-[99%]">
+		<div className=" bg-slate-700 relative w-[100vw] 2xl:h-[100vh] xl:h-[100vh] lg:h-[100vh] md:h-[108vh] xs:h-[200vh]">
+			<div className="absolute w-[100%] h-[100%]">
 				<Spline scene="https://prod.spline.design/jxjOOkSio3UDciBE/scene.splinecode" />
 			</div>
-			<div className="absolute left-1/2 transform -translate-x-1/2 z-10 my-20">
+			<div className="absolute left-1/2 transform -translate-x-1/2 z-10 2xl:my-40 xl:my-16 lg:my-20 md:my-20 xs:my-16">
 				<Link to="/planes" className="">
-					<a className=" text-white text-5xl font-bold mt-20">PLANES</a>
+					<a className=" text-white font-bold 2xl:text-5xl xl:text-4xl lg:text-5xl md:text-4xl xs:text-4xl">PLANES</a>
 				</Link>
 			</div>
 			<div
-				className="absolute left-1/2 transform -translate-x-1/2 my-32 cards pt-20 pb-32 grid md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto w-[80vw] sm:w-[60vh]
-			md:w-[85vw] xl:w-[75vw] 2xl:w-[65vw] "
+				className="absolute  w-[85vw] left-1/2 transform mx-auto -translate-x-1/2 my-32 cards pt-20 pb-32 grid  2xl:grid-cols-3 xl:grid-cols-3 2xl:mt-60 xl:mt-[80px] md:mt-[70px] xs:mt-[70px] md:grid-cols-2 "
 			>
 				{plans && Object?.entries(plans)?.slice(0, 3)?.map((d, index) => {
 					return (
 						<div
-							className="card text-grey text-md rounded-xl bg-white pb-10"
+							className="card text-grey text-md rounded-xl bg-white m-auto pb-10 2xl:w-[400px] xl:w-[25vw] lg:mb-20 lg:w-[350px] md:mb-10 md:w-[300px] xs:mb-10 xs:w-[300px]"
 							key={index}
 						>
 							{/* running bg TEXT */}
 							<div className="absolute bg-black z-10"></div>
-							<label className="name-plan text-2xl absolute z-50 ml-3 text-black uppercase">
+							<label className="name-plan text-2xl absolute z-50 ml-4 mt-4 text-black font-semibold uppercase">
 								{d?.[0]}
 							</label>
 
@@ -46,8 +45,8 @@ export default function PlansHome() {
 
 							{/* msg text depending the plan section */}
 
-							<div className="pl-2 pt-8 h-56 flex flex-col justify-between">
-								<h3 className="msg-text text-lg w-10/12 pt-2 font-bold text-[#04209A]">
+							<div className="pl-4 pt-8 h-56 flex flex-col justify-between ">
+								<h3 className="msg-text text-lg w-10/12 pt-2 font-bold text-[#1D459D]">
 									{d[0] === "2 por semana" && "¡Más accesible!"}
 
 									{d[0] === "Libre" && "¡De Lunes a Sábado lo que quieras!"}
@@ -65,11 +64,11 @@ export default function PlansHome() {
 									})}
 								</ul>
 
-								<div className="flex">
+								<div className="flex ">
 									{/* <button className="text-[#04209A] border-slate-300-plans mt-4"> */}
 									<NavLink
 										to="/planes"
-										className="bg-blue-600 hover:bg-blue-300 text-white font-bold py-2 px-4 border rounded mt-4"
+										className="bg-[#1D459D] hover:bg-blue-300 text-white font-bold py-2 px-4 border rounded mt-4"
 									>
 										Inscribirse
 									</NavLink>
