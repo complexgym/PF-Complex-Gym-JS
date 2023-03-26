@@ -139,7 +139,7 @@ export const postBlog = (data) => {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post('/publications', data);
-			console.log(response);
+
 			return dispatch({
 				type: POST_BLOG,
 			});
@@ -235,8 +235,6 @@ export const getAllClients = () => async (dispatch) => {
 
 		let data = response.data.responseAll;
 
-		// console.log(data);
-
 		return dispatch({
 			type: GET_CLIENTS,
 			payload: data,
@@ -262,8 +260,6 @@ export const getClientDetail = (id) => async (dispatch) => {
 export const postClient = (client) => async () => {
 	try {
 		const data = await axios.post('/clients', client);
-
-		// console.log(client);
 
 		await axios.post('/mail/sendmail', {
 			to: client.mail,
@@ -421,12 +417,10 @@ export const removeAdmin = (id) => {
 };
 
 export const postPayment = (purchase) => async () => {
-  try {
-      const response = await axios.post('/payments', purchase);
-      console.log(response.data);
-      // console.log(data);
-      return response;
-  } catch (error) {
-      console.log(error);
-  }
+	try {
+		const response = await axios.post('/payments', purchase);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
 };
