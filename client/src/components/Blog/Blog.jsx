@@ -15,7 +15,7 @@ import { NavLink } from 'react-router-dom';
 //todo blog container
 export default function Blog() {
 	const dispatch = useDispatch();
-	const { matched_posts, ig_posts, search_blog, filters_blog } = useSelector(
+	const { initial_posts, matched_posts, ig_posts, search_blog, filters_blog } = useSelector(
 		(s) => s
 	);
 	const [search, setSearch] = useState('');
@@ -110,6 +110,7 @@ export default function Blog() {
 	return (
 		<div>
 			<section className='bg-gray-100 w-screen pt-16 min-h-[80vh]'>
+				{initial_posts.length!==0 ?
 				<div className='py-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:py-16 lg:px-6 '>
 					{/* BLOG */}
 					<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
@@ -240,6 +241,8 @@ export default function Blog() {
 						})}
 					</div>
 				</div>
+
+				: <p className="text-red-500 font-bold text-center">¡Ningún blog todavía creado!</p>}
 			</section>
 		</div>
 	);

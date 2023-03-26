@@ -325,8 +325,8 @@ export const getAllPlans = () => {
 			let newData = {};
 
 			//*segmenting by 2 week, libre, etc
-			response.data.responseAll.forEach((el) => {
-				if (el.name.includes('2')) {
+			response?.data?.responseAll.forEach((el) => {
+				if (el?.name?.includes('2')) {
 					if (!newData['2 por semana']) newData['2 por semana'] = [el];
 					else newData['2 por semana'] = [...newData['2 por semana'], el];
 				} else if (el.name.includes('Libre')) {
@@ -338,7 +338,7 @@ export const getAllPlans = () => {
 				}
 			});
 
-			newData['Todos'] = response.data.responseAll;
+			newData['Todos'] = response?.data?.responseAll;
 
 			//*response
 			return dispatch({
@@ -366,11 +366,13 @@ export const getCalendar = () => {
 	};
 };
 
-export const postCalendar = (calendar) => async () => {
+export const postCalendar = (calendar) => async (dispatch) => {
 	try {
-		const data = await axios.post('/calendar', calendar);
-		console.log(calendar);
-		return data;
+		const response = await axios.post('/calendar', calendar);
+		return dispatch({
+			type: POST_CALENDAR,
+			payload: response.data
+		})
 	} catch (error) {
 		console.log(error);
 	}
