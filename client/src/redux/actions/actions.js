@@ -418,12 +418,11 @@ export const removeAdmin = (id) => {
 };
 
 export const postPayment = (purchase) => async () => {
-    try {
-        const data = await axios.post('/payments', purchase);
-        console.log(data);
-        return data;
-    } catch (error) {
-        console.log(error);
-    }
+	try {
+		const data = await axios.post('/payments', purchase);
+		console.log(data);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
 };
-

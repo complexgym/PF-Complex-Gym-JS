@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import SideNav from '../SideNav';
 import { postCalendar } from '../../../redux/actions/actions';
 import ValidateCalendar from './ValidateCalendar';
 import swal from 'sweetalert';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import ClassCard from './ClassCard';
 
 const ClasesCalendar = () => {
 	const dispatch = useDispatch();
+
+	const { allCalendar } = useSelector((state) => state);
 
 	const [input, setInput] = useState({
 		day: 0,
@@ -207,21 +209,27 @@ const ClasesCalendar = () => {
 											<table className='items-center justify-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
 												<thead className='align-bottom'>
 													<tr>
-														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Actividad
 														</th>
-														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Fecha
 														</th>
 														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Hora
 														</th>
-														<th className='px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap'></th>
+														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Acción
+														</th>
 													</tr>
 												</thead>
 
 												{/* ALL CLASSES */}
-												<tbody className='border-t'>MAPEAR AQUI</tbody>
+												<tbody className='border-t'>
+													{allCalendar.map((calendar) => {
+														return <ClassCard calendar={calendar} />;
+													})}
+												</tbody>
 											</table>
 										</div>
 									</div>
