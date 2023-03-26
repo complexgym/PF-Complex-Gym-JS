@@ -27,8 +27,12 @@ const admin = (sequelize) => {
         permits: {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
-        }
-    }, {timestamps: false})
+        },
+        paranoid: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: true,
+			}
+    })
 }
 
 module.exports = admin

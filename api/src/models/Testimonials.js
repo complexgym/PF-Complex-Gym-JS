@@ -20,6 +20,10 @@ const testimonials = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false,
         }, 
+        paranoid: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: true,
+			}
      })
 }
 

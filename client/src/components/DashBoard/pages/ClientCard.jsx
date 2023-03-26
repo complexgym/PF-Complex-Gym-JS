@@ -11,6 +11,7 @@ const ClientCard = ({ client }) => {
 
 	const {allAdmin} = useSelector(s=>s)
 
+	//todo VERRRRR, muchos logs en back
 	useEffect(()=>{
 		dispatch(getAllAdmin())
 	}, [allAdmin])

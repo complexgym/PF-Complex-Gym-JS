@@ -8,10 +8,12 @@ const postPayments = async (req, res) => {
 	const data = req.body;
 	let products = [];
 
+	console.log(data);
+
 	//TODO
 	let obj = {
 		category_id: data.id_User, //id user
-		title: data.name, //?????
+		title: data.name, 
 		unit_price: data.price, 
 		quantity: data.amount,
 	};
@@ -31,10 +33,11 @@ const postPayments = async (req, res) => {
 		.create(preference)
 		.then(function (response) {
 			res.json({
-				id: response.body.id,
+				response
 			});
 		})
 		.catch(function (error) {
+			console.log(error.message);
 			return { error: error.message };
 		});
 };

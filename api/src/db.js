@@ -17,7 +17,8 @@ const {
 } = require('./models/index');
 
 // 5432
-//const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
+// const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
+// const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
 const { DB_DEPLOY } = process.env;
 
@@ -42,14 +43,24 @@ Plans(db);
 Mercadopago(db);
 CalendarDate(db);
 
-const { activities, admin, testimonials, blog, client, trainer, memberships,plans,mercadopago,calendardate } =
-	db.models; // falta charlar con los chicos de front blog y memberships
+const {
+	activities,
+	admin,
+	testimonials,
+	blog,
+	client,
+	trainer,
+	memberships,
+	plans,
+	mercadopago,
+	calendardate,
+} = db.models; // falta charlar con los chicos de front blog y memberships
 
 activities.belongsToMany(client, { through: 'ActivitiesClient' });
 client.belongsToMany(activities, { through: 'ActivitiesClient' });
 
-client.hasMany(mercadopago);
-mercadopago.belongsTo(client);
+// client.hasMany(mercadopago);
+// mercadopago.belongsTo(client);
 
 trainer.belongsToMany(activities, { through: 'ActivitiesTrainer' });
 activities.belongsToMany(trainer, { through: 'ActivitiesTrainer' });
