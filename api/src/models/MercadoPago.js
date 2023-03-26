@@ -6,11 +6,11 @@ const mercadopago = (sequelize) => {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             allowNull: true,
-            primaryKey: true,
         },
         paymentsId: { 
 			type: DataTypes.INTEGER,
 			allowNull: false,
+            primaryKey: true,
 		},
         paymentsStatus: {
             type: DataTypes.STRING,
