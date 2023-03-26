@@ -73,11 +73,11 @@ export default function Navbar() {
             {isActive && <NavLink to={"/dashboard"}>Dashboard</NavLink>}
             {!isAuthenticated ? null : (
                 <NavLink to={"/registro"} className={isActiveStyle}>
-                  registro
+                  Registro
                 </NavLink>
               ) && isActive ? null : (
               <NavLink to={"/registro"} className={isActiveStyle}>
-                registro
+                Registro
               </NavLink>
             )}
             {isAuthenticated && <LogoutBtn />}
