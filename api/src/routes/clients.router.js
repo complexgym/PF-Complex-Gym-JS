@@ -6,7 +6,8 @@ const {
     getClientByName,
     updateClientById,
     getAllClients,
-    getClientById
+    getClientById,
+    restoreClient
 } = require("../controllers/index")
 
 const router = Router()
@@ -90,5 +91,15 @@ router.put('/:id', async (req, res)=>{
         })
     }
 })
+
+router.put('/restore/:id', async (req, res) => {
+    try {
+      const id = req.params.id;
+      const result = await restoreClient({ id });
+      res.status(200).send(result);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
 
 module.exports = router

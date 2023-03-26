@@ -139,6 +139,7 @@ export const postBlog = (data) => {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post('/publications', data);
+			console.log(response);
 			return dispatch({
 				type: POST_BLOG,
 			});
@@ -418,11 +419,12 @@ export const removeAdmin = (id) => {
 };
 
 export const postPayment = (purchase) => async () => {
-	try {
-		const data = await axios.post('/payments', purchase);
-		console.log(data);
-		return data;
-	} catch (error) {
-		console.log(error);
-	}
+  try {
+      const response = await axios.post('/payments', purchase);
+      console.log(response.data);
+      // console.log(data);
+      return response;
+  } catch (error) {
+      console.log(error);
+  }
 };
