@@ -10,6 +10,7 @@ const postMercadoPago = async({clientId,id,status,date_payments,total_amount,pla
         plansPayments:plans,
         order:order
 	});
+    console.log(newpayments);
     return newpayments;
 }
 
