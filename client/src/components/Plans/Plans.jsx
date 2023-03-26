@@ -18,7 +18,7 @@ export default function Plans() {
 				<div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
 					<h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
 						<span className="relative inline-block">
-							<span className="relative uppercase text-white">Planes actuales</span>
+							<span className="relative uppercase text-black">Planes actuales</span>
 						</span>{" "}
 					</h2>
 				</div>
@@ -35,7 +35,7 @@ export default function Plans() {
 					>
 						<li className="mr-2" role="presentation">
 							<button
-								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Todos" && "lighter-blue border-blue font-bold border-b-4"}`}
+								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${option==="Todos" && "lighter-blue border-blue font-bold border-b-4"}`}
 								onClick={()=>setOption("Todos")}
 							>
 								Todos
@@ -44,7 +44,7 @@ export default function Plans() {
 
 						<li className="mr-2" role="presentation">
 							<button
-								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="2 por semana" && "text-green-700 border-green-700 font-bold border-b-4"}`}
+								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${option==="2 por semana" && "text-green-700 border-green-700 font-bold border-b-4"}`}
 								onClick={()=>setOption("2 por semana")}
 							>
 								2 por semana
@@ -53,7 +53,7 @@ export default function Plans() {
 
 						<li className="mr-2" role="presentation">
 							<button
-								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Libre" && "text-yellow-400 border-yellow-400 font-bold  border-b-4"}`}
+								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${option==="Libre" && "text-yellow-400 border-yellow-400 font-bold  border-b-4"}`}
 								onClick={()=>setOption("Libre")}
 							>
 								Libre
@@ -62,7 +62,7 @@ export default function Plans() {
 
 						<li className="mr-2" role="presentation">
 							<button
-								className={`inline-block p-4 border-b-2 rounded-t-lg ${option==="Otros" && "text-slate-400 border-blue font-bold border-b-4"}`}
+								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${option==="Otros" && "text-slate-400 border-blue font-bold border-b-4"}`}
 								onClick={()=>setOption("Otros")}
 							>
 								Otros

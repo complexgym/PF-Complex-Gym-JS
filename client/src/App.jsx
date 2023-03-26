@@ -33,7 +33,8 @@ import Form from './components/Form/Form';
 import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
 import ClasesCalendar from './components/DashBoard/pages/ClassCalendar';
 import Loading from './components/Loading/Loading';
-axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
+axios.defaults.baseURL = "http://localhost:3001"
+// axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
 function App() {
 	const location = useLocation();
