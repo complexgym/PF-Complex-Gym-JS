@@ -21,7 +21,7 @@ export default function Calendar() {
 	console.log(filter);
 	return (
 		<div className='w-screen bg-slate-100'>
-			<div className='flex gap-24 sm:divide-x justify-center sm:w-1/2 mx-auto w-screen h-screen sm:flex-row flex-col bg-slate-100 pt-40'>
+			<div className='flex gap-24 sm:divide-x justify-center sm:w-1/2 mx-auto w-screen h-screen sm:flex-row flex-col bg-slate-100 pt-12'>
 				<div className='w-screen h-96 '>
 					<div className='flex justify-between items-center text-xl pb-8'>
 						<h1 className='select-none font-semibold'>
@@ -40,7 +40,7 @@ export default function Calendar() {
 									setToday(currentDate);
 								}}
 							>
-								Ir a DÃ­a Actual
+								Ir a Día Actual
 							</h1>
 							<GrFormNext
 								className='w-5 h-5 cursor-pointer hover:scale-105 transition-all'
