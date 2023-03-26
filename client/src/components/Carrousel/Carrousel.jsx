@@ -27,23 +27,22 @@ export default function Carrousel() {
 	};
 
   return (
-    // <div className='bg-[#ededed] py-14 px-10'>
-    <div className="min-h-[100vh] w-[98.5vw]">
-      <div className="absolute w-[100%] h-[90%] left-0">
+    <div className=" min-h-[100vh] w-[100vw]">
+      <div className="absolute w-[100%] h-[90%]left-0 ">
         <Spline
-          className='min-h-[100vh]'
+          className='min-h-[100vh] '
           scene="https://prod.spline.design/TPvZ3LC5QlBY7y8M/scene.splinecode"
         />
       </div>
       {/* text carousel */}
-      <div className=" absolute left-1/2 transform -translate-x-1/2 my-14">
-        <h2 className="text-5xl font-bold text-black">ACTUALMENTE OFRECEMOS</h2>
+      <div className=" absolute left-1/2 transform -translate-x-1/2 lg:w-[fit-content] md:w-[fit-content]">
+        <h2 className="text-center font-bold text-black 2xl:text-5xl 2xl:mt-20 xl:text-3xl xl:mt-10 lg:text-5xl lg:mt-50 md:text-3xl md:mt-50 xs:text-4xl xs:mt-50 ">ACTUALMENTE OFRECEMOS</h2>
       </div>
 
 			{/* content carrousel */}
-			<div className='max-w-[1000px] h-[700px] w-full m-auto pt-16 pb-16 px-4 relative z-0'>
-				<figure>
-					<img
+			<div className='m-auto relative z-0 2xl:w-[60vw] 2xl:h-[70vh] xl:h-[70vh] xl:w-[60vw] 2xl:top-10 xl:top-10 lg:h-[45vh] lg:top-50 md:h-[45vh] md:top-50 xs:w-[90vw] xs:h-[35vh] xs:top-50'>
+				<figure className=''>
+					<img className=''
 						src={activities[currentIndex]?.image}
 						alt={activities[currentIndex]?.name}
 					/>

@@ -30,9 +30,12 @@ const activities = (sequelize) => {
         clientId: {
             type: DataTypes.INTEGER,
             allowNull: true,
-        }
-
-     }, {timestamps: false})
+        },
+		paranoid: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: true,
+			},
+     })
 }
 
 module.exports = activities

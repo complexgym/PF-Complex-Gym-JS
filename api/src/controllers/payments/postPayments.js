@@ -31,7 +31,7 @@ const postPayments = async (req, res) => {
 		.create(preference)
 		.then(function (response) {
 			res.json({
-				id: response.body.id,
+				response
 			});
 		})
 		.catch(function (error) {
