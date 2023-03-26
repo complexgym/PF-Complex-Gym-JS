@@ -8,8 +8,6 @@ const postPayments = async (req, res) => {
 	const data = req.body;
 	let products = [];
 
-	console.log(data);
-
 	//TODO
 	let obj = {
 		category_id: data.id_User, //id user
