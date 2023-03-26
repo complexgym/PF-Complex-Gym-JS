@@ -1,28 +1,26 @@
-import dayjs from "dayjs";
-import React, { useState } from "react";
-import { generateDate, months } from "./funcionCalendar";
-import cn from "./cn";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { useSelector } from "react-redux";
+import dayjs from 'dayjs';
+import React, { useState } from 'react';
+import { generateDate, months } from './funcionCalendar';
+import cn from './cn';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
+import { useSelector } from 'react-redux';
 
 export default function Calendar() {
-	const days = ["S", "M", "T", "W", "T", "F", "S"];
+	const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 	const currentDate = dayjs();
 	const [today, setToday] = useState(currentDate);
 	const [selectDate, setSelectDate] = useState(currentDate);
 	const allCalendar = useSelector((state) => state.allCalendar);
-	const month = selectDate?.["$M"];
-	const year = selectDate?.["$y"];
-	const day = selectDate?.["$D"];
+	const month = selectDate?.['$M'];
+	const year = selectDate?.['$y'];
+	const day = selectDate?.['$D'];
 	const filter = allCalendar.filter((c) => {
-
 		return c.month === month + 1 && c.year === year && c.day === day;
 	});
 
 	console.log(filter);
-  
 	return (
-		<div className="w-screen bg-slate-100">
+		<div className='w-screen bg-slate-100'>
 			<div className='flex gap-24 sm:divide-x justify-center sm:w-1/2 mx-auto w-screen h-screen sm:flex-row flex-col bg-slate-100 pt-40'>
 				<div className='w-screen h-96 '>
 					<div className='flex justify-between items-center text-xl pb-8'>
@@ -42,7 +40,7 @@ export default function Calendar() {
 									setToday(currentDate);
 								}}
 							>
-								Ir a Día Actual
+								Ir a DÃ­a Actual
 							</h1>
 							<GrFormNext
 								className='w-5 h-5 cursor-pointer hover:scale-105 transition-all'
@@ -75,13 +73,13 @@ export default function Calendar() {
 									>
 										<h1
 											className={cn(
-												currentMonth ? "" : "text-gray-400",
-												today ? "bg-[#1d459d] text-white" : "",
+												currentMonth ? '' : 'text-gray-400',
+												today ? 'bg-[#1d459d] text-white' : '',
 												selectDate.toDate().toDateString() ===
 													date.toDate().toDateString()
-													? "bg-[#4c5259] text-white"
-													: "",
-												"h-10 w-10 rounded-full grid place-content-center hover:bg-black hover:text-white transition-all cursor-pointer select-none text-lg font-medium"
+													? 'bg-[#4c5259] text-white'
+													: '',
+												'h-10 w-10 rounded-full grid place-content-center hover:bg-black hover:text-white transition-all cursor-pointer select-none text-lg font-medium'
 											)}
 											onClick={() => {
 												setSelectDate(date);
@@ -101,7 +99,9 @@ export default function Calendar() {
 					</h1>
 
 					{filter?.length === 0 ? (
-						<p className='bg-[#4c5259]  m-4 p-4 text-xl w-96 text-center bg-opacity-60 rounded-6'>No hay reuniones para hoy</p>
+						<p className='bg-[#4c5259]  m-4 p-4 text-xl w-96 text-center bg-opacity-60 rounded-6'>
+							No hay reuniones para hoy
+						</p>
 					) : (
 						filter?.map((e) => {
 							return (
