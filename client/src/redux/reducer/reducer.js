@@ -109,9 +109,9 @@ const rootReducer = (state = initialState, action) => {
 		case DELETE_BLOG: 
 			return {
 				...state,
-				initial_posts: state.initial_posts.filter(el=>el.id!==payload),
-				matched_posts: state.matched_posts.filter(el=>el.id!==payload),
-				ig_posts: state.ig_posts.filter(el=>el.id!==payload)
+				initial_posts: state?.initial_posts?.filter(el=>el.id!==payload),
+				matched_posts: state?.matched_posts?.filter(el=>el.id!==payload),
+				ig_posts: state.ig_posts?.filter(el=>el.id!==payload)
 			}
 		case GET_ALL_TESTIMONIALS:
 			return {
@@ -139,8 +139,9 @@ const rootReducer = (state = initialState, action) => {
 				}
 		case POST_CALENDAR:
 			return{
-				...state
-					}
+				...state,
+				allCalendar: [...state.allCalendar, payload]
+			}
 		case GET_ALL_ADMIN:
 			return {
 				...state,

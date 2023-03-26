@@ -13,12 +13,12 @@ export default function Validate(input) {
 		errors.image = "The url must start with https://instagram.com/ or https://www.instagram.com/"
 	}
 
-	if(input?.content?.length<100){
-		errors.content = "El contenido debe ser tener un mínimo de 100 letras!"
-	}
+	console.log(input.isInstagram);
 
-	if(input?.content?.length<100){
-		errors.content = "El contenido debe ser tener un mínimo de 100 letras!"
+	if(!input.isInstagram){
+		if(input?.content?.length<100){
+			errors.content = "El contenido debe ser tener un mínimo de 100 letras!"
+		}
 	}
 
 	if(input?.tag?.length===0){
