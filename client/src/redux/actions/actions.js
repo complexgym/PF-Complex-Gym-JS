@@ -420,9 +420,10 @@ export const removeAdmin = (id) => {
 
 export const postPayment = (purchase) => async () => {
     try {
-        const data = await axios.post('/payments', purchase);
-        console.log(data);
-        return data;
+        const response = await axios.post('/payments', purchase);
+				console.log(response.data);
+        // console.log(data);
+        return response;
     } catch (error) {
         console.log(error);
     }

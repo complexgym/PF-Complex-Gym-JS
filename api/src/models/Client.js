@@ -86,10 +86,10 @@ const clients = (sequelize) => {
 			type: DataTypes.TEXT,
 			allowNull: true,
 		},
-		paranoid: {
-			type: DataTypes.BOOLEAN,
-			defaultValue: true,
-			},
+		// paranoid: {
+		// 	type: DataTypes.BOOLEAN,
+		// 	defaultValue: true,
+		// 	},
 	});
 };
 

@@ -8,6 +8,8 @@ const postPayments = async (req, res) => {
 	const data = req.body;
 	let products = [];
 
+	console.log(data);
+
 	//TODO
 	let obj = {
 		category_id: data.id_User, //id user
@@ -31,7 +33,7 @@ const postPayments = async (req, res) => {
 		.create(preference)
 		.then(function (response) {
 			res.json({
-				id: response.body.id,
+				response
 			});
 		})
 		.catch(function (error) {
