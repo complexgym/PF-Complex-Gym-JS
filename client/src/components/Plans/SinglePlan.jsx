@@ -24,7 +24,7 @@ export default function SinglePlan({ plan, option }) {
 
 	const [purchase, setPurchase] = useState({
 		id_User: matchId, //id user
-		name: `Compra del plan ${plan?.name}`,
+		name: `${plan?.name}`,
 		price: plan?.price,
 		amount: 1,
 	});

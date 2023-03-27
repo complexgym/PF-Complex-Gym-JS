@@ -90,6 +90,20 @@ const SideNav = () => {
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
 						</a>
 					</li>
+
+					<li className='mt-0.5 w-full'>
+						<a
+							className={`${
+								location === '/dashboard/pagos' && 'bg-blue-500/13'
+							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
+						>
+							<div className='mr-2 flex h-10 w-10 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
+								<img src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679883821/mp-logo_vsqott.png" alt="mp img"/>
+							</div>
+							<Link className='relative right-2' to='/dashboard/pagos'>Pagos</Link>
+							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</aside>
