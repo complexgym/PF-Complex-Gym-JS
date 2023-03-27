@@ -10,7 +10,13 @@ const postMemberships = async ({
     paymentId,
 }) => {
 
-	const newMemberships = await memberships.create({
+    console.log(clientId);
+    console.log(planName);
+    console.log(price);
+    console.log(startDate);
+    console.log(paymentId);
+    
+	/*const newMemberships = await memberships.create({
 	clientId,
     planName,
     activities,
@@ -19,7 +25,7 @@ const postMemberships = async ({
     finishDate,
     paymentId,
 	});
-	return newMemberships;
+	return newMemberships;*/
 };
 
 module.exports = postMemberships;

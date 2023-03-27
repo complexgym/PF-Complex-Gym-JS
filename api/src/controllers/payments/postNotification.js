@@ -1,5 +1,6 @@
 const mercadopago = require("mercadopago");
 const postMercadoPago = require("./postMercadoPago.js");
+const postMemberships = require("../memberships/postMemberships.js")
 
 mercadopago.configure({
 	access_token: process.env.ACCESS_TOKEN_MP,
@@ -25,7 +26,15 @@ const postNotification = async (req, res) => {
 				plans: Payment.body.description,
 				order: Payment.body.order.id,
 			};
+			let membership = {
+				clientId:Payment.body.additional_info.items[0].category_id,
+				planName:Payment.body.description,
+				price:Payment.body.transaction_amount,
+				startDate:new Date(2022,04,6),
+				paymentId:Payment.body.id,
+			}
 			postMercadoPago(data);
+			postMemberships(membership)
 			break;
 
 		case "merchant_order":
