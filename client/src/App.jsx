@@ -35,6 +35,11 @@ import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
 import ClasesCalendar from './components/DashBoard/pages/ClassCalendar';
 import Loading from './components/Loading/Loading';
 import Payments from './components/DashBoard/pages/Payments';
+import Activities from './components/DashBoard/pages/Activities';
+import Trainers from './components/DashBoard/pages/Trainers';
+import Testimonies from './components/DashBoard/pages/Testimonies';
+import Plans from './components/DashBoard/pages/Plans';
+
 // axios.defaults.baseURL = "http://localhost:3001"
 axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
@@ -54,7 +59,7 @@ function App() {
 		dispatch(getAllTestimonials());
 		dispatch(getAllPosts());
 		dispatch(getAllAdmin());
-		dispatch(getAllPayments())
+		dispatch(getAllPayments());
 
 		setTimeout(() => {
 			setIsLoaded(true);
@@ -121,6 +126,10 @@ function App() {
 							<Route path={'/dashboard/publicaciones'} element={<Publications />} />
 							<Route path={'/dashboard/calendario'} element={<ClasesCalendar />} />
 							<Route path={'/dashboard/pagos'} element={<Payments />} />
+							<Route path={'/dashboard/actividades'} element={<Activities />} />
+							<Route path={'/dashboard/entrenadores'} element={<Trainers />} />
+							<Route path={'/dashboard/testimonios'} element={<Testimonies />} />
+							<Route path={'/dashboard/planes'} element={<Plans />} />
 						</Route>
 						<Route path={'*'} element={<Error404 />} />
 					</Routes>
