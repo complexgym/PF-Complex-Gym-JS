@@ -20,6 +20,7 @@ import {
 	getAllTestimonials,
 	getAllClients,
 	getCalendar,
+	getAllPayments,
 } from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
@@ -33,6 +34,7 @@ import Form from './components/Form/Form';
 import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
 import ClasesCalendar from './components/DashBoard/pages/ClassCalendar';
 import Loading from './components/Loading/Loading';
+import Payments from './components/DashBoard/pages/Payments';
 // axios.defaults.baseURL = "http://localhost:3001"
 axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
@@ -52,6 +54,7 @@ function App() {
 		dispatch(getAllTestimonials());
 		dispatch(getAllPosts());
 		dispatch(getAllAdmin());
+		dispatch(getAllPayments())
 
 		setTimeout(() => {
 			setIsLoaded(true);
@@ -117,6 +120,7 @@ function App() {
 							<Route path={'/dashboard/clientes'} element={<Clients />} />
 							<Route path={'/dashboard/publicaciones'} element={<Publications />} />
 							<Route path={'/dashboard/calendario'} element={<ClasesCalendar />} />
+							<Route path={'/dashboard/pagos'} element={<Payments />} />
 						</Route>
 						<Route path={'*'} element={<Error404 />} />
 					</Routes>

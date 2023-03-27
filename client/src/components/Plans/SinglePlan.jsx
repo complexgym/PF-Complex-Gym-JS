@@ -24,7 +24,7 @@ export default function SinglePlan({ plan, option }) {
 
 	const [purchase, setPurchase] = useState({
 		id_User: matchId, //id user
-		name: `Compra del plan ${plan?.name}`,
+		name: `${plan?.name}`,
 		price: plan?.price,
 		amount: 1,
 	});
@@ -71,7 +71,7 @@ export default function SinglePlan({ plan, option }) {
 		else{
 			swal({
 				title: "Atento",
-				text: `Debe estar registrado para poder inscribirse en un plan, registre e intente nuevamente.`,
+				text: `Debe estar registrado para poder inscribirse en un plan, regístrese e intente nuevamente.`,
 				icon: "warning",
 				dangerMode: true,
 			});

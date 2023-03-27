@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import UploadToCloudinary from "../UploadToCloudinary/UploadToCloudinary";
 import { postBlog } from "../../redux/actions/actions";
 import { useNavigate } from "react-router-dom";
+import CloudinaryUploadImg from "../CloudinaryUploadImg/CloudinaryUploadImg";
 
 export default function CreateBlog() {
 	const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export default function CreateBlog() {
 			}
 		}
 		if (e.target.name === "isInstagram") {
-			const inBool = e.target.value==="false" ? false : true
+			const inBool = e.target.value === "false" ? false : true;
 			setInput({
 				...input,
 				[e.target.name]: inBool,
@@ -95,13 +96,11 @@ export default function CreateBlog() {
 		}
 	};
 
-	function handleUpload(res) {
-		if (res?.info?.secure_url) {
-			setInput({
-				...input,
-				image: res.info.secure_url,
-			});
-		}
+	function handleUpload(image) {
+		setInput({
+			...input,
+			image,
+		});
 	}
 
 	return (
@@ -119,7 +118,6 @@ export default function CreateBlog() {
 						<form onSubmit={(e) => handleSubmit(e)}>
 							<div className="shadow sm:overflow-hidden sm:rounded-md">
 								<div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-									
 									{/* post title */}
 									<div className="col-span-6 sm:col-span-3">
 										{/* is instagram */}
@@ -140,45 +138,26 @@ export default function CreateBlog() {
 													onChange={handleChange}
 												>
 													<option value="">Seleccione una opción...</option>
-													<option value={true} selected>Sí</option>
+													<option value={true} selected>
+														Sí
+													</option>
 													<option value={false}>No</option>
 												</select>
 											</div>
 										</div>
 
 										{/* post image */}
-										{(input.isInstagram===false) && (
-											<div className="">
-												<label
-													htmlFor="image"
-													className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-												>
-													Imagen de fondo del blog
-												</label>
-												<UploadToCloudinary
-													onUpload={handleUpload}
-													name='image'
-													onClick={handleChange}
-													className='pb-10'
+										{(input.isInstagram===false) && 
+											(<CloudinaryUploadImg
+												onUpload={handleUpload}
+												name="image"
+												onClick={handleChange}
+												className="pb-10"
 												/>
-												{input.image && (
-													<a
-														href={input.image}
-														className="lighter-blue underline"
-														target="_blank"
-													>
-														<img
-															src={input?.image}
-															className="pt-2 pl-4 w-24"
-															alt="blog image"
-														/>
-													</a>
-												)}
-											</div>
 										)}
 
 										{/* link instagram */}
-										{(input.isInstagram===true) && (
+										{input.isInstagram === true && (
 											<div>
 												<label
 													htmlFor="link-ig"
@@ -193,10 +172,11 @@ export default function CreateBlog() {
 													onChange={handleChange}
 													className=" indent-2 mb-4 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 												/>
-												{(errors?.image) && (
+												{errors?.image && (
 													<p className=" text-red-500">
 														<i>{errors?.image}</i>
-												</p>)}
+													</p>
+												)}
 											</div>
 										)}
 
@@ -217,7 +197,7 @@ export default function CreateBlog() {
 												className=" indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 												onChange={handleChange}
 											/>
-											{(errors?.title && !errors?.image) && (
+											{errors?.title && !errors?.image && (
 												<p className=" text-red-500">
 													<i>{errors?.title}</i>
 												</p>

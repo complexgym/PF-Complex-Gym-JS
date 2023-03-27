@@ -21,6 +21,7 @@ import {
 	POST_ADMIN,
 	REMOVE_ADMIN,
 	POST_PAYMENT,
+	GET_ALL_PAYMENTS,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -391,10 +392,10 @@ export const getAllAdmin = () => {
 export const postAdmin = (data) => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.post('/admin', data);
+			await axios.post('/admin', data);
 			return dispatch({
 				type: POST_ADMIN,
-				payload: data,
+				payload: data
 			});
 		} catch (error) {
 			console.log(error);
@@ -424,3 +425,16 @@ export const postPayment = (purchase) => async () => {
 		console.log(error);
 	}
 };
+
+export const getAllPayments = () => async (dispatch) => {
+	try{
+		const response = await axios.get('/payments')
+		return dispatch({
+			type: GET_ALL_PAYMENTS,
+      payload: response.data
+		})
+	}
+	catch(error){
+		console.log(error);
+	}
+}

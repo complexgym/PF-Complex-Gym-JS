@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux"
-import { getAllAdmin, postAdmin, removeAdmin } from "../../../redux/actions/actions";
+import { getAllAdmin, postAdmin, removeAdmin } from "../../../../redux/actions/actions";
 
 const ClientCard = ({ client }) => {
 	const dispatch = useDispatch();

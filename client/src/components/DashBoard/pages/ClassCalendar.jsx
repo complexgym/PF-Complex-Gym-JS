@@ -4,7 +4,7 @@ import { postCalendar } from '../../../redux/actions/actions';
 import ValidateCalendar from './ValidateCalendar';
 import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
-import ClassCard from './ClassCard';
+import ClassCard from './cards/ClassCard';
 
 const ClasesCalendar = () => {
 	const dispatch = useDispatch();
@@ -168,7 +168,7 @@ const ClasesCalendar = () => {
 												value={input.year}
 												autoComplete='off'
 												onChange={handleChange}
-												className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
+												className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
 												placeholder='Año'
 											/>
 											<input
