@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getClientDetail } from '../../redux/actions/actions';
+//import image from '../../assets/img/dumbelldBgd.jpg'
 
 export default function Profile() {
 	const dispatch = useDispatch();
@@ -23,10 +24,10 @@ export default function Profile() {
 		<div className='profile-page'>
 			<section className='relative block h-500-px'>
 				<div
-					class='absolute top-0 w-full h-full bg-center bg-cover'
+					class="absolute top-0 w-full h-full  bg-center bg-cover"
 					style={{
 						backgroundImage: `url(
-							https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80
+							https://img3.wallspic.com/previews/3/6/3/0/20363/20363-physical_fitness-exercise_equipment-strength_training-barbell-tire-x750.jpg
 						)`,
 					}}
 				>
