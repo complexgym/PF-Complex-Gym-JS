@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getClientDetail } from '../../redux/actions/actions';
-//import image from '../../assets/img/dumbelldBgd.jpg'
+import image from '../../assets/img/dumbelldBgd.jpg'
 
 export default function Profile() {
 	const dispatch = useDispatch();
@@ -26,9 +26,7 @@ export default function Profile() {
 				<div
 					class="absolute top-0 w-full h-full  bg-center bg-cover"
 					style={{
-						backgroundImage: `url(
-							https://img3.wallspic.com/previews/3/6/3/0/20363/20363-physical_fitness-exercise_equipment-strength_training-barbell-tire-x750.jpg
-						)`,
+						backgroundImage: `url(${image})`
 					}}
 				>
 					<span
