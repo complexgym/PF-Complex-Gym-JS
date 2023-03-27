@@ -163,13 +163,15 @@ const rootReducer = (state = initialState, action) => {
 		case GET_ALL_PAYMENTS: 
 			const payments = payload?.map(pay=>{
 				const find = state?.allClients.find(client => client?.id === pay?.clientId)
-				const {name, lastName, picture} = find
-				return {
-					...pay,
-					clientName: name + " " + lastName,
-					picture
+				if(find){
+					const {name, lastName, picture} = find
+					return {
+						...pay,
+						clientName: name + " " + lastName,
+						picture
+					}
 				}
-			}).sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
+			})?.sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
 			return {
 				...state,
 				allPayments: payments
