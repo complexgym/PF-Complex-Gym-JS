@@ -1,8 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import SideNav from './SideNav';
+import {useSelector} from "react-redux"
 
 const DashBoard = () => {
+	const {allPayments, allClients} = useSelector(s=>s)
+
+	let accumulator = 0
+
+	allPayments?.forEach((p)=>{
+		accumulator += p?.paymentsAmount
+	})
+
 	return (
 		<div>
 			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
@@ -62,16 +70,16 @@ const DashBoard = () => {
 									<div className='flex-auto p-4'>
 										<div className='flex flex-row -mx-3'>
 											<div className='flex-none w-2/3 max-w-full px-3'>
-												<div>
+												<div className='h-24'>
 													<p className='mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60'>
-														Today's Money
+														Ventas hasta hoy
 													</p>
-													<h5 className='mb-2 font-bold dark:text-white'>$53,000</h5>
+													<h5 className='mb-2 pt-2 font-bold dark:text-white'>${accumulator}</h5>
 													<p className='mb-0 dark:text-white dark:opacity-60'>
 														<span className='text-sm font-bold leading-normal text-emerald-500'>
-															+55%
+															+100% &nbsp;
 														</span>
-														since yesterday
+														desde ayer
 													</p>
 												</div>
 											</div>
@@ -91,16 +99,16 @@ const DashBoard = () => {
 									<div className='flex-auto p-4'>
 										<div className='flex flex-row -mx-3'>
 											<div className='flex-none w-2/3 max-w-full px-3'>
-												<div>
+												<div className='h-24'>
 													<p className='mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60'>
-														Today's Users
+														Usuarios hasta hoy
 													</p>
-													<h5 className='mb-2 font-bold dark:text-white'>2,300</h5>
+													<h5 className='mb-2 font-bold dark:text-white'>{allClients.length}</h5>
 													<p className='mb-0 dark:text-white dark:opacity-60'>
 														<span className='text-sm font-bold leading-normal text-emerald-500'>
-															+3%
+															+100% &nbsp;
 														</span>
-														since last week
+														desde semana pasada
 													</p>
 												</div>
 											</div>
@@ -120,16 +128,16 @@ const DashBoard = () => {
 									<div className='flex-auto p-4'>
 										<div className='flex flex-row -mx-3'>
 											<div className='flex-none w-2/3 max-w-full px-3'>
-												<div>
+												<div className='h-24'>
 													<p className='mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60'>
-														New Clients
+														Nuevo campo
 													</p>
 													<h5 className='mb-2 font-bold dark:text-white'>+3,462</h5>
 													<p className='mb-0 dark:text-white dark:opacity-60'>
 														<span className='text-sm font-bold leading-normal text-red-600'>
-															-2%
+															-2% &nbsp;
 														</span>
-														since last quarter
+														Desde cuatrimestre pasado
 													</p>
 												</div>
 											</div>
@@ -149,16 +157,16 @@ const DashBoard = () => {
 									<div className='flex-auto p-4'>
 										<div className='flex flex-row -mx-3'>
 											<div className='flex-none w-2/3 max-w-full px-3'>
-												<div>
+												<div className='h-24'>
 													<p className='mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60'>
-														Sales
+														NUEVO CAMPO
 													</p>
 													<h5 className='mb-2 font-bold dark:text-white'>$103,430</h5>
 													<p className='mb-0 dark:text-white dark:opacity-60'>
 														<span className='text-sm font-bold leading-normal text-emerald-500'>
-															+5%
+															+5% &nbsp;
 														</span>
-														than last month
+														desde mes pasado
 													</p>
 												</div>
 											</div>
