@@ -11,7 +11,7 @@ export default function Prueba({ onUpload }) {
 		formData.append('upload_preset', 'gp0cjncm');
 
 		axios
-			.post('http://api.cloudinary.com/v1_1/dpxucxgwg/image/upload', formData)
+			.post('https://api.cloudinary.com/v1_1/dpxucxgwg/image/upload', formData)
 			.then((response) => setImage(response.data.secure_url));
 	};
 
