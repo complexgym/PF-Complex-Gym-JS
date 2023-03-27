@@ -1435,6 +1435,11 @@ module.exports = {
 					color: 'var(--lighter-blue)',
 					fontWeight: 'bold',
 				},
+				'.darker-blue': {
+					color: 'var(--darker-blue)',
+					fontWeight: 'bold',
+				},
+
 				'.font-lighter-blue-plans': {
 					color: 'var(--lighter-blue-plans)',
 					fontWeight: 'bold',

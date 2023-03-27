@@ -4,7 +4,7 @@ import { getAllClients, putClient } from '../../../redux/actions/actions';
 import Validate from './UpdateValidations';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
-import UploadToCloudinary from '../../UploadToCloudinary/UploadToCloudinary';
+import CloudinaryUploadImg from '../../CloudinaryUploadImg/CloudinaryUploadImg';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function UpdateClient() {
@@ -81,18 +81,12 @@ export default function UpdateClient() {
 		}
 	};
 
-	function handleUpload(res) {
-		if (res?.info?.secure_url) {
-			setInput({
-				...input,
-				picture: res.info.secure_url,
-			});
-		}
+	function handleUpload(picture) {
+		setInput({
+			...input,
+			picture,
+		});
 	}
-
-	useEffect(() => {
-		dispatch(getAllClients());
-	}, []);
 
 	return (
 		<>
@@ -128,7 +122,7 @@ export default function UpdateClient() {
 											id='input'
 											value={input.user}
 											autoComplete='given-name'
-											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 											onChange={handleChange}
 										/>
 										{errors?.user && (
@@ -152,7 +146,7 @@ export default function UpdateClient() {
 											id='mail'
 											value={input.mail}
 											autoComplete='mail'
-											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 											onChange={handleChange}
 											readOnly
 										/>
@@ -161,22 +155,22 @@ export default function UpdateClient() {
 									{/* UPLOAD IMAGE */}
 									<div className=''>
 										{input.picture && (
-											<a
-												href={input.picture}
-												className='lighter-blue underline'
-												target='_blank'
+											<label
+												htmlFor='about'
+												className='mt-2 ml-4 block text-sm font-medium leading-6 text-gray-900'
 											>
+												Foto actual
 												<img
-													src={input?.picture}
-													className='pt-2 pl-4 w-24'
-													alt='blog image'
+													src={matchEmail?.picture}
+													className='h-32 w-32 object-cover rounded-full'
+													alt='imagen actual'
 												/>
-											</a>
+											</label>
 										)}
 										<br />
-										<UploadToCloudinary
+										<CloudinaryUploadImg
 											onUpload={handleUpload}
-											name='image'
+											name='picture'
 											onClick={handleChange}
 											className='pb-10'
 										/>
@@ -196,7 +190,7 @@ export default function UpdateClient() {
 												name='about'
 												value={input.about}
 												rows={3}
-												className=' indent-2 mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:py-1.5 sm:text-sm sm:leading-6'
 												placeholder='Breve descripción de su perfil'
 												defaultValue={''}
 												onChange={handleChange}
@@ -245,7 +239,7 @@ export default function UpdateClient() {
 												id='name'
 												value={input.name}
 												autoComplete='given-name'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.name && (
@@ -269,7 +263,7 @@ export default function UpdateClient() {
 												id='lastName'
 												value={input.lastName}
 												autoComplete='family-name'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.lastName && (
@@ -293,7 +287,7 @@ export default function UpdateClient() {
 												id='phone'
 												value={input.phone}
 												autoComplete='phone'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												placeholder='Ej: +54 3442 48-0617'
 												onChange={handleChange}
 											/>
@@ -318,7 +312,7 @@ export default function UpdateClient() {
 												id='dni'
 												value={input.dni}
 												autoComplete='dni'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.dni && (
@@ -342,7 +336,7 @@ export default function UpdateClient() {
 												id='age'
 												value={input.age}
 												autoComplete='age'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.age && (
@@ -366,7 +360,7 @@ export default function UpdateClient() {
 												id='weight'
 												value={input.weight}
 												autoComplete='weight'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												placeholder='kg'
 												onChange={handleChange}
 											/>
@@ -391,7 +385,7 @@ export default function UpdateClient() {
 												id='height'
 												value={input.height}
 												autoComplete='height'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												placeholder='cm'
 												onChange={handleChange}
 											/>
@@ -416,7 +410,7 @@ export default function UpdateClient() {
 												id='address'
 												value={input.address}
 												autoComplete='address'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.address && (
@@ -440,7 +434,7 @@ export default function UpdateClient() {
 												id='city'
 												value={input.city}
 												autoComplete='address-level2'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 											{errors?.city && (
@@ -464,7 +458,7 @@ export default function UpdateClient() {
 												id='region'
 												value={input.region}
 												autoComplete='address-level1'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 										</div>
@@ -483,7 +477,7 @@ export default function UpdateClient() {
 												id='postalCode'
 												value={input.postalCode}
 												autoComplete='postalCode'
-												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+												className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 												onChange={handleChange}
 											/>
 										</div>
@@ -495,7 +489,7 @@ export default function UpdateClient() {
 									{/* BUTTON BACK */}
 									<div className=''>
 										<Link to={`/home`}>
-											<button className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'>
+											<button className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-darker-blue'>
 												Volver
 											</button>
 										</Link>
@@ -505,7 +499,7 @@ export default function UpdateClient() {
 									<div className=' text-right cols-start-2'>
 										<button
 											type='submit'
-											className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
+											className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue'
 										>
 											Guardar
 										</button>

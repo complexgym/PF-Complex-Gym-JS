@@ -4,7 +4,7 @@ export default function About() {
 	return (
 		<div className='px-8 font-text overflow-hidden'>
 			{/*Seccion 1*/}
-			<div className='grid md:grid-cols-2 items-center justify-center pt-16'>
+			<div className='grid md:grid-cols-2 items-center justify-center pt-2'>
 				{/*Text*/}
 				<div className='w-full text-center pr-[10%] items row-start-2 row-end-3 md:row-start-1 md:row-end-2'>
 					<h1 className='font-bold font-title text-6xl pb-8 italic tracking-widest'>

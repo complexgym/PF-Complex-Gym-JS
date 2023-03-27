@@ -37,4 +37,5 @@ export const POST_ADMIN = 'POST_ADMIN'
 export const REMOVE_ADMIN = 'REMOVE_ADMIN'
 
 //todo PAYMENTS
+export const GET_ALL_PAYMENTS = 'GET_ALL_PAYMENTS';
 export const POST_PAYMENT = 'POST_PAYMENT'

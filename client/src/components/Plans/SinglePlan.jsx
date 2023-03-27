@@ -24,7 +24,7 @@ export default function SinglePlan({ plan, option }) {
 
 	const [purchase, setPurchase] = useState({
 		id_User: matchId, //id user
-		name: `Compra del plan ${plan?.name}`,
+		name: `${plan?.name}`,
 		price: plan?.price,
 		amount: 1,
 	});
@@ -43,28 +43,39 @@ export default function SinglePlan({ plan, option }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const mercadopago = new MercadoPago(keyMP, {
-			locale: "es-AR", // The most common are: 'pt-BR', 'es-AR' and 'en-US'
-		});
+		if(matchId){
 
-		function createCheckoutButton(preferenceId) {
-			// Initialize the checkout
-			mercadopago.checkout({
-				preference: {
-					id: matchId,
-				},
-				render: {
-					container: `.render-btn`, // Class name where the payment button will be displayed
-					label: `Pagar`, // Change the payment button text (optional)
-				},
+			const mercadopago = new MercadoPago(keyMP, {
+				locale: "es-AR", // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 			});
+	
+			function createCheckoutButton(preferenceId) {
+				// Initialize the checkout
+				mercadopago.checkout({
+					preference: {
+						id: matchId,
+					},
+					render: {
+						container: `.render-btn`, // Class name where the payment button will be displayed
+						label: `Pagar`, // Change the payment button text (optional)
+					},
+				});
+			}
+	
+			axios.post("/payments", purchase).then((res)=>{
+				console.log(res);
+				return window.location.href=res.data.response.body.init_point
+			})
 		}
 
-		axios.post("/payments", purchase).then((res)=>{
-			console.log(res);
-			return window.location.href=res.data.response.body.init_point
-		})
-		
+		else{
+			swal({
+				title: "Atento",
+				text: `Debe estar registrado para poder inscribirse en un plan, regístrese e intente nuevamente.`,
+				icon: "warning",
+				dangerMode: true,
+			});
+		}
 	};
 
 	return (
@@ -110,11 +121,11 @@ export default function SinglePlan({ plan, option }) {
 				<button
 					type="btn-form-submit submit"
 					className={`inline-flex items-center justify-center w-2/3 h-12 px-12 mt-6 font-medium tracking-wide transition duration-200 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none text-black
-				${option === "Libre" && "bg-yellow-400 hover:bg-yellow-300 text-black"}
-				${option === "2 por semana" && "bg-green-700 hover:bg-green-600 text-white"}
-				${option === "Otros" && "bg-slate-300 hover:bg-slate-400 text-white"}
-				${option === "Todos" && "bg-lighter-blue hover:bg-blue-400 text-white"}
-				`}
+					${option === "Libre" && "bg-yellow-400 hover:bg-yellow-300 text-black"}
+					${option === "2 por semana" && "bg-green-700 hover:bg-green-600 text-white"}
+					${option === "Otros" && "bg-slate-300 hover:bg-slate-400 text-white"}
+					${option === "Todos" && "bg-lighter-blue hover:bg-blue-400 text-white"}
+					`}
 				>
 					Inscribirse
 				</button>
