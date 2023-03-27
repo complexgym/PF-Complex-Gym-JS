@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SideNav from "../SideNav";
 import { useSelector } from "react-redux"
-import ClientCard from "./ClientCard";
+import ClientCard from "./cards/ClientCard";
 
 const Clients = () => {
 	const { allClients } = useSelector((s) => s);
