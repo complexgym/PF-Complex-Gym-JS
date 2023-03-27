@@ -88,8 +88,8 @@ const ClientCard = ({ client }) => {
 				: <i className="fa fa-times text-sm cursor-pointer w-8 mr-2 text-red-500" aria-hidden="true"
 				onClick={handleAddAdmin}></i>}
 				
-				<i className="fa fa-ban text-sm w-8 cursor-pointer" aria-hidden="true"
-				onClick={handleBlockAdmin}></i>
+				{/* <i className="fa fa-ban text-sm w-8 cursor-pointer" aria-hidden="true"
+				onClick={handleBlockAdmin}></i> */}
 			</td>
 		</tr>
 	);
