@@ -30,9 +30,10 @@ const postPayments = async (req, res) => {
 	mercadopago.preferences
 		.create(preference)
 		.then(function (response) {
-			res.json({
+			res.send(response)
+			/*res.json({
 				response
-			});
+			});*/
 		})
 		.catch(function (error) {
 			console.log(error.message);

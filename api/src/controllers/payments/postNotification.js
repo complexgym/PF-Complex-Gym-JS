@@ -9,6 +9,11 @@ const axios = require("axios");
 const { payment } = require("mercadopago");
 //const {getPaymentValidation} = require("./getPaymentValidation")
 
+function sumarDias(fecha, dias){
+	fecha.setDate(fecha.getDate() + dias);
+	return fecha;
+  }
+
 const postNotification = async (req, res) => {
 	var Payment;
 	const { query } = req;
@@ -26,11 +31,16 @@ const postNotification = async (req, res) => {
 				plans: Payment.body.description,
 				order: Payment.body.order.id,
 			};
+			let d = new Date(2023,04,6);
+			let f = new Date(2023,05,05)
+			//let f = sumarDias(d, +30);
 			let membership = {
 				clientId:Payment.body.additional_info.items[0].category_id,
 				planName:Payment.body.description,
+				activities:"LIBRE",
 				price:Payment.body.transaction_amount,
-				startDate:new Date(2022,04,6),
+				startDate:d,
+				finishDate:f,
 				paymentId:Payment.body.id,
 			}
 			postMercadoPago(data);

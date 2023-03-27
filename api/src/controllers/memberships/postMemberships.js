@@ -8,15 +8,8 @@ const postMemberships = async ({
     startDate,
     finishDate,
     paymentId,
-}) => {
-
-    console.log(clientId);
-    console.log(planName);
-    console.log(price);
-    console.log(startDate);
-    console.log(paymentId);
-    
-	/*const newMemberships = await memberships.create({
+}) => {    
+	const newMemberships = await memberships.create({
 	clientId,
     planName,
     activities,
@@ -25,7 +18,7 @@ const postMemberships = async ({
     finishDate,
     paymentId,
 	});
-	return newMemberships;*/
+	return newMemberships;
 };
 
 module.exports = postMemberships;
