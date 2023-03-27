@@ -71,7 +71,7 @@ export default function SinglePlan({ plan, option }) {
 		else{
 			swal({
 				title: "Atento",
-				text: `Debe estar registrado para poder inscribirse en un plan, registre e intente nuevamente.`,
+				text: `Debe estar registrado para poder inscribirse en un plan, regístrese e intente nuevamente.`,
 				icon: "warning",
 				dangerMode: true,
 			});
