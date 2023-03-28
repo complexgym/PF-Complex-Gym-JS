@@ -6,7 +6,8 @@ const PlansCard = ({ plans }) => {
 	const [data, setData] = useState({
 		...plans,
 		name: plans?.name,
-		price: plans?.price
+		price: plans?.price,
+		tags: plans?.tags
 	})
 
 	const [editable, setEditable] = useState(false)
@@ -20,8 +21,16 @@ const PlansCard = ({ plans }) => {
 	}
 
 	const handleClick = async () => {
-		dispatch(editPlans(plans.id, data))
+		dispatch(editPlans(plans.id, {
+			...data,
+			tags: data.tags.split(",")
+		}))
 		dispatch(getAllPlans())
+		swal({
+			title: 'Gracias!',
+			text: '¡Información editada correctamente!',
+			icon: 'success',
+		});
 	}
 
 	return (
@@ -41,6 +50,14 @@ const PlansCard = ({ plans }) => {
 				onChange={handleChange} type="number" value={data?.price} 
 				disabled={!editable}></input>
 			</td>
+
+			{/* tags */}
+			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				<input className={`border-none font-normal w-64 ${!editable && "text-gray-400"}`} 
+				name="tags" onChange={handleChange} type="text" value={data?.tags} 
+				disabled={!editable}></input>
+			</td>
+			
 
 			{/* edit */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
