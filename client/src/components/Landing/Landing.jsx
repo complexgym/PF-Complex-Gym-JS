@@ -16,14 +16,16 @@ export default function Landing2() {
 		}
 	}
 
+
 	const handleLogin = async () => {
         await loginWithRedirect({
           appState: {
             returnTo: "/home",
           },
         })
-    };
+  };
 
+	
 	return (
 		<div className={style.container}>
 			

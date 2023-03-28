@@ -38,7 +38,7 @@ export default function Testimonials() {
           <div className="swiper customer-reviews grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 xl:grid-cols-3">
             {testimonials?.map((s, index) => {
               return (
-                <div key={index} className="swiper-wrapper w-[90%] md:w-[100%]">
+                <div key={index} className="swiper-wrapper w-[90%] xs:w-[100%] md:w-[100%]">
                   <div className="swiper-slide bg-[#fcfcfc] w-full review-card min-h-[55vh] sm:min-h-[45vh] md:min-h-[35vh] lg:min-h-[30vh] xl:min-h-[50vh] 2xl:min-h-[50vh]">
                     <img
                       className="quote-icon"
