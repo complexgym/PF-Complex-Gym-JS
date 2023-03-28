@@ -23,6 +23,7 @@ import {
 	POST_PAYMENT,
 	GET_ALL_PAYMENTS,
 	GET_TRAINERS,
+	EDIT_PLANS,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -341,7 +342,10 @@ export const getAllPlans = () => {
 			//*response
 			return dispatch({
 				type: GET_ALL_PLANS,
-				payload: newData,
+				payload: {
+					separatedByCategory: newData, 
+					allData: response.data.responseAll
+				},
 			});
 		} catch (error) {
 			console.log(error);
@@ -451,3 +455,17 @@ export const getTrainers = () => async (dispatch) => {
 		console.log(error);
 	}
 };
+
+export const editPlans = (id, data) => async (dispatch) => {
+	try{
+		const response = await axios.put(`/plans/${id}`, data);
+
+		return dispatch({
+			type: EDIT_PLANS,
+			payload: response.data,
+		});
+	}
+	catch (error) {
+		console.log(error);
+	}
+}

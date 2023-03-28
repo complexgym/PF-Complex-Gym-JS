@@ -158,7 +158,7 @@ const SideNav = () => {
 							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-								<i className='relative top-0 text-sm leading-normal text-slate-700 ni ni-bag-17'></i>
+							  <i className="fa fa-plane" aria-hidden="true"></i>
 							</div>
 							<Link to='/dashboard/planes'>Planes</Link>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
