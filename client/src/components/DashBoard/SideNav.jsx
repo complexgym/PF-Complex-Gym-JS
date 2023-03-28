@@ -18,11 +18,10 @@ const SideNav = () => {
 					className='block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700'
 					target='_blank'
 				>
-					
 					<div className='flex relative right-4'>
 						<Link
-								to='/home'
-								className='bg-blue-500 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 ease-linear transition-all duration-150 w-24 text-center'
+							to='/home'
+							className='bg-blue-500 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 ease-linear transition-all duration-150 w-24 text-center'
 						>
 							Volver
 						</Link>
@@ -98,9 +97,70 @@ const SideNav = () => {
 							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 						>
 							<div className='mr-2 flex h-10 w-10 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-								<img src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679883821/mp-logo_vsqott.png" alt="mp img"/>
+								<img
+									src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679883821/mp-logo_vsqott.png'
+									alt='mp img'
+								/>
 							</div>
-							<Link className='relative right-2' to='/dashboard/pagos'>Pagos</Link>
+							<Link className='relative right-2' to='/dashboard/pagos'>
+								Pagos
+							</Link>
+							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
+						</a>
+					</li>
+
+					<li className='mt-0.5 w-full'>
+						<a
+							className={`${
+								location === '/dashboard/actividades' && 'bg-blue-500/13'
+							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
+						>
+							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
+								<i className='relative top-0 text-sm leading-normal text-black ni ni-calendar-grid-58'></i>
+							</div>
+							<Link to='/dashboard/actividades'>Actividades</Link>
+							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
+						</a>
+					</li>
+
+					<li className='mt-0.5 w-full'>
+						<a
+							className={`${
+								location === '/dashboard/entrenadores' && 'bg-blue-500/13'
+							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
+						>
+							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
+								<i className='relative top-0 text-sm leading-normal text-black ni ni-calendar-grid-58'></i>
+							</div>
+							<Link to='/dashboard/entrenadores'>Entrenadores</Link>
+							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
+						</a>
+					</li>
+
+					<li className='mt-0.5 w-full'>
+						<a
+							className={`${
+								location === '/dashboard/testimonios' && 'bg-blue-500/13'
+							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
+						>
+							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
+								<i className='relative top-0 text-sm leading-normal text-black ni ni-calendar-grid-58'></i>
+							</div>
+							<Link to='/dashboard/testimonios'>Testimonios</Link>
+							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
+						</a>
+					</li>
+
+					<li className='mt-0.5 w-full'>
+						<a
+							className={`${
+								location === '/dashboard/planes' && 'bg-blue-500/13'
+							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
+						>
+							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
+								<i className='relative top-0 text-sm leading-normal text-black ni ni-calendar-grid-58'></i>
+							</div>
+							<Link to='/dashboard/planes'>Planes</Link>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
 						</a>
 					</li>
