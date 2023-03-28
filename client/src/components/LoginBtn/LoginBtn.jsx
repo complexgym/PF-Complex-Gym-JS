@@ -4,9 +4,19 @@ import style from "./style.module.css"
 const LoginBtn = () => {
 	const { loginWithRedirect } = useAuth0();
 
+
+	const handleLogin = async () => {
+		await loginWithRedirect({
+			appState: {
+				returnTo: "/home",
+			},
+		})
+	};
+
+
 	return (
 		<div className={style.login}>
-			<button onClick={() => loginWithRedirect()}>Ingresar</button>
+			<button onClick={() => handleLogin()}>Ingresar</button>
 		</div>
 	);
 };

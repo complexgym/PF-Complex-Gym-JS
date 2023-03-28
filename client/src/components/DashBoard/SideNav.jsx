@@ -168,6 +168,23 @@ const SideNav = () => {
       </div>
     </aside>
   );
+					<li className='mt-0.5 w-full'>
+						<a
+							className={`${
+								location === '/dashboard/planes' && 'bg-blue-500/13'
+							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
+						>
+							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
+							  <i className="fa fa-plane" aria-hidden="true"></i>
+							</div>
+							<Link to='/dashboard/planes'>Planes</Link>
+							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+	);
 };
 
 export default SideNav;
