@@ -43,6 +43,7 @@ const initialState = {
 	allAdmin: [],
 	allPayments: [],
 	trainers: [],
+	plans: [],
 };
 
 const rootReducer = (state = initialState, action) => {
