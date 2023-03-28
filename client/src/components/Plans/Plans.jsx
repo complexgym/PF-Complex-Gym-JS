@@ -23,8 +23,9 @@ export default function Plans() {
 				</div>
 
 				{/* content */}
-				<div className='mb-4 border-b border-gray-200 dark:border-gray-700'>
-					{/* tabs */}
+				<div className='mb-4 border-b border-gray-300 dark:border-gray-700'>
+					
+					{/* tabs form */}
 					<ul
 						className='flex flex-wrap justify-center text-sm text-white font-medium text-center'
 						id='myTab'
@@ -58,7 +59,7 @@ export default function Plans() {
 							<button
 								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${
 									option === 'Libre' &&
-									'text-yellow-400 border-yellow-400 font-bold  border-b-4'
+									'text-white border-white font-bold  border-b-4'
 								}`}
 								onClick={() => setOption('Libre')}
 							>
@@ -69,7 +70,7 @@ export default function Plans() {
 						<li className='mr-2' role='presentation'>
 							<button
 								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${
-									option === 'Otros' && 'text-slate-400 border-blue font-bold border-b-4'
+									option === 'Otros' && 'text-[#231F20] border-[#231F20] font-bold border-b-4'
 								}`}
 								onClick={() => setOption('Otros')}
 							>
@@ -78,6 +79,8 @@ export default function Plans() {
 						</li>
 					</ul>
 				</div>
+
+				{/* plans */}
 				<div className='grid max-w-screen row-gap gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 sm:mx-auto'>
 					{plans?.[option].map((plan) => {
 						return <SinglePlan plan={plan} option={option} />;
