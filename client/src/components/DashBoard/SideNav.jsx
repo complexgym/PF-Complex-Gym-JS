@@ -4,7 +4,7 @@ import icono_menu from "../../assets/img/menu-black.png";
 
 
 const SideNav = () => {
-  const location = useLocation().pathname;
+	const location = useLocation().pathname;
 
   const [open, setOpen] = useState(true);
 
