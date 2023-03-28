@@ -67,25 +67,22 @@ const Trainers = () => {
 											<table className='items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
 												<thead className='align-bottom'>
 													<tr>
-														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70'>
+														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-s opacity-70'>
 															Entrenador
 														</th>
-														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70'>
+														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
 															Información
 														</th>
-														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70'>
+														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
 															Estado
-														</th>
-														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-sm border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															¿Es admin?
 														</th>
 													</tr>
 												</thead>
-												<tbody>
+												{/* <tbody>
 													{trainers.map((trainer) => {
 														return <TrainersCard trainer={trainer} />;
 													})}
-												</tbody>
+												</tbody> */}
 											</table>
 										</div>
 									</div>

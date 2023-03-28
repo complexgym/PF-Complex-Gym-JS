@@ -1,10 +1,11 @@
 import React from 'react';
-import SideNav from '../SideNav';
 import { useSelector } from 'react-redux';
-import ActivityCard from './cards/ClassCard';
+import { Link } from 'react-router-dom';
+import SideNav from '../SideNav';
+import TestimonyCard from './cards/TestimonyCard';
 
-const Activities = () => {
-	const activities = useSelector((state) => state.activities);
+const AllTestimonials = () => {
+	const allTestimonials = useSelector((state) => state.testimonials);
 
 	return (
 		<div>
@@ -29,10 +30,10 @@ const Activities = () => {
 										className="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
 										aria-current='page'
 									>
-										Actividades
+										Testimonios
 									</li>
 								</ol>
-								<h6 className='mb-0 font-bold text-white capitalize'>Actividades</h6>
+								<h6 className='mb-0 font-bold text-white capitalize'>Testimonios</h6>
 							</nav>
 
 							<div className='flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto'>
@@ -58,7 +59,7 @@ const Activities = () => {
 								<div className='relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className=' grid grid-cols-2 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
 										<div className=''>
-											<h6 className='dark:text-white'>Actividades</h6>
+											<h6 className='dark:text-white'>Tabla de Testimonios</h6>
 										</div>
 									</div>
 									<div className='p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'></div>
@@ -67,23 +68,24 @@ const Activities = () => {
 											<table className='items-center justify-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
 												<thead className='align-bottom'>
 													<tr>
-														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Imagen
+														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Cliente
 														</th>
-														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Nombre
+														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Titulo
 														</th>
-														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Descripción
+														</th>
+														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Calificación
 														</th>
 													</tr>
 												</thead>
-
-												{/* ALL CLASSES */}
 												<tbody className='border-t'>
-													{activities.map((activity) => {
-														return <ActivityCard activity={activity} />;
-													})}
+													{/* {allTestimonials?.map((testimony) => {
+														return <TestimonyCard testimony={testimony} />;
+													})} */}
 												</tbody>
 											</table>
 										</div>
@@ -98,4 +100,4 @@ const Activities = () => {
 	);
 };
 
-export default Activities;
+export default AllTestimonials;

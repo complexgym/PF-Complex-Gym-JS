@@ -55,7 +55,7 @@ const SideNav = () => {
 							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-								<i className='relative top-0 text-sm leading-normal text-red-500 ni ni-circle-08'></i>
+								<i className='relative top-0 text-sm leading-normal text-orange-500 ni ni-circle-08'></i>
 							</div>
 							<NavLink to='/dashboard/clientes'>Clientes</NavLink>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
@@ -116,7 +116,7 @@ const SideNav = () => {
 							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-								<i className='relative top-0 text-sm leading-normal text-black ni ni-calendar-grid-58'></i>
+								<i className='relative top-0 text-sm leading-normal text-indigo-500 ni ni-watch-time'></i>
 							</div>
 							<Link to='/dashboard/actividades'>Actividades</Link>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
@@ -130,7 +130,7 @@ const SideNav = () => {
 							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-								<i className='relative top-0 text-sm leading-normal text-black ni ni-calendar-grid-58'></i>
+								<i className='relative top-0 text-sm leading-normal text-red-500 ni ni-user-run'></i>
 							</div>
 							<Link to='/dashboard/entrenadores'>Entrenadores</Link>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
@@ -144,7 +144,7 @@ const SideNav = () => {
 							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-								<i className='relative top-0 text-sm leading-normal text-black ni ni-calendar-grid-58'></i>
+								<i className='relative top-0 text-sm leading-normal text-amber-500 ni ni-bullet-list-67'></i>
 							</div>
 							<Link to='/dashboard/testimonios'>Testimonios</Link>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
@@ -158,7 +158,7 @@ const SideNav = () => {
 							} dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors`}
 						>
 							<div className='mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5'>
-								<i className='relative top-0 text-sm leading-normal text-black ni ni-calendar-grid-58'></i>
+								<i className='relative top-0 text-sm leading-normal text-slate-700 ni ni-bag-17'></i>
 							</div>
 							<Link to='/dashboard/planes'>Planes</Link>
 							<span className='ml-1 duration-300 opacity-100 pointer-events-none ease'></span>
