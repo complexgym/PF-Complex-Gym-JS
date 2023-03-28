@@ -192,13 +192,7 @@ const rootReducer = (state = initialState, action) => {
 			};
 		case EDIT_PLANS: 
 			return {
-				...state,
-				initial_plans: state.initial_plans.map(plan=>{
-					if(plan.id===payload.id){
-						return payload
-					}
-					return plan
-				})
+				...state
 			}
 		default:
 			return {
