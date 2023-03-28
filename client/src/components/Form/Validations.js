@@ -1,5 +1,5 @@
 const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
-const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/;
+const regexName = /^[a-zA-ZáäéëíïóöúüÁÄÉËÍÏÓÖÚÜñÑ\s]{2,50}$/;
 const regexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const regexPhone = /^\+(?:\d[\-\s]?){8,14}\d$/;
 const regexDni = /^[0-9]{6,9}$/;
