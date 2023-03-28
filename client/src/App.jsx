@@ -38,7 +38,7 @@ import Payments from './components/DashBoard/pages/Payments';
 import Activities from './components/DashBoard/pages/Activities';
 import Trainers from './components/DashBoard/pages/Trainers';
 import Testimonies from './components/DashBoard/pages/Testimonies';
-import Plans from './components/DashBoard/pages/Plans';
+import AllPlans from './components/DashBoard/pages/AllPlans';
 
 // axios.defaults.baseURL = "http://localhost:3001"
 axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
@@ -129,7 +129,7 @@ function App() {
 							<Route path={'/dashboard/actividades'} element={<Activities />} />
 							<Route path={'/dashboard/entrenadores'} element={<Trainers />} />
 							<Route path={'/dashboard/testimonios'} element={<Testimonies />} />
-							<Route path={'/dashboard/planes'} element={<Plans />} />
+							<Route path={'/dashboard/planes'} element={<AllPlans />} />
 						</Route>
 						<Route path={'*'} element={<Error404 />} />
 					</Routes>

@@ -22,6 +22,7 @@ import {
 	REMOVE_ADMIN,
 	POST_PAYMENT,
 	GET_ALL_PAYMENTS,
+	GET_TRAINERS,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -40,7 +41,8 @@ const initialState = {
 	activities: [],
 	allCalendar: [],
 	allAdmin: [],
-	allPayments: []
+	allPayments: [],
+	trainers: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -52,7 +54,7 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				initial_posts: payload.blogPosts,
 				matched_posts: payload.blogPosts,
-				ig_posts: payload.igPosts
+				ig_posts: payload.igPosts,
 			};
 		case GET_POST_BY_ID:
 			return {
@@ -107,13 +109,13 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
-		case DELETE_BLOG: 
+		case DELETE_BLOG:
 			return {
 				...state,
-				initial_posts: state?.initial_posts?.filter(el=>el.id!==payload),
-				matched_posts: state?.matched_posts?.filter(el=>el.id!==payload),
-				ig_posts: state.ig_posts?.filter(el=>el.id!==payload)
-			}
+				initial_posts: state?.initial_posts?.filter((el) => el.id !== payload),
+				matched_posts: state?.matched_posts?.filter((el) => el.id !== payload),
+				ig_posts: state.ig_posts?.filter((el) => el.id !== payload),
+			};
 		case GET_ALL_TESTIMONIALS:
 			return {
 				...state,
@@ -134,53 +136,60 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 			};
 		case GET_CALENDAR:
-			return{
+			return {
 				...state,
 				allCalendar: payload,
-				}
+			};
 		case POST_CALENDAR:
-			return{
+			return {
 				...state,
-				allCalendar: [...state.allCalendar, payload]
-			}
+				allCalendar: [...state.allCalendar, payload],
+			};
 		case GET_ALL_ADMIN:
 			return {
 				...state,
-				allAdmin: payload
-			}
+				allAdmin: payload,
+			};
 		case POST_ADMIN:
 			return {
-				...state
-			}
-		case REMOVE_ADMIN: 
-			return {
-				...state
-			}
-		case POST_PAYMENT:return {
 				...state,
-				allPayments: [...state.allPayments, payload]
-			}
-		case GET_ALL_PAYMENTS: 
-			const payments = payload?.map(pay=>{
-				const find = state?.allClients.find(client => client?.id === pay?.clientId)
-				if(find){
-					const {name, lastName, picture} = find
-					return {
-						...pay,
-						clientName: name + " " + lastName,
-						picture
+			};
+		case REMOVE_ADMIN:
+			return {
+				...state,
+			};
+		case POST_PAYMENT:
+			return {
+				...state,
+				allPayments: [...state.allPayments, payload],
+			};
+		case GET_ALL_PAYMENTS:
+			const payments = payload
+				?.map((pay) => {
+					const find = state?.allClients.find((client) => client?.id === pay?.clientId);
+					if (find) {
+						const { name, lastName, picture } = find;
+						return {
+							...pay,
+							clientName: name + ' ' + lastName,
+							picture,
+						};
 					}
-				}
-			})?.sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
+				})
+				?.sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
 			return {
 				...state,
-				allPayments: payments
-			}
+				allPayments: payments,
+			};
+		case GET_TRAINERS:
+			return {
+				...state,
+				trainers: payload,
+			};
 		default:
 			return {
 				...state,
 			};
-		
 	}
 };
 export default rootReducer;
