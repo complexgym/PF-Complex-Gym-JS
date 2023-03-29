@@ -20,5 +20,5 @@ module.exports = {
     Testimonials,
     Plans,
     Mercadopago,
-    CalendarDate
+    CalendarDate,
 }

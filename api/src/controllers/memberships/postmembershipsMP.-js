@@ -1,24 +1,19 @@
 const { memberships } = require('../../db');
 
-const postMemberships = async ({
+const postMembershipsmp = async ({
 	clientId,
     planName,
-    activities,
     price,
-    startDate,
-    finishDate,
     paymentId,
 }) => {    
 	const newMemberships = await memberships.create({
 	clientId,
     planName,
-    activities,
     price,
-    startDate,
-    finishDate,
     paymentId,
 	});
 	return newMemberships;
 };
 
-module.exports = postMemberships;
+module.exports = postMembershipsmp+ç
+;
