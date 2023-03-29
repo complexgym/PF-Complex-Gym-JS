@@ -26,6 +26,7 @@ import {
 	EDIT_PLANS,
 	POST_PLANS,
 	POST_REVIEW,
+	DELETE_PLAN,
 	POST_TRAINER,
 } from './action-types.js';
 import axios from 'axios';
@@ -487,7 +488,7 @@ export const postPlans = (data) => async (dispatch) => {
 
 export const postReview = (review) => async () => {
 	try {
-		const data = await axios.post('/testimonials', review);
+		const data = await axios.post("/testimonials", review);
 
 		return dispatch({
 			type: POST_REVIEW,
@@ -509,4 +510,15 @@ export const postTrainer = (trainer) => async (dispatch) => {
 	} catch (error) {
 		console.log(error);
 	}
+};
+
+export const deletePlan = (id) => async (dispatch) => {
+	try {
+		const response = await axios.delete(`/plans/${id}`);
+
+		return dispatch({
+			type: DELETE_PLAN,
+			payload: id,
+		});
+	} catch (error) {}
 };
