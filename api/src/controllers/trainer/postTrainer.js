@@ -6,32 +6,31 @@ const postTrainer = async ({
 	lastName,
 	picture,
 	permits,
-    classes,
-    phone,
+	classes,
+	phone,
 	mail,
-	address
+	address,
 }) => {
-	
 	const newTrainer = await trainer.create({
-        user,
-        name,
-        lastName,
-        picture,
-        permits,
-        classes,
-        phone,
-        mail,
-        address
+		user,
+		name,
+		lastName,
+		picture,
+		permits,
+		classes,
+		phone,
+		mail,
+		address,
 	});
-	
-//     const Activities = await activities.findAll({
-//             where: {
-//                 name : activities.name
-//             }
-//         })
-//         await newTrainer.addactivities(Activities)
 
-// 	return newTrainer;
+	//     const Activities = await activities.findAll({
+	//             where: {
+	//                 name : activities.name
+	//             }
+	//         })
+	//         await newTrainer.addactivities(Activities)
+
+	return newTrainer;
 };
 
 module.exports = postTrainer;

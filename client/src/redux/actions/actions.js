@@ -24,7 +24,9 @@ import {
 	GET_ALL_PAYMENTS,
 	GET_TRAINERS,
 	EDIT_PLANS,
+	POST_PLANS,
 	POST_REVIEW,
+	POST_TRAINER,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -470,11 +472,40 @@ export const editPlans = (id, data) => async (dispatch) => {
 	}
 };
 
+export const postPlans = (data) => async (dispatch) => {
+	try {
+		await axios.post('/plans', data);
+
+		return dispatch({
+			type: POST_PLANS,
+			payload: data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const postReview = (review) => async () => {
 	try {
 		const data = await axios.post('/testimonials', review);
 
-		return data;
+		return dispatch({
+			type: POST_REVIEW,
+			payload: data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postTrainer = (trainer) => async (dispatch) => {
+	try {
+		const data = await axios.post('/trainer', trainer);
+
+		return dispatch({
+			type: POST_TRAINER,
+			payload: data,
+		});
 	} catch (error) {
 		console.log(error);
 	}

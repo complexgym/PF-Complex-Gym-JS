@@ -24,7 +24,9 @@ import {
 	GET_ALL_PAYMENTS,
 	GET_TRAINERS,
 	EDIT_PLANS,
+	POST_PLANS,
 	POST_REVIEW,
+	POST_TRAINER,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -195,9 +197,20 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		case POST_PLANS:
+			return {
+				...state,
+				initial_plans: [...state.initial_plans, payload],
+			};
 		case POST_REVIEW:
 			return {
 				...state,
+				testimonials: [...state.testimonials, payload],
+			};
+		case POST_TRAINER:
+			return {
+				...state,
+				trainers: [...state.trainers, payload],
 			};
 		default:
 			return {

@@ -22,14 +22,14 @@ const TrainersCard = ({ trainer }) => {
 					</div>
 				</div>
 			</td>
-			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
-					{trainer?.age} / {trainer?.weight}kg / {trainer?.height}cm
-				</span>
-			</td>
-			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+			<td className='px-2 py-3 text-left align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
 					{trainer?.phone}
+				</span>
+			</td>
+			<td className='px-2 py-3 text-left align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
+					{trainer?.address}
 				</span>
 			</td>
 		</tr>

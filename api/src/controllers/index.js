@@ -14,6 +14,11 @@ const postAdmin = require("./admin/postAdmin")
 const putAdmin = require("./admin/putAdmin")
 const restoreAdmin = require("./admin/restoreAdmin")
 const getSoftDeletedAdmin = require("./admin/getSoftDeletedAdmin")
+// Calendar
+const getAllCalendar = require('./calendar/getAllCalendars')
+const postCalendar = require('./calendar/postCalendar')
+const deleteCalendar = require('./calendar/deleteCalendar')
+const putCalendar = require('./calendar/putCalendar')
 // Client
 const deleteClient = require("./clients/deleteClient")
 const getAllClients = require("./clients/getAllClients")
@@ -37,8 +42,6 @@ const postNotification = require("./payments/postNotification")
 const postPayments = require("./payments/postPayments")
 const getAllPayments = require("./payments/getAllPayments")
 const getPaymentsById =require("./payments/getPaymentsById")
-const getAllCalendar = require('./calendar/getAllCalendars')
-const postCalendar = require('./calendar/postCalendar')
 // Plans
 const deletePlans = require("./plans/deletePlans")
 const getAllPlans = require("./plans/getAllPlans")
@@ -72,7 +75,6 @@ const getTrainerById = require("./trainer/getTrainerById")
 const getSoftDeletedTrainers = require("./trainer/getSoftDeletedTrainers")
 
 
-
 module.exports = {
     // Activities
     getActivitiesById,
@@ -93,6 +95,8 @@ module.exports = {
     //Calendar
     getAllCalendar,
     postCalendar,
+    putCalendar,
+    deleteCalendar
     // Client
     deleteClient,
     getAllClients,
@@ -148,5 +152,5 @@ module.exports = {
     getTrainerById,
     restoreTrainer,
     getSoftDeletedTrainers
-}
+
 
