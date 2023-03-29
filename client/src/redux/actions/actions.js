@@ -26,6 +26,7 @@ import {
 	EDIT_PLANS,
 	POST_PLANS,
 	POST_REVIEW,
+	POST_TRAINER,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -488,17 +489,23 @@ export const postReview = (review) => async () => {
 	try {
 		const data = await axios.post('/testimonials', review);
 
-		return data;
+		return dispatch({
+			type: POST_REVIEW,
+			payload: data,
+		});
 	} catch (error) {
 		console.log(error);
 	}
 };
 
-export const postTrainer = (trainer) => async () => {
+export const postTrainer = (trainer) => async (dispatch) => {
 	try {
 		const data = await axios.post('/trainer', trainer);
 
-		return data;
+		return dispatch({
+			type: POST_TRAINER,
+			payload: data,
+		});
 	} catch (error) {
 		console.log(error);
 	}
