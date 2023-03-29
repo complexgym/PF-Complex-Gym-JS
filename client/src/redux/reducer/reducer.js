@@ -24,6 +24,7 @@ import {
 	GET_ALL_PAYMENTS,
 	GET_TRAINERS,
 	EDIT_PLANS,
+	POST_REVIEW,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -45,7 +46,7 @@ const initialState = {
 	allPayments: [],
 	trainers: [],
 	plans: [],
-	initial_plans: []
+	initial_plans: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -133,7 +134,7 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				plans: payload.separatedByCategory,
-				initial_plans: payload.allData
+				initial_plans: payload.allData,
 			};
 		case UPDATE_CLIENT:
 			return {
@@ -190,10 +191,14 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				trainers: payload,
 			};
-		case EDIT_PLANS: 
+		case EDIT_PLANS:
 			return {
-				...state
-			}
+				...state,
+			};
+		case POST_REVIEW:
+			return {
+				...state,
+			};
 		default:
 			return {
 				...state,
