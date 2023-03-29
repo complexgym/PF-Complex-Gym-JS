@@ -9,7 +9,7 @@ export default function Plans() {
 	const plans = useSelector((s) => s.plans);
 
 	return (
-		<div className='bg-image-testimonials relative w-full h-full pb-8 font-text'>
+		<div className='bg-image-testimonials relative w-full h-full min-h-[80vh] pb-8 font-text'>
 			<div className='absolute hidden w-full lg:block h-96' />
 
 			<div className='relative px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-[85vw] md:px-24 lg:px-8 lg:py-8'>

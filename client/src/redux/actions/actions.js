@@ -26,8 +26,9 @@ import {
 	EDIT_PLANS,
 	POST_PLANS,
 	POST_REVIEW,
-} from './action-types.js';
-import axios from 'axios';
+	DELETE_PLAN,
+} from "./action-types.js";
+import axios from "axios";
 
 //*TODO posts
 
@@ -492,10 +493,21 @@ export const postPlans = (data) => async (dispatch) => {
 
 export const postReview = (review) => async () => {
 	try {
-		const data = await axios.post('/testimonials', review);
+		const data = await axios.post("/testimonials", review);
 
 		return data;
 	} catch (error) {
 		console.log(error);
 	}
+};
+
+export const deletePlan = (id) => async (dispatch) => {
+	try {
+		const response = await axios.delete(`/plans/${id}`);
+
+		return dispatch({
+			type: DELETE_PLAN,
+			payload: id,
+		});
+	} catch (error) {}
 };

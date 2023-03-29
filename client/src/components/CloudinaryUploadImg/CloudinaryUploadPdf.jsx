@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { CloudinaryImage } from "@cloudinary/url-gen";
 
-export default function Prueba({ onUpload }) {
+export default function CloudinaryUploadPdf({ onUpload }) {
 	const [pdfSelected, setPdfSelected] = useState("");
 	const [pdf, setPdf] = useState("");
 
@@ -13,7 +14,9 @@ export default function Prueba({ onUpload }) {
 		axios
 			.post("https://api.cloudinary.com/v1_1/dpxucxgwg/image/upload", formData)
 			.then((response) => setPdf(response.data.secure_url));
-	  };
+	};
+
+	console.log(pdf);
 
 	useEffect(() => {
 		if (pdf) {
@@ -21,23 +24,17 @@ export default function Prueba({ onUpload }) {
 		}
 	}, [pdf]);
 
-  console.log(pdf);
-
 	return (
 		<div>
 			<div className="flex">
-				<div className="flex">
+				<div className="w-full flex justify-center">
 					<div class="shrink-0">
 						<label
 							htmlFor="about"
 							className="mt-2 ml-4 block text-sm font-medium leading-6 text-gray-900"
 						>
-							PDF seleccionado
-							<img
-								class="h-32 w-32 object-cover rounded-full"
-								src={pdf}
-								alt="imagen cargada"
-							/>
+							{pdf && <a href={pdf} className="relative top-12 lighter-blue underline"
+							target="_blank">Pdf seleccionado</a>}
 						</label>
 					</div>
 					<label class="block pl-6 py-11">
@@ -49,7 +46,7 @@ export default function Prueba({ onUpload }) {
 							name=""
 							id=""
 							onChange={(e) => {
-								setPdf(e.target.files[0]);
+								setPdfSelected(e.target.files[0]);
 							}}
 						/>
 					</label>

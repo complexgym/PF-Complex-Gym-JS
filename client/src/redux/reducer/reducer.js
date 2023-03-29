@@ -26,7 +26,8 @@ import {
 	EDIT_PLANS,
 	POST_PLANS,
 	POST_REVIEW,
-} from '../actions/action-types.js';
+	DELETE_PLAN,
+} from "../actions/action-types.js";
 
 const initialState = {
 	allClients: [],
@@ -201,11 +202,16 @@ const rootReducer = (state = initialState, action) => {
 		case POST_PLANS:
 			return {
 				...state,
-				initial_plans: [...state.initial_plans, payload]
-       }
+				initial_plans: [...state.initial_plans, payload],
+			};
 		case POST_REVIEW:
 			return {
 				...state,
+			};
+		case DELETE_PLAN:
+			return {
+				...state,
+				initial_plans: state.initial_plans.filter((plan) => plan.id !== payload),
 			};
 		default:
 			return {

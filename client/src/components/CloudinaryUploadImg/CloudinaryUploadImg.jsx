@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Prueba({ onUpload }) {
+export default function CloudinaryUploadImg({ onUpload }) {
 	const [imageSelected, setImageSelected] = useState("");
 	const [image, setImage] = useState("");
 
