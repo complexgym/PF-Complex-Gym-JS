@@ -127,6 +127,7 @@ const ClasesCalendar = () => {
 												</tr>
 											</thead>
 										</table>
+										<div>
 										<form
 											onSubmit={(e) => handleSubmit(e)}
 											className='grid grid-cols-6 w-full pl-10 pb-10 pr-10 -mt-10 gap-8'
@@ -188,6 +189,7 @@ const ClasesCalendar = () => {
 												Crear Clase
 											</button>
 										</form>
+										</div>
 									</div>
 								</div>
 							</div>

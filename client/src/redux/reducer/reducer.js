@@ -24,7 +24,8 @@ import {
 	GET_ALL_PAYMENTS,
 	GET_TRAINERS,
 	EDIT_PLANS,
-} from '../actions/action-types.js';
+	POST_PLANS,
+} from "../actions/action-types.js";
 
 const initialState = {
 	allClients: [],
@@ -33,10 +34,10 @@ const initialState = {
 	matched_posts: [],
 	ig_posts: [],
 	post_details: {},
-	search_blog: '',
+	search_blog: "",
 	filters_blog: {
-		tag: '',
-		date: '',
+		tag: "",
+		date: "",
 	},
 	testimonials: [],
 	activities: [],
@@ -45,7 +46,7 @@ const initialState = {
 	allPayments: [],
 	trainers: [],
 	plans: [],
-	initial_plans: []
+	initial_plans: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -133,7 +134,7 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				plans: payload.separatedByCategory,
-				initial_plans: payload.allData
+				initial_plans: payload.allData,
 			};
 		case UPDATE_CLIENT:
 			return {
@@ -170,12 +171,14 @@ const rootReducer = (state = initialState, action) => {
 		case GET_ALL_PAYMENTS:
 			const payments = payload
 				?.map((pay) => {
-					const find = state?.allClients.find((client) => client?.id === pay?.clientId);
+					const find = state?.allClients.find(
+						(client) => client?.id === pay?.clientId
+					);
 					if (find) {
 						const { name, lastName, picture } = find;
 						return {
 							...pay,
-							clientName: name + ' ' + lastName,
+							clientName: name + " " + lastName,
 							picture,
 						};
 					}
@@ -190,10 +193,15 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				trainers: payload,
 			};
-		case EDIT_PLANS: 
+		case EDIT_PLANS:
 			return {
-				...state
-			}
+				...state,
+			};
+		case POST_PLANS:
+			return {
+				...state,
+				initial_plans: [...state.initial_plans, payload],
+			};
 		default:
 			return {
 				...state,

@@ -13,6 +13,8 @@ const PlansCard = ({ plans }) => {
 	const [editable, setEditable] = useState(false)
 	const dispatch = useDispatch()
 
+	console.log();
+
 	const handleChange = (e) => {
 		setData({
 			...data,
@@ -21,16 +23,25 @@ const PlansCard = ({ plans }) => {
 	}
 
 	const handleClick = async () => {
-		dispatch(editPlans(plans.id, {
-			...data,
-			tags: data.tags.split(",")
-		}))
-		dispatch(getAllPlans())
-		swal({
-			title: 'Gracias!',
-			text: '¡Información editada correctamente!',
-			icon: 'success',
-		});
+		if(plans.name!==data.name || plans.price!==data.price){
+			dispatch(editPlans(plans?.id, {
+				...data,
+				tags: Array.isArray(data?.tags) ? data?.tags : data?.tags?.split(",")
+			}))
+			dispatch(getAllPlans())
+			swal({
+				title: 'Gracias!',
+				text: '¡Información editada correctamente!',
+				icon: 'success',
+			});
+		}
+		else{
+			swal({
+				title: 'Atención',
+				text: '¡Debe editar al menos un campo!',
+				icon: 'warning',
+			});
+		}
 	}
 
 	return (
@@ -38,7 +49,7 @@ const PlansCard = ({ plans }) => {
 			{/* plan name */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<p className='mb-0 text-left text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
-					<input  className={`border-none font-normal ${!editable && "text-gray-400"}`} name="name" 
+					<input  className={`border-none font-normal ${!editable && "text-gray-500"}`} name="name" 
 					onChange={handleChange} type="text" value={data?.name} 
 					disabled={!editable}></input>
 				</p>
@@ -46,14 +57,14 @@ const PlansCard = ({ plans }) => {
 		
 			{/* price */}
 			<td className='p-2 flex items-center text-sm leading-normal text-left align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<input className={`border-none font-normal ${!editable && "text-gray-400"}`} name="price"
+				<input className={`border-none font-normal ${!editable && "text-gray-500"}`} name="price"
 				onChange={handleChange} type="number" value={data?.price} 
 				disabled={!editable}></input>
 			</td>
 
 			{/* tags */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<input className={`border-none font-normal w-64 ${!editable && "text-gray-400"}`} 
+				<input className={`border-none font-normal w-64 ${!editable && "text-gray-500"}`} 
 				name="tags" onChange={handleChange} type="text" value={data?.tags} 
 				disabled={!editable}></input>
 			</td>
@@ -70,9 +81,11 @@ const PlansCard = ({ plans }) => {
 
       {/* send */}	
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<i className={`fa fa-paper-plane text-sm cursor-pointer ${!editable && "text-gray-500 cursor-auto"}`} 
-				aria-hidden="true"
-				onClick={handleClick}></i>
+				<button disabled={editable===false} onClick={handleClick}>
+					<i className={`fa fa-paper-plane text-sm cursor-pointer ${!editable && "text-gray-500 cursor-auto"}`} 
+					aria-hidden="true"
+					></i>
+				</button>
 			</td>
 		</tr>
 	);
