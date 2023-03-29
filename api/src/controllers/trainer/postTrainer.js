@@ -24,14 +24,14 @@ const postTrainer = async ({
         address
 	});
 	
-    const Activities = await activities.findAll({
-            where: {
-                name : activities.name
-            }
-        })
-        await newTrainer.addactivities(Activities)
+//     const Activities = await activities.findAll({
+//             where: {
+//                 name : activities.name
+//             }
+//         })
+//         await newTrainer.addactivities(Activities)
 
-	return newTrainer;
+// 	return newTrainer;
 };
 
 module.exports = postTrainer;
