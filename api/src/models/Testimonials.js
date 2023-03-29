@@ -20,11 +20,17 @@ const testimonials = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false,
         }, 
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+          },
+
+    }, {
         paranoid: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: true,
 			}
-     })
+    })
 }
 
 module.exports = testimonials

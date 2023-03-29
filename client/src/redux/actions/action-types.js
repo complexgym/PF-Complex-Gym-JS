@@ -21,6 +21,8 @@ export const POST_CLIENT = "POST_CLIENT";
 //todo CREATE BLOG
 export const GET_CLIENTS = "GET_CLIENTS";
 export const UPDATE_CLIENT = "UPDATE_CLIENT";
+export const POST_CLIENT = 'POST_CLIENT';
+export const UPDATE_CLIENT = 'UPDATE_CLIENT';
 
 //todo TESTIMONIALS, ACTIVITIES and PLANS
 export const GET_ALL_TESTIMONIALS = "GET_ALL_TESTIMONIALS";
@@ -46,3 +48,6 @@ export const POST_PAYMENT = "POST_PAYMENT";
 
 //todo TRAINERS
 export const GET_TRAINERS = "GET_TRAINERS";
+export const GET_TRAINERS = 'GET_TRAINERS';
+export const POST_TRAINER = 'POST_TRAINER';
+export const PUT_TRAINER = 'PUT_TRAINER';
