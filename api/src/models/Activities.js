@@ -31,11 +31,17 @@ const activities = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-		paranoid: {
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+          },
+
+    }, {
+        paranoid: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: true,
-			},
-     })
+			}
+    })
 }
 
 module.exports = activities

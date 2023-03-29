@@ -44,10 +44,16 @@ const trainer = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+          },
+
+    }, {
         paranoid: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: true,
-			},
+			}
     })
 }
 
