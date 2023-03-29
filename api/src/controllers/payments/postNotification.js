@@ -1,6 +1,6 @@
 const mercadopago = require("mercadopago");
 const postMercadoPago = require("./postMercadoPago.js");
-const postMemberships = require("../memberships/postMemberships.js")
+const postMembershipsmp = require("../memberships/postMembershipsMP.js")
 
 mercadopago.configure({
 	access_token: process.env.ACCESS_TOKEN_MP,
@@ -21,7 +21,9 @@ const postNotification = async (req, res) => {
 	switch (topic) {
 		case "payment":
 			const paymentId = query.id || query["data.id"];
+			
 			Payment = await mercadopago.payment.findById(paymentId);
+			console.log(paymentId) 
 			let data = {
 				clientId: Payment.body.additional_info.items[0].category_id,
 				id: Payment.body.id,
@@ -31,20 +33,14 @@ const postNotification = async (req, res) => {
 				plans: Payment.body.description,
 				order: Payment.body.order.id,
 			};
-			let d = new Date(2023,04,6);
-			let f = new Date(2023,05,05)
-			//let f = sumarDias(d, +30);
 			let membership = {
 				clientId:Payment.body.additional_info.items[0].category_id,
 				planName:Payment.body.description,
-				activities:"LIBRE",
 				price:Payment.body.transaction_amount,
-				startDate:d,
-				finishDate:f,
 				paymentId:Payment.body.id,
 			}
 			postMercadoPago(data);
-			postMemberships(membership)
+			postMembershipsmp(membership);
 			break;
 
 		case "merchant_order":
