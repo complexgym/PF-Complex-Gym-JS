@@ -2,6 +2,7 @@ import React from 'react';
 import SideNav from '../SideNav';
 import { useSelector } from 'react-redux';
 import TrainersCard from './cards/TrainersCard';
+import CreateTrainner from './cards/CreateTrainer/CreateTrainner';
 
 const Trainers = () => {
 	const trainers = useSelector((state) => state.trainers);
@@ -54,6 +55,18 @@ const Trainers = () => {
 							</div>
 						</div>
 					</nav>
+
+					<div className='w-full px-6 py-6 mx-auto'>
+						<div className='flex flex-wrap -mx-3'>
+							<div className='flex-none w-full max-w-full px-3'>
+								<div className='relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
+									<div className='grid border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
+										<CreateTrainner />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<div className='w-full px-6 py-6 mx-auto'>
 						<div className='flex flex-wrap -mx-3'>
