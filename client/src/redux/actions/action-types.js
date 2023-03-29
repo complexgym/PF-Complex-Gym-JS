@@ -26,7 +26,8 @@ export const UPDATE_CLIENT = 'UPDATE_CLIENT';
 export const GET_ALL_TESTIMONIALS = 'GET_ALL_TESTIMONIALS';
 export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES';
 export const GET_ALL_PLANS = 'GET_ALL_PLANS';
-export const EDIT_PLANS = 'EDIT_PLANS'
+export const EDIT_PLANS = 'EDIT_PLANS';
+export const POST_REVIEW = 'POST_REVIEW';
 
 //todo Calendario
 export const GET_CALENDAR = 'GET_CALENDAR';
