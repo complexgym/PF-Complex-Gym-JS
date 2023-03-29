@@ -6,7 +6,7 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
 
 export default function Calendar() {
-	const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+	const days = ['D', 'L', 'M', 'M', 'J', 'V	', 'S'];
 	const currentDate = dayjs();
 	const [today, setToday] = useState(currentDate);
 	const [selectDate, setSelectDate] = useState(currentDate);
@@ -20,13 +20,13 @@ export default function Calendar() {
 
 	return (
 		<div className='w-screen bg-slate-100'>
-			<div className='flex gap-24 sm:divide-x justify-center sm:w-1/2 mx-auto w-screen h-screen sm:flex-row flex-col bg-slate-100 pt-12'>
-				<div className='w-screen h-96 '>
+			<div className='flex sm:gap-20 gap-24 2xl:gap-0 sm:divide-x justify-center sm:w-1/2 mx-auto w-screen h-screen sm:flex-row flex-col bg-slate-100 pt-12'>
+				<div className='w-screen h-96'>
 					<div className='flex justify-between items-center text-xl pb-8'>
 						<h1 className='select-none font-semibold'>
 							{months[today.month()]}, {today.year()}
 						</h1>
-						<div className='flex gap-10 items-center '>
+						<div className='flex gap-10 items-center'>
 							<GrFormPrevious
 								className='w-5 h-5 cursor-pointer hover:scale-105 transition-all'
 								onClick={() => {
@@ -34,7 +34,7 @@ export default function Calendar() {
 								}}
 							/>
 							<h1
-								className=' cursor-pointer hover:scale-105 transition-all'
+								className='cursor-pointer hover:scale-105 transition-all'
 								onClick={() => {
 									setToday(currentDate);
 								}}
@@ -49,12 +49,12 @@ export default function Calendar() {
 							/>
 						</div>
 					</div>
-					<div className='grid grid-cols-7 pb-8'>
+					<div className='grid grid-cols-7 md:pb-8'>
 						{days.map((day, index) => {
 							return (
 								<h1
 									key={index}
-									className='text-xl text-end h-14 w-14 grid place-content-end text-[#1d459d] select-none font-bold ml-9'
+									className='text-sm h-7 w-7  md:h-14 md:w-14 grid place-content-end text-[#1d459d] select-none font-bold md:text-xl md:text-end md:ml-0 xl:ml-9 2xl-max:ml-3'
 								>
 									{day}
 								</h1>
@@ -62,13 +62,13 @@ export default function Calendar() {
 						})}
 					</div>
 
-					<div className=' grid grid-cols-7 w-[65vw] h-[65vh] pt-4'>
+					<div className=' grid grid-cols-7 pt-4 md:w-[65vw] md:h-[65vh]'>
 						{generateDate(today.month(), today.year()).map(
 							({ date, currentMonth, today }, index) => {
 								return (
 									<div
 										key={index}
-										className='p-2 text-center h-14 grid place-content-center text-sm border-t drop-shadow-2xl'
+										className='p-2 md:text-center h-14 grid place-content-center text-sm border-t drop-shadow-2xl'
 									>
 										<h1
 											className={cn(
@@ -78,7 +78,7 @@ export default function Calendar() {
 													date.toDate().toDateString()
 													? 'bg-[#4c5259] text-white'
 													: '',
-												'h-10 w-10 rounded-full grid place-content-center hover:bg-black hover:text-white transition-all cursor-pointer select-none text-lg font-medium'
+												'h-6 w-6 text-center rounded-full grid md:place-content-center hover:bg-black hover:text-white transition-all cursor-pointer select-none text-sm font-medium md:text-lg md:h-10 md:w-10'
 											)}
 											onClick={() => {
 												setSelectDate(date);
@@ -92,19 +92,19 @@ export default function Calendar() {
 						)}
 					</div>
 				</div>
-				<div className='h-96 w-96 sm:px-5 '>
-					<h1 className='font-semibold bg-[#4a78ad]  m-4 p-4 text-2xl w-96 bg-opacity-80 rounded-6'>
+				<div className='h-96 md:w-96 sm:px-5 w-full'>
+					<h1 className='font-semibold bg-[#4a78ad]  md:m-4 md:p-4 text-2xl md:w-96 bg-opacity-80 md:rounded-6 mx-2 rounded-2 py-2 my-2 px-3 '>
 						Actividades para {selectDate.toDate().toDateString()}
 					</h1>
 
 					{filter?.length === 0 ? (
-						<p className='bg-[#4c5259]  m-4 p-4 text-xl w-96 text-center bg-opacity-60 rounded-6'>
+						<p className='bg-[#4c5259] md:m-4 md:p-4 md:text-xl md:w-96 text-center bg-opacity-60 md:rounded-6 text-sm mx-2 rounded-2 py-2 my-2 '>
 							No hay reuniones para hoy
 						</p>
 					) : (
 						filter?.map((e) => {
 							return (
-								<p className='bg-[#4c5259]  m-4 p-4 text-xl  w-96 text-center bg-opacity-60 rounded-6'>
+								<p className='bg-[#4c5259] md:m-4 md:p-4 md:text-xl md:w-96 text-center bg-opacity-60 md:rounded-6 text-sm mx-2 rounded-2 py-2 my-2 '>
 									{e?.hour} - {e?.class}
 								</p>
 							);

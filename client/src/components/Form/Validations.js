@@ -45,16 +45,24 @@ export default function Validate(input) {
 		errors.dni = 'El campo DNI debe rellenarse obligatoriamente';
 	} else if (!regexDni.test(input.dni)) {
 		errors.dni = 'Debe ingresar un Dni valido';
-	} else if (input.dni.length > 9) {
+	} else if (input.dni.length > 10) {
 		errors.dni = 'El DNI muy largo.';
 	} else if (input.dni.length < 6) {
 		errors.dni = 'El DNI muy corto.';
 	} else if (!input.age) {
 		errors.age = 'El campo Edad debe rellenarse obligatoriamente';
+	} else if (input.age.length > 3) {
+		errors.age = 'Debe ingresar una Edad valida';
+	} else if (input.age > 120) {
+		errors.age = '¿Tienes más de 120 Años? Dame un consejo para llegar a esa Edad!';
 	} else if (!input.weight) {
 		errors.weight = 'El campo Peso debe rellenarse obligatoriamente';
+	} else if (input.weight > 1000) {
+		errors.weight = 'Ingrese un peso más rasonable';
 	} else if (!input.height) {
 		errors.height = 'El campo Estatura debe rellenarse obligatoriamente';
+	} else if (!input.height.length > 3) {
+		errors.height = 'Debe ingresar una Estatura valida. En centímetros Ej: 180';
 	} else if (!input.address) {
 		errors.address = 'El campo Dirección debe rellenarse obligatoriamente';
 	} else if (!input.city) {

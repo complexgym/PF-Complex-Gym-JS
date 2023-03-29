@@ -83,12 +83,13 @@ export default function SinglePlan({ plan, option }) {
 			onSubmit={handleSubmit}
 			className={`form-single-plan-${matchId} flex flex-col justify-between transition-shadow duration-300 bg-white border rounded shadow-sm hover:shadow pb-8`}
 		>
+			{/* top: plan and price */}
 			<div className="text-center">
 				<div
 					className={`w-full pt-4 
-					${option === "Libre" && "bg-yellow-400 text-black"}
+					${option === "Libre" && "bg-[#4C5259] text-white"}
 					${option === "2 por semana" && "bg-green-700 text-white"}
-					${option === "Otros" && "bg-slate-300 text-white"}
+					${option === "Otros" && "bg-[#231F20] text-white"}
 					${option === "Todos" && "bg-lighter-blue text-white"}
 				`}
 				>
@@ -99,15 +100,17 @@ export default function SinglePlan({ plan, option }) {
 						</div>
 					</div>
 				</div>
+
+				{/* tags */}
 				<div className="mt-2 space-y-3 px-8 py-2">
 					{plan?.tags?.map((tag) => {
 						return (
 							<div className="flex items-center">
 								<i
 									className={`fa fa-check mr-1
-								${option === "Libre" && "text-yellow-400"}
+								${option === "Libre" && "text-[#4C5259]"}
 								${option === "2 por semana" && "text-green-700"}
-								${option === "Otros" && "text-slate-300"}
+								${option === "Otros" && "text-[#231F20]"}
 								${option === "Todos" && "lighter-blue"}`}
 									aria-hidden="true"
 								></i>
@@ -117,14 +120,16 @@ export default function SinglePlan({ plan, option }) {
 					})}
 				</div>
 			</div>
+
+			{/* inscribirse */}
 			<div className="w-full flex justify-center">
 				<button
 					type="btn-form-submit submit"
 					className={`inline-flex items-center justify-center w-2/3 h-12 px-12 mt-6 font-medium tracking-wide transition duration-200 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none text-black
-					${option === "Libre" && "bg-yellow-400 hover:bg-yellow-300 text-black"}
+					${option === "Libre" && "bg-[#4C5259] hover:bg-[#6a6f74] text-white"}
 					${option === "2 por semana" && "bg-green-700 hover:bg-green-600 text-white"}
-					${option === "Otros" && "bg-slate-300 hover:bg-slate-400 text-white"}
-					${option === "Todos" && "bg-lighter-blue hover:bg-blue-400 text-white"}
+					${option === "Otros" && "bg-[#231F20] hover:bg-[#484242] text-white"}
+					${option === "Todos" && "bg-lighter-blue hover:bg-blue-500 text-white"}
 					`}
 				>
 					Inscribirse

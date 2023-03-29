@@ -9,20 +9,21 @@ const DashBoard = () => {
 
 	const allPayments = useSelector((state) => state.allPayments);
 
-	const client1 = allClients.at(-1);
-	const client2 = allClients.at(-2);
-	const client3 = allClients.at(-3);
-	const client4 = allClients.at(-4);
+	const client1 = allClients[allClients.length - 1];
+	const client2 = allClients[allClients.length - 2];
+	const client3 = allClients[allClients.length - 3];
+	const client4 = allClients[allClients.length - 4];
 
-	const post1 = initial_posts.at(-1);
-	const post2 = initial_posts.at(-2);
-	const post3 = initial_posts.at(-3);
-	const post4 = initial_posts.at(-4);
+	const post1 = initial_posts[initial_posts.length - 1];
+	const post2 = initial_posts[initial_posts.length - 2];
+	const post3 = initial_posts[initial_posts.length - 3];
+	const post4 = initial_posts[initial_posts.length - 4];
 
-	const pay1 = allPayments.at(-1);
-	const pay2 = allPayments.at(-2);
-	const pay3 = allPayments.at(-3);
-	const pay4 = allPayments.at(-4);
+	const allPay = allPayments.reverse();
+	const pay1 = allPay[0];
+	const pay2 = allPay[1];
+	const pay3 = allPay[2];
+	const pay4 = allPay[3];
 
 	return (
 		<div>
