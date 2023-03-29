@@ -25,8 +25,9 @@ import {
 	GET_TRAINERS,
 	EDIT_PLANS,
 	POST_PLANS,
-} from "./action-types.js";
-import axios from "axios";
+	POST_REVIEW,
+} from './action-types.js';
+import axios from 'axios';
 
 //*TODO posts
 
@@ -484,6 +485,16 @@ export const postPlans = (data) => async (dispatch) => {
 			type: POST_PLANS,
 			payload: data,
 		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postReview = (review) => async () => {
+	try {
+		const data = await axios.post('/testimonials', review);
+
+		return data;
 	} catch (error) {
 		console.log(error);
 	}

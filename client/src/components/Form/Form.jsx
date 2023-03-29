@@ -65,7 +65,6 @@ export default function Form() {
 				text: `${
 					error.mail ||
 					error.user ||
-					error.mail ||
 					error.name ||
 					error.lastName ||
 					error.phone ||
@@ -159,11 +158,6 @@ export default function Form() {
 											onChange={handleChange}
 											readOnly
 										/>
-										{errors?.mail && (
-											<p className=' text-red-500'>
-												<i>{errors.mail}</i>
-											</p>
-										)}
 									</div>
 
 									{/* UPLOAD IMAGE */}
@@ -321,7 +315,7 @@ export default function Form() {
 												DNI
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='dni'
 												id='dni'
 												value={input.dni}
@@ -345,7 +339,7 @@ export default function Form() {
 												Edad
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='age'
 												id='age'
 												value={input.age}
@@ -369,7 +363,7 @@ export default function Form() {
 												Peso
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='weight'
 												id='weight'
 												value={input.weight}
@@ -394,7 +388,7 @@ export default function Form() {
 												Estatura
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='height'
 												id='height'
 												value={input.height}
@@ -486,7 +480,7 @@ export default function Form() {
 												ZIP / Código Postal
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='postalCode'
 												id='postalCode'
 												value={input.postalCode}

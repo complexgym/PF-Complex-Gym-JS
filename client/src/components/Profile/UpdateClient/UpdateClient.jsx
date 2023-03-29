@@ -307,7 +307,7 @@ export default function UpdateClient() {
 												DNI
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='dni'
 												id='dni'
 												value={input.dni}
@@ -331,7 +331,7 @@ export default function UpdateClient() {
 												Edad
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='age'
 												id='age'
 												value={input.age}
@@ -355,7 +355,7 @@ export default function UpdateClient() {
 												Peso
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='weight'
 												id='weight'
 												value={input.weight}
@@ -380,7 +380,7 @@ export default function UpdateClient() {
 												Estatura
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='height'
 												id='height'
 												value={input.height}
@@ -472,7 +472,7 @@ export default function UpdateClient() {
 												ZIP / Código Postal
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='postalCode'
 												id='postalCode'
 												value={input.postalCode}

@@ -28,6 +28,7 @@ export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES';
 export const GET_ALL_PLANS = 'GET_ALL_PLANS';
 export const EDIT_PLANS = 'EDIT_PLANS'
 export const POST_PLANS = 'POST_PLANS';
+export const POST_REVIEW = 'POST_REVIEW';
 
 //todo Calendario
 export const GET_CALENDAR = 'GET_CALENDAR';
