@@ -5,17 +5,17 @@ const ActivityCard = ({ activity }) => {
 		<tr>
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
-					{activity?.name}
+					{activity.image}
 				</span>
 			</td>
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
-					{activity?.day} / {activity?.month} / {activity?.year}
+					{activity.name}
 				</span>
 			</td>
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
-					{activity?.hour}
+					{activity?.description}
 				</span>
 			</td>
 		</tr>

@@ -28,6 +28,7 @@ import {
 	POST_REVIEW,
 	DELETE_PLAN,
 	POST_TRAINER,
+	POST_ACTIVITIES,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -217,6 +218,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				initial_plans: state.initial_plans.filter((plan) => plan.id !== payload),
+			};
+		case POST_ACTIVITIES:
+			return {
+				...state,
+				activities: [...state.activities, payload],
 			};
 		default:
 			return {

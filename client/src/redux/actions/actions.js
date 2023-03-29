@@ -488,7 +488,7 @@ export const postPlans = (data) => async (dispatch) => {
 
 export const postReview = (review) => async () => {
 	try {
-		const data = await axios.post("/testimonials", review);
+		const data = await axios.post('/testimonials', review);
 
 		return dispatch({
 			type: POST_REVIEW,
