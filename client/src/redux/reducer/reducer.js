@@ -24,6 +24,7 @@ import {
 	GET_ALL_PAYMENTS,
 	GET_TRAINERS,
 	EDIT_PLANS,
+	POST_PLANS,
 	POST_REVIEW,
 } from '../actions/action-types.js';
 
@@ -34,10 +35,10 @@ const initialState = {
 	matched_posts: [],
 	ig_posts: [],
 	post_details: {},
-	search_blog: '',
+	search_blog: "",
 	filters_blog: {
-		tag: '',
-		date: '',
+		tag: "",
+		date: "",
 	},
 	testimonials: [],
 	activities: [],
@@ -171,12 +172,14 @@ const rootReducer = (state = initialState, action) => {
 		case GET_ALL_PAYMENTS:
 			const payments = payload
 				?.map((pay) => {
-					const find = state?.allClients.find((client) => client?.id === pay?.clientId);
+					const find = state?.allClients.find(
+						(client) => client?.id === pay?.clientId
+					);
 					if (find) {
 						const { name, lastName, picture } = find;
 						return {
 							...pay,
-							clientName: name + ' ' + lastName,
+							clientName: name + " " + lastName,
 							picture,
 						};
 					}
@@ -195,6 +198,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		case POST_PLANS:
+			return {
+				...state,
+				initial_plans: [...state.initial_plans, payload]
+       }
 		case POST_REVIEW:
 			return {
 				...state,
