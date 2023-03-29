@@ -498,6 +498,8 @@ export const postTrainer = (trainer) => async () => {
 	try {
 		const data = await axios.post('/trainer', trainer);
 
+		console.log(trainer);
+
 		return data;
 	} catch (error) {
 		console.log(error);

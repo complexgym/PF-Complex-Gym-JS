@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postTrainer } from '../../redux/actions/actions';
+import { postTrainer } from '../../../../../redux/actions/actions';
 import ValidateTrainer from './ValidationsTrainer';
 import swal from 'sweetalert';
 import CloudinaryUploadImg from '../../../../CloudinaryUploadImg/CloudinaryUploadImg';
@@ -57,6 +57,15 @@ const CreateTrainner = () => {
 				title: 'Gracias!',
 				text: '¡Entrenador creado correctamente!',
 				icon: 'success',
+			});
+			setInput({
+				user: '',
+				picture: '',
+				name: '',
+				lastName: '',
+				phone: '',
+				mail: '',
+				address: '',
 			});
 		}
 	};

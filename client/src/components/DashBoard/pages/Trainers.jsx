@@ -84,18 +84,18 @@ const Trainers = () => {
 															Entrenador
 														</th>
 														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
-															Información
+															Teléfono
 														</th>
-														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
-															Estado
+														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
+															Dirección
 														</th>
 													</tr>
 												</thead>
-												{/* <tbody>
+												<tbody>
 													{trainers.map((trainer) => {
 														return <TrainersCard trainer={trainer} />;
 													})}
-												</tbody> */}
+												</tbody>
 											</table>
 										</div>
 									</div>
