@@ -205,10 +205,12 @@ const rootReducer = (state = initialState, action) => {
 		case POST_REVIEW:
 			return {
 				...state,
+				testimonials: [...state.testimonials, payload],
 			};
 		case POST_TRAINER:
 			return {
 				...state,
+				trainers: [...state.trainers, payload],
 			};
 		default:
 			return {

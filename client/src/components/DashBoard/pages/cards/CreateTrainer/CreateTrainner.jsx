@@ -16,6 +16,8 @@ const CreateTrainner = () => {
 		phone: '',
 		mail: '',
 		address: '',
+		permits: [],
+		classes: [],
 	});
 
 	const [errors, setErrors] = useState({});
