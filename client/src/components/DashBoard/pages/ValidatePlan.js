@@ -5,8 +5,8 @@ export default function ValidateCalendar(input) {
 		error.name = "Campo nombre obligatorio";
 	}
 
-	if (input.name.length > 35) {
-		error.name = "Debe ser menor a 35 letras";
+	if (input.name.length > 45) {
+		error.name = "Debe ser menor a 45 letras";
 	}
 
 	if (input.price === 0) {

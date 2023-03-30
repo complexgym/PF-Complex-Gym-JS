@@ -1,6 +1,6 @@
-const { Router } = require("express")
+const { Router } = require("express");
 
-const router = Router()
+const router = Router();
 
 const { 
     getAllCalendar, 
@@ -11,18 +11,17 @@ const {
     getSoftDeletedCalendar
 } = require('../controllers/index')
 
-router.get('/', async(req, res) => {
-    try {
-        const response = await getAllCalendar(req.body)
+router.get("/", async (req, res) => {
+	try {
+		const response = await getAllCalendar(req.body);
 
-        if(response.error) throw Error(response.error.message)
+		if (response.error) throw Error(response.error.message);
 
-        res.json(response)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
-})
-
+		res.json(response);
+	} catch (error) {
+		res.status(400).json({ error: error.message });
+	}
+});
 
 // req.body => { day : number, month: number , year: number , hour: string , class: string }
 router.post('/',async (req, res) => {

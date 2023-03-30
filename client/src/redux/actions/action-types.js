@@ -26,9 +26,11 @@ export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES';
 export const GET_ALL_PLANS = 'GET_ALL_PLANS';
 export const EDIT_PLANS = 'EDIT_PLANS';
 export const POST_PLANS = 'POST_PLANS';
+export const DELETE_PLAN = 'DELETE_PLAN';
 export const POST_REVIEW = 'POST_REVIEW';
+export const POST_ACTIVITIES = 'POST_ACTIVITIES';
 
-//todo CALENDAR
+//todo Calendario
 export const GET_CALENDAR = 'GET_CALENDAR';
 export const POST_CALENDAR = 'POST_CALENDAR';
 

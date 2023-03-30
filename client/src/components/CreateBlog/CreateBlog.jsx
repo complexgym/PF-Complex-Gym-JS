@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Validate from './Validations';
 import { useAuth0 } from '@auth0/auth0-react';
-import UploadToCloudinary from '../UploadToCloudinary/UploadToCloudinary';
 import { postBlog } from '../../redux/actions/actions';
 import { useNavigate } from 'react-router-dom';
 import CloudinaryUploadImg from '../CloudinaryUploadImg/CloudinaryUploadImg';
@@ -27,7 +26,6 @@ export default function CreateBlog() {
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
-		console.log(e.target.name, e.target.value);
 		if (e.target.name !== 'tag') {
 			setInput({
 				...input,

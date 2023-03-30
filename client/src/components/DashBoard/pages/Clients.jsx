@@ -1,18 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideNav from "../SideNav";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ClientCard from "./cards/ClientCard";
+import CloudinaryUploadPdf from "../../CloudinaryUploadImg/CloudinaryUploadPdf"
+import { getAllClients, putClient } from "../../../redux/actions/actions";
+import axios from "axios";
 
 const Clients = () => {
 	const { allClients } = useSelector((s) => s);
+	const [clientId, setClientId] = useState("")
+	const [newPdf, setNewPdf] = useState("")
+
+	const dispatch = useDispatch()
+
+	function handleUpload(pdf) {
+		setNewPdf(pdf)
+	}
+
+	const allClientsNames = allClients?.map(client=>{
+		return {name: client?.name + " " + client?.lastName, id: client?.id}
+	})
+
+	/* updating routine */
+	const handleSubmitPDF = async () => {
+		const response = await axios.put(`/clients/${clientId}`, {routine: newPdf})
+		dispatch(getAllClients())
+	}
+
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500
+			bg-blue-500 min-h-screen'>
+				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
 
 				<SideNav />
 
-				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
+				<main className='relative h-full transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
 					{/* <!-- Navbar --> */}
 					<nav
 						className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'
@@ -96,9 +119,38 @@ const Clients = () => {
 								</div>
 							</div>
 						</div>
+
+						{/* SUBMIT PDF */}
+						<div className="w-full xl:w-[50vw] mb-16
+						rounded-screen bg-white py-10 px-4 rounded-2xl">
+							<p className="text-center">Subir PDF a alumno</p>
+							<div className=" flex flex-col md:flex-row items-center justify-center">
+								<select className="flex w-54 my-6
+								bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+								onChange={(e)=>setClientId(e.target.value)}>
+									<option>Seleccione un alumno...</option>
+									{allClientsNames?.map(client=>{
+										return <option value={client?.id}>{client?.name}</option>
+									})}
+								</select>
+								<CloudinaryUploadPdf onUpload={handleUpload}/>
+								
+							</div>
+							<div className="flex justify-center">
+								<button type="button" class="text-white bg-blue-700 
+									hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 
+									font-medium rounded-lg text-sm mr-2 mb-2 
+									dark:bg-blue-600 dark:hover:bg-blue-700 
+									focus:outline-none dark:focus:ring-blue-800 first-letter
+									py-2 px-8 mt-10 md:mt-0 flex items-center"
+									onClick={handleSubmitPDF}>Enviar
+								</button>
+							</div>
+						</div>
 					</div>
 				</main>
 			</body>
+
 		</div>
 	);
 };

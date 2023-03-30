@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useDispatch} from "react-redux"
-import { editPlans, getAllPlans } from '../../../../redux/actions/actions';
+import { deletePlan, editPlans, getAllPlans } from '../../../../redux/actions/actions';
 
 const PlansCard = ({ plans }) => {
 	const [data, setData] = useState({
@@ -11,9 +11,8 @@ const PlansCard = ({ plans }) => {
 	})
 
 	const [editable, setEditable] = useState(false)
-	const dispatch = useDispatch()
 
-	console.log();
+	const dispatch = useDispatch()
 
 	const handleChange = (e) => {
 		setData({
@@ -42,6 +41,10 @@ const PlansCard = ({ plans }) => {
 				icon: 'warning',
 			});
 		}
+	}
+
+	const handleDelete = () => {
+		dispatch(deletePlan(plans.id))
 	}
 
 	return (
@@ -85,6 +88,17 @@ const PlansCard = ({ plans }) => {
 					<i className={`fa fa-paper-plane text-sm cursor-pointer ${!editable && "text-gray-500 cursor-auto"}`} 
 					aria-hidden="true"
 					></i>
+				</button>
+			</td>
+
+			<td>
+			<button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
+					<img
+						src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679368276/test_complex/gas3ewhonfe4sqiqcqyy.png"
+						className='w-5'
+						onClick={handleDelete}
+					/>
+					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
 				</button>
 			</td>
 		</tr>

@@ -1,15 +1,20 @@
 import React from 'react';
 import SideNav from '../SideNav';
 import { useSelector } from 'react-redux';
-import ActivityCard from './cards/ClassCard';
+import ActivityCard from './cards/ActivityCard';
+import CreateActivity from './cards/CreateActivity/CreateActivity';
 
 const Activities = () => {
 	const activities = useSelector((state) => state.activities);
 
+	const actMap = activities?.map(activity=>{
+		return <ActivityCard activity={activity} />
+	})
+
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-blue-500 min-h-screen text-slate-500 '>
+				<div className='w-full min-h-full bg-blue-500 dark:hidden'></div>
 
 				<SideNav />
 
@@ -55,6 +60,18 @@ const Activities = () => {
 					<div className='w-full px-6 py-6 mx-auto'>
 						<div className='flex flex-wrap -mx-3'>
 							<div className='flex-none w-full max-w-full px-3'>
+								<div className='relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
+									<div className='grid border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
+										<CreateActivity />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className='w-full px-6 py-6 mx-auto'>
+						<div className='flex flex-wrap -mx-3'>
+							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className=' grid grid-cols-2 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
 										<div className=''>
@@ -67,10 +84,10 @@ const Activities = () => {
 											<table className='items-center justify-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
 												<thead className='align-bottom'>
 													<tr>
-														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='pl-8 font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Imagen
 														</th>
-														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='pl-8 font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Nombre
 														</th>
 														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
@@ -81,9 +98,8 @@ const Activities = () => {
 
 												{/* ALL CLASSES */}
 												<tbody className='border-t'>
-													{activities.map((activity) => {
-														return <ActivityCard activity={activity} />;
-													})}
+													{activities?.map((activity) =>{
+														return <ActivityCard activity={activity}/>
 												</tbody>
 											</table>
 										</div>

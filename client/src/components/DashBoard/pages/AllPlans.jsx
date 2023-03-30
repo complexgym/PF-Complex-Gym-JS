@@ -75,6 +75,11 @@ const AllPlans = () => {
 		e.preventDefault()
 		dispatch(postPlans(input)) 
 		dispatch(getAllPlans())
+		setInput({
+			name: "",
+			price: "",
+			tags: [],
+		})
 	};
 
 	return (
@@ -165,8 +170,8 @@ const AllPlans = () => {
 										<input
 											type="number"
 											name="price"
-											id="number"
-											value={input.number}
+											id="price"
+											value={input.price}
 											autoComplete="off"
 											onChange={handleChange}
 											className="ml-4 text-center text-sm w-full  leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 "
@@ -256,6 +261,10 @@ const AllPlans = () => {
 
 														<th className="py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															¿Enviar?
+														</th>
+
+														<th className="py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															Borrar
 														</th>
 													</tr>
 												</thead>

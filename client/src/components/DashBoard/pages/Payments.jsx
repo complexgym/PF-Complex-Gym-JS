@@ -1,14 +1,17 @@
 import SideNav from "../SideNav";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 import PaymentCard from "./cards/PaymentCard";
 
 const Payments = () => {
-	const {allPayments} = useSelector(s=>s)
+	const { allPayments } = useSelector((s) => s);
 
 	return (
 		<div>
-			<body className="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500">
-				<div className="absolute w-full h-full bg-blue-500 dark:hidden min-h-75"></div>
+			<body
+				className="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500
+			bg-blue-500 min-h-screen"
+			>
+				<div className="w-full h-full bg-blue-500 dark:hidden"></div>
 
 				<SideNav />
 
@@ -76,14 +79,14 @@ const Payments = () => {
 														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Pago
 														</th>
-                            <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Fecha
 														</th>
 													</tr>
 												</thead>
 												<tbody>
 													{allPayments?.map((payment) => {
-														return <PaymentCard payment={payment}/>
+														return <PaymentCard payment={payment} />;
 													})}
 												</tbody>
 											</table>
