@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import SideNav from '../SideNav';
-import { postCalendar } from '../../../redux/actions/actions';
-import ValidateCalendar from './ValidateCalendar';
-import swal from 'sweetalert';
-import { useDispatch, useSelector } from 'react-redux';
-import ClassCard from './cards/ClassCard';
+import React, { useState } from "react";
+import SideNav from "../SideNav";
+import { postCalendar, deleteCalendar } from "../../../redux/actions/actions";
+import ValidateCalendar from "./ValidateCalendar";
+import swal from "sweetalert";
+import { useDispatch, useSelector } from "react-redux";
+import ClassCard from "./cards/ClassCard";
 
 const ClasesCalendar = () => {
 	const dispatch = useDispatch();
@@ -15,8 +15,8 @@ const ClasesCalendar = () => {
 		day: 0,
 		month: 0,
 		year: 0,
-		hour: '',
-		class: '',
+		hour: "",
+		class: "",
 	});
 
 	const [error, setErrors] = useState({});
@@ -40,17 +40,17 @@ const ClasesCalendar = () => {
 		let error = ValidateCalendar(input);
 		if (Object.values(error).length !== 0) {
 			swal({
-				title: 'Faltan Información',
+				title: "Faltan Información",
 				text: `${error.day || error.month || error.year || error.hour || error.class}`,
-				icon: 'warning',
+				icon: "warning",
 				dangerMode: true,
 			});
 		} else {
 			dispatch(postCalendar(input));
 			swal({
-				title: 'Gracias!',
-				text: '¡Clase creada correctamente!',
-				icon: 'success',
+				title: "Gracias!",
+				text: "¡Clase creada correctamente!",
+				icon: "success",
 			});
 		}
 	};
@@ -219,6 +219,9 @@ const ClasesCalendar = () => {
 														</th>
 														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Hora
+														</th>
+														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Borrar
 														</th>
 													</tr>
 												</thead>

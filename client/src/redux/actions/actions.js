@@ -29,6 +29,7 @@ import {
 	DELETE_PLAN,
 	POST_TRAINER,
 	POST_ACTIVITIES,
+	DELETE_CALENDAR,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -390,6 +391,18 @@ export const postCalendar = (calendar) => async (dispatch) => {
 		console.log(error);
 	}
 };
+
+export const deleteCalendar = (id) => async (dispatch) => {
+	try {
+		const response = await axios.delete(`/calendar/${id}`);
+
+		return dispatch({
+			type: DELETE_CALENDAR,
+			payload: id,
+		});
+	} catch (error) {}
+};
+
 
 export const getAllAdmin = () => {
 	return async function (dispatch) {

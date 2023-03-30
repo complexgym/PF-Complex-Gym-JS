@@ -29,6 +29,7 @@ import {
 	DELETE_PLAN,
 	POST_TRAINER,
 	POST_ACTIVITIES,
+	DELETE_CALENDAR,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -153,6 +154,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				allCalendar: [...state.allCalendar, payload],
+			};
+			case DELETE_CALENDAR:
+			return {
+				...state,
+				allCalendar: state.allCalendar.filter((calendar) => calendar.id !== payload),
 			};
 		case GET_ALL_ADMIN:
 			return {

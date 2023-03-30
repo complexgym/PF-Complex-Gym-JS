@@ -4,6 +4,7 @@
 //                      (| -_- |)
 //                      0\  =  /0
 // murio el buda
+//no budaaaaaaaaaaaaaaaaaa
 
 const server = require('./app.js');
 const { conn } = require('./db.js');
