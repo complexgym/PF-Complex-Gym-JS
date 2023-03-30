@@ -75,7 +75,7 @@ export default function About() {
 			</div>
 			{/*Seccion 4*/}
 			<div className='items-center justify-center my-10 rounded-3xl py-30 bg-[#030303] xs:py-10'>
-				<h1 className='text-center font-title  2xl:text-4xl xl:text-4xl lg:text-4xl pb-8 italic tracking-widest text-white xs:text-xl xs:pb-0'>
+				<h1 className='text-center font-title  2xl:text-4xl xl:text-4xl lg:text-4xl pb-8 tracking-widest text-white xs:text-xl xs:pb-0'>
 					Nuestros Entrenadores
 				</h1>
 				<TrainerCard />
