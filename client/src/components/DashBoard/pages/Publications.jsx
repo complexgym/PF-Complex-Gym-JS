@@ -9,12 +9,12 @@ const Publications = () => {
 
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
+				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
 
 				<SideNav />
 
-				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
+				<main className='relative h-full transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
 					{/* <!-- Navbar --> */}
 					<nav className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'>
 						<div className='flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit'>
@@ -58,8 +58,12 @@ const Publications = () => {
 							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className=' grid grid-cols-2 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
-										<div className=''>
-											<h6 className='dark:text-white'>Tabla de Publicaciones</h6>
+										<div className='grid justify-start '>
+											<Link to='/blog'>
+												<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
+													Visitar el Blog
+												</button>
+											</Link>
 										</div>
 										<div className='grid justify-end '>
 											<Link to='/blog/create'>
@@ -90,7 +94,6 @@ const Publications = () => {
 														<th className='py-3 pl-2 font-bold uppercase text-left align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															¿Borrar?
 														</th>
-
 													</tr>
 												</thead>
 												<tbody className='border-t'>
@@ -183,7 +186,7 @@ const SinglePublication = ({ post }) => {
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
 					<img
-						src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679368276/test_complex/gas3ewhonfe4sqiqcqyy.png"
+						src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679368276/test_complex/gas3ewhonfe4sqiqcqyy.png'
 						className='w-6'
 						onClick={handleDelete}
 					/>

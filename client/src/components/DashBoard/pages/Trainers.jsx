@@ -8,12 +8,12 @@ const Trainers = () => {
 	const trainers = useSelector((state) => state.trainers);
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
+				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
 
 				<SideNav />
 
-				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
+				<main className='relative h-full transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
 					{/* <!-- Navbar --> */}
 					<nav
 						className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'

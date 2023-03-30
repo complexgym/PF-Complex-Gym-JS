@@ -142,7 +142,7 @@ const CreateActivity = () => {
 											<div className=' grid content-end bg-gray-50 col-span-6 sm:col-span-6 lg:col-span-1'>
 												<button
 													type='submit'
-													className=' w-full inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue'
+													className=' w-full inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue'
 												>
 													Crear
 												</button>

@@ -7,18 +7,18 @@ import CreateActivity from './cards/CreateActivity/CreateActivity';
 const Activities = () => {
 	const activities = useSelector((state) => state.activities);
 
-	const actMap = activities?.map(activity=>{
-		return <ActivityCard activity={activity} />
-	})
+	const actMap = activities?.map((activity) => {
+		return <ActivityCard activity={activity} />;
+	});
 
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-blue-500 min-h-screen text-slate-500 '>
-				<div className='w-full min-h-full bg-blue-500 dark:hidden'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
+				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
 
 				<SideNav />
 
-				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
+				<main className='relative h-full transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
 					{/* <!-- Navbar --> */}
 					<nav className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'>
 						<div className='flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit'>
@@ -98,8 +98,8 @@ const Activities = () => {
 
 												{/* ALL CLASSES */}
 												<tbody className='border-t'>
-													{activities?.map((activity) =>{
-														return <ActivityCard activity={activity}/>
+													{activities?.map((activity) => {
+														return <ActivityCard activity={activity} />;
 													})}
 												</tbody>
 											</table>
