@@ -16,7 +16,7 @@ const testimonials = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         }, 
-        text: {
+        review: {
             type: DataTypes.TEXT,
             allowNull: false,
         }, 
