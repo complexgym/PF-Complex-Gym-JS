@@ -1,11 +1,6 @@
-const { memberships } = require('../../db');
+const { memberships } = require("../../db");
 
-const postMembershipsmp = async ({
-	clientId,
-    planName,
-    price,
-	paymentId,
-}) => {    
+const postMembershipsmp = async ({ clientId, planName, price, paymentId }) => {    
 	const newMemberships = await memberships.create({
 	clientId,
     planName,

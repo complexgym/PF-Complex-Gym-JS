@@ -1,6 +1,6 @@
 const {mercadopago} = require('../../db')
 
-const getPaymentsById = async (id) =>{
+const getPaymentsById = async(id)=>{
     try {
         const response = await mercadopago.findAll({ where: { clientId:id } });
 
