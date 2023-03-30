@@ -10,7 +10,7 @@ const trainer = (sequelize) => {
         },
 		user: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
         name: { 
             type: DataTypes.STRING,
@@ -26,7 +26,7 @@ const trainer = (sequelize) => {
         },
         permits: {
             type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: false,
+            allowNull: true,
         },
         classes:  {
             type: DataTypes.ARRAY(DataTypes.STRING),
