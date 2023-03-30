@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { CloudinaryImage } from "@cloudinary/url-gen";
 
 export default function CloudinaryUploadPdf({ onUpload }) {
 	const [pdfSelected, setPdfSelected] = useState("");
@@ -15,8 +14,6 @@ export default function CloudinaryUploadPdf({ onUpload }) {
 			.post("https://api.cloudinary.com/v1_1/dpxucxgwg/image/upload", formData)
 			.then((response) => setPdf(response.data.secure_url));
 	};
-
-	console.log(pdf);
 
 	useEffect(() => {
 		if (pdf) {
@@ -33,11 +30,11 @@ export default function CloudinaryUploadPdf({ onUpload }) {
 							htmlFor="about"
 							className="mt-2 ml-4 block text-sm font-medium leading-6 text-gray-900"
 						>
-							{pdf && <a href={pdf} className="relative top-12 lighter-blue underline"
+							{pdf && <a href={pdf} className="rlighter-blue underline"
 							target="_blank">Pdf seleccionado</a>}
 						</label>
 					</div>
-					<label class="block pl-6 py-11">
+					<label class="block pl-6">
 						<span class="sr-only">Seleccione la rutina</span>
 						<input
 							type="file"
@@ -53,7 +50,7 @@ export default function CloudinaryUploadPdf({ onUpload }) {
 
 					<button
 						type="button"
-						className="ml-6 my-11 lighter-blue mr-4 py-2 px-4 rounded-full border-0 text-lg font-semibold bg-violet-100 h-fit"
+						className="ml-6 lighter-blue mr-4 py-2 px-4 rounded-full border-0 text-lg font-semibold bg-violet-100 h-fit"
 						onClick={uploadImage}
 					>
 						Cargar PDF

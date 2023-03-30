@@ -2,13 +2,27 @@ import React, { useEffect } from "react";
 import SideNav from "../SideNav";
 import { useSelector } from "react-redux"
 import ClientCard from "./cards/ClientCard";
+import CloudinaryUploadPdf from "../../CloudinaryUploadImg/CloudinaryUploadPdf"
 
 const Clients = () => {
 	const { allClients } = useSelector((s) => s);
+
+	function handleUpload(pdf) {
+		// console.log(pdf);
+	}
+
+	const allClientsNames = allClients?.map(client=>{
+		return client?.name + " " + client?.lastName
+	})
+
+	function handleUpload(pdf) {
+		// console.log(pdf);
+	}
+
 	return (
 		<div>
 			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-screen'></div>
 
 				<SideNav />
 
@@ -96,9 +110,19 @@ const Clients = () => {
 								</div>
 							</div>
 						</div>
+						<div className="w-full flex justify-center rounded-screen bg-white">
+							<select >
+								<option>Seleccione una opción...</option>
+								{allClientsNames?.map(client=>{
+									return <option>{client}</option>
+								})}
+							</select>
+							<CloudinaryUploadPdf onUpload={handleUpload}/>
+						</div>
 					</div>
 				</main>
 			</body>
+
 		</div>
 	);
 };

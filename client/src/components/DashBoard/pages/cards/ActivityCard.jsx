@@ -1,6 +1,8 @@
 import React from 'react';
 
 const ActivityCard = ({ activity }) => {
+	console.log(activity)
+
 	return (
 		<tr>
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>

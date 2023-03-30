@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getClientDetail } from '../../redux/actions/actions';
 import image from '../../assets/img/dumbelldBgd.jpg'
-import CloudinaryUploadPdf from "../CloudinaryUploadImg/CloudinaryUploadPdf"
 
 export default function Profile() {
 	const dispatch = useDispatch();
@@ -20,10 +19,6 @@ export default function Profile() {
 	useEffect(() => {
 		dispatch(getClientDetail(matchId));
 	}, []);
-
-	function handleUpload(pdf) {
-		// console.log(pdf);
-	}
 
 	return (
 		<div className='profile-page'>
@@ -153,7 +148,6 @@ export default function Profile() {
 								</div>
 							</div>
 						</div>
-						<CloudinaryUploadPdf onUpload={handleUpload}/>
 					</div>
 				</div>
 
