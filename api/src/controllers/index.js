@@ -96,7 +96,7 @@ module.exports = {
     getAllCalendar,
     postCalendar,
     putCalendar,
-    deleteCalendar
+    deleteCalendar,
     // Client
     deleteClient,
     getAllClients,
@@ -151,6 +151,5 @@ module.exports = {
     getAllTrainers,
     getTrainerById,
     restoreTrainer,
-    getSoftDeletedTrainers
-
-
+    getSoftDeletedTrainers,
+}
