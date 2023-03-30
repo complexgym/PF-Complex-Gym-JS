@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Validate from './Validations';
 import { useAuth0 } from '@auth0/auth0-react';
 import { postBlog } from '../../redux/actions/actions';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CloudinaryUploadImg from '../CloudinaryUploadImg/CloudinaryUploadImg';
 
 export default function CreateBlog() {
@@ -90,7 +90,15 @@ export default function CreateBlog() {
 				text: '¡Información creada correctamente!',
 				icon: 'success',
 			});
-			navigate('/blog');
+			setInput({
+				title: '',
+				content: '',
+				image: '',
+				tag: [],
+				author_name: user?.name,
+				author_image: user?.picture,
+				isInstagram: false,
+			});
 		}
 	};
 
@@ -278,13 +286,27 @@ export default function CreateBlog() {
 									</div>
 								</div>
 							</div>
-							<div className='bg-gray-50 px-4 py-3 text-right sm:px-6'>
-								<button
-									type='submit'
-									className='inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
-								>
-									Guardar
-								</button>
+
+							{/* BUTTONS */}
+							<div className='grid grid-cols-2 bg-gray-50 px-4 py-3 sm:px-6'>
+								{/* BUTTON BACK */}
+								<div className=''>
+									<Link to={`/dashboard/publicaciones`}>
+										<button className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-darker-blue'>
+											Volver
+										</button>
+									</Link>
+								</div>
+
+								{/* BUTTON-CREATE */}
+								<div className=' text-right cols-start-2'>
+									<button
+										type='submit'
+										className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue'
+									>
+										Crear
+									</button>
+								</div>
 							</div>
 						</form>
 					</div>

@@ -58,8 +58,12 @@ const Publications = () => {
 							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className=' grid grid-cols-2 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
-										<div className=''>
-											<h6 className='dark:text-white'>Tabla de Publicaciones</h6>
+										<div className='grid justify-start '>
+											<Link to='/blog'>
+												<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
+													Visitar el Blog
+												</button>
+											</Link>
 										</div>
 										<div className='grid justify-end '>
 											<Link to='/blog/create'>

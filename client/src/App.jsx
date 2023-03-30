@@ -92,8 +92,7 @@ function App() {
 		pathname === '/planes' ||
 		pathname === '/perfil' ||
 		pathname === '/blog' ||
-		arrIDsBlogs?.some((path) => path === pathname) ||
-		pathname === '/blog/create';
+		arrIDsBlogs?.some((path) => path === pathname);
 
 	//??? checking if he is admin ???
 	// const {allAdmin} = useSelector(s=>s)
