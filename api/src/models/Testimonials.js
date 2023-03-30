@@ -20,11 +20,30 @@ const testimonials = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false,
         }, 
+        fav: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false,
+        },
+        rate: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                min: 1,
+                max: 5
+            }
+        },        
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+          },
+
+    }, {
         paranoid: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: true,
 			}
-     })
+    })
 }
 
 module.exports = testimonials

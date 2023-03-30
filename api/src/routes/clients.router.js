@@ -7,7 +7,8 @@ const {
     updateClientById,
     getAllClients,
     getClientById,
-    restoreClient
+    restoreClient,
+    getSoftDeletedClient
 } = require("../controllers/index")
 
 const router = Router()
@@ -45,7 +46,7 @@ router.get('/', async (req, res)=>{
     })}
 }) 
 
-router.get('/:id', async(req, res)=>{
+router.get('/id', async(req, res)=>{
     const { id } = req.params;
   try {
     let clientid = await getClientById(id);
@@ -99,6 +100,16 @@ router.put('/restore/:id', async (req, res) => {
       res.status(200).send(result);
     } catch (error) {
       res.status(400).send(error);
+    }
+  });
+
+  router.get('/softDeleted', async (req, res) => {
+    try {
+      const deletedClient = await getSoftDeletedClient();
+      res.status(200).json(deletedClient);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
 

@@ -6,6 +6,7 @@ const {
     postAdmin,
     putAdmin,
     restoreAdmin,
+    getSoftDeletedAdmin
 } = require("../controllers/index")
 
 const router = Router()
@@ -22,6 +23,16 @@ router.put('/restore/:id', async (req, res) => {
       res.status(200).send(result);
     } catch (error) {
       res.status(400).send(error);
+    }
+  });
+
+  router.get('/softDeleted', async (req, res) => {
+    try {
+      const deletedAdmin = await getSoftDeletedAdmin();
+      res.status(200).json(deletedAdmin);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
 

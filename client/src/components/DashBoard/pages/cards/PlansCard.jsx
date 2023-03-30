@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useDispatch} from "react-redux"
-import { editPlans, getAllPlans } from '../../../../redux/actions/actions';
+import { deletePlan, editPlans, getAllPlans } from '../../../../redux/actions/actions';
 
 const PlansCard = ({ plans }) => {
 	const [data, setData] = useState({
@@ -11,6 +11,7 @@ const PlansCard = ({ plans }) => {
 	})
 
 	const [editable, setEditable] = useState(false)
+
 	const dispatch = useDispatch()
 
 	const handleChange = (e) => {
@@ -21,16 +22,29 @@ const PlansCard = ({ plans }) => {
 	}
 
 	const handleClick = async () => {
-		dispatch(editPlans(plans.id, {
-			...data,
-			tags: data.tags.split(",")
-		}))
-		dispatch(getAllPlans())
-		swal({
-			title: 'Gracias!',
-			text: '¡Información editada correctamente!',
-			icon: 'success',
-		});
+		if(plans.name!==data.name || plans.price!==data.price){
+			dispatch(editPlans(plans?.id, {
+				...data,
+				tags: Array.isArray(data?.tags) ? data?.tags : data?.tags?.split(",")
+			}))
+			dispatch(getAllPlans())
+			swal({
+				title: 'Gracias!',
+				text: '¡Información editada correctamente!',
+				icon: 'success',
+			});
+		}
+		else{
+			swal({
+				title: 'Atención',
+				text: '¡Debe editar al menos un campo!',
+				icon: 'warning',
+			});
+		}
+	}
+
+	const handleDelete = () => {
+		dispatch(deletePlan(plans.id))
 	}
 
 	return (
@@ -38,7 +52,7 @@ const PlansCard = ({ plans }) => {
 			{/* plan name */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<p className='mb-0 text-left text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
-					<input  className={`border-none font-normal ${!editable && "text-gray-400"}`} name="name" 
+					<input  className={`border-none font-normal ${!editable && "text-gray-500"}`} name="name" 
 					onChange={handleChange} type="text" value={data?.name} 
 					disabled={!editable}></input>
 				</p>
@@ -46,14 +60,14 @@ const PlansCard = ({ plans }) => {
 		
 			{/* price */}
 			<td className='p-2 flex items-center text-sm leading-normal text-left align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<input className={`border-none font-normal ${!editable && "text-gray-400"}`} name="price"
+				<input className={`border-none font-normal ${!editable && "text-gray-500"}`} name="price"
 				onChange={handleChange} type="number" value={data?.price} 
 				disabled={!editable}></input>
 			</td>
 
 			{/* tags */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<input className={`border-none font-normal w-64 ${!editable && "text-gray-400"}`} 
+				<input className={`border-none font-normal w-64 ${!editable && "text-gray-500"}`} 
 				name="tags" onChange={handleChange} type="text" value={data?.tags} 
 				disabled={!editable}></input>
 			</td>
@@ -70,9 +84,22 @@ const PlansCard = ({ plans }) => {
 
       {/* send */}	
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<i className={`fa fa-paper-plane text-sm cursor-pointer ${!editable && "text-gray-500 cursor-auto"}`} 
-				aria-hidden="true"
-				onClick={handleClick}></i>
+				<button disabled={editable===false} onClick={handleClick}>
+					<i className={`fa fa-paper-plane text-sm cursor-pointer ${!editable && "text-gray-500 cursor-auto"}`} 
+					aria-hidden="true"
+					></i>
+				</button>
+			</td>
+
+			<td>
+			<button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
+					<img
+						src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679368276/test_complex/gas3ewhonfe4sqiqcqyy.png"
+						className='w-5'
+						onClick={handleDelete}
+					/>
+					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
+				</button>
 			</td>
 		</tr>
 	);

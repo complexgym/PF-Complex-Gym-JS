@@ -8,13 +8,14 @@ const {
     getPublicationsByID,
     getPublicationsByName,
     restorePublication,
+    getSoftDeletedPublication,
     filters
 } = require("../controllers/index")
 
 const router = Router()
 router.get('/filters', filters) // filtros
 router.get('/all', getAllPublications)
-router.get('/:id', getPublicationsByID)
+router.get('/id', getPublicationsByID)
 router.get('/', getPublicationsByName)
 
 
@@ -31,5 +32,16 @@ router.put('/restore/:id', async (req, res) => {
       res.status(400).send(error);
     }
   });
+
+  router.get('/softDeleted', async (req, res) => {
+    try {
+      const deletedPublication = await getSoftDeletedPublication();
+      res.status(200).json(deletedPublication);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
 
 module.exports = router

@@ -4,16 +4,15 @@ const postMembershipsmp = async ({
 	clientId,
     planName,
     price,
-    paymentId,
+	paymentId,
 }) => {    
 	const newMemberships = await memberships.create({
 	clientId,
     planName,
     price,
-    paymentId,
+	paymentId,
 	});
 	return newMemberships;
 };
 
-module.exports = postMembershipsmp
-;
+module.exports = postMembershipsmp;

@@ -57,12 +57,12 @@ const ClasesCalendar = () => {
 
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
+				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
 
 				<SideNav />
 
-				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
+				<main className='relative h-full transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
 					{/* <!-- Navbar --> */}
 					<nav className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'>
 						<div className='flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit'>
@@ -127,67 +127,69 @@ const ClasesCalendar = () => {
 												</tr>
 											</thead>
 										</table>
-										<form
-											onSubmit={(e) => handleSubmit(e)}
-											className='grid grid-cols-6 w-full pl-10 pb-10 pr-10 -mt-10 gap-8'
-										>
-											<input
-												type='text'
-												name='class'
-												id='class'
-												value={input.class}
-												autoComplete='class'
-												onChange={handleChange}
-												className='text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
-												placeholder={`"Running"`}
-											/>
-											<input
-												type='number'
-												name='day'
-												id='day'
-												value={input.day}
-												autoComplete='off'
-												onChange={handleChange}
-												className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
-												placeholder='Día'
-											/>
-											<input
-												type='number'
-												name='month'
-												id='month'
-												value={input.month}
-												autoComplete='off'
-												onChange={handleChange}
-												className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
-												placeholder='Mes'
-											/>
-											<input
-												type='number'
-												name='year'
-												id='year'
-												value={input.year}
-												autoComplete='off'
-												onChange={handleChange}
-												className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
-												placeholder='Año'
-											/>
-											<input
-												type='text'
-												name='hour'
-												id='hour'
-												value={input.hour}
-												autoComplete='off'
-												onChange={handleChange}
-												className='text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
-												placeholder='08:00'
-											/>
-											<button
-												type='submit'
-												className='inline-block w-fit py-2 px-4 mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'
+										<div>
+											<form
+												onSubmit={(e) => handleSubmit(e)}
+												className='grid grid-cols-6 w-full pl-10 pb-10 pr-10 -mt-10 gap-8'
 											>
-												Crear Clase
-											</button>
-										</form>
+												<input
+													type='text'
+													name='class'
+													id='class'
+													value={input.class}
+													autoComplete='class'
+													onChange={handleChange}
+													className='text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
+													placeholder={`"Running"`}
+												/>
+												<input
+													type='number'
+													name='day'
+													id='day'
+													value={input.day}
+													autoComplete='off'
+													onChange={handleChange}
+													className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
+													placeholder='Día'
+												/>
+												<input
+													type='number'
+													name='month'
+													id='month'
+													value={input.month}
+													autoComplete='off'
+													onChange={handleChange}
+													className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
+													placeholder='Mes'
+												/>
+												<input
+													type='number'
+													name='year'
+													id='year'
+													value={input.year}
+													autoComplete='off'
+													onChange={handleChange}
+													className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
+													placeholder='Año'
+												/>
+												<input
+													type='text'
+													name='hour'
+													id='hour'
+													value={input.hour}
+													autoComplete='off'
+													onChange={handleChange}
+													className='text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
+													placeholder='08:00'
+												/>
+												<button
+													type='submit'
+													className='inline-block w-fit py-2 px-4 mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'
+												>
+													Crear Clase
+												</button>
+											</form>
+										</div>
 									</div>
 								</div>
 							</div>

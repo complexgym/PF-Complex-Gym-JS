@@ -86,11 +86,17 @@ const clients = (sequelize) => {
 			type: DataTypes.TEXT,
 			allowNull: true,
 		},
-		// paranoid: {
-		// 	type: DataTypes.BOOLEAN,
-		// 	defaultValue: true,
-		// 	},
-	});
-};
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+          },
+
+    }, {
+        paranoid: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: true,
+			}
+    })
+}
 
 module.exports = clients;

@@ -15,11 +15,9 @@ export let FILTER_POSTS = 'FILTER_POSTS';
 export let UPDATE_FILTERS = 'UPDATE_FILTERS';
 
 //todo CLIENTS
+export const GET_CLIENTS = 'GET_CLIENTS';
 export const GET_CLIENT_DETAIL = 'GET_CLIENT_DETAIL';
 export const POST_CLIENT = 'POST_CLIENT';
-
-//todo CREATE BLOG
-export const GET_CLIENTS = 'GET_CLIENTS';
 export const UPDATE_CLIENT = 'UPDATE_CLIENT';
 
 //todo TESTIMONIALS, ACTIVITIES and PLANS
@@ -27,7 +25,10 @@ export const GET_ALL_TESTIMONIALS = 'GET_ALL_TESTIMONIALS';
 export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES';
 export const GET_ALL_PLANS = 'GET_ALL_PLANS';
 export const EDIT_PLANS = 'EDIT_PLANS';
+export const POST_PLANS = 'POST_PLANS';
+export const DELETE_PLAN = 'DELETE_PLAN';
 export const POST_REVIEW = 'POST_REVIEW';
+export const POST_ACTIVITIES = 'POST_ACTIVITIES';
 
 //todo Calendario
 export const GET_CALENDAR = 'GET_CALENDAR';
@@ -44,3 +45,5 @@ export const POST_PAYMENT = 'POST_PAYMENT';
 
 //todo TRAINERS
 export const GET_TRAINERS = 'GET_TRAINERS';
+export const POST_TRAINER = 'POST_TRAINER';
+export const PUT_TRAINER = 'PUT_TRAINER';
