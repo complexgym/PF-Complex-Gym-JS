@@ -11,7 +11,7 @@ const clients = (sequelize) => {
 		},
 		user: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		name: {
 			type: DataTypes.STRING,
@@ -27,19 +27,19 @@ const clients = (sequelize) => {
 		},
 		picture: {
 			type: DataTypes.TEXT,
-			allowNull: false,
+			allowNull: true,
 		},
 		height: {
 			type: DataTypes.FLOAT,
-			allowNull: false,
+			allowNull: true,
 		},
 		weight: {
 			type: DataTypes.FLOAT,
-			allowNull: false,
+			allowNull: true,
 		},
 		age: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
+			allowNull: true,
 		},
 		phone: {
 			type: DataTypes.STRING,
@@ -52,7 +52,7 @@ const clients = (sequelize) => {
 		},
 		address: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		city: {
 			type: DataTypes.STRING,

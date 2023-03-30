@@ -9,7 +9,7 @@ const putTestimonials = async (req, res) => {
         const { 
             url,
             name,
-            text,
+            review,
             fav,
             rate
         } = req.body;
@@ -18,7 +18,7 @@ const putTestimonials = async (req, res) => {
         await testimonials.update({
                 url,
                 name,
-                text,
+                review,
                 fav,
                 rate
             }, {
@@ -26,13 +26,12 @@ const putTestimonials = async (req, res) => {
                 id: id
             }
         })
-    
+
         res.status(200).send("Admin succesfully modificated")
         
     } catch (error) {
         res.status(400).send(error.message)
     }
 }
-
 
 module.exports = putTestimonials

@@ -6,12 +6,14 @@ const postTestimonials = async (req, res) => {
         const {
             url,
             name,
-            review
+            review,
+            rate
         } = req.body
         const newTestimonials = await testimonials.create({
             url,
             name,
-            review
+            review,
+            rate
         })
 
         res.status(200).send(newTestimonials)
