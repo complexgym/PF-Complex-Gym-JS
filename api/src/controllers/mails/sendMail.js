@@ -5,14 +5,14 @@ const OAuth2 = google.auth.OAuth2
 require('dotenv').config()
 
 const { ID_CLIENTE, SECRETO_CLIENTE, REFRESH_TOKEN } = process.env
-const {templateRegister, templateNotificationMP} = require('./templates/index')
+const {templateRegister, templateNotificationMP, templateReview} = require('./templates/index')
 
 
 
 /**
  * 
  * @param {{to: string, title:string, subject: string, html: {name: string} | {client: string, plain: string}}} email 
- * @param {{type: "REGISTER" | "MERCADOPAGO"}} querys 
+ * @param {{type: "REGISTER" | "MERCADOPAGO" | "REVIEW" }} querys 
  */
 const sendMail = async (email, querys) => {
 
@@ -57,6 +57,7 @@ const sendMail = async (email, querys) => {
 
             if(querys.type === 'REGISTER') htmlMail = templateRegister(email.html.name)
             else if (querys.type === 'MERCADOPAGO') htmlMail = templateNotificationMP(email.html.client, email.html.plain)
+            else if (querys.type === 'REVIEW') htmlMail = templateReview(email.html.name)
 
             let info = await transporter.sendMail({
                 from: `"${email.title}" <proyecto.complex.gym@gmail.com>`, // sender address
@@ -69,6 +70,7 @@ const sendMail = async (email, querys) => {
             console.log("Message sent: %s", info.messageId);
         } catch (error) {
             console.log('un error en el envio : ', error.message)
+            return {error: error.message}
         }
     })
 }
