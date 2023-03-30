@@ -9,14 +9,18 @@ const putTestimonials = async (req, res) => {
         const { 
             url,
             name,
-            text
+            text,
+            fav,
+            rate
         } = req.body;
     
     
         await testimonials.update({
                 url,
                 name,
-                text
+                text,
+                fav,
+                rate
             }, {
             where:{
                 id: id
