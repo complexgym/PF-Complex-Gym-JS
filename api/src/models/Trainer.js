@@ -44,6 +44,10 @@ const trainer = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        about: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         deletedAt: {
             type: DataTypes.DATE,
             allowNull: true,
