@@ -1,7 +1,7 @@
 import React from 'react';
 import SideNav from '../SideNav';
 import { useSelector } from 'react-redux';
-import ActivityCard from './cards/ClassCard';
+import ActivityCard from './cards/ActivityCard';
 import CreateActivity from './cards/CreateActivity/CreateActivity';
 
 const Activities = () => {
@@ -80,10 +80,10 @@ const Activities = () => {
 											<table className='items-center justify-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
 												<thead className='align-bottom'>
 													<tr>
-														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='pl-8 font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Imagen
 														</th>
-														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='pl-8 font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Nombre
 														</th>
 														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
@@ -94,7 +94,9 @@ const Activities = () => {
 
 												{/* ALL CLASSES */}
 												<tbody className='border-t'>
-													{activities?.map((activity) =><ActivityCard activity={activity} />)}
+													{activities?.map((activity) => (
+														<ActivityCard activity={activity} />
+													))}
 												</tbody>
 											</table>
 										</div>
