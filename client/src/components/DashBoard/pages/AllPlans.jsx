@@ -130,11 +130,11 @@ const AllPlans = () => {
 						</div>
 					</nav>
 
-					<div className='w-full px-6 py-6 mx-auto'>
-						<div className='flex flex-wrap -mx-3'>
-							<div className='flex-none w-full max-w-full px-3'>
+					<div className="w-full px-6 py-6 mx-auto">
+						<div className="flex flex-wrap -mx-3">
+							<div className="flex-none w-full max-w-full px-3">
+								
 								{/* form */}
-
 								<form
 									onSubmit={(e) => handleSubmit(e)}
 									className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full px-10 py-10 mt-4 gap-8
