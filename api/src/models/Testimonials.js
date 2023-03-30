@@ -20,6 +20,11 @@ const testimonials = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false,
         }, 
+        fav: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false,
+        },
         deletedAt: {
             type: DataTypes.DATE,
             allowNull: true,
