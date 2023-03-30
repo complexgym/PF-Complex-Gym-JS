@@ -1,6 +1,6 @@
 const mercadopago = require("mercadopago");
 const postMercadoPago = require("./postMercadoPago.js");
-const postMembershipsmp = require("../memberships/postMembershipsMP.js")
+const postMembershipsmp = require("../memberships/postmembershipsMP")
 
 mercadopago.configure({
 	access_token: process.env.ACCESS_TOKEN_MP,
