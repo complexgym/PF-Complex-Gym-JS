@@ -28,6 +28,7 @@ import {
 	POST_REVIEW,
 	DELETE_PLAN,
 	POST_TRAINER,
+	POST_ACTIVITIES,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -521,4 +522,17 @@ export const deletePlan = (id) => async (dispatch) => {
 			payload: id,
 		});
 	} catch (error) {}
+};
+
+export const postActivity = (activity) => async (dispatch) => {
+	try {
+		const data = await axios.post('/activities', activity);
+
+		return dispatch({
+			type: POST_ACTIVITIES,
+			payload: data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };
