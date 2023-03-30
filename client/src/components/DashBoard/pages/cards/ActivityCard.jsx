@@ -1,15 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-const ActivityCard = ({ activity }) => {
-	const activities = useSelector((state) => state.activities);
-
+const ActivityCard = ({ activity, id }) => {
 	return (
 		<tr>
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
-					{activity?.image}
-				</span>
+				<img src={activity?.image} className="rounded-full" alt="activity img"/>
 			</td>
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>

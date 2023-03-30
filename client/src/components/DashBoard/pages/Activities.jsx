@@ -1,16 +1,20 @@
 import React from 'react';
 import SideNav from '../SideNav';
 import { useSelector } from 'react-redux';
-import ActivityCard from './cards/ClassCard';
+import ActivityCard from './cards/ActivityCard';
 import CreateActivity from './cards/CreateActivity/CreateActivity';
 
 const Activities = () => {
 	const activities = useSelector((state) => state.activities);
 
+	const actMap = activities?.map(activity=>{
+		return <ActivityCard activity={activity} />
+	})
+
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-blue-500 min-h-screen text-slate-500 '>
+				<div className='w-full min-h-full bg-blue-500 dark:hidden'></div>
 
 				<SideNav />
 
@@ -94,7 +98,9 @@ const Activities = () => {
 
 												{/* ALL CLASSES */}
 												<tbody className='border-t'>
-													{activities?.map((activity) =><ActivityCard activity={activity} />)}
+													{activities?.map((activity) =>{
+														return <ActivityCard activity={activity}/>
+													})}
 												</tbody>
 											</table>
 										</div>
