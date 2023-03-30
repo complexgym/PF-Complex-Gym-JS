@@ -1,4 +1,5 @@
 const { admin } = require('../../db');
+const { Op } = require('sequelize');
 
 const getSoftDeletedAdmin = async () => {
   return await admin.findAll({ 
