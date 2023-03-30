@@ -15,5 +15,5 @@ const postMembershipsmp = async ({
 	return newMemberships;
 };
 
-module.exports = postMembershipsmp+ç
+module.exports = postMembershipsmp
 ;
