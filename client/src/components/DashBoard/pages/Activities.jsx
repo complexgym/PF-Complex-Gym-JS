@@ -94,9 +94,7 @@ const Activities = () => {
 
 												{/* ALL CLASSES */}
 												<tbody className='border-t'>
-													{activities.map((activity) => {
-														return <ActivityCard activity={activity} />;
-													})}
+													{activities?.map((activity) =><ActivityCard activity={activity} />)}
 												</tbody>
 											</table>
 										</div>

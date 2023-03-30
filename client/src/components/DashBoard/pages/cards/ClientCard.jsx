@@ -9,28 +9,28 @@ const ClientCard = ({ client }) => {
 
 	const newClient = {user, name, lastName, picture, permits: []}
 
-	const {allAdmin} = useSelector(s=>s)
+	// const {allAdmin} = useSelector(s=>s)
 
-	//todo VERRRRR, muchos logs en back
-	useEffect(()=>{
-		dispatch(getAllAdmin())
-	}, [allAdmin])
+	// //todo VERRRRR, muchos logs en back
+	// useEffect(()=>{
+	// 	dispatch(getAllAdmin())
+	// }, [allAdmin])
 
-	const handleAddAdmin = () => {
-		dispatch(postAdmin(newClient))
-	}
+	// const handleAddAdmin = () => {
+	// 	dispatch(postAdmin(newClient))
+	// }
 
-	const handleRemoveAdmin = () => {
-		const find = allAdmin.find(a=>a.user===user)
+	// const handleRemoveAdmin = () => {
+	// 	const find = allAdmin.find(a=>a.user===user)
 
-		dispatch(removeAdmin(find.id))
-	}
+	// 	dispatch(removeAdmin(find.id))
+	// }
 
-	const handleBlockAdmin = () => {
-		return "holis"
-	}
+	// const handleBlockAdmin = () => {
+	// 	return "holis"
+	// }
 
-	const find = allAdmin.find(a=>a.user===user)
+	// const find = allAdmin.find(a=>a.user===user)
 
 	return (
 		<tr>
@@ -77,20 +77,20 @@ const ClientCard = ({ client }) => {
 					{client?.age} / {client?.weight}kg / {client?.height}cm
 				</span>
 			</td>
-			<td className='p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+			{/* <td className='p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				{/* <div className="mr-2">
 					<i className="fa fa-pencil text-sm cursor-pointer" aria-hidden="true"></i>
 				</div> */}
 				
-				{ find /* remove and add admin */
+				{/* { find 
 				? <i className="fa fa-check w-8 cursor-pointer mr-2 text-green-600" aria-hidden="true"
 				onClick={handleRemoveAdmin}></i> 
 				: <i className="fa fa-times text-sm cursor-pointer w-8 mr-2 text-red-500" aria-hidden="true"
-				onClick={handleAddAdmin}></i>}
+				onClick={handleAddAdmin}></i>} */}
 				
 				{/* <i className="fa fa-ban text-sm w-8 cursor-pointer" aria-hidden="true"
-				onClick={handleBlockAdmin}></i> */}
-			</td>
+				onClick={handleBlockAdmin}></i> 
+			</td> */}
 		</tr>
 	);
 };
