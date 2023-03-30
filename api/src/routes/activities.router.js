@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
     }
   });
 
-router.get('/:id', async (req, res) => {
+router.get('/id', async (req, res) => {
   try {
     const activity = await getActivitiesById(req.params.id);
     if (!activity) {
