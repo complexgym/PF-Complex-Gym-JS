@@ -10,6 +10,7 @@ const postTrainer = async ({
 	phone,
 	mail,
 	address,
+	about
 }) => {
 	const newTrainer = await trainer.create({
 		user,
@@ -21,6 +22,7 @@ const postTrainer = async ({
 		phone,
 		mail,
 		address,
+		about
 	});
 
 	//     const Activities = await activities.findAll({

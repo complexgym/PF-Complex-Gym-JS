@@ -1,3 +1,5 @@
+import image from "../../assets/img/dumbelldBgd.jpg";
+
 export default function TrainerCard() {
 	const cards = [
 		{
@@ -31,7 +33,9 @@ export default function TrainerCard() {
 								class='absolute flex h-32 w-full justify-center rounded-xl bg-cover'
 								
 							/> */}
-							<div class='absolute flex h-32 w-full justify-center rounded-xl bg-cover bg-[#4C5259] '>
+							<div class='absolute flex h-32 w-full justify-center rounded-xl bg-center bg-cover' 					style={{
+						backgroundImage: `url(${image})`,
+					}}>
 							</div>
 							<div className='absolute -bottom-12 flex  2xl:w-[40%]  xl:w-[40%] lg:w-[40%] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700 xs:w-[50%]'>
 								<img className='rounded-full' src={card.image} alt='' />
