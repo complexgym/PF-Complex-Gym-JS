@@ -2,6 +2,7 @@ import React from 'react';
 import SideNav from '../SideNav';
 import { useSelector } from 'react-redux';
 import TrainersCard from './cards/TrainersCard';
+import CreateTrainner from './cards/CreateTrainer/CreateTrainner';
 
 const Trainers = () => {
 	const trainers = useSelector((state) => state.trainers);
@@ -58,6 +59,18 @@ const Trainers = () => {
 					<div className='w-full px-6 py-6 mx-auto'>
 						<div className='flex flex-wrap -mx-3'>
 							<div className='flex-none w-full max-w-full px-3'>
+								<div className='relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
+									<div className='grid border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
+										<CreateTrainner />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className='w-full px-6 py-6 mx-auto'>
+						<div className='flex flex-wrap -mx-3'>
+							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className='p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
 										<h6 className='dark:text-white'>Tabla Entrenadores</h6>
@@ -71,18 +84,18 @@ const Trainers = () => {
 															Entrenador
 														</th>
 														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
-															Información
+															Teléfono
 														</th>
-														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
-															Estado
+														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
+															Dirección
 														</th>
 													</tr>
 												</thead>
-												{/* <tbody>
+												<tbody>
 													{trainers.map((trainer) => {
 														return <TrainersCard trainer={trainer} />;
 													})}
-												</tbody> */}
+												</tbody>
 											</table>
 										</div>
 									</div>

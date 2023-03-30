@@ -28,6 +28,12 @@ const admin = (sequelize) => {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
         },
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+          },
+
+    }, {
         paranoid: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: true,
