@@ -1,7 +1,7 @@
 const { calendardate } = require("../../db")
 /**
  * 
- * @param {{day:number, month:number, year:number, hour:string, class:string}} activity 
+ * @param {{day:number, month:number, year:number, hour:string, description:string}} activity 
  * @param {{id:uuidv4}} id
  */
 
