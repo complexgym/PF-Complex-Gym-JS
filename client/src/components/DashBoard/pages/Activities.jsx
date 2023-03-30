@@ -100,6 +100,7 @@ const Activities = () => {
 												<tbody className='border-t'>
 													{activities?.map((activity) =>{
 														return <ActivityCard activity={activity}/>
+													})}
 												</tbody>
 											</table>
 										</div>
