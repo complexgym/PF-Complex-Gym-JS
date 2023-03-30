@@ -1,4 +1,5 @@
 const { activities } = require('../../db');
+const { Op } = require('sequelize');
 
 const getSoftDeletedActivities = async () => {
   return await activities.findAll({ 

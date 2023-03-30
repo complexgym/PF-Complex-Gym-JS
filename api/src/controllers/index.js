@@ -19,6 +19,8 @@ const getAllCalendar = require('./calendar/getAllCalendars')
 const postCalendar = require('./calendar/postCalendar')
 const deleteCalendar = require('./calendar/deleteCalendar')
 const putCalendar = require('./calendar/putCalendar')
+const restoreCalendar = require('./calendar/restoreCalendar')
+const getSoftDeletedCalendar = require('./calendar/getSoftDeletedCalendar')
 // Client
 const deleteClient = require("./clients/deleteClient")
 const getAllClients = require("./clients/getAllClients")
@@ -97,6 +99,8 @@ module.exports = {
     postCalendar,
     putCalendar,
     deleteCalendar,
+    restoreCalendar,
+    getSoftDeletedCalendar,
     // Client
     deleteClient,
     getAllClients,
