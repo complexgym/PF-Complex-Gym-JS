@@ -1,4 +1,5 @@
 const { trainer } = require('../../db');
+const { Op } = require('sequelize');
 
 const getSoftDeletedTrainers = async () => {
   return await trainer.findAll({ 

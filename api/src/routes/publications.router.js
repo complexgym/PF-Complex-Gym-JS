@@ -15,7 +15,7 @@ const {
 const router = Router()
 router.get('/filters', filters) // filtros
 router.get('/all', getAllPublications)
-router.get('/:id', getPublicationsByID)
+router.get('/id', getPublicationsByID)
 router.get('/', getPublicationsByName)
 
 

@@ -6,7 +6,9 @@ const {
     getAllCalendar, 
     postCalendar,
     putCalendar,
-    deleteCalendar
+    deleteCalendar,
+    restoreCalendar,
+    getSoftDeletedCalendar
 } = require('../controllers/index')
 
 router.get("/", async (req, res) => {
@@ -75,5 +77,25 @@ router.put('/:id',async (req, res) => {
 })
 
 router.delete('/:id', deleteCalendar)
+
+router.put('/restore/:id', async (req, res) => {
+    try {
+      const id = req.params.id;
+      const result = await restoreCalendar({ id });
+      res.status(200).send(result);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
+
+  router.get('/softDeleted', async (req, res) => {
+    try {
+      const deletedCalendar = await getSoftDeletedCalendar();
+      res.status(200).json(deletedCalendar);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
 
 module.exports = router
