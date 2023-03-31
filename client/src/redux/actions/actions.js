@@ -406,6 +406,15 @@ export const deleteCalendar = (id) => async (dispatch) => {
 	} catch (error) {}
 };
 
+export const putCalendar = (id, data) => async () => {
+	try {
+		const response = await axios.put(`/calendar/${id}`, data);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const getAllAdmin = () => {
 	return async function (dispatch) {
 		try {

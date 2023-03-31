@@ -35,6 +35,7 @@ export const PUT_TESTIMONIALS = "PUT_TESTIMONIALS";
 export const GET_CALENDAR = 'GET_CALENDAR';
 export const POST_CALENDAR = 'POST_CALENDAR';
 export const DELETE_CALENDAR = 'DELETE_CALENDAR';
+export const PUT_CALENDAR = 'PUT_CALENDAR';
 
 //todo ADMIN
 export const GET_ALL_ADMIN = 'GET_ALL_ADMIN';
