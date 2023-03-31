@@ -29,7 +29,7 @@ import {
 	DELETE_PLAN,
 	POST_TRAINER,
 	POST_ACTIVITIES,
-} from '../actions/action-types.js';
+} from "../actions/action-types.js";
 
 const initialState = {
 	allClients: [],
@@ -38,10 +38,10 @@ const initialState = {
 	matched_posts: [],
 	ig_posts: [],
 	post_details: {},
-	search_blog: '',
+	search_blog: "",
 	filters_blog: {
-		tag: '',
-		date: '',
+		tag: "",
+		date: "",
 	},
 	testimonials: [],
 	activities: [],
@@ -173,23 +173,27 @@ const rootReducer = (state = initialState, action) => {
 				allPayments: [...state.allPayments, payload],
 			};
 		case GET_ALL_PAYMENTS:
-			const payments = payload
-				?.map((pay) => {
-					const find = state?.allClients.find((client) => client?.id === pay?.clientId);
-					if (find) {
-						const { name, lastName, picture } = find;
-						return {
-							...pay,
-							clientName: name + ' ' + lastName,
-							picture,
-						};
-					}
-				})
-				?.sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
-			return {
-				...state,
-				allPayments: payments,
-			};
+			if (!payload.error) {
+				const payments = payload
+					?.map((pay) => {
+						const find = state?.allClients.find(
+							(client) => client?.id === pay?.clientId
+						);
+						if (find) {
+							const { name, lastName, picture } = find;
+							return {
+								...pay,
+								clientName: name + " " + lastName,
+								picture,
+							};
+						}
+					})
+					?.sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
+				return {
+					...state,
+					allPayments: payments,
+				};
+			}
 		case GET_TRAINERS:
 			return {
 				...state,
