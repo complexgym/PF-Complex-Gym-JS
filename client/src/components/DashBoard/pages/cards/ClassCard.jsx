@@ -1,9 +1,8 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteCalendar } from "../../../../redux/actions/actions";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteCalendar } from '../../../../redux/actions/actions';
 
 const ClassCard = ({ calendar }) => {
-	
 	const dispatch = useDispatch();
 
 	const handleDelete = () => {
@@ -13,7 +12,7 @@ const ClassCard = ({ calendar }) => {
 		<tr>
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
-					{calendar?.class}
+					{calendar?.classes}
 				</span>
 			</td>
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
