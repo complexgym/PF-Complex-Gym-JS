@@ -492,7 +492,7 @@ export default function UpdateClient() {
 									{/* BUTTON BACK */}
 									<div className=''>
 										<Link to={`/home`}>
-											<button className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-darker-blue'>
+											<button className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-darker-blue'>
 												Volver
 											</button>
 										</Link>

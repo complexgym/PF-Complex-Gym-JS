@@ -16,7 +16,7 @@ const ClasesCalendar = () => {
 		month: 0,
 		year: 0,
 		hour: '',
-		class: '',
+		classes: '',
 	});
 
 	const [error, setErrors] = useState({});
@@ -41,7 +41,7 @@ const ClasesCalendar = () => {
 		if (Object.values(error).length !== 0) {
 			swal({
 				title: 'Faltan Información',
-				text: `${error.day || error.month || error.year || error.hour || error.class}`,
+				text: `${error.day || error.month || error.year || error.hour || error.classes}`,
 				icon: 'warning',
 				dangerMode: true,
 			});
@@ -134,10 +134,10 @@ const ClasesCalendar = () => {
 											>
 												<input
 													type='text'
-													name='class'
-													id='class'
-													value={input.class}
-													autoComplete='class'
+													name='classes'
+													id='classes'
+													value={input.classes}
+													autoComplete='classes'
 													onChange={handleChange}
 													className='text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
 													placeholder={`"Running"`}
@@ -219,6 +219,9 @@ const ClasesCalendar = () => {
 														</th>
 														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Hora
+														</th>
+														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															Borrar
 														</th>
 													</tr>
 												</thead>

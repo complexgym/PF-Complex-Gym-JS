@@ -1,6 +1,15 @@
+import { useDispatch } from 'react-redux';
 import TrainerCard from '../TrainerCard/TrainerCard';
+import { useEffect } from 'react';
+import { getTrainers } from '../../redux/actions/actions';
 
 export default function About() {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getTrainers());
+	}, []);
+
 	return (
 		<div className='2xl:px-8 xl:px-8 lg:px-8 font-text overflow-hidden xs:p-4'>
 			{/*Seccion 1*/}

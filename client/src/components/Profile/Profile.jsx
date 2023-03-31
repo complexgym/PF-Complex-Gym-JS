@@ -72,7 +72,7 @@ export default function Profile() {
 									<div className="py-6 px-3 mt-32 sm:mt-0">
 										<Link to={`/editar/${matchId}`}>
 											<button
-												className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+												className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 												type="button"
 											>
 												Editar Perfil
@@ -150,7 +150,7 @@ export default function Profile() {
 									<div>
 										<a
 											href={matchEmail?.routine}
-											className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 "
+											className="bg-[#4c5259] active:bg-[#4c5259] uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 "
 											target="_blank"
 										>
 											Última Rutina
@@ -165,7 +165,7 @@ export default function Profile() {
 				<div className="flex justify-center">
 					<Link
 						to="/home"
-						className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 ease-linear transition-all duration-150 w-24 text-center"
+						className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 					>
 						Volver
 					</Link>

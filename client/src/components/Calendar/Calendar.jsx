@@ -1,11 +1,14 @@
 import dayjs from 'dayjs';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { generateDate, months } from './funcionCalendar';
 import cn from './cn';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCalendar } from '../../redux/actions/actions';
 
 export default function Calendar() {
+	const dispatch = useDispatch();
+
 	const days = ['D', 'L', 'M', 'M', 'J', 'V	', 'S'];
 	const currentDate = dayjs();
 	const [today, setToday] = useState(currentDate);
@@ -17,6 +20,10 @@ export default function Calendar() {
 	const filter = allCalendar.filter((c) => {
 		return c.month === month + 1 && c.year === year && c.day === day;
 	});
+
+	useEffect(() => {
+		dispatch(getCalendar());
+	}, []);
 
 	return (
 		<div className='w-screen bg-slate-100'>
@@ -49,13 +56,12 @@ export default function Calendar() {
 							/>
 						</div>
 					</div>
-					<div className='grid grid-cols-7 md:pb-8'>
+					<div className='grid grid-cols-7  pb-8 justify-items-center items-center'>
 						{days.map((day, index) => {
 							return (
 								<h1
 									key={index}
-									className='text-sm
-									h-7 w-7  md:h-14 md:w-14 grid place-content-end text-[#1d459d] select-none font-bold md:text-xl md:text-end md:ml-0 xl:ml-9 2xl-max:ml-3'
+									className='grid text-center md:h-14 md:w-14 md:text-xl text-[#1d459d] select-none font-bold'
 								>
 									{day}
 								</h1>
@@ -69,7 +75,7 @@ export default function Calendar() {
 								return (
 									<div
 										key={index}
-										className='p-2 md:text-center h-14 grid place-content-center text-sm border-t drop-shadow-2xl'
+										className='p-2 md:text-center h-14 grid place-content-center text-xl border-t drop-shadow-2xl'
 									>
 										<h1
 											className={cn(
@@ -106,7 +112,7 @@ export default function Calendar() {
 						filter?.map((e) => {
 							return (
 								<p className='bg-[#4c5259] md:m-4 md:p-4 md:text-xl md:w-96 text-center bg-opacity-60 md:rounded-6 text-sm mx-2 rounded-2 py-2 my-2 '>
-									{e?.hour} - {e?.class}
+									{e?.hour} - {e?.classes}
 								</p>
 							);
 						})
