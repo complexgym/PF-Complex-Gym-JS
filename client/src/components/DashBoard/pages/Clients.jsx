@@ -21,18 +21,41 @@ const Clients = () => {
 		return { name: client?.name + " " + client?.lastName, id: client?.id };
 	});
 
+	console.log(newPdf);
+	const split = newPdf.split(".")
+	const fileExtension = split[split.length - 1];
+
 	/* updating routine */
 	const handleSubmitPDF = async () => {
+		//*pdf exists
 		if (newPdf) {
-			const response = await axios.put(`/clients/${clientId}`, {
-				routine: newPdf,
-			});
-			dispatch(getAllClients());
-			swal({
-				title: "¡Listo!",
-				text: "¡Rutina guardada correctamente!",
-				icon: "success",
-			});
+			//*client exists
+			if(clientId){
+				//*extension pdf
+				if(fileExtension === "pdf"){
+					const response = await axios.put(`/clients/${clientId}`, {
+						routine: newPdf,
+					});
+					dispatch(getAllClients());
+					swal({
+						title: "¡Listo!",
+						text: "¡Rutina guardada correctamente!",
+						icon: "success",
+					});
+				} else {
+					swal({
+						title: "¡Atención!",
+						text: "¡Archivo debe ser extensión .pdf!",
+						icon: "warning",
+					});
+				}
+			} else {
+				swal({
+					title: "¡Atención!",
+					text: "¡Debe seleccionar un cliente!",
+					icon: "warning",
+				});
+			}
 		}
 		else{
 			swal({

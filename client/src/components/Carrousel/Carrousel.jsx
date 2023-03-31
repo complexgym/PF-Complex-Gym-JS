@@ -36,7 +36,7 @@ export default function Carrousel() {
       </div>
       {/* text carousel */}
       <div className=" absolute left-1/2 transform -translate-x-1/2 lg:w-[fit-content] md:w-[fit-content]">
-        <h2 className="text-center font-bold text-black 2xl:text-5xl 2xl:mt-20 xl:text-3xl xl:mt-10 lg:text-5xl lg:mt-50 md:text-3xl md:mt-50 xs:text-4xl xs:mt-50 ">ACTUALMENTE OFRECEMOS</h2>
+        <h2 className="text-center font-text font-bold text-black drop-shadow-xl 2xl:text-5xl 2xl:mt-20 xl:text-3xl xl:mt-10 lg:text-5xl lg:mt-50 md:text-3xl md:mt-50 xs:text-4xl xs:mt-50 ">ACTUALMENTE OFRECEMOS</h2>
       </div>
 
 			{/* content carrousel */}
