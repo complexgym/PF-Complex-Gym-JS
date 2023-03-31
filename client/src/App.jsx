@@ -42,8 +42,8 @@ import AllTestimonials from './components/DashBoard/pages/AllTestimonials';
 import AllPlans from './components/DashBoard/pages/AllPlans';
 import CreateReview from './components/CreateReview/CreateReview';
 
-axios.defaults.baseURL = 'http://localhost:3001';
-// axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
+// axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
 function App() {
 	const location = useLocation();
@@ -65,7 +65,7 @@ function App() {
 
 		setTimeout(() => {
 			setIsLoaded(true);
-		}, [3000]);
+		}, [4500]);
 
 		// if (isAuthenticated && !hasRedirected) {
 		// 	navigate('/home');
