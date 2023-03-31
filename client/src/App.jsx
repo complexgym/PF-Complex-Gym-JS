@@ -102,7 +102,7 @@ function App() {
 	// }, [])
 
 	return (
-		<div className='App font-text'>
+		<div className='App'>
 			{isLoaded ? (
 				<>
 					{boolAddComponent && <Navbar />}
