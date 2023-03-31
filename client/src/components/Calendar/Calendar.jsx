@@ -105,7 +105,7 @@ export default function Calendar() {
 						filter?.map((e) => {
 							return (
 								<p className='bg-[#4c5259] md:m-4 md:p-4 md:text-xl md:w-96 text-center bg-opacity-60 md:rounded-6 text-sm mx-2 rounded-2 py-2 my-2 '>
-									{e?.hour} - {e?.class}
+									{e?.hour} - {e?.classes}
 								</p>
 							);
 						})

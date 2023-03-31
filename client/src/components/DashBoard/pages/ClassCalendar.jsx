@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import SideNav from "../SideNav";
-import { postCalendar} from "../../../redux/actions/actions";
-import ValidateCalendar from "./ValidateCalendar";
-import swal from "sweetalert";
-import { useDispatch, useSelector } from "react-redux";
-import ClassCard from "./cards/ClassCard";
+import React, { useState } from 'react';
+import SideNav from '../SideNav';
+import { postCalendar } from '../../../redux/actions/actions';
+import ValidateCalendar from './ValidateCalendar';
+import swal from 'sweetalert';
+import { useDispatch, useSelector } from 'react-redux';
+import ClassCard from './cards/ClassCard';
 
 const ClasesCalendar = () => {
 	const dispatch = useDispatch();
@@ -15,8 +15,8 @@ const ClasesCalendar = () => {
 		day: 0,
 		month: 0,
 		year: 0,
-		hour: "",
-		class: "",
+		hour: '',
+		classes: '',
 	});
 
 	const [error, setErrors] = useState({});
@@ -40,17 +40,17 @@ const ClasesCalendar = () => {
 		let error = ValidateCalendar(input);
 		if (Object.values(error).length !== 0) {
 			swal({
-				title: "Faltan Información",
-				text: `${error.day || error.month || error.year || error.hour || error.class}`,
-				icon: "warning",
+				title: 'Faltan Información',
+				text: `${error.day || error.month || error.year || error.hour || error.classes}`,
+				icon: 'warning',
 				dangerMode: true,
 			});
 		} else {
 			dispatch(postCalendar(input));
 			swal({
-				title: "Gracias!",
-				text: "¡Clase creada correctamente!",
-				icon: "success",
+				title: 'Gracias!',
+				text: '¡Clase creada correctamente!',
+				icon: 'success',
 			});
 		}
 	};
@@ -134,10 +134,10 @@ const ClasesCalendar = () => {
 											>
 												<input
 													type='text'
-													name='class'
-													id='class'
-													value={input.class}
-													autoComplete='class'
+													name='classes'
+													id='classes'
+													value={input.classes}
+													autoComplete='classes'
 													onChange={handleChange}
 													className='text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
 													placeholder={`"Running"`}
