@@ -461,12 +461,10 @@ export const postPayment = (purchase) => async () => {
 export const getAllPayments = () => async (dispatch) => {
 	try {
 		const response = await axios.get("/payments");
-		if (response.data) {
-			return dispatch({
-				type: GET_ALL_PAYMENTS,
-				payload: response.data,
-			});
-		}
+		return dispatch({
+			type: GET_ALL_PAYMENTS,
+			payload: response.data,
+		});
 	} catch (error) {
 		console.log(error);
 	}
@@ -561,7 +559,7 @@ export const postActivity = (activity) => async (dispatch) => {
 	}
 };
 
-export const putTestimonials = (id, data) => async (dispatch) => {
+export const putTestimonials = (id, data) => async () => {
 	try {
 		const response = await axios.put(`/testimonials/${id}`, data);
 		return response;
@@ -573,10 +571,9 @@ export const putTestimonials = (id, data) => async (dispatch) => {
 export const postPaymentCash = (data) => async (dispatch) => {
 	try {
 		const response = await axios.post("/payments/cash", data);
-		console.log(response);
 		return dispatch({
 			type: POST_PAYMENT_CASH,
-			payload: data,
+			payload: data
 		});
 	} catch (error) {}
 };

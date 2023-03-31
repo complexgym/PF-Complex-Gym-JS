@@ -2,16 +2,15 @@ import SideNav from "../SideNav";
 import { useDispatch, useSelector } from "react-redux";
 import PaymentCard from "./cards/PaymentCard";
 import { useState } from "react";
-import { postPaymentCash } from "../../../redux/actions/actions";
+import { getAllPayments, postPaymentCash } from "../../../redux/actions/actions";
 
 const Payments = () => {
 	const [data, setData] = useState({
 		clientId: "",
-		// paymentsId: "",
-		// paymentStatus: "",
-		// paymentsAmount: "",
-		// paymentsDate: "",
-		// plansPayments: "",
+		status: "",
+		total_amount: "",
+		date_payments: "",
+		plans: "",
 	});
 
 	const { allPayments, initial_plans, allClients } = useSelector((s) => s);
@@ -36,8 +35,8 @@ const Payments = () => {
 			if (plan?.name === e.target.value) {
 				setData({
 					...data,
-					// plansPayments: e.target.value,
-					// paymentsAmount: plan?.price
+					plans: e.target.value,
+					total_amount: plan?.price
 				});
 			}
 		});
@@ -46,21 +45,15 @@ const Payments = () => {
 	const handleSubmitPayment = async (e) => {
 		e.preventDefault()
 
-		setData({
-			...data,
-			// paymentsDate: new Date().toISOString(),
-			// paymentStatus: "approved"
-		});
-
 		let newData = {
 			...data,
-			paymentsDate: new Date().toISOString(),
-			paymentStatus: "approved"
+			date_payments: new Date().toISOString(),
+			status: "approved"
 		};
 
-		console.log(newData);
-
 		dispatch(postPaymentCash(newData))
+
+		dispatch(getAllPayments())
 
 		swal({
 			title: 'Gracias!',

@@ -65,7 +65,7 @@ function App() {
 
 		setTimeout(() => {
 			setIsLoaded(true);
-		}, [3000]);
+		}, [4500]);
 
 		// if (isAuthenticated && !hasRedirected) {
 		// 	navigate('/home');
