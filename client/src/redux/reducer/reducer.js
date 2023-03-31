@@ -31,6 +31,7 @@ import {
 	POST_ACTIVITIES,
 	DELETE_CALENDAR,
 	POST_PAYMENT_CASH,
+	PUT_CALENDAR,
 	REVIEW,
 } from '../actions/action-types.js';
 
@@ -163,6 +164,10 @@ const rootReducer = (state = initialState, action) => {
 				allCalendar: state.allCalendar.filter(
 					(calendar) => calendar.id !== payload
 				),
+			};
+			case PUT_CALENDAR:
+			return {
+				...state,
 			};
 		case GET_ALL_ADMIN:
 			return {
