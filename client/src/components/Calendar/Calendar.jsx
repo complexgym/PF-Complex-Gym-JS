@@ -49,12 +49,12 @@ export default function Calendar() {
 							/>
 						</div>
 					</div>
-					<div className='grid grid-cols-7 md:pb-8'>
+					<div className='grid grid-cols-7  pb-8 justify-items-center items-center'>
 						{days.map((day, index) => {
 							return (
 								<h1
 									key={index}
-									className='text-sm h-7 w-7  md:h-14 md:w-14 grid place-content-end text-[#1d459d] select-none font-bold md:text-xl md:text-end md:ml-0 xl:ml-9 2xl-max:ml-3'
+									className='grid text-center md:h-14 md:w-14 md:text-xl text-[#1d459d] select-none font-bold'
 								>
 									{day}
 								</h1>
@@ -68,7 +68,7 @@ export default function Calendar() {
 								return (
 									<div
 										key={index}
-										className='p-2 md:text-center h-14 grid place-content-center text-sm border-t drop-shadow-2xl'
+										className='p-2 md:text-center h-14 grid place-content-center text-xl border-t drop-shadow-2xl'
 									>
 										<h1
 											className={cn(

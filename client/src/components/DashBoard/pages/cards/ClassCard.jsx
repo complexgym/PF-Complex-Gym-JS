@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux";
 import { deleteCalendar } from "../../../../redux/actions/actions";
 
 const ClassCard = ({ calendar }) => {
+	
 	const dispatch = useDispatch();
+
 	const handleDelete = () => {
 		dispatch(deleteCalendar(calendar.id));
 	};
