@@ -1,8 +1,11 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import SideNav from './SideNav';
+import { getAllPosts, getCalendar, getTrainers } from '../../redux/actions/actions';
 
 const DashBoard = () => {
+	const dispatch = useDispatch();
+
 	const allClients = useSelector((state) => state.allClients);
 
 	const initial_posts = useSelector((state) => state.initial_posts);
@@ -24,6 +27,12 @@ const DashBoard = () => {
 	const pay2 = allPay[1];
 	const pay3 = allPay[2];
 	const pay4 = allPay[3];
+
+	useEffect(() => {
+		dispatch(getTrainers());
+		dispatch(getCalendar());
+		dispatch(getAllPosts());
+	}, []);
 
 	return (
 		<div className=''>
