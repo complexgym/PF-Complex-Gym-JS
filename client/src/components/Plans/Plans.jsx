@@ -82,7 +82,7 @@ export default function Plans() {
 
 				{/* plans */}
 				<div className='grid max-w-screen row-gap gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 sm:mx-auto'>
-					{plans?.[option].map((plan) => {
+					{plans?.[option]?.map((plan) => {
 						return <SinglePlan plan={plan} option={option} />;
 					})}
 				</div>

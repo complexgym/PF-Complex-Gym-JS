@@ -156,10 +156,12 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				allCalendar: [...state.allCalendar, payload],
 			};
-			case DELETE_CALENDAR:
+		case DELETE_CALENDAR:
 			return {
 				...state,
-				allCalendar: state.allCalendar.filter((calendar) => calendar.id !== payload),
+				allCalendar: state.allCalendar.filter(
+					(calendar) => calendar.id !== payload
+				),
 			};
 		case GET_ALL_ADMIN:
 			return {

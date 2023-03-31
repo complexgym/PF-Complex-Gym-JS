@@ -406,7 +406,6 @@ export const deleteCalendar = (id) => async (dispatch) => {
 	} catch (error) {}
 };
 
-
 export const getAllAdmin = () => {
 	return async function (dispatch) {
 		try {
@@ -573,7 +572,7 @@ export const postPaymentCash = (data) => async (dispatch) => {
 		const response = await axios.post("/payments/cash", data);
 		return dispatch({
 			type: POST_PAYMENT_CASH,
-			payload: data
+			payload: data,
 		});
 	} catch (error) {}
 };
