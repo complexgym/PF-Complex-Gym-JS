@@ -19,7 +19,7 @@ export default function Navbar() {
 
 	const isActive = matchEmail && matchEmail.active;
 
-	// const isAdmin = matchEmail && matchEmail.admin;
+	const isAdmin = matchEmail && matchEmail.admin;
 
 	const matchId = matchEmail && matchEmail.id;
 
@@ -72,7 +72,7 @@ export default function Navbar() {
 						{!isAuthenticated && <LoginBtn />}
 
 						{isActive && <NavLink to={`/perfil/${matchId}`}>Perfil</NavLink>}
-						{isActive && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
+						{!!isAdmin && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
 						{!isAuthenticated ? null : (
 								<NavLink to={'/registro'} className={isActiveStyle}>
 									Registro
@@ -162,7 +162,7 @@ export default function Navbar() {
 							{!isAuthenticated && <LoginBtn onClick={() => setOpen(!open)} />}
 
 							{isActive && <NavLink to={`/perfil/${matchId}`}>Perfil</NavLink>}
-							{isActive && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
+							{isAdmin && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
 							{!isAuthenticated ? null : (
 									<NavLink
 										to={'/registro'}

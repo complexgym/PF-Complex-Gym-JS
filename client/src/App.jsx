@@ -53,6 +53,14 @@ function App() {
 	const { user, isAuthenticated } = useAuth0();
 	const [isLoaded, setIsLoaded] = useState(false);
 
+	const allClient = useSelector((state) => state.allClients);
+
+	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+
+	const isActive = matchEmail && matchEmail.active;
+
+	const isAdmin = matchEmail && matchEmail.admin;
+
 	useEffect(() => {
 		// dispatch(getAllClients());
 		dispatch(getAllActivities());
@@ -117,10 +125,16 @@ function App() {
 						<Route path={'/planes'} element={<Plans />} />
 						<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
 							<Route path={'/registro'} element={<Form />} />
+						</Route>
+						<Route element={<PrivateRoute isAllowed={isAuthenticated && isActive} />}>
 							<Route path={'/perfil/:id'} element={<Profile />} />
 							<Route path={'/editar/:id'} element={<UpdateClient />} />
 						</Route>
-						<Route element={<PrivateRoute isAllowed={!!isAuthenticated} />}>
+						<Route
+							element={
+								<PrivateRoute isAllowed={isAuthenticated && isActive && isAdmin} />
+							}
+						>
 							<Route path={'/dashboard'} element={<DashBoard />} />
 							<Route path={'/dashboard/clientes'} element={<Clients />} />
 							<Route path={'/dashboard/publicaciones'} element={<Publications />} />
