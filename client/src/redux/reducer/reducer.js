@@ -29,6 +29,7 @@ import {
 	DELETE_PLAN,
 	POST_TRAINER,
 	POST_ACTIVITIES,
+	POST_PAYMENT_CASH,
 } from "../actions/action-types.js";
 
 const initialState = {
@@ -194,6 +195,11 @@ const rootReducer = (state = initialState, action) => {
 					allPayments: payments,
 				};
 			}
+		case POST_PAYMENT_CASH:
+			return {
+        ...state,
+        allPayments: [...state.allPayments, payload],
+      };
 		case GET_TRAINERS:
 			return {
 				...state,

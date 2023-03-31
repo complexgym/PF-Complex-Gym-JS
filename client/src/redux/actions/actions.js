@@ -29,6 +29,7 @@ import {
 	DELETE_PLAN,
 	POST_TRAINER,
 	POST_ACTIVITIES,
+	POST_PAYMENT_CASH,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -545,4 +546,24 @@ export const postActivity = (activity) => async (dispatch) => {
 	} catch (error) {
 		console.log(error);
 	}
+};
+
+export const putTestimonials = (id, data) => async (dispatch) => {
+	try {
+		const response = await axios.put(`/testimonials/${id}`, data);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postPaymentCash = (data) => async (dispatch) => {
+	try {
+		const response = await axios.post("/payments/cash", data);
+		console.log(response);
+		return dispatch({
+			type: POST_PAYMENT_CASH,
+			payload: data,
+		});
+	} catch (error) {}
 };
