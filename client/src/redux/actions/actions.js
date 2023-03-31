@@ -273,7 +273,7 @@ export const postClient = (client) => async (dispatch) => {
 	try {
 		const data = await axios.post('/clients', client);
 
-		await axios.post('/mail/sendmail', {
+		await axios.post('/mail/sendmail?type=REGISTER', {
 			to: client.mail,
 			title: 'Bienvenid@',
 			subject: 'Bienvenid@ a Complex',
@@ -282,10 +282,7 @@ export const postClient = (client) => async (dispatch) => {
 			},
 		});
 
-		return dispatch({
-			type: REGISTER,
-			payload: data,
-		});
+		return data;
 	} catch (error) {
 		console.log(error);
 	}
@@ -587,7 +584,7 @@ export const postPaymentCash = (data) => async (dispatch) => {
 
 export const sendMailReview = (client) => async (dispatch) => {
 	try {
-		const data = await axios.post('/mail/sendmail', {
+		const data = await axios.post('/mail/sendmail?type=REVIEW', {
 			to: client.mail,
 			title: 'Opinión',
 			subject: 'Danos tu opinión',
@@ -598,7 +595,7 @@ export const sendMailReview = (client) => async (dispatch) => {
 
 		return data;
 	} catch (error) {
-		// console.log(error);
+		console.log(error);
 	}
 };
 
