@@ -1,18 +1,18 @@
 import SideNav from "../SideNav";
 import { useDispatch, useSelector } from "react-redux";
 import PaymentCard from "./cards/PaymentCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { postPaymentCash } from "../../../redux/actions/actions";
 
 const Payments = () => {
 	const [data, setData] = useState({
 		clientId: "",
-		paymentsId: "",
-		paymentStatus: "",
-		paymentsAmount: "",
-		paymentsDate: "",
-		plansPayments: "",
+		// paymentsId: "",
+		// paymentStatus: "",
+		// paymentsAmount: "",
+		// paymentsDate: "",
+		// plansPayments: "",
 	});
-	const [flagSubmit, setFlagSubmit] = useState(false)
 
 	const { allPayments, initial_plans, allClients } = useSelector((s) => s);
 
@@ -32,38 +32,42 @@ const Payments = () => {
 	};
 
 	const handleChangePlan = (e) => {
-		setData({
-			...data,
-			plansPayments: e.target.value,
-		});
-
 		initial_plans.forEach((plan) => {
 			if (plan?.name === e.target.value) {
 				setData({
 					...data,
-					paymentsAmount: plan?.price,
+					// plansPayments: e.target.value,
+					// paymentsAmount: plan?.price
 				});
 			}
 		});
 	};
 
-	const max = 99999999999999
-	const min = 10000000000000
-
-	const handleSubmitPayment = (e) => {
+	const handleSubmitPayment = async (e) => {
 		e.preventDefault()
+
 		setData({
 			...data,
-			paymentsDate: new Date().toISOString(),
-			paymentStatus: "approved",
-			paymentsId: Math.round(Math.random() * (max - min) + min)
+			// paymentsDate: new Date().toISOString(),
+			// paymentStatus: "approved"
 		});
-		setFlagSubmit(prev=>!prev)
-	};
 
-	useEffect(()=>{
-		// dispatch(payment)
-	}, [flagSubmit])
+		let newData = {
+			...data,
+			paymentsDate: new Date().toISOString(),
+			paymentStatus: "approved"
+		};
+
+		console.log(newData);
+
+		dispatch(postPaymentCash(newData))
+
+		swal({
+			title: 'Gracias!',
+			text: '¡Información creada correctamente!',
+			icon: 'success',
+		});
+	};
 
 	return (
 		<div>
@@ -140,8 +144,9 @@ const Payments = () => {
 												className="flex w-full md:w-54
 											bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mr-0 md:mr-4"
 												onChange={handleChangeClient}
+												value={data.clientId}
 											>
-												<option>Seleccione un alumno...</option>
+												<option value="">Seleccione un alumno...</option>
 												{allClientsNames?.map((client) => {
 													return <option value={client?.id}>{client?.name}</option>;
 												})}
