@@ -30,6 +30,7 @@ import {
 	POST_TRAINER,
 	POST_ACTIVITIES,
 	DELETE_CALENDAR,
+	POST_PAYMENT_CASH,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -336,29 +337,31 @@ export const getAllPlans = () => {
 			let newData = {};
 
 			//*segmenting by 2 week, libre, etc
-			response?.data?.responseAll.forEach((el) => {
-				if (el?.name?.includes("2")) {
-					if (!newData["2 por semana"]) newData["2 por semana"] = [el];
-					else newData["2 por semana"] = [...newData["2 por semana"], el];
-				} else if (el.name.includes("Libre")) {
-					if (!newData["Libre"]) newData["Libre"] = [el];
-					else newData["Libre"] = [...newData["Libre"], el];
-				} else {
-					if (!newData["Otros"]) newData["Otros"] = [el];
-					else newData["Otros"] = [...newData["Otros"], el];
-				}
-			});
+			if (response.data) {
+				response?.data?.responseAll.forEach((el) => {
+					if (el?.name?.includes("2")) {
+						if (!newData["2 por semana"]) newData["2 por semana"] = [el];
+						else newData["2 por semana"] = [...newData["2 por semana"], el];
+					} else if (el.name.includes("Libre")) {
+						if (!newData["Libre"]) newData["Libre"] = [el];
+						else newData["Libre"] = [...newData["Libre"], el];
+					} else {
+						if (!newData["Otros"]) newData["Otros"] = [el];
+						else newData["Otros"] = [...newData["Otros"], el];
+					}
+				});
 
-			newData["Todos"] = response?.data?.responseAll;
+				newData["Todos"] = response?.data?.responseAll;
 
-			//*response
-			return dispatch({
-				type: GET_ALL_PLANS,
-				payload: {
-					separatedByCategory: newData,
-					allData: response.data.responseAll,
-				},
-			});
+				//*response
+				return dispatch({
+					type: GET_ALL_PLANS,
+					payload: {
+						separatedByCategory: newData,
+						allData: response.data.responseAll,
+					},
+				});
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -458,10 +461,12 @@ export const postPayment = (purchase) => async () => {
 export const getAllPayments = () => async (dispatch) => {
 	try {
 		const response = await axios.get("/payments");
-		return dispatch({
-			type: GET_ALL_PAYMENTS,
-			payload: response.data,
-		});
+		if (response.data) {
+			return dispatch({
+				type: GET_ALL_PAYMENTS,
+				payload: response.data,
+			});
+		}
 	} catch (error) {
 		console.log(error);
 	}
@@ -554,4 +559,24 @@ export const postActivity = (activity) => async (dispatch) => {
 	} catch (error) {
 		console.log(error);
 	}
+};
+
+export const putTestimonials = (id, data) => async (dispatch) => {
+	try {
+		const response = await axios.put(`/testimonials/${id}`, data);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postPaymentCash = (data) => async (dispatch) => {
+	try {
+		const response = await axios.post("/payments/cash", data);
+		console.log(response);
+		return dispatch({
+			type: POST_PAYMENT_CASH,
+			payload: data,
+		});
+	} catch (error) {}
 };

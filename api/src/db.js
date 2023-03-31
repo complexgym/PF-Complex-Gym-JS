@@ -14,6 +14,7 @@ const {
 	Plans,
 	Mercadopago,
 	CalendarDate,
+	PaymentsinCash,
 } = require("./models/index");
 
 // 5432
@@ -41,6 +42,7 @@ Testimonials(db);
 Plans(db);
 Mercadopago(db);
 CalendarDate(db);
+PaymentsinCash(db);
 
 const {
 	activities,
@@ -53,6 +55,7 @@ const {
 	plans,
 	mercadopago,
 	calendardate,
+	paymentsincash,
 } = db.models; // falta charlar con los chicos de front blog y memberships
 
 activities.belongsToMany(client, { through: "ActivitiesClient" });
