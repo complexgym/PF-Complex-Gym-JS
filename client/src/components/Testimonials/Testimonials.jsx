@@ -1,7 +1,8 @@
-import "../../styles/testimonials.css";
-import { useSelector } from "react-redux";
+import '../../styles/testimonials.css';
+import { useSelector } from 'react-redux';
 
 export default function Testimonials() {
+
   const { testimonials } = useSelector((s) => s);
 
   return (

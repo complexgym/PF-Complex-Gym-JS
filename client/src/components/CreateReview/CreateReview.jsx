@@ -14,8 +14,11 @@ const CreateReview = () => {
 	const [input, setInput] = useState({
 		name: '',
 		url: '',
-		text: '',
+		review: '',
+		rate: 1,
 	});
+
+	console.log(input.rate);
 
 	const [errors, setErrors] = useState({});
 
@@ -36,22 +39,22 @@ const CreateReview = () => {
 		e.preventDefault();
 		setErrors(ValidateRvw(input));
 		let error = ValidateRvw(input);
-		// if (Object.values(error).length !== 0) {
-		// 	swal({
-		// 		title: 'Faltan Información',
-		// 		text: `${error.name || error.text}`,
-		// 		icon: 'warning',
-		// 		dangerMode: true,
-		// 	});
-		// } else {
-		dispatch(postReview(input));
-		swal({
-			title: 'Gracias!',
-			text: '¡Opinión enviada con éxito!',
-			icon: 'success',
-		});
-		navigate(`/home`);
-		// }
+		if (Object.values(error).length !== 0) {
+			swal({
+				title: 'Faltan Información',
+				text: `${error.name || error.rate || error.review}`,
+				icon: 'warning',
+				dangerMode: true,
+			});
+		} else {
+			dispatch(postReview(input));
+			swal({
+				title: 'Gracias!',
+				text: '¡Opinión enviada con éxito!',
+				icon: 'success',
+			});
+			navigate(`/home`);
+		}
 	};
 
 	function handleUpload(url) {
@@ -90,11 +93,11 @@ const CreateReview = () => {
 											className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
 											onChange={handleChange}
 										/>
-										{/* {errors?.name && (
+										{errors?.name && (
 											<p className=' text-red-500'>
 												<i>{errors.name}</i>
 											</p>
-										)} */}
+										)}
 									</div>
 
 									{/* IMAGE */}
@@ -107,30 +110,55 @@ const CreateReview = () => {
 										/>
 									</div>
 
+									{/* RATE */}
+									<div className='col-span-6 sm:col-span-3'>
+										<label
+											htmlFor='rate'
+											className='block text-sm font-medium leading-6 text-gray-900'
+										>
+											Calificación
+										</label>
+										<input
+											type='range'
+											min={1}
+											max={5}
+											name='rate'
+											id='rate'
+											value={input.rate}
+											className=' indent-2 mt-2 w-[20vw] block py-1.5 text-gray-900 sm:text-sm sm:leading-6'
+											onChange={handleChange}
+										/>
+										{errors?.rate && (
+											<p className=' text-red-500'>
+												<i>{errors.rate}</i>
+											</p>
+										)}
+									</div>
+
 									{/* TEXT */}
 									<div>
 										<label
-											htmlFor='text'
+											htmlFor='review'
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
 											Opinión
 										</label>
 										<div className='mt-2'>
 											<textarea
-												id='input'
-												name='text'
-												value={input.text}
+												id='review'
+												name='review'
+												value={input.review}
 												rows={3}
 												className=' indent-2 mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:py-1.5 sm:text-sm sm:leading-6'
 												placeholder='Breve descripción de su perfil'
 												defaultValue={''}
 												onChange={handleChange}
 											/>
-											{/* {errors?.text && (
+											{errors?.review && (
 												<p className=' text-red-500'>
-													<i>{errors.text}</i>
+													<i>{errors.review}</i>
 												</p>
-											)} */}
+											)}
 										</div>
 									</div>
 								</div>
