@@ -44,6 +44,10 @@ const postNotification = require("./payments/postNotification")
 const postPayments = require("./payments/postPayments")
 const getAllPayments = require("./payments/getAllPayments")
 const getPaymentsById =require("./payments/getPaymentsById")
+const getAllPaymentsinCash = require("./paymentsincash/getAllPaymentsinCash")
+const getPaymentsinCashById = require("./paymentsincash/getPaymentsinCashById")
+const postPaymentsinCash = require("./paymentsincash/postPaymentsinCash")
+const getAllPaymen = require(`./payments/getAllPaymen`)
 // Plans
 const deletePlans = require("./plans/deletePlans")
 const getAllPlans = require("./plans/getAllPlans")
@@ -125,6 +129,10 @@ module.exports = {
     getPaymentsById,
     getFeedback,
     postNotification,
+    getAllPaymentsinCash,
+    getPaymentsinCashById,
+    postPaymentsinCash,
+    getAllPaymen,
     // Plans
     deletePlans,
     getAllPlans,

@@ -7,11 +7,16 @@ const {
 	postNotification,
 	getAllPayments,
 	getPaymentsById,
+	getAllPaymentsinCash,
+	getAllPaymentsInCashById,
+	postPaymentsinCash,
+	getAllPaymen,
+	getPaymentsinCashById,
 } = require("../controllers/index");
 
 router.get("/", async (req, res) => {
 	try {
-		const responseAll = await getAllPayments();
+		const responseAll = await getAllPaymen();
 		return res.status(200).send(responseAll);
 	} catch (error) {
 		res.status(400).send("Something went wrong");
@@ -20,11 +25,18 @@ router.get("/", async (req, res) => {
 
 router.post("/", postPayments);
 
+router.post("/cash",postPaymentsinCash)
+
 router.get("/:id", async (req, res) => {
 	const { id } = req.params;
 	try {
-		let clientid = await getPaymentsById(id);
-		return res.status(200).send(clientid);
+		if(id.length > 9){
+		let clientidmp = await getPaymentsById(id);
+		return res.status(200).send(clientidmp);
+	}else{
+		let clientidef = await getPaymentsinCashById(id);
+		return res.status(200).send(clientidef);
+	}		
 	} catch (error) {
 		res.status(400).send("Something went wrong");
 	}
