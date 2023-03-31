@@ -27,7 +27,7 @@ const putTestimonials = async (req, res) => {
             }
         })
 
-        res.status(200).send("Admin succesfully modificated")
+        res.status(200).send("Testimonial succesfully modificated")
         
     } catch (error) {
         res.status(400).send(error.message)
