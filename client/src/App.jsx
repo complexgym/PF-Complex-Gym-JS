@@ -103,12 +103,13 @@ function App() {
 
 	return (
 		<div className='App font-text'>
-			{boolAddComponent && <Navbar />}
-			<Routes>
-				<Route path={'/'} element={<Landing />} />
-				<Route path={'/home'} element={<Home user={user} />} />
-				{isLoaded ? (
-					<>
+			{isLoaded ? (
+				<>
+					{boolAddComponent && <Navbar />}
+
+					<Routes>
+						<Route path={'/'} element={<Landing />} />
+						<Route path={'/home'} element={<Home user={user} />} />
 						<Route path={'/nosotros'} element={<About />} />
 						<Route path={'/calendario'} element={<Calendar />} />
 						<Route path={'/blog'} element={<Blog />} />
@@ -131,14 +132,14 @@ function App() {
 							<Route path={'/dashboard/testimonios'} element={<AllTestimonials />} />
 							<Route path={'/dashboard/planes'} element={<AllPlans />} />
 						</Route>
-						<Route path={'/review'} element={<CreateReview />} />
 						<Route path={'*'} element={<Error404 />} />
-					</>
-				) : (
-					<Route path={'*'} element={<Loading />} />
-				)}
-			</Routes>
-			{boolAddComponent && <Footer />}
+					</Routes>
+
+					{boolAddComponent && <Footer />}
+				</>
+			) : (
+				<Loading />
+			)}
 		</div>
 	);
 }

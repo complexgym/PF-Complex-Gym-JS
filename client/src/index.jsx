@@ -29,7 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 						redirect_uri: window.location.origin,
 					}}
 					useRefreshTokens={ true }
-      				cacheLocation="localstorage" 
+      		cacheLocation="localstorage" 
 				>                 {/* storing user data in login */}
 					<App />
 				</Auth0Provider>
