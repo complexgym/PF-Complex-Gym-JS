@@ -92,9 +92,9 @@ const Trainers = () => {
 													</tr>
 												</thead>
 												<tbody>
-													{/* {trainers?.map((trainer) => {
+													{trainers?.map((trainer) => {
 														return <TrainersCard trainer={trainer} />;
-													})} */}
+													})}
 												</tbody>
 											</table>
 										</div>
