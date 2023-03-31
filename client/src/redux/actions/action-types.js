@@ -29,10 +29,12 @@ export const POST_PLANS = 'POST_PLANS';
 export const DELETE_PLAN = 'DELETE_PLAN';
 export const POST_REVIEW = 'POST_REVIEW';
 export const POST_ACTIVITIES = 'POST_ACTIVITIES';
+export const PUT_TESTIMONIALS = "PUT_TESTIMONIALS";
 
 //todo Calendario
 export const GET_CALENDAR = 'GET_CALENDAR';
 export const POST_CALENDAR = 'POST_CALENDAR';
+export const DELETE_CALENDAR = 'DELETE_CALENDAR';
 
 //todo ADMIN
 export const GET_ALL_ADMIN = 'GET_ALL_ADMIN';
@@ -42,6 +44,7 @@ export const REMOVE_ADMIN = 'REMOVE_ADMIN';
 //todo PAYMENTS
 export const GET_ALL_PAYMENTS = 'GET_ALL_PAYMENTS';
 export const POST_PAYMENT = 'POST_PAYMENT';
+export const POST_PAYMENT_CASH = 'POST_PAYMENT_CASH';
 
 //todo TRAINERS
 export const GET_TRAINERS = 'GET_TRAINERS';

@@ -92,9 +92,10 @@ const Trainers = () => {
 													</tr>
 												</thead>
 												<tbody>
-													{!trainers.error && trainers?.map((trainer) => {
-														return <TrainersCard trainer={trainer} />;
-													})}
+													{!trainers.error &&
+														trainers?.map((trainer) => {
+															return <TrainersCard trainer={trainer} />;
+														})}
 												</tbody>
 											</table>
 										</div>
