@@ -24,7 +24,10 @@ const TestimonyCard = ({ testimony }) => {
       ...review,
       fav: !review.fav,
     }));
-    dispatch(getAllTestimonials())
+    setTimeout(() => {
+      dispatch(getAllTestimonials());
+    }, 200);
+
   };
 
   return (
@@ -32,7 +35,7 @@ const TestimonyCard = ({ testimony }) => {
       {/* IMAGE */}
       <td className="px-2 py-3 pl-4 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
         <img
-          src={testimony?.url}
+          src={testimony?.url ? testimony?.url : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
           className="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
         />
       </td>
