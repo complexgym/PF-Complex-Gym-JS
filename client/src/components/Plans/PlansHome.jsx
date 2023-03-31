@@ -14,7 +14,7 @@ export default function PlansHome() {
 			</div>
 			<div className="absolute left-1/2 transform -translate-x-1/2 z-10 2xl:my-40 xl:my-16 lg:my-20 md:my-20 xs:my-16">
 				<Link to="/planes" className="">
-					<a className="text-white font-bold 2xl-max:text-5xl 2xl:text-5xl xl:text-4xl lg:text-5xl md:text-4xl xs:text-4xl">PLANES</a>
+					<a className="text-white font-text font-bold 2xl-max:text-5xl 2xl:text-5xl xl:text-4xl lg:text-5xl md:text-4xl xs:text-4xl">PLANES</a>
 				</Link>
 			</div>
 			<div

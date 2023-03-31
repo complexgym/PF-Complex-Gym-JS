@@ -54,7 +54,8 @@ export default function Calendar() {
 							return (
 								<h1
 									key={index}
-									className='text-sm h-7 w-7  md:h-14 md:w-14 grid place-content-end text-[#1d459d] select-none font-bold md:text-xl md:text-end md:ml-0 xl:ml-9 2xl-max:ml-3'
+									className='text-sm
+									h-7 w-7  md:h-14 md:w-14 grid place-content-end text-[#1d459d] select-none font-bold md:text-xl md:text-end md:ml-0 xl:ml-9 2xl-max:ml-3'
 								>
 									{day}
 								</h1>

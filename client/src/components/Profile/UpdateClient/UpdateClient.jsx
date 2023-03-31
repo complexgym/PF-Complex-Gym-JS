@@ -55,7 +55,6 @@ export default function UpdateClient() {
 			swal({
 				title: 'Faltan Información',
 				text: `${
-					error.mail ||
 					error.user ||
 					error.name ||
 					error.lastName ||
@@ -64,8 +63,7 @@ export default function UpdateClient() {
 					error.age ||
 					error.weight ||
 					error.height ||
-					error.address ||
-					error.city
+					error.address
 				}`,
 				icon: 'warning',
 				dangerMode: true,
@@ -139,6 +137,7 @@ export default function UpdateClient() {
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
 											Correo electrónico
+											<span className='text-red-500'>*</span>
 										</label>
 										<input
 											type='text'
@@ -232,6 +231,7 @@ export default function UpdateClient() {
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												Nombre
+												<span className='text-red-500'>*</span>
 											</label>
 											<input
 												type='text'
@@ -256,6 +256,7 @@ export default function UpdateClient() {
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												Apellido
+												<span className='text-red-500'>*</span>
 											</label>
 											<input
 												type='text'
@@ -280,6 +281,7 @@ export default function UpdateClient() {
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												Teléfono
+												<span className='text-red-500'>*</span>
 											</label>
 											<input
 												type='text'
@@ -305,6 +307,7 @@ export default function UpdateClient() {
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												DNI
+												<span className='text-red-500'>*</span>
 											</label>
 											<input
 												type='number'

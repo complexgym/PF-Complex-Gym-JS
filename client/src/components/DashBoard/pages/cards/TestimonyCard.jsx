@@ -21,15 +21,15 @@ const TestimonyCard = ({ testimony }) => {
 			{/* TEXT*/}
 			<td className='px-2 py-3 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<p className='mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60 capitalize'>
-					{testimony?.text.substr(0, 49)}...
+					{testimony?.review.substr(0, 49)}...
 				</p>
 			</td>
 
 			{/* FAV */}
 			<td className='px-2 py-3 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<p className='mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60 capitalize'>
-					{testimony?.name}
-				</p>
+			<button className={testimony?.fav ? 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  border-black border-2': 'bg-[#fcfcfc] hover:bg-[#8c8b8b] hover:text-black text-grey font-bold py-2 px-4 rounded border-[#8c8b8b] border-2'}>
+				{testimony?.fav ? "SI" : "NO"}
+			</button>
 			</td>
 		</tr>
 	);

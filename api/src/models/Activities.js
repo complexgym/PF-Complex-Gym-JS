@@ -17,11 +17,11 @@ const activities = (sequelize) => {
         },
         days: {
             type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: false,
+            allowNull: true,
         },
         schedule: {
             type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: false,
+            allowNull: true,
         },
         trainerId: {
             type: DataTypes.INTEGER,

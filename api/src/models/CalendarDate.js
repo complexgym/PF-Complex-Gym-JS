@@ -25,7 +25,7 @@ const calendarDate = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        class : {
+        classes : {
             type: DataTypes.STRING,
             allowNull: false
         },

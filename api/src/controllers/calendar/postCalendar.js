@@ -1,7 +1,7 @@
 const {calendardate} = require('../../db')
 /**
  * 
- * @param {{day:number, month:number, year:number, hour:string, class:string}} activitysClass 
+ * @param {{day:number, month:number, year:number, hour:string, description:string}} activitysClass 
  */
 const postCalendar = async (activitysClass)=>{
     try {

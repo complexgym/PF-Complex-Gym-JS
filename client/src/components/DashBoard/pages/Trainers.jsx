@@ -92,7 +92,7 @@ const Trainers = () => {
 													</tr>
 												</thead>
 												<tbody>
-													{trainers.map((trainer) => {
+													{!trainers.error && trainers?.map((trainer) => {
 														return <TrainersCard trainer={trainer} />;
 													})}
 												</tbody>
