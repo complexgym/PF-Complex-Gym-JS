@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SideNav from '../SideNav';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TrainersCard from './cards/TrainersCard';
 import CreateTrainner from './cards/CreateTrainer/CreateTrainner';
+import { getTrainers } from '../../../redux/actions/actions';
 
 const Trainers = () => {
+	const dispatch = useDispatch();
+
 	const trainers = useSelector((state) => state.trainers);
+
+	useEffect(() => {
+		dispatch(getTrainers());
+	}, []);
 	return (
 		<div>
 			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
