@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SideNav from '../SideNav';
-import { postCalendar } from '../../../redux/actions/actions';
+import { getCalendar, postCalendar } from '../../../redux/actions/actions';
 import ValidateCalendar from './ValidateCalendar';
 import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,6 +54,10 @@ const ClasesCalendar = () => {
 			});
 		}
 	};
+
+	useEffect(() => {
+		dispatch(getCalendar());
+	}, []);
 
 	return (
 		<div>

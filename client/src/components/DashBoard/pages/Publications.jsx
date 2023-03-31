@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SideNav from '../SideNav';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBlog } from '../../../redux/actions/actions';
+import { deleteBlog, getAllPosts } from '../../../redux/actions/actions';
 
 const Publications = () => {
+	const dispatch = useDispatch();
+
 	const { initial_posts, ig_posts } = useSelector((s) => s);
+
+	useEffect(() => {
+		dispatch(getAllPosts());
+	}, []);
 
 	return (
 		<div>
