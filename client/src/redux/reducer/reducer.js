@@ -197,9 +197,9 @@ const rootReducer = (state = initialState, action) => {
 			}
 		case POST_PAYMENT_CASH:
 			return {
-        ...state,
-        allPayments: [...state.allPayments, payload],
-      };
+				...state,
+				allPayments: [...state.allPayments, payload],
+			};
 		case GET_TRAINERS:
 			return {
 				...state,

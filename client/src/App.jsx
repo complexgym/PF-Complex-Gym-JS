@@ -66,7 +66,7 @@ function App() {
 
 		setTimeout(() => {
 			setIsLoaded(true);
-		}, [3000]);
+		}, [4500]);
 
 		// if (isAuthenticated && !hasRedirected) {
 		// 	navigate('/home');
@@ -106,10 +106,10 @@ function App() {
 		<div className="App font-text">
 			{boolAddComponent && <Navbar />}
 			<Routes>
-				<Route path={"/"} element={<Landing />} />
-				<Route path={"/home"} element={<Home />} />
 				{isLoaded ? (
 					<>
+						<Route path={"/"} element={<Landing />} />
+						<Route path={"/home"} element={<Home />} />
 						<Route path={"/nosotros"} element={<About />} />
 						<Route path={"/calendario"} element={<Calendar />} />
 						<Route path={"/blog"} element={<Blog />} />

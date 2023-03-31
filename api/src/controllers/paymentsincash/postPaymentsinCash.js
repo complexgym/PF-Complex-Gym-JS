@@ -1,14 +1,16 @@
-const {paymentsincash} = require("../../db")
+const { paymentsincash } = require("../../db");
 
-const postpaymentsincash = async({clientId,id,status,date_payments,total_amount,plans,order})=>{
-    const newpayments = await paymentsincash.create({
-        clientId:clientId,
-        paymentsStatus:status,
-        paymentsDate:date_payments,
-        paymentsAmount:total_amount,
-        plansPayments:plans,
+const postpaymentsincash = async (req, res) => {
+	const { clientId, id, status, date_payments, total_amount, plans, order } =
+		req.body;
+	const newpayments = await paymentsincash.create({
+		clientId: clientId,
+		paymentsStatus: status,
+		paymentsDate: date_payments,
+		paymentsAmount: total_amount,
+		plansPayments: plans,
 	});
-    return newpayments;
-}
+	return newpayments;
+};
 
-module.exports = postpaymentsincash
+module.exports = postpaymentsincash;
