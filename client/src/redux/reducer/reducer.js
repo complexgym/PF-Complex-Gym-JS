@@ -33,6 +33,7 @@ import {
 	POST_PAYMENT_CASH,
 	PUT_CALENDAR,
 	REVIEW,
+	DELETE_ACTIVITY,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -249,6 +250,13 @@ const rootReducer = (state = initialState, action) => {
 		case REVIEW:
 			return {
 				...state,
+			};
+			case DELETE_ACTIVITY:
+			return {
+				...state,
+				activities: state.activities.filter(
+					(activity) => activity.id !== payload
+				),
 			};
 		default:
 			return {

@@ -32,6 +32,7 @@ import {
 	DELETE_CALENDAR,
 	POST_PAYMENT_CASH,
 	REGISTER,
+	DELETE_ACTIVITY,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -599,4 +600,15 @@ export const sendMailReview = (client) => async (dispatch) => {
 	} catch (error) {
 		// console.log(error);
 	}
+};
+
+export const deleteActivity = (id) => async (dispatch) => {
+	try {
+		const response = await axios.delete(`/activities/${id}`);
+
+		return dispatch({
+			type: DELETE_ACTIVITY,
+			payload: id,
+		});
+	} catch (error) {}
 };
