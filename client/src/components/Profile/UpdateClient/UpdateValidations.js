@@ -2,7 +2,7 @@
 // const regexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/;
 const regexPhone = /^\+(?:\d[\-\s]?){8,14}\d$/;
-const regexDni = /^[0-9]{6,9}$/;
+const regexDni = /^[0-9]{6,10}$/;
 
 export default function Validate(input) {
 	let errors = {};
