@@ -31,7 +31,8 @@ import {
 	POST_ACTIVITIES,
 	DELETE_CALENDAR,
 	POST_PAYMENT_CASH,
-} from "../actions/action-types.js";
+	REVIEW,
+} from '../actions/action-types.js';
 
 const initialState = {
 	allClients: [],
@@ -40,10 +41,10 @@ const initialState = {
 	matched_posts: [],
 	ig_posts: [],
 	post_details: {},
-	search_blog: "",
+	search_blog: '',
 	filters_blog: {
-		tag: "",
-		date: "",
+		tag: '',
+		date: '',
 	},
 	testimonials: [],
 	activities: [],
@@ -156,7 +157,7 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				allCalendar: [...state.allCalendar, payload],
 			};
-			case DELETE_CALENDAR:
+		case DELETE_CALENDAR:
 			return {
 				...state,
 				allCalendar: state.allCalendar.filter((calendar) => calendar.id !== payload),
@@ -183,14 +184,12 @@ const rootReducer = (state = initialState, action) => {
 			if (!payload.error) {
 				const payments = payload
 					?.map((pay) => {
-						const find = state?.allClients.find(
-							(client) => client?.id === pay?.clientId
-						);
+						const find = state?.allClients.find((client) => client?.id === pay?.clientId);
 						if (find) {
 							const { name, lastName, picture } = find;
 							return {
 								...pay,
-								clientName: name + " " + lastName,
+								clientName: name + ' ' + lastName,
 								picture,
 							};
 						}
@@ -239,6 +238,10 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				activities: [...state.activities, payload],
+			};
+		case REVIEW:
+			return {
+				...state,
 			};
 		default:
 			return {

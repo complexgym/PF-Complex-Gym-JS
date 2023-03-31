@@ -19,6 +19,7 @@ export const GET_CLIENTS = 'GET_CLIENTS';
 export const GET_CLIENT_DETAIL = 'GET_CLIENT_DETAIL';
 export const POST_CLIENT = 'POST_CLIENT';
 export const UPDATE_CLIENT = 'UPDATE_CLIENT';
+export const REGISTER = 'REGISTER';
 
 //todo TESTIMONIALS, ACTIVITIES and PLANS
 export const GET_ALL_TESTIMONIALS = 'GET_ALL_TESTIMONIALS';
@@ -29,7 +30,8 @@ export const POST_PLANS = 'POST_PLANS';
 export const DELETE_PLAN = 'DELETE_PLAN';
 export const POST_REVIEW = 'POST_REVIEW';
 export const POST_ACTIVITIES = 'POST_ACTIVITIES';
-export const PUT_TESTIMONIALS = "PUT_TESTIMONIALS";
+export const PUT_TESTIMONIALS = 'PUT_TESTIMONIALS';
+export const REVIEW = 'REVIEW';
 
 //todo Calendario
 export const GET_CALENDAR = 'GET_CALENDAR';
