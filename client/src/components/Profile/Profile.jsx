@@ -1,9 +1,9 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getClientDetail } from "../../redux/actions/actions";
-import image from "../../assets/img/dumbelldBgd.jpg";
+import { useAuth0 } from '@auth0/auth0-react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getClientDetail } from '../../redux/actions/actions';
+import image from '../../assets/img/dumbelldBgd.jpg';
 
 export default function Profile() {
 	const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function Profile() {
 				</div>
 				<div
 					className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
-					style={{ transform: "translateZ(0px)" }}
+					style={{ transform: 'translateZ(0px)' }}
 				>
 					<svg
 						className="absolute bottom-0 overflow-hidden"
@@ -69,7 +69,7 @@ export default function Profile() {
 									</div>
 								</div>
 								<div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-									<div className="py-6 px-3 mt-32 sm:mt-0">
+									<div className="flex justify-end gap-1 py-6 px-3 mt-32 sm:mt-0">
 										<Link to={`/editar/${matchId}`}>
 											<button
 												className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
@@ -79,6 +79,12 @@ export default function Profile() {
 											</button>
 										</Link>
 										<br></br>
+										<button
+											class="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg  text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
+											type="button"
+										>
+											<i class="fa fa-trash-can text-xl"></i>
+										</button>
 									</div>
 								</div>
 								<div className="w-full lg:w-4/12 px-4 lg:order-1">
@@ -128,7 +134,7 @@ export default function Profile() {
 									{`${matchEmail?.city}, ${matchEmail?.region}`}
 								</div>
 								<div className="mb-2 text-blueGray-600 mt-10">
-									<i className="fas fa-solid fa-location-arrow mr-2 text-lg text-blueGray-400"></i>{" "}
+									<i className="fas fa-solid fa-location-arrow mr-2 text-lg text-blueGray-400"></i>{' '}
 									{matchEmail?.address}
 								</div>
 								<div className="mb-2 text-blueGray-600">
@@ -156,7 +162,9 @@ export default function Profile() {
 											Última Rutina
 										</a>
 									</div>
-								) : <p className="text-pink-500 underline">Usted no tiene ninguna rutina</p>}
+								) : (
+									<p className="text-pink-500 underline">Usted no tiene ninguna rutina</p>
+								)}
 							</div>
 						</div>
 					</div>
