@@ -14,6 +14,7 @@ import {
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
+	DELETE_CLIENT,
 	GET_CALENDAR,
 	POST_CALENDAR,
 	DELETE_BLOG,
@@ -122,6 +123,11 @@ const rootReducer = (state = initialState, action) => {
 		case POST_CLIENT:
 			return {
 				...state,
+			};
+		case DELETE_CLIENT:
+			return {
+			  ...state,
+			  allClients: state.allClients.filter((client) => client.id !== payload),
 			};
 		case POST_BLOG:
 			return {

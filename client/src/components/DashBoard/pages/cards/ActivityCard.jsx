@@ -1,6 +1,7 @@
 import React from 'react';
 import { deleteActivity} from '../../../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
+import ReadMoreButton from '../../../ReadMoreButton/ReadMoreButton';
 
 const ActivityCard = ({ activity }) => {
 	const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const ActivityCard = ({ activity }) => {
 			{/* DESCRIPTION */}
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
-					{activity?.description}
+					<ReadMoreButton text={activity?.description} maxChars={50} />
 				</span>
 			</td>
 

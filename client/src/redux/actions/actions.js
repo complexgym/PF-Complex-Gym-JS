@@ -9,6 +9,7 @@ import {
 	FILTER_POSTS,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
+	DELETE_CLIENT,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
@@ -305,6 +306,18 @@ export const putClient = (client, matchId) => async () => {
 		console.log(error);
 	}
 };
+
+export const deleteClient = (id) => async (dispatch) => {
+	try {
+	  await axios.delete(`/clients/${id}`);
+	  dispatch({
+		type: DELETE_CLIENT,
+		payload: id,
+	  });
+	} catch (error) {
+	  console.log(error);
+	}
+  };
 
 export const getAllTestimonials = () => {
 	return async function (dispatch) {
