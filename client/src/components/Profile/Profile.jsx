@@ -180,9 +180,6 @@ export default function Profile() {
 										</a>
 									</div>
 								</div>
-								) : (
-									<p className="text-pink-500 underline">Usted no tiene ninguna rutina</p>
-								)}
 							</div>
 						</div>
 					</div>

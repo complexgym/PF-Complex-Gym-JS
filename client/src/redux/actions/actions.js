@@ -35,15 +35,15 @@ import {
 	REGISTER,
 	DELETE_ACTIVITY,
 	DELETE_TRAINER,
-} from './action-types.js';
-import axios from 'axios';
+} from "./action-types.js";
+import axios from "axios";
 
 //*TODO posts
 
 export function getAllPosts() {
 	return async function (dispatch) {
 		try {
-			const response = await axios.get('/publications/all');
+			const response = await axios.get("/publications/all");
 			const blogPosts = response.data.filter((el) => !el.isInstagram);
 			const igPosts = response.data.filter((el) => el.isInstagram);
 
@@ -108,7 +108,9 @@ export function searchPosts({ tag, date }, title) {
 
 			//*date and search
 			if (date && !tag && search) {
-				response = await axios(`/publications/filters?date=${date}&title=${search}`);
+				response = await axios(
+					`/publications/filters?date=${date}&title=${search}`
+				);
 			}
 
 			//*date and tag
@@ -152,7 +154,7 @@ export function updateSearch(title) {
 export const postBlog = (data) => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.post('/publications', data);
+			const response = await axios.post("/publications", data);
 
 			return dispatch({
 				type: POST_BLOG,
@@ -208,7 +210,9 @@ export function filterPosts({ tag, date }, search) {
 			}
 			//*date and search
 			if (date && !tag && search) {
-				response = await axios(`/publications/filters?date=${date}&title=${search}`);
+				response = await axios(
+					`/publications/filters?date=${date}&title=${search}`
+				);
 			}
 			//*date, tag and search
 			if (date && tag && search) {
@@ -226,7 +230,9 @@ export function filterPosts({ tag, date }, search) {
 			} else {
 				return dispatch({
 					type: FILTER_POSTS,
-					payload: response?.data?.filteredPublication.filter((el) => !el.isInstagram),
+					payload: response?.data?.filteredPublication.filter(
+						(el) => !el.isInstagram
+					),
 				});
 			}
 		} catch (error) {
@@ -245,7 +251,7 @@ export const updateFilters = ({ tag, date }) => {
 //TODO clients
 export const getAllClients = () => async (dispatch) => {
 	try {
-		let response = await axios('/clients');
+		let response = await axios("/clients");
 
 		let data = response.data.responseAll;
 
@@ -273,12 +279,12 @@ export const getClientDetail = (id) => async (dispatch) => {
 
 export const postClient = (client) => async (dispatch) => {
 	try {
-		const data = await axios.post('/clients', client);
+		const data = await axios.post("/clients", client);
 
-		await axios.post('/mail/sendmail?type=REGISTER', {
+		await axios.post("/mail/sendmail?type=REGISTER", {
 			to: client.mail,
-			title: 'Bienvenid@',
-			subject: 'Bienvenid@ a Complex',
+			title: "Bienvenid@",
+			subject: "Bienvenid@ a Complex",
 			html: {
 				name: client.name,
 			},
@@ -302,7 +308,7 @@ export const putClient = (client, matchId) => async () => {
 export const getAllTestimonials = () => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.get('/testimonials');
+			const response = await axios.get("/testimonials");
 			return dispatch({
 				type: GET_ALL_TESTIMONIALS,
 				payload: response.data,
@@ -316,7 +322,7 @@ export const getAllTestimonials = () => {
 export const getAllActivities = () => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.get('/activities');
+			const response = await axios.get("/activities");
 			return dispatch({
 				type: GET_ALL_ACTIVITIES,
 				payload: response.data,
@@ -331,25 +337,25 @@ export const getAllPlans = () => {
 	return async function (dispatch) {
 		try {
 			//*response
-			const response = await axios.get('/plans');
+			const response = await axios.get("/plans");
 			let newData = {};
 
 			//*segmenting by 2 week, libre, etc
 			if (response.data) {
 				response?.data?.responseAll.forEach((el) => {
-					if (el?.name?.includes('2')) {
-						if (!newData['2 por semana']) newData['2 por semana'] = [el];
-						else newData['2 por semana'] = [...newData['2 por semana'], el];
-					} else if (el.name.includes('Libre')) {
-						if (!newData['Libre']) newData['Libre'] = [el];
-						else newData['Libre'] = [...newData['Libre'], el];
+					if (el?.name?.includes("2")) {
+						if (!newData["2 por semana"]) newData["2 por semana"] = [el];
+						else newData["2 por semana"] = [...newData["2 por semana"], el];
+					} else if (el.name.includes("Libre")) {
+						if (!newData["Libre"]) newData["Libre"] = [el];
+						else newData["Libre"] = [...newData["Libre"], el];
 					} else {
-						if (!newData['Otros']) newData['Otros'] = [el];
-						else newData['Otros'] = [...newData['Otros'], el];
+						if (!newData["Otros"]) newData["Otros"] = [el];
+						else newData["Otros"] = [...newData["Otros"], el];
 					}
 				});
 
-				newData['Todos'] = response?.data?.responseAll;
+				newData["Todos"] = response?.data?.responseAll;
 
 				//*response
 				return dispatch({
@@ -370,7 +376,7 @@ export const getAllPlans = () => {
 export const getCalendar = () => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.get('/calendar');
+			const response = await axios.get("/calendar");
 			return dispatch({
 				type: GET_CALENDAR,
 				payload: response.data,
@@ -383,7 +389,7 @@ export const getCalendar = () => {
 
 export const postCalendar = (calendar) => async (dispatch) => {
 	try {
-		const response = await axios.post('/calendar', calendar);
+		const response = await axios.post("/calendar", calendar);
 		return dispatch({
 			type: POST_CALENDAR,
 			payload: response.data,
@@ -416,7 +422,7 @@ export const putCalendar = (id, data) => async () => {
 export const getAllAdmin = () => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.get('/admin');
+			const response = await axios.get("/admin");
 			return dispatch({
 				type: GET_ALL_ADMIN,
 				payload: response.data,
@@ -430,7 +436,7 @@ export const getAllAdmin = () => {
 export const postAdmin = (data) => {
 	return async function (dispatch) {
 		try {
-			await axios.post('/admin', data);
+			await axios.post("/admin", data);
 			return dispatch({
 				type: POST_ADMIN,
 				payload: data,
@@ -457,7 +463,7 @@ export const removeAdmin = (id) => {
 
 export const postPayment = (purchase) => async () => {
 	try {
-		const response = await axios.post('/payments', purchase);
+		const response = await axios.post("/payments", purchase);
 		return response;
 	} catch (error) {
 		console.log(error);
@@ -522,7 +528,7 @@ export const getAllPayments = () => async (dispatch) => {
 
 export const getTrainers = () => async (dispatch) => {
 	try {
-		const response = await axios('/trainer');
+		const response = await axios("/trainer");
 
 		return dispatch({
 			type: GET_TRAINERS,
@@ -548,7 +554,7 @@ export const editPlans = (id, data) => async (dispatch) => {
 
 export const postPlans = (data) => async (dispatch) => {
 	try {
-		await axios.post('/plans', data);
+		await axios.post("/plans", data);
 
 		return dispatch({
 			type: POST_PLANS,
@@ -561,7 +567,7 @@ export const postPlans = (data) => async (dispatch) => {
 
 export const postReview = (review) => async () => {
 	try {
-		const data = await axios.post('/testimonials', review);
+		const data = await axios.post("/testimonials", review);
 
 		return dispatch({
 			type: POST_REVIEW,
@@ -574,7 +580,7 @@ export const postReview = (review) => async () => {
 
 export const postTrainer = (trainer) => async (dispatch) => {
 	try {
-		const data = await axios.post('/trainer', trainer);
+		const data = await axios.post("/trainer", trainer);
 
 		return dispatch({
 			type: POST_TRAINER,
@@ -598,7 +604,7 @@ export const deletePlan = (id) => async (dispatch) => {
 
 export const postActivity = (activity) => async (dispatch) => {
 	try {
-		const data = await axios.post('/activities', activity);
+		const data = await axios.post("/activities", activity);
 
 		return dispatch({
 			type: POST_ACTIVITIES,
@@ -620,7 +626,7 @@ export const putTestimonials = (id, data) => async () => {
 
 export const postPaymentCash = (data) => async (dispatch) => {
 	try {
-		const response = await axios.post('/payments/cash', data);
+		const response = await axios.post("/payments/cash", data);
 		return dispatch({
 			type: POST_PAYMENT_CASH,
 			payload: data,
@@ -633,17 +639,20 @@ export const getPaymentsByUser = (allPayments, id) => async (dispatch) => {
 		const filter = allPayments?.filter((d) => {
 			return d?.clientId === id;
 		});
-
 		return dispatch({
 			type: GET_PAYMENTS_BY_USER,
 			payload: filter,
 		});
+	} catch (error) {
+		console.log(error);
+	}
+};
 export const sendMailReview = (client) => async (dispatch) => {
 	try {
-		const data = await axios.post('/mail/sendmail?type=REVIEW', {
+		const data = await axios.post("/mail/sendmail?type=REVIEW", {
 			to: client.mail,
-			title: 'Opinión',
-			subject: 'Danos tu opinión',
+			title: "Opinión",
+			subject: "Danos tu opinión",
 			html: {
 				name: client.name,
 			},
