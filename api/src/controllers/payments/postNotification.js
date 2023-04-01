@@ -9,10 +9,9 @@ const axios = require("axios");
 const { payment } = require("mercadopago");
 //const {getPaymentValidation} = require("./getPaymentValidation")
 
-function sumarDias(fecha, dias){
-	fecha.setDate(fecha.getDate() + dias);
-	return fecha;
-  }
+const tiempoTranscurrido = Date.now();
+const hoy = new Date(tiempoTranscurrido);
+let fecha=hoy.toLocaleDateString()
 
 const postNotification = async (req, res) => {
 	var Payment;
@@ -23,7 +22,6 @@ const postNotification = async (req, res) => {
 			const paymentId = query.id || query["data.id"];
 			
 			Payment = await mercadopago.payment.findById(paymentId);
-			console.log(paymentId) 
 			let data = {
 				clientId: Payment.body.additional_info.items[0].category_id,
 				id: Payment.body.id,
@@ -38,6 +36,7 @@ const postNotification = async (req, res) => {
 				planName:Payment.body.description,
 				price:Payment.body.transaction_amount,
 				paymentId:Payment.body.id,
+				startDate:fecha,
 			}
 			postMercadoPago(data);
 			postMembershipsmp(membership);

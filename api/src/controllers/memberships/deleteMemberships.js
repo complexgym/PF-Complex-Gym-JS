@@ -3,7 +3,6 @@ const { memberships } = require("../../db")
 
 const deleteMemberships = async ({clientId}) => {
     try {
-        console.log(clientId)
         await memberships.destroy({
             where: {
                 clientId: clientId,
