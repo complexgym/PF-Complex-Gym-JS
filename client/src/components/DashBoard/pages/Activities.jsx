@@ -7,10 +7,6 @@ import CreateActivity from './cards/CreateActivity/CreateActivity';
 const Activities = () => {
 	const activities = useSelector((state) => state.activities);
 
-	const actMap = activities?.map((activity) => {
-		return <ActivityCard activity={activity} />;
-	});
-
 	return (
 		<div>
 			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>

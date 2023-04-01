@@ -2,7 +2,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getClientDetail, getPaymentsByUser } from "../../redux/actions/actions";
+import {
+	getAllPayments,
+	getClientDetail,
+	getPaymentsByUser,
+} from "../../redux/actions/actions";
 import image from "../../assets/img/dumbelldBgd.jpg";
 
 export default function Profile() {
@@ -18,7 +22,22 @@ export default function Profile() {
 
 	useEffect(() => {
 		dispatch(getClientDetail(matchId));
-	}, []);
+		// dispatch(getAllPayments());
+	}, [dispatch]);
+
+	// const { allPayments } = useSelector((state) => state);
+
+	// useEffect(() => {
+	// 	dispatch(getPaymentsByUser(allPayments, matchId));
+	// }, [dispatch, allPayments, matchId]);
+
+	const { payments_user } = useSelector((state) => state);
+
+	// if (payments_user) {
+	// 	var { plansPayments, finishedDate } = payments_user[payments_user.length - 1];
+	// }
+
+	// console.log(plansPayments, finishedDate);
 
 	return (
 		<div className="profile-page">
@@ -36,7 +55,7 @@ export default function Profile() {
 				</div>
 				<div
 					className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
-					style={{ transform: 'translateZ(0px)' }}
+					style={{ transform: "translateZ(0px)" }}
 				>
 					<svg
 						className="absolute bottom-0 overflow-hidden"
@@ -134,7 +153,7 @@ export default function Profile() {
 									{`${matchEmail?.city}, ${matchEmail?.region}`}
 								</div>
 								<div className="mb-2 text-blueGray-600 mt-10">
-									<i className="fas fa-solid fa-location-arrow mr-2 text-lg text-blueGray-400"></i>{' '}
+									<i className="fas fa-solid fa-location-arrow mr-2 text-lg text-blueGray-400"></i>{" "}
 									{matchEmail?.address}
 								</div>
 								<div className="mb-2 text-blueGray-600">
@@ -174,11 +193,17 @@ export default function Profile() {
 										<a
 											href={"/historialDePagos"}
 											className="bg-[#4c5259] active:bg-[#4c5259] uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-											
 										>
 											Historial de pagos
 										</a>
 									</div>
+								</div>
+
+								{/* plan */}
+								<div className="mt-8">
+									{/* <p>
+										Plan {plansPayments}, vence el {finishedDate}
+									</p> */}
 								</div>
 							</div>
 						</div>

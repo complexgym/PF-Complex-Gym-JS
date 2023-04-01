@@ -21,7 +21,6 @@ const Clients = () => {
 		return { name: client?.name + ' ' + client?.lastName, id: client?.id };
 	});
 
-	console.log(newPdf);
 	const split = newPdf.split('.');
 	const fileExtension = split[split.length - 1];
 
