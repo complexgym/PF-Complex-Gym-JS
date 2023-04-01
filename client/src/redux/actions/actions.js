@@ -31,6 +31,7 @@ import {
 	POST_ACTIVITIES,
 	DELETE_CALENDAR,
 	POST_PAYMENT_CASH,
+	GET_PAYMENTS_BY_USER,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -460,9 +461,54 @@ export const postPayment = (purchase) => async () => {
 export const getAllPayments = () => async (dispatch) => {
 	try {
 		const response = await axios.get("/payments");
+		let map = response?.data?.map((d) => {
+			const date = new Date(d?.paymentsDate);
+
+			/* payment date*/
+			const startDate =
+				date.getDate() +
+				"/" +
+				Number(date.getMonth() + 1) +
+				"/" +
+				date.getFullYear();
+
+			/* finished plan date */
+			let finishedDate =
+				date.getDate() +
+				"/" +
+				Number(date.getMonth() + 2) +
+				"/" +
+				date.getFullYear();
+
+			/* time of payment */
+			let hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+			let minutes =
+				date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+			let time = hours + ":" + minutes;
+
+			const {
+				clientId,
+				paymentsId,
+				paymentsStatus,
+				plansPayments,
+				paymentsAmount,
+			} = d;
+
+			return {
+				clientId,
+				paymentsId,
+				paymentsStatus,
+				plansPayments,
+				paymentsAmount,
+				paymentsDate: startDate,
+				hour: time,
+				finishedDate,
+			};
+		});
+
 		return dispatch({
 			type: GET_ALL_PAYMENTS,
-			payload: response.data,
+			payload: map,
 		});
 	} catch (error) {
 		console.log(error);
@@ -575,4 +621,19 @@ export const postPaymentCash = (data) => async (dispatch) => {
 			payload: data,
 		});
 	} catch (error) {}
+};
+
+export const getPaymentsByUser = (allPayments, id) => async (dispatch) => {
+	try {
+		const filter = allPayments?.filter((d) => {
+			return d?.clientId === id;
+		});
+
+		return dispatch({
+			type: GET_PAYMENTS_BY_USER,
+			payload: filter,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };

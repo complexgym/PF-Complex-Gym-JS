@@ -31,6 +31,7 @@ import {
 	POST_ACTIVITIES,
 	DELETE_CALENDAR,
 	POST_PAYMENT_CASH,
+	GET_PAYMENTS_BY_USER,
 } from "../actions/action-types.js";
 
 const initialState = {
@@ -53,6 +54,7 @@ const initialState = {
 	trainers: [],
 	plans: [],
 	initial_plans: [],
+	payments_user: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -241,6 +243,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				activities: [...state.activities, payload],
+			};
+		case GET_PAYMENTS_BY_USER:
+			return {
+				...state,
+				payments_user: payload,
 			};
 		default:
 			return {

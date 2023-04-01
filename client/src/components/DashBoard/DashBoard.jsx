@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SideNav from './SideNav';
 import {
 	getAllClients,
+	getAllPayments,
 	getAllPosts,
 	getCalendar,
 	getTrainers,
@@ -38,6 +39,7 @@ const DashBoard = () => {
 		dispatch(getTrainers());
 		dispatch(getCalendar());
 		dispatch(getAllPosts());
+		dispatch(getAllPayments())
 	}, []);
 
 	return (

@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getClientDetail } from "../../redux/actions/actions";
+import { getClientDetail, getPaymentsByUser } from "../../redux/actions/actions";
 import image from "../../assets/img/dumbelldBgd.jpg";
 
 export default function Profile() {
@@ -10,9 +10,9 @@ export default function Profile() {
 
 	const { user } = useAuth0();
 
-	const allClient = useSelector((state) => state.allClients);
+	const { allClients } = useSelector((state) => state);
 
-	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
 	const matchId = matchEmail && matchEmail.id;
 
@@ -146,17 +146,34 @@ export default function Profile() {
 								</div>
 
 								{/* showing or not routine */}
-								{matchEmail?.routine ? (
+								<div className="flex justify-center mt-4">
+									{matchEmail?.routine ? (
+										<div>
+											<a
+												href={matchEmail?.routine}
+												className="bg-[#4c5259] active:bg-[#4c5259] uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 "
+												target="_blank"
+											>
+												Última Rutina
+											</a>
+										</div>
+									) : (
+										<p className="text-pink-500 underline">
+											Usted no tiene ninguna rutina
+										</p>
+									)}
+
+									{/* showing payment history */}
 									<div>
 										<a
-											href={matchEmail?.routine}
-											className="bg-[#4c5259] active:bg-[#4c5259] uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 "
-											target="_blank"
+											href={"/historialDePagos"}
+											className="bg-[#4c5259] active:bg-[#4c5259] uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+											
 										>
-											Última Rutina
+											Historial de pagos
 										</a>
 									</div>
-								) : <p className="text-pink-500 underline">Usted no tiene ninguna rutina</p>}
+								</div>
 							</div>
 						</div>
 					</div>
