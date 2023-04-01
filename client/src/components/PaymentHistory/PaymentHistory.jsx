@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPayments, getPaymentsByUser } from "../../redux/actions/actions";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function PaymentHistory() {
 	const dispatch = useDispatch();
@@ -17,20 +17,21 @@ export default function PaymentHistory() {
 	const matchId = matchEmail && matchEmail.id;
 
 	useEffect(() => {
-		dispatch(getAllPayments());
+		// dispatch(getAllPayments());
 
 		setTimeout(() => {
 			setIsLoaded(true);
 		}, [2000]);
 	}, [dispatch]);
 
-	const { allPayments } = useSelector((state) => state);
+	// const { allPayments } = useSelector((state) => state);
 
-	useEffect(() => {
-		dispatch(getPaymentsByUser(allPayments, matchId));
-	}, [dispatch, allPayments, matchId]);
+	// useEffect(() => {
+	// 	dispatch(getPaymentsByUser(allPayments, matchId));
+	// }, [dispatch, allPayments, matchId]);
 
 	const { payments_user } = useSelector((state) => state);
+	console.log(payments_user);
 
 	return (
 		<div className="my-12 min-h-[60vh] w-full justify-center items-center">
@@ -49,18 +50,18 @@ export default function PaymentHistory() {
 					>
 						<thead className="align-bottom">
 							<tr>
-								<th className="px-6 text-center py-3 pl-2 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xxs md:text-lg">
+								<th className="px-6 text-center py-3 pl-2 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xs md:text-lg">
 									Plan
 								</th>
-								<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xxs md:text-lg">
+								<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xs md:text-lg">
 									Pago
 								</th>
 
-								<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xxs md:text-lg">
+								<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 text-xs md:text-lg">
 									Fecha
 								</th>
 
-								<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowraptext-slate-400 opacity-70 text-xxs md:text-lg">
+								<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowraptext-slate-400 opacity-70 text-xs md:text-lg">
 									Fin plan
 								</th>
 							</tr>
@@ -68,30 +69,30 @@ export default function PaymentHistory() {
 						<tbody>
 							{payments_user?.map((pay, index) => {
 								return (
-									<tr key={index}>
+									<tr key={index} className="font-text">
 										{/* payments name */}
 										<td className="py-3">
-											<p className="mb-0 text-center text-xxs md:text-lg leading-tight dark:text-white dark:opacity-80">
+											<p className="mb-0 text-center text-xs md:text-lg leading-tight dark:text-white dark:opacity-80">
 												{pay?.plansPayments}
 											</p>
 										</td>
 
 										{/* payments price */}
 										<td>
-											<p className="mb-0 text-center text-xxs md:text-lg leading-tight dark:text-white dark:opacity-80">
+											<p className="mb-0 text-center text-xs md:text-lg leading-tight dark:text-white dark:opacity-80">
 												${pay?.paymentsAmount}
 											</p>
 										</td>
 
 										{/* payments date */}
 										<td>
-											<p className="mb-0 text-center text-xxs md:text-lg leading-tight dark:text-white dark:opacity-80">
+											<p className="mb-0 text-center text-xs md:text-lg leading-tight dark:text-white dark:opacity-80">
 												{pay?.paymentsDate ? pay?.paymentsDate : "No se sabe"}
 											</p>
 										</td>
 
 										{/* plan's end */}
-										<td className="mb-0 text-center text-xxs md:text-lg leading-tight dark:text-white dark:opacity-80">
+										<td className="mb-0 text-center text-xs md:text-lg leading-tight dark:text-white dark:opacity-80">
 											{pay?.finishedDate ? pay?.finishedDate : "No se sabe"}
 										</td>
 									</tr>
@@ -107,6 +108,15 @@ export default function PaymentHistory() {
 					<LoadingPayment />
 				</div>
 			)}
+
+			<div className="flex justify-center mt-8">
+				<Link
+					to={`/perfil/${matchId}`}
+					className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
+				>
+					Volver
+				</Link>
+			</div>
 		</div>
 	);
 }
