@@ -47,9 +47,9 @@ const PaymentCard = ({ payment, clientName }) => {
 				{payment?.finishedDate ? payment?.finishedDate : "No se sabe"}
 			</td>
 
-			{/* delete */}	
+			{/* delete, only in cash payments */}	
 			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				{payment?.paymentsId?.toString()?.length < 9
+				{payment?.paymentsId?.toString()?.length < 10
 				&& <button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
 					<img
 						src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679368276/test_complex/gas3ewhonfe4sqiqcqyy.png"
