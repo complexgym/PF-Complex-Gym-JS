@@ -9,7 +9,7 @@ import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import Plans from './components/Plans/Plans';
 import Profile from './components/Profile/Profile';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -22,6 +22,7 @@ import {
 	getCalendar,
 	getAllPayments,
 	getTrainers,
+	getPaymentsByUser,
 } from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
@@ -53,6 +54,12 @@ function App() {
 	const { user, isAuthenticated } = useAuth0();
 	const [isLoaded, setIsLoaded] = useState(false);
 
+	const { allClients } = useSelector((state) => state);
+
+	let matchEmail = user && allClients.find((m) => m.mail === user.email);
+
+	const matchId = matchEmail && matchEmail.id;
+
 	useEffect(() => {
 		// dispatch(getAllClients());
 		dispatch(getAllActivities());
@@ -61,6 +68,7 @@ function App() {
 		dispatch(getAllTestimonials());
 		// dispatch(getAllPosts());
 		dispatch(getAllAdmin());
+		dispatch(getAllPayments());
 
 		setTimeout(() => {
 			setIsLoaded(true);
@@ -71,6 +79,23 @@ function App() {
 		// 	setHasRedirected(true);
 		// }
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
+
+	const { allPayments } = useSelector((state) => state);
+
+	useEffect(() => {
+		dispatch(getPaymentsByUser(matchId));
+	}, [dispatch, allPayments, matchId]);
+
+	const {payments_user} = useSelector((state) => state);
+
+	
+
+	// console.log(new Date() > startDate && new Date < endDate);
+	// if (new Date() > startDate && new Date() < endDate) {
+	// 	console.log('✅ date is between the 2 dates');
+	// } else {
+	// 	console.log('⛔️ date is not in the range');
+	// }
 
 	const { pathname } = location;
 

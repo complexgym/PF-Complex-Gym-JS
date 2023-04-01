@@ -36,6 +36,7 @@ import {
 	REGISTER,
 	DELETE_ACTIVITY,
 	DELETE_TRAINER,
+	GET_ACTUAL_PLAN,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -486,6 +487,7 @@ export const postPayment = (purchase) => async () => {
 export const getAllPayments = () => async (dispatch) => {
 	try {
 		const response = await axios.get("/payments");
+
 		let map = response?.data?.map((d) => {
 			const date = new Date(d?.paymentsDate);
 
@@ -504,6 +506,9 @@ export const getAllPayments = () => async (dispatch) => {
 				Number(date.getMonth() + 2) +
 				"/" +
 				date.getFullYear();
+
+			const date2 = date;
+			date2.setMonth(date.getMonth() + 1);
 
 			/* time of payment */
 			let hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
@@ -528,8 +533,11 @@ export const getAllPayments = () => async (dispatch) => {
 				paymentsDate: startDate,
 				hour: time,
 				finishedDate,
+				paymentsDateStamp: d?.paymentsDate,
+				finishedDateStamp: date2,
 			};
 		});
+
 		return dispatch({
 			type: GET_ALL_PAYMENTS,
 			payload: map,
@@ -647,14 +655,14 @@ export const postPaymentCash = (data) => async (dispatch) => {
 	} catch (error) {}
 };
 
-export const getPaymentsByUser = (allPayments, id) => async (dispatch) => {
+export const getPaymentsByUser = (id) => async (dispatch) => {
 	try {
-		const filter = allPayments?.filter((d) => {
-			return d?.clientId === id;
-		});
+		// const filter = allPayments?.filter((d) => {
+		// 	return d?.clientId === id;
+		// });
 		return dispatch({
 			type: GET_PAYMENTS_BY_USER,
-			payload: filter,
+			payload: id,
 		});
 	} catch (error) {
 		console.log(error);
@@ -697,4 +705,10 @@ export const deleteTrainer = (id) => async (dispatch) => {
 			payload: id,
 		});
 	} catch (error) {}
+};
+
+export const getActualPlan = () => {
+	return {
+		type: GET_ACTUAL_PLAN,
+	};
 };

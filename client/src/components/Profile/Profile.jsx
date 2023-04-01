@@ -1,11 +1,15 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { getClientDetail, deleteClient } from '../../redux/actions/actions';
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import {
+	getAllPayments,
+	getClientDetail,
+	getPaymentsByUser,
+  deleteClient
+} from "../../redux/actions/actions";
 import image from '../../assets/img/dumbelldBgd.jpg';
 import swal from 'sweetalert';
-
 
 export default function Profile() {
 	const dispatch = useDispatch();
@@ -22,7 +26,22 @@ export default function Profile() {
 
 	useEffect(() => {
 		dispatch(getClientDetail(matchId));
-	}, []);
+		// dispatch(getAllPayments());
+	}, [dispatch]);
+
+	// const { allPayments } = useSelector((state) => state);
+
+	// useEffect(() => {
+	// 	dispatch(getPaymentsByUser(allPayments, matchId));
+	// }, [dispatch, allPayments, matchId]);
+
+	const { payments_user } = useSelector((state) => state);
+
+	// if (payments_user) {
+	// 	var { plansPayments, finishedDate } = payments_user[payments_user.length - 1];
+	// }
+
+	// console.log(plansPayments, finishedDate);
 
 	const handleClick = () => {
 		swal({
@@ -69,7 +88,7 @@ export default function Profile() {
 				</div>
 				<div
 					className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
-					style={{ transform: 'translateZ(0px)' }}
+					style={{ transform: "translateZ(0px)" }}
 				>
 					<svg
 						className="absolute bottom-0 overflow-hidden"
@@ -168,7 +187,7 @@ export default function Profile() {
 									{`${matchEmail?.city}, ${matchEmail?.region}`}
 								</div>
 								<div className="mb-2 text-blueGray-600 mt-10">
-									<i className="fas fa-solid fa-location-arrow mr-2 text-lg text-blueGray-400"></i>{' '}
+									<i className="fas fa-solid fa-location-arrow mr-2 text-lg text-blueGray-400"></i>{" "}
 									{matchEmail?.address}
 								</div>
 								<div className="mb-2 text-blueGray-600">
@@ -211,10 +230,18 @@ export default function Profile() {
 									{/* showing payment history */}
 									<div>
 										<button	className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
+
 										>
 										<a href={"/historialDePagos"}>Historial de pagos</a>
 										</button>
 									</div>
+								</div>
+
+								{/* plan */}
+								<div className="mt-8">
+									{/* <p>
+										Plan {plansPayments}, vence el {finishedDate}
+									</p> */}
 								</div>
 							</div>
 						</div>

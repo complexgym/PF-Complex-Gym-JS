@@ -1,11 +1,11 @@
-const PaymentCard = ({ payment }) => {
+const PaymentCard = ({ payment, clientName }) => {
 	return (
 		<tr>
 			{/* client name/id */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				{/* {payment.picture && <img src={payment?.picture} alt="profile image"/>} */}
 				<p className='mb-0 text-center text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
-					{payment?.clientName}
+					{clientName}
 				</p>
 			</td>
 		

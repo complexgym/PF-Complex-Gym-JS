@@ -23,6 +23,8 @@ const Payments = () => {
 		return { name: client?.name + ' ' + client?.lastName, id: client?.id };
 	});
 
+	console.log(allClientsNames);
+
 	const handleChangeClient = (e) => {
 		setData({
 			...data,
@@ -193,7 +195,11 @@ const Payments = () => {
 												</thead>
 												<tbody>
 													{allPayments?.map((payment) => {
-														return <PaymentCard payment={payment} />;
+														let clientName = allClientsNames.find(el=>{
+															return el?.id === payment?.clientId
+														})
+
+														return <PaymentCard payment={payment} clientName={clientName.name}/>;
 													})}
 												</tbody>
 											</table>

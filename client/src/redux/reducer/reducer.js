@@ -37,7 +37,8 @@ import {
 	REVIEW,
 	DELETE_ACTIVITY,
 	DELETE_TRAINER,
-} from '../actions/action-types.js';
+	GET_ACTUAL_PLAN,
+} from "../actions/action-types.js";
 
 const initialState = {
 	allClients: [],
@@ -46,10 +47,10 @@ const initialState = {
 	matched_posts: [],
 	ig_posts: [],
 	post_details: {},
-	search_blog: '',
+	search_blog: "",
 	filters_blog: {
-		tag: '',
-		date: '',
+		tag: "",
+		date: "",
 	},
 	testimonials: [],
 	activities: [],
@@ -60,6 +61,7 @@ const initialState = {
 	plans: [],
 	initial_plans: [],
 	payments_user: [],
+	actual_plan: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -175,7 +177,7 @@ const rootReducer = (state = initialState, action) => {
 					(calendar) => calendar.id !== payload
 				),
 			};
-			case PUT_CALENDAR:
+		case PUT_CALENDAR:
 			return {
 				...state,
 			};
@@ -199,22 +201,11 @@ const rootReducer = (state = initialState, action) => {
 			};
 		case GET_ALL_PAYMENTS:
 			if (!payload.error) {
-				const payments = payload
-					?.map((pay) => {
-						const find = state?.allClients.find((client) => client?.id === pay?.clientId);
-						if (find) {
-							const { name, lastName, picture } = find;
-							return {
-								...pay,
-								clientName: name + ' ' + lastName,
-								picture,
-							};
-						}
-					})
-					?.sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
 				return {
 					...state,
-					allPayments: payments,
+					allPayments: payload?.sort((a, b) =>
+						a?.clientId?.localeCompare(b?.clientId)
+					),
 				};
 			}
 		case POST_PAYMENT_CASH:
@@ -259,25 +250,32 @@ const rootReducer = (state = initialState, action) => {
 		case GET_PAYMENTS_BY_USER:
 			return {
 				...state,
-				payments_user: payload,
+				payments_user: state?.allPayments?.filter((d) => {
+					return d?.clientId === payload;
+				}),
 			};
+		case GET_ACTUAL_PLAN:
+			// const lastPay = payments_user?.[payments_user.length - 1];
+			// if (lastPay) {
+			// 	let { paymentsDateStamp, finishedDateStamp } = lastPay;
+			// 	let today = new Date();
+			// 	let start = new Date(paymentsDateStamp);
+			// 	let end = new Date(finishedDateStamp);
+			// 	console.log(today > start && today < end);
+			// }
 		case REVIEW:
 			return {
 				...state,
 			};
-			case DELETE_ACTIVITY:
+		case DELETE_ACTIVITY:
 			return {
 				...state,
-				activities: state.activities.filter(
-					(activity) => activity.id !== payload
-				),
+				activities: state.activities.filter((activity) => activity.id !== payload),
 			};
-			case DELETE_TRAINER:
+		case DELETE_TRAINER:
 			return {
 				...state,
-				trainers: state.trainers.filter(
-					(trainer) => trainer.id !== payload
-				),
+				trainers: state.trainers.filter((trainer) => trainer.id !== payload),
 			};
 		default:
 			return {
