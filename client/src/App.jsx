@@ -43,6 +43,7 @@ import AllTestimonials from './components/DashBoard/pages/AllTestimonials';
 import AllPlans from './components/DashBoard/pages/AllPlans';
 import CreateReview from './components/CreateReview/CreateReview';
 import PaymentHistory from "./components/PaymentHistory/PaymentHistory";
+import { getActualPlan } from './redux/actions/actions';
 axios.defaults.baseURL = 'http://localhost:3001';
 // axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
@@ -84,11 +85,8 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getPaymentsByUser(matchId));
+		dispatch(getActualPlan())
 	}, [dispatch, allPayments, matchId]);
-
-	const {payments_user} = useSelector((state) => state);
-
-	
 
 	// console.log(new Date() > startDate && new Date < endDate);
 	// if (new Date() > startDate && new Date() < endDate) {

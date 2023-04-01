@@ -6,10 +6,10 @@ import {
 	getAllPayments,
 	getClientDetail,
 	getPaymentsByUser,
-  deleteClient
+	deleteClient,
 } from "../../redux/actions/actions";
-import image from '../../assets/img/dumbelldBgd.jpg';
-import swal from 'sweetalert';
+import image from "../../assets/img/dumbelldBgd.jpg";
+import swal from "sweetalert";
 
 export default function Profile() {
 	const dispatch = useDispatch();
@@ -26,43 +26,34 @@ export default function Profile() {
 
 	useEffect(() => {
 		dispatch(getClientDetail(matchId));
-		// dispatch(getAllPayments());
 	}, [dispatch]);
-
-	// const { allPayments } = useSelector((state) => state);
-
-	// useEffect(() => {
-	// 	dispatch(getPaymentsByUser(allPayments, matchId));
-	// }, [dispatch, allPayments, matchId]);
 
 	const { payments_user } = useSelector((state) => state);
 
-	// if (payments_user) {
-	// 	var { plansPayments, finishedDate } = payments_user[payments_user.length - 1];
-	// }
-
-	// console.log(plansPayments, finishedDate);
-
 	const handleClick = () => {
 		swal({
-		  title: "Querés desactivar tu cuenta?",
-		  text: "Si es así, click en Ok",
-		  icon: "warning",
-		  buttons: true,
-		  dangerMode: true,
+			title: "Querés desactivar tu cuenta?",
+			text: "Si es así, click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
 		}).then((result) => {
-		  if (result) {
-			dispatch(deleteClient(matchId));
-			swal({
-				title:"Cuenta desactivada!",
-				icon: "success"
-			});
-			navigate(`/home`);
-		  } else {
-			swal("Gracias por quedarte!", "Te falta una repe!", "info");
-		  }
+			if (result) {
+				dispatch(deleteClient(matchId));
+				swal({
+					title: "Cuenta desactivada!",
+					icon: "success",
+				});
+				navigate(`/home`);
+			} else {
+				swal("Gracias por quedarte!", "Te falta una repe!", "info");
+			}
 		});
-	  };
+	};
+
+	const { actual_plan } = useSelector((state) => state);
+
+	console.log(actual_plan);
 
 	const handleNoPdf = (e) => {
 		swal({
@@ -239,9 +230,9 @@ export default function Profile() {
 
 								{/* plan */}
 								<div className="mt-8">
-									{/* <p>
-										Plan {plansPayments}, vence el {finishedDate}
-									</p> */}
+									<p>
+										Plan {actual_plan?.plansPayments}, vence el {actual_plan?.finishedDate}
+									</p>
 								</div>
 							</div>
 						</div>
