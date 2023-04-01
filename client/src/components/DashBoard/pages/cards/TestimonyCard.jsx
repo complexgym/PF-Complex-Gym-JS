@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllTestimonials, putTestimonials } from "../../../../redux/actions/actions";
+import ReadMoreButton from "../../../ReadMoreButton/ReadMoreButton";
 
 const TestimonyCard = ({ testimony }) => {
 
@@ -50,7 +51,7 @@ const TestimonyCard = ({ testimony }) => {
       {/* TEXT*/}
       <td className="px-2 py-3 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
         <p className="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60 capitalize">
-          {testimony?.review.substr(0, 49)}...
+        <ReadMoreButton text={testimony?.review} maxChars={20} />
         </p>
       </td>
 
