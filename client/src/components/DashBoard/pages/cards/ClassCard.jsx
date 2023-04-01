@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
 	deleteCalendar,
 	getCalendar,
 	putCalendar,
-} from "../../../../redux/actions/actions";
+} from '../../../../redux/actions/actions';
 
 const ClassCard = ({ calendar }) => {
 	const dispatch = useDispatch();
@@ -41,25 +41,27 @@ const ClassCard = ({ calendar }) => {
 			);
 			dispatch(getCalendar());
 			swal({
-				title: "Gracias!",
-				text: "¡Información editada correctamente!",
-				icon: "success",
+				title: 'Gracias!',
+				text: '¡Información editada correctamente!',
+				icon: 'success',
 			});
 		} else {
 			swal({
-				title: "Atención",
-				text: "¡Debe editar al menos un campo!",
-				icon: "warning",
+				title: 'Atención',
+				text: '¡Debe editar al menos un campo!',
+				icon: 'warning',
 			});
 		}
 	};
 
 	return (
 		<tr>
-			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
+			<td className='w-48 p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				<p className='w-48 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
 					<input
-						className={`border-none font-normal ${!editable && "text-gray-500"}`}
+						className={`border-none font-normal w-48 text-center ${
+							!editable && 'text-gray-500'
+						}`}
 						name='classes'
 						onChange={handleChange}
 						type='text'
@@ -68,10 +70,12 @@ const ClassCard = ({ calendar }) => {
 					></input>
 				</p>
 			</td>
-			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
+			<td className='w-48 p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				<p className='w-48 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
 					<input
-						className={`border-none font-normal ${!editable && "text-gray-500"}`}
+						className={`border-none font-normal w-48 text-center ${
+							!editable && 'text-gray-500'
+						}`}
 						name='day'
 						onChange={handleChange}
 						type='text'
@@ -80,10 +84,12 @@ const ClassCard = ({ calendar }) => {
 					></input>
 				</p>
 			</td>
-			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
+			<td className='w-48 p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				<p className='w-48 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
 					<input
-						className={`border-none font-normal ${!editable && "text-gray-500"}`}
+						className={`border-none font-normal w-48 text-center ${
+							!editable && 'text-gray-500'
+						}`}
 						name='month'
 						onChange={handleChange}
 						type='text'
@@ -92,10 +98,12 @@ const ClassCard = ({ calendar }) => {
 					></input>
 				</p>
 			</td>
-			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
+			<td className='w-48 p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				<p className='w-48 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
 					<input
-						className={`border-none font-normal ${!editable && "text-gray-500"}`}
+						className={`border-none font-normal w-48 text-center ${
+							!editable && 'text-gray-500'
+						}`}
 						name='year'
 						onChange={handleChange}
 						type='text'
@@ -105,10 +113,12 @@ const ClassCard = ({ calendar }) => {
 				</p>
 			</td>
 
-			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<p className='mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
+			<td className='w-48 p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				<p className='w-48 text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
 					<input
-						className={`border-none font-normal ${!editable && "text-gray-500"}`}
+						className={`border-none font-normal w-48 text-center ${
+							!editable && 'text-gray-500'
+						}`}
 						name='hour'
 						onChange={handleChange}
 						type='text'
@@ -140,7 +150,7 @@ const ClassCard = ({ calendar }) => {
 				<button disabled={editable === false} onClick={handleClick}>
 					<i
 						className={`fa fa-paper-plane text-sm cursor-pointer ${
-							!editable && "text-gray-500 cursor-auto"
+							!editable && 'text-gray-500 cursor-auto'
 						}`}
 						aria-hidden='true'
 					></i>
