@@ -254,6 +254,7 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				payments_user: payload,
+			};
 		case REVIEW:
 			return {
 				...state,
