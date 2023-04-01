@@ -24,9 +24,19 @@ const PaymentCard = ({ payment }) => {
 				{payment?.id?.length>8 ? "Mercado Pago" : "Efectivo"}
 			</td>
 
-			{/* date */}
+			{/* payment date */}
 			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				{payment?.paymentsDate ? payment?.paymentsDate?.substring(0,10)?.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1') : "No se sabe"}
+				{payment?.paymentsDate ? payment?.paymentsDate : "No se sabe"}
+			</td>
+
+			{/* payment hour */}
+			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				{payment?.hour ? payment?.hour : "No se sabe"}
+			</td>
+
+      {/* end's date */}	
+			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				{payment?.finishedDate ? payment?.finishedDate : "No se sabe"}
 			</td>
 		</tr>
 	);
