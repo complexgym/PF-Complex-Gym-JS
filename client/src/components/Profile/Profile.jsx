@@ -1,12 +1,15 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getClientDetail } from '../../redux/actions/actions';
+import { Link, useNavigate } from 'react-router-dom';
+import { getClientDetail, deleteClient } from '../../redux/actions/actions';
 import image from '../../assets/img/dumbelldBgd.jpg';
+import swal from 'sweetalert';
 
 export default function Profile() {
 	const dispatch = useDispatch();
+
+	const navigate = useNavigate();
 
 	const { user } = useAuth0();
 
@@ -19,6 +22,27 @@ export default function Profile() {
 	useEffect(() => {
 		dispatch(getClientDetail(matchId));
 	}, []);
+
+	const handleClick = () => {
+		swal({
+		  title: "Querés desactivar tu cuenta?",
+		  text: "Si es así, click en Ok",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		}).then((result) => {
+		  if (result) {
+			dispatch(deleteClient(matchId));
+			swal({
+				title:"Cuenta desactivada!",
+				icon: "success"
+			});
+			navigate(`/home`);
+		  } else {
+			swal("Gracias por quedarte!", "Te falta una repe!", "info");
+		  }
+		});
+	  };
 
 	return (
 		<div className="profile-page">
@@ -80,6 +104,7 @@ export default function Profile() {
 										</Link>
 										<br></br>
 										<button
+											onClick={handleClick}
 											class="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg  text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 											type="button"
 										>
