@@ -1,20 +1,28 @@
 import Spline from '@splinetool/react-spline';
 import style from './style.module.css';
-import { Link } from 'react-router-dom';
-import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Landing2() {
 	const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
+	const navigate = useNavigate()
 
 
 		function IsLog () {
-		let url = window.location.href
-		let res = url.split("/") 
-		if (res[3] === "home") {
-			window.location.reload() 
+			let url = window.location.href
+			let res = url.split("/") 
+			if (res[3] === "home") {
+				return true
+			}
 		}
-	}
+
+	
+	/*useEffect(() => {
+    setTimeout(() => {
+			
+		}, 100000)
+  }, []);window.location.reload()*/
 
 
 	const handleLogin = async () => {
@@ -22,14 +30,14 @@ export default function Landing2() {
           appState: {
             returnTo: "/home",
           },
-        })
+        })			
   };
 
 	
 	return (
-		<div className={style.container}>
-			
-			{IsLog()}
+		<div>
+			{IsLog() ? window.location.reload() :
+			<div className={style.container}>
 			<div className={style.waves_container}>
 				<Spline
 					className={style.splinewaves}
@@ -67,6 +75,7 @@ export default function Landing2() {
 					/>
 				</div>
 			</div>
+		</div>}
 		</div>
 	);
 }
