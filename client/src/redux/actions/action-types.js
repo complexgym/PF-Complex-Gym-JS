@@ -54,3 +54,4 @@ export const POST_PAYMENT_CASH = 'POST_PAYMENT_CASH';
 export const GET_TRAINERS = 'GET_TRAINERS';
 export const POST_TRAINER = 'POST_TRAINER';
 export const PUT_TRAINER = 'PUT_TRAINER';
+export const DELETE_TRAINER = 'DELETE_TRAINER';
