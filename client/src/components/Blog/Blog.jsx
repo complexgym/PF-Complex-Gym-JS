@@ -34,6 +34,7 @@ export default function Blog() {
 	};
 
 	useEffect(() => {
+		dispatch(getAllPosts());
 		if (search_blog) {
 			setSearch(search_blog);
 			dispatch(searchPosts(filters, search_blog));

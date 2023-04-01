@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,900&display=swap');
 /*font-family: 'Lato', sans-serif;*/
+@import '@fortawesome/fontawesome-free/css/all.css';
 
 @font-face {
 	font-family: 'Capture';
@@ -19,6 +20,7 @@
 			format('woff');
 }
 
+
 :root {
 	--darker-blue: #1d459d;
 	--lighter-blue: #4a78ad;
@@ -30,6 +32,7 @@
 	--bg-testimonials: #010e17;
 	--bg-loaging: #07070a;
 	--bg-light-gray: #4c5259;
+	--bg-off: #94a3b8;
 	--bg-blog: linear-gradient(to top, #dfe9f3 0%, white 100%);
 
 	/* COLORS */

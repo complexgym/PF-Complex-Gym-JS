@@ -1,11 +1,14 @@
 import dayjs from 'dayjs';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { generateDate, months } from './funcionCalendar';
 import cn from './cn';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCalendar } from '../../redux/actions/actions';
 
 export default function Calendar() {
+	const dispatch = useDispatch();
+
 	const days = ['D', 'L', 'M', 'M', 'J', 'V	', 'S'];
 	const currentDate = dayjs();
 	const [today, setToday] = useState(currentDate);
@@ -17,6 +20,10 @@ export default function Calendar() {
 	const filter = allCalendar.filter((c) => {
 		return c.month === month + 1 && c.year === year && c.day === day;
 	});
+
+	useEffect(() => {
+		dispatch(getCalendar());
+	}, []);
 
 	return (
 		<div className='w-screen bg-slate-100'>

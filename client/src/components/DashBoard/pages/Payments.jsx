@@ -2,28 +2,33 @@ import SideNav from "../SideNav";
 import { useDispatch, useSelector } from "react-redux";
 import PaymentCard from "./cards/PaymentCard";
 import { useState } from "react";
-import { postPaymentCash } from "../../../redux/actions/actions";
+import {
+	getAllPayments,
+	postPaymentCash,
+} from "../../../redux/actions/actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Payments = () => {
 	const [data, setData] = useState({
 		clientId: "",
-		// paymentsId: "",
-		// paymentStatus: "",
-		// paymentsAmount: "",
-		// paymentsDate: "",
-		// plansPayments: "",
+		status: "",
+		total_amount: "",
+		date_payments: "",
+		plans: "",
 	});
 
 	const { allPayments, initial_plans, allClients } = useSelector((s) => s);
 
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const plansName = initial_plans?.map((plan) => plan);
 
+	/* all clients name for select student */
 	const allClientsNames = allClients?.map((client) => {
 		return { name: client?.name + " " + client?.lastName, id: client?.id };
 	});
 
+	/* onchange client */
 	const handleChangeClient = (e) => {
 		setData({
 			...data,
@@ -31,42 +36,79 @@ const Payments = () => {
 		});
 	};
 
+	/* onchange plan */
 	const handleChangePlan = (e) => {
 		initial_plans.forEach((plan) => {
 			if (plan?.name === e.target.value) {
 				setData({
 					...data,
-					// plansPayments: e.target.value,
-					// paymentsAmount: plan?.price
+					plans: e.target.value,
+					total_amount: plan?.price,
 				});
 			}
 		});
 	};
 
+	/* submit payment */
 	const handleSubmitPayment = async (e) => {
-		e.preventDefault()
+		e.preventDefault();
 
-		setData({
-			...data,
-			// paymentsDate: new Date().toISOString(),
-			// paymentStatus: "approved"
+		const filter = allPayments?.filter((pay) => {
+			return pay?.clientId === data?.clientId;
 		});
 
-		let newData = {
-			...data,
-			paymentsDate: new Date().toISOString(),
-			paymentStatus: "approved"
-		};
+		const lastPay = filter[filter.length - 1];
 
-		console.log(newData);
+		if (lastPay) {
+			let { paymentsDateStamp, finishedDateStamp } = lastPay;
+			let today = new Date();
+			let start = new Date(paymentsDateStamp);
+			let end = new Date(finishedDateStamp);
 
-		dispatch(postPaymentCash(newData))
+			//*user already has a plan
+			console.log(today > start && today < end);
+			if (today > start && today < end) {
+				swal({
+					title: "Usuario ya tiene plan!",
+					text: `El usuario ya tiene el plan ${lastPay?.plansPayments} que vence el ${lastPay?.finishedDate}`,
+					icon: "warning",
+				});
+			}
+			//*the plan is elder
+			else {
+				let newData = {
+					...data,
+					date_payments: new Date().toISOString(),
+					status: "approved",
+				};
 
-		swal({
-			title: 'Gracias!',
-			text: '¡Información creada correctamente!',
-			icon: 'success',
-		});
+				dispatch(postPaymentCash(newData));
+
+				dispatch(getAllPayments());
+
+				swal({
+					title: "Gracias!",
+					text: "¡Información creada correctamente!",
+					icon: "success",
+				});
+			}
+		} else {
+			let newData = {
+				...data,
+				date_payments: new Date().toISOString(),
+				status: "approved",
+			};
+
+			dispatch(postPaymentCash(newData));
+
+			dispatch(getAllPayments());
+
+			swal({
+				title: "Gracias!",
+				text: "¡Información creada correctamente!",
+				icon: "success",
+			});
+		}
 	};
 
 	return (
@@ -104,21 +146,6 @@ const Payments = () => {
 								</ol>
 								<h6 className="mb-0 font-bold text-white capitalize">Pagos</h6>
 							</nav>
-
-							<div className="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-								<div className="flex items-center md:ml-auto md:pr-4">
-									<div className="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
-										<span className="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
-											<i className="fas fa-search"></i>
-										</span>
-										<input
-											type="text"
-											className="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
-											placeholder="Type here..."
-										/>
-									</div>
-								</div>
-							</div>
 						</div>
 					</nav>
 
@@ -189,7 +216,7 @@ const Payments = () => {
 												<thead className="align-bottom">
 													<tr>
 														<th className="px-6 text-center py-3 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70">
-															Cliente ID
+															Cliente
 														</th>
 														<th className="px-6 text-center py-3 pl-2 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Plan
@@ -197,14 +224,34 @@ const Payments = () => {
 														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Pago
 														</th>
+														<th className="px-6 text-center py-3 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70">
+															Forma de pago
+														</th>
 														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Fecha
+														</th>
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															Hora
+														</th>
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															Fin plan
+														</th>
+														{/* delete */}
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															<span>¿Borrar? </span><br></br>
+															<small>(efectivo)</small>
 														</th>
 													</tr>
 												</thead>
 												<tbody>
 													{allPayments?.map((payment) => {
-														return <PaymentCard payment={payment} />;
+														let clientName = allClientsNames.find((el) => {
+															return el?.id === payment?.clientId;
+														});
+
+														return (
+															<PaymentCard payment={payment} clientName={clientName?.name} />
+														);
 													})}
 												</tbody>
 											</table>
@@ -221,4 +268,4 @@ const Payments = () => {
 };
 
 export default Payments;
-
+//

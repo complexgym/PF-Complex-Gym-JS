@@ -1,11 +1,23 @@
-const PaymentCard = ({ payment }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { deletePaymentCash, getActualPlan, getAllPayments } from "../../../../redux/actions/actions";
+
+const PaymentCard = ({ payment, clientName }) => {
+	const dispatch = useDispatch()
+	const handleDelete = () => {
+		dispatch(deletePaymentCash(payment?.paymentsId))
+		dispatch(getAllPayments())
+		dispatch(getActualPlan())
+	}
+	const {payments_user, actual_plan} = useSelector(s=>s)
+	console.log({payments_user}, {actual_plan});
+
 	return (
 		<tr>
 			{/* client name/id */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				{/* {payment.picture && <img src={payment?.picture} alt="profile image"/>} */}
 				<p className='mb-0 text-center text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
-					{payment?.clientName}
+					{clientName}
 				</p>
 			</td>
 		
@@ -19,9 +31,36 @@ const PaymentCard = ({ payment }) => {
 				${payment?.paymentsAmount}
 			</td>
 
-			{/* date */}
+			{/* payment type */}
 			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				{payment?.paymentsDate ? payment?.paymentsDate?.substring(0,10)?.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1') : "No se sabe"}
+				{payment?.id?.length>8 ? "Mercado Pago" : "Efectivo"}
+			</td>
+
+			{/* payment date */}
+			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				{payment?.paymentsDate ? payment?.paymentsDate : "No se sabe"}
+			</td>
+
+			{/* payment hour */}
+			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				{payment?.hour ? payment?.hour : "No se sabe"}
+			</td>
+
+      {/* end's date */}	
+			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				{payment?.finishedDate ? payment?.finishedDate : "No se sabe"}
+			</td>
+
+			{/* delete, only in cash payments */}	
+			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				{payment?.paymentsId?.toString()?.length < 10
+				&& <button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
+					<img
+						src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679368276/test_complex/gas3ewhonfe4sqiqcqyy.png"
+						className='w-5'
+						onClick={handleDelete}
+					/>
+				</button>}
 			</td>
 		</tr>
 	);

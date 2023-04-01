@@ -14,6 +14,7 @@ import {
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
+	DELETE_CLIENT,
 	GET_CALENDAR,
 	POST_CALENDAR,
 	DELETE_BLOG,
@@ -31,6 +32,13 @@ import {
 	POST_ACTIVITIES,
 	DELETE_CALENDAR,
 	POST_PAYMENT_CASH,
+	GET_PAYMENTS_BY_USER,
+	PUT_CALENDAR,
+	REVIEW,
+	DELETE_ACTIVITY,
+	DELETE_TRAINER,
+	GET_ACTUAL_PLAN,
+	DELETE_PAYMENT_CASH,
 } from "../actions/action-types.js";
 
 const initialState = {
@@ -53,6 +61,8 @@ const initialState = {
 	trainers: [],
 	plans: [],
 	initial_plans: [],
+	payments_user: [],
+	actual_plan: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -115,6 +125,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
+		case DELETE_CLIENT:
+			return {
+				...state,
+				allClients: state.allClients.filter((client) => client.id !== payload),
+			};
 		case POST_BLOG:
 			return {
 				...state,
@@ -156,10 +171,16 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				allCalendar: [...state.allCalendar, payload],
 			};
-			case DELETE_CALENDAR:
+		case DELETE_CALENDAR:
 			return {
 				...state,
-				allCalendar: state.allCalendar.filter((calendar) => calendar.id !== payload),
+				allCalendar: state.allCalendar.filter(
+					(calendar) => calendar.id !== payload
+				),
+			};
+		case PUT_CALENDAR:
+			return {
+				...state,
 			};
 		case GET_ALL_ADMIN:
 			return {
@@ -181,31 +202,23 @@ const rootReducer = (state = initialState, action) => {
 			};
 		case GET_ALL_PAYMENTS:
 			if (!payload.error) {
-				const payments = payload
-					?.map((pay) => {
-						const find = state?.allClients.find(
-							(client) => client?.id === pay?.clientId
-						);
-						if (find) {
-							const { name, lastName, picture } = find;
-							return {
-								...pay,
-								clientName: name + " " + lastName,
-								picture,
-							};
-						}
-					})
-					?.sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
 				return {
 					...state,
-					allPayments: payments,
+					allPayments: payload?.sort((a, b) =>
+						a?.clientId?.localeCompare(b?.clientId)
+					),
 				};
 			}
 		case POST_PAYMENT_CASH:
 			return {
-        ...state,
-        allPayments: [...state.allPayments, payload],
-      };
+				...state,
+				allPayments: [...state.allPayments, payload],
+			};
+		case DELETE_PAYMENT_CASH:
+			return {
+				...state,
+				allPayments: state.allPayments.filter((el) => el?.paymentsId !== payload),
+			};
 		case GET_TRAINERS:
 			return {
 				...state,
@@ -239,6 +252,56 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				activities: [...state.activities, payload],
+			};
+		case GET_PAYMENTS_BY_USER:
+			return {
+				...state,
+				payments_user: state?.allPayments?.filter((d) => {
+					return d?.clientId === payload;
+				}),
+			};
+		case GET_ACTUAL_PLAN:
+			const lastPay = state.payments_user?.[state.payments_user.length - 1];
+			//*have a last pay
+			if (lastPay) {
+				let { paymentsDateStamp, finishedDateStamp } = lastPay;
+				let today = new Date();
+				let start = new Date(paymentsDateStamp);
+				let end = new Date(finishedDateStamp);
+				let { plansPayments, finishedDate } = lastPay;
+
+				if (today > start && today < end) {
+					return {
+						...state,
+						actual_plan: { status: "active", plansPayments, finishedDate },
+					};
+				} else {
+					return {
+						...state,
+						actual_plan: {},
+					};
+				}
+
+				//*have not a las pay
+			} else {
+				return {
+					...state,
+					actual_plan: {},
+				};
+			}
+		case REVIEW:
+			return {
+				...state,
+			};
+		case DELETE_ACTIVITY:
+			return {
+				...state,
+				activities: state.activities.filter((activity) => activity.id !== payload),
+			};
+		case DELETE_TRAINER:
+			return {
+				...state,
+				trainers: state.trainers.filter((trainer) => trainer.id !== payload),
 			};
 		default:
 			return {

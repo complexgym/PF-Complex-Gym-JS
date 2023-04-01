@@ -1,24 +1,65 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getClientDetail } from "../../redux/actions/actions";
+import { Link, useNavigate } from "react-router-dom";
+import {
+	getAllPayments,
+	getClientDetail,
+	getPaymentsByUser,
+	deleteClient,
+} from "../../redux/actions/actions";
 import image from "../../assets/img/dumbelldBgd.jpg";
+import swal from "sweetalert";
 
 export default function Profile() {
 	const dispatch = useDispatch();
 
+	const navigate = useNavigate();
+
 	const { user } = useAuth0();
 
-	const allClient = useSelector((state) => state.allClients);
+	const { allClients } = useSelector((state) => state);
 
-	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
 	const matchId = matchEmail && matchEmail.id;
 
 	useEffect(() => {
 		dispatch(getClientDetail(matchId));
-	}, []);
+	}, [dispatch]);
+
+	const handleClick = () => {
+		swal({
+			title: "Querés desactivar tu cuenta?",
+			text: "Si es así, click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(deleteClient(matchId));
+				swal({
+					title: "Cuenta desactivada!",
+					icon: "success",
+				});
+				navigate(`/home`);
+			} else {
+				swal("Gracias por quedarte!", "Te falta una repe!", "info");
+			}
+		});
+	};
+
+	const { actual_plan } = useSelector((state) => state);
+
+	console.log(actual_plan);
+
+	const handleNoPdf = (e) => {
+		swal({
+			title: "No tenés una rutina asignada!",
+			icon: "info",
+			button: "Volver",
+		  });
+	}
 
 	return (
 		<div className="profile-page">
@@ -69,16 +110,23 @@ export default function Profile() {
 									</div>
 								</div>
 								<div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-									<div className="py-6 px-3 mt-32 sm:mt-0">
+									<div className="flex justify-end gap-1 py-6 px-3 mt-32 sm:mt-0">
 										<Link to={`/editar/${matchId}`}>
 											<button
-												className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+												className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 												type="button"
 											>
 												Editar Perfil
 											</button>
 										</Link>
 										<br></br>
+										<button
+											onClick={handleClick}
+											class="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg  text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
+											type="button"
+										>
+											<i class="fa fa-trash-can text-xl"></i>
+										</button>
 									</div>
 								</div>
 								<div className="w-full lg:w-4/12 px-4 lg:order-1">
@@ -146,17 +194,45 @@ export default function Profile() {
 								</div>
 
 								{/* showing or not routine */}
-								{matchEmail?.routine ? (
+								<div className="flex justify-center gap-4 mt-4">
+									{matchEmail?.routine ? (
+										<div>
+											<button className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue">
+												<a href={matchEmail?.routine}
+													target="_blank">
+													Última Rutina
+												</a>
+											</button>
+										</div>
+									) : (
+										<div>
+											<button onClick={handleNoPdf}
+											className="inline-flex justify-center rounded-md bg-off py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue">
+												<a href={matchEmail?.routine}
+													target="_blank">
+													Última Rutina
+												</a>
+											</button>
+										</div>
+									)}
+
+									{/* showing payment history */}
 									<div>
-										<a
-											href={matchEmail?.routine}
-											className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 "
-											target="_blank"
+										<button	className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
+
 										>
-											Última Rutina
-										</a>
+										<a href={"/historialDePagos"}>Historial de pagos</a>
+										</button>
 									</div>
-								) : <p className="text-pink-500 underline">Usted no tiene ninguna rutina</p>}
+								</div>
+
+								{/* current plan */}
+								{actual_plan?.status==="active" ? <div className="mt-8">
+									<p>
+										Plan {actual_plan?.plansPayments}, vence el {actual_plan?.finishedDate}
+									</p>
+								</div>
+								: <p className="mt-8 underline">Usted no está inscripto a ningún plan</p>}
 							</div>
 						</div>
 					</div>
@@ -165,7 +241,7 @@ export default function Profile() {
 				<div className="flex justify-center">
 					<Link
 						to="/home"
-						className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 ease-linear transition-all duration-150 w-24 text-center"
+						className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 					>
 						Volver
 					</Link>
