@@ -13,6 +13,7 @@ const {
 	getAllPaymen,
 	getPaymentsinCashById,
 } = require("../controllers/index");
+const deletePaymentsinCash = require("../controllers/paymentsincash/deletePaymentsinCash");
 
 router.get("/", async (req, res) => {
 	try {
@@ -26,6 +27,15 @@ router.get("/", async (req, res) => {
 router.post("/", postPayments);
 
 router.post("/cash", postPaymentsinCash);
+
+router.delete("/cash/:paymentId", async (req, res) => {
+	try {
+		const result = await deletePaymentsinCash(req.params.paymentId);
+		res.status(200).send(result);
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
 
 router.get("/:id", async (req, res) => {
 	const { id } = req.params;

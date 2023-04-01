@@ -37,6 +37,7 @@ import {
 	DELETE_ACTIVITY,
 	DELETE_TRAINER,
 	GET_ACTUAL_PLAN,
+	DELETE_PAYMENT_CASH,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -309,15 +310,15 @@ export const putClient = (client, matchId) => async () => {
 
 export const deleteClient = (id) => async (dispatch) => {
 	try {
-	  await axios.delete(`/clients/${id}`);
-	  dispatch({
-		type: DELETE_CLIENT,
-		payload: id,
-	  });
+		await axios.delete(`/clients/${id}`);
+		dispatch({
+			type: DELETE_CLIENT,
+			payload: id,
+		});
 	} catch (error) {
-	  console.log(error);
+		console.log(error);
 	}
-  };
+};
 
 export const getAllTestimonials = () => {
 	return async function (dispatch) {
@@ -488,7 +489,7 @@ export const getAllPayments = () => async (dispatch) => {
 	try {
 		const response = await axios.get("/payments");
 
-		let map = response?.data?.map((d) => {
+		let map = response.data.map((d) => {
 			const date = new Date(d?.paymentsDate);
 
 			/* payment date*/
@@ -508,7 +509,7 @@ export const getAllPayments = () => async (dispatch) => {
 				date.getFullYear();
 
 			const date2 = date;
-			date2.setMonth(date.getMonth() + 1);
+			date2.setMonth(date.getMonth() + 1); //getting next month
 
 			/* time of payment */
 			let hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
@@ -711,4 +712,16 @@ export const getActualPlan = () => {
 	return {
 		type: GET_ACTUAL_PLAN,
 	};
+};
+
+export const deletePaymentCash = (id) => async (dispatch) => {
+	try {
+		const response = await axios.delete(`/payments/cash/${id}`);
+		return dispatch({
+			type: DELETE_PAYMENT_CASH,
+			payload: id,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };

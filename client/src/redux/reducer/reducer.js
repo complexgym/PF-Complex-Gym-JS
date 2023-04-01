@@ -38,6 +38,7 @@ import {
 	DELETE_ACTIVITY,
 	DELETE_TRAINER,
 	GET_ACTUAL_PLAN,
+	DELETE_PAYMENT_CASH,
 } from "../actions/action-types.js";
 
 const initialState = {
@@ -126,8 +127,8 @@ const rootReducer = (state = initialState, action) => {
 			};
 		case DELETE_CLIENT:
 			return {
-			  ...state,
-			  allClients: state.allClients.filter((client) => client.id !== payload),
+				...state,
+				allClients: state.allClients.filter((client) => client.id !== payload),
 			};
 		case POST_BLOG:
 			return {
@@ -213,6 +214,11 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				allPayments: [...state.allPayments, payload],
 			};
+		case DELETE_PAYMENT_CASH:
+			return {
+				...state,
+				allPayments: state.allPayments.filter((el) => el?.paymentsId !== payload),
+			};
 		case GET_TRAINERS:
 			return {
 				...state,
@@ -255,14 +261,20 @@ const rootReducer = (state = initialState, action) => {
 				}),
 			};
 		case GET_ACTUAL_PLAN:
-			// const lastPay = payments_user?.[payments_user.length - 1];
-			// if (lastPay) {
-			// 	let { paymentsDateStamp, finishedDateStamp } = lastPay;
-			// 	let today = new Date();
-			// 	let start = new Date(paymentsDateStamp);
-			// 	let end = new Date(finishedDateStamp);
-			// 	console.log(today > start && today < end);
-			// }
+			const lastPay = state.payments_user?.[state.payments_user.length - 1];
+
+			if (lastPay) {
+				let { paymentsDateStamp, finishedDateStamp } = lastPay;
+				var today = new Date();
+				var start = new Date(paymentsDateStamp);
+				var end = new Date(finishedDateStamp);
+				var { plansPayments, finishedDate } = lastPay;
+
+				return {
+					...state,
+					actual_plan: { status: "active", plansPayments, finishedDate },
+				};
+			}
 		case REVIEW:
 			return {
 				...state,
