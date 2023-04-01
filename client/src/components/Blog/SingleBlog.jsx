@@ -30,7 +30,7 @@ export default function SingleBlog({ blog }) {
 					font-medium inline-flex items-center px-2.5 py-0.5 rounded 
 					">  */}
 						{/* tags */}
-						 {blog?.tag?.map((b, index) => {
+						 {/* {blog?.tag?.map((b, index) => {
 							return (
 								<div key={index} className="flex ">
 									<div className={`border-2 rounded-sm px-1 
@@ -56,7 +56,7 @@ export default function SingleBlog({ blog }) {
 									</div>
 								</div>
 							);
-						})} 
+						})}  */}
 					{/* </span> */}
 
 

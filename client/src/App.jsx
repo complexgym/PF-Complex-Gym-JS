@@ -41,9 +41,9 @@ import Trainers from './components/DashBoard/pages/Trainers';
 import AllTestimonials from './components/DashBoard/pages/AllTestimonials';
 import AllPlans from './components/DashBoard/pages/AllPlans';
 import CreateReview from './components/CreateReview/CreateReview';
-
-// axios.defaults.baseURL = 'http://localhost:3001';
-axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
+import PaymentHistory from "./components/PaymentHistory/PaymentHistory";
+axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
 function App() {
 	const location = useLocation();
@@ -61,7 +61,6 @@ function App() {
 		dispatch(getAllTestimonials());
 		// dispatch(getAllPosts());
 		dispatch(getAllAdmin());
-		dispatch(getAllPayments());
 
 		setTimeout(() => {
 			setIsLoaded(true);
@@ -85,12 +84,13 @@ function App() {
 		/* condition show nav and footer */
 	}
 	const boolAddComponent =
-		pathname === '/home' ||
-		pathname === '/nosotros' ||
-		pathname === '/calendario' ||
-		pathname === '/planes' ||
-		pathname === '/perfil' ||
-		pathname === '/blog' ||
+		pathname === "/home" ||
+		pathname === "/nosotros" ||
+		pathname === "/calendario" ||
+		pathname === "/planes" ||
+		pathname === "/perfil" ||
+		pathname === "/historialDePagos" ||
+		pathname === "/blog" ||
 		arrIDsBlogs?.some((path) => path === pathname);
 
 	//??? checking if he is admin ???
@@ -102,13 +102,14 @@ function App() {
 	// }, [])
 
 	return (
-		<div className='App font-text'>
-			{boolAddComponent && <Navbar />}
-			<Routes>
-				<Route path={'/'} element={<Landing />} />
-				<Route path={'/home'} element={<Home />} />
-				{isLoaded ? (
-					<>
+		<div className='App'>
+			{isLoaded ? (
+				<>
+					{boolAddComponent && <Navbar />}
+
+					<Routes>
+						<Route path={'/'} element={<Landing />} />
+						<Route path={'/home'} element={<Home user={user} />} />
 						<Route path={'/nosotros'} element={<About />} />
 						<Route path={'/calendario'} element={<Calendar />} />
 						<Route path={'/blog'} element={<Blog />} />
@@ -131,14 +132,15 @@ function App() {
 							<Route path={'/dashboard/testimonios'} element={<AllTestimonials />} />
 							<Route path={'/dashboard/planes'} element={<AllPlans />} />
 						</Route>
-						<Route path={'/review'} element={<CreateReview />} />
+						<Route path={'/historialDePagos'} element={<PaymentHistory />} />
 						<Route path={'*'} element={<Error404 />} />
-					</>
-				) : (
-					<Route path={'*'} element={<Loading />} />
-				)}
-			</Routes>
-			{boolAddComponent && <Footer />}
+					</Routes>
+
+					{boolAddComponent && <Footer />}
+				</>
+			) : (
+				<Loading />
+			)}
 		</div>
 	);
 }
