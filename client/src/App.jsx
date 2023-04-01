@@ -41,7 +41,7 @@ import Trainers from './components/DashBoard/pages/Trainers';
 import AllTestimonials from './components/DashBoard/pages/AllTestimonials';
 import AllPlans from './components/DashBoard/pages/AllPlans';
 import CreateReview from './components/CreateReview/CreateReview';
-
+import PaymentHistory from "./components/PaymentHistory/PaymentHistory";
 axios.defaults.baseURL = 'http://localhost:3001';
 // axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
@@ -61,7 +61,6 @@ function App() {
 		dispatch(getAllTestimonials());
 		// dispatch(getAllPosts());
 		dispatch(getAllAdmin());
-		dispatch(getAllPayments());
 
 		setTimeout(() => {
 			setIsLoaded(true);
@@ -85,12 +84,13 @@ function App() {
 		/* condition show nav and footer */
 	}
 	const boolAddComponent =
-		pathname === '/home' ||
-		pathname === '/nosotros' ||
-		pathname === '/calendario' ||
-		pathname === '/planes' ||
-		pathname === '/perfil' ||
-		pathname === '/blog' ||
+		pathname === "/home" ||
+		pathname === "/nosotros" ||
+		pathname === "/calendario" ||
+		pathname === "/planes" ||
+		pathname === "/perfil" ||
+		pathname === "/historialDePagos" ||
+		pathname === "/blog" ||
 		arrIDsBlogs?.some((path) => path === pathname);
 
 	//??? checking if he is admin ???
@@ -132,6 +132,7 @@ function App() {
 							<Route path={'/dashboard/testimonios'} element={<AllTestimonials />} />
 							<Route path={'/dashboard/planes'} element={<AllPlans />} />
 						</Route>
+						<Route path={'/historialDePagos'} element={<PaymentHistory />} />
 						<Route path={'*'} element={<Error404 />} />
 					</Routes>
 

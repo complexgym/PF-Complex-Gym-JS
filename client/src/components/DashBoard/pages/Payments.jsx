@@ -13,7 +13,7 @@ const Payments = () => {
 		plans: '',
 	});
 
-	const { allPayments, initial_plans, allClients } = useSelector((s) => s);
+	const { allPayments, initial_plans, allClients, payments_user } = useSelector((s) => s);
 
 	const dispatch = useDispatch();
 
@@ -61,6 +61,8 @@ const Payments = () => {
 			icon: 'success',
 		});
 	};
+
+	console.log(payments_user);
 
 	return (
 		<div>
@@ -180,6 +182,12 @@ const Payments = () => {
 														</th>
 														<th className='px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70'>
 															Fecha
+														</th>
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															Hora
+														</th>
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															Fin plan
 														</th>
 													</tr>
 												</thead>
