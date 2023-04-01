@@ -29,7 +29,7 @@ const ActivityCard = ({ activity }) => {
 			{/* DESCRIPTION */}
 			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
-					{activity?.description}
+					{activity?.description.substr(0,40)}...{/* va un onClick, tarea para mañana mauri */}
 				</span>
 			</td>
 
