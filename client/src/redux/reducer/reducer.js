@@ -262,7 +262,6 @@ const rootReducer = (state = initialState, action) => {
 			};
 		case GET_ACTUAL_PLAN:
 			const lastPay = state.payments_user?.[state.payments_user.length - 1];
-
 			if (lastPay) {
 				let { paymentsDateStamp, finishedDateStamp } = lastPay;
 				var today = new Date();
@@ -273,6 +272,11 @@ const rootReducer = (state = initialState, action) => {
 				return {
 					...state,
 					actual_plan: { status: "active", plansPayments, finishedDate },
+				};
+			} else {
+				return {
+					...state,
+					actual_plan: {},
 				};
 			}
 		case REVIEW:

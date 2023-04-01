@@ -1,12 +1,16 @@
-import { useDispatch } from "react-redux";
-import { deletePaymentCash, getAllPayments } from "../../../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePaymentCash, getActualPlan, getAllPayments } from "../../../../redux/actions/actions";
 
 const PaymentCard = ({ payment, clientName }) => {
 	const dispatch = useDispatch()
 	const handleDelete = () => {
 		dispatch(deletePaymentCash(payment?.paymentsId))
 		dispatch(getAllPayments())
+		dispatch(getActualPlan())
 	}
+	const {payments_user, actual_plan} = useSelector(s=>s)
+	console.log({payments_user}, {actual_plan});
+
 	return (
 		<tr>
 			{/* client name/id */}

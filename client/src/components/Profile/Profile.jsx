@@ -28,8 +28,6 @@ export default function Profile() {
 		dispatch(getClientDetail(matchId));
 	}, [dispatch]);
 
-	const { payments_user } = useSelector((state) => state);
-
 	const handleClick = () => {
 		swal({
 			title: "Querés desactivar tu cuenta?",
@@ -216,12 +214,13 @@ export default function Profile() {
 									</div>
 								</div>
 
-								{/* plan */}
-								<div className="mt-8">
+								{/* current plan */}
+								{actual_plan?.status==="active" ? <div className="mt-8">
 									<p>
 										Plan {actual_plan?.plansPayments}, vence el {actual_plan?.finishedDate}
 									</p>
 								</div>
+								: <p className="mt-8 underline">Usted no está inscripto a ningún plan</p>}
 							</div>
 						</div>
 					</div>
