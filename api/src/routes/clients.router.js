@@ -13,18 +13,6 @@ const {
 
 const router = Router()
 
-/*
-GET - all clients
-GET - id clients - detail
-GET - find by name
-
-POST - client
-
-DELETE - deactivate client for id
-
-PUT - update client for id
-*/
-
 // TEST DATA
 //const {testData} = require('../dataTest/index.test')
 
