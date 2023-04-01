@@ -33,6 +33,7 @@ import {
 	POST_PAYMENT_CASH,
 	REGISTER,
 	DELETE_ACTIVITY,
+	DELETE_TRAINER,
 } from './action-types.js';
 import axios from 'axios';
 
@@ -605,6 +606,17 @@ export const deleteActivity = (id) => async (dispatch) => {
 
 		return dispatch({
 			type: DELETE_ACTIVITY,
+			payload: id,
+		});
+	} catch (error) {}
+};
+
+export const deleteTrainer = (id) => async (dispatch) => {
+	try {
+		const response = await axios.delete(`/trainer/${id}`);
+
+		return dispatch({
+			type: DELETE_TRAINER,
 			payload: id,
 		});
 	} catch (error) {}

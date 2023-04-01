@@ -81,6 +81,9 @@ const Trainers = () => {
 														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
 															Dirección
 														</th>
+														<th className='px-6 text-center py-3 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-s text-slate-400 opacity-70'>
+															Borrar
+														</th>
 													</tr>
 												</thead>
 												<tbody>

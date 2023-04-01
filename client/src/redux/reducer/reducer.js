@@ -34,6 +34,7 @@ import {
 	PUT_CALENDAR,
 	REVIEW,
 	DELETE_ACTIVITY,
+	DELETE_TRAINER,
 } from '../actions/action-types.js';
 
 const initialState = {
@@ -256,6 +257,13 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				activities: state.activities.filter(
 					(activity) => activity.id !== payload
+				),
+			};
+			case DELETE_TRAINER:
+			return {
+				...state,
+				trainers: state.trainers.filter(
+					(trainer) => trainer.id !== payload
 				),
 			};
 		default:
