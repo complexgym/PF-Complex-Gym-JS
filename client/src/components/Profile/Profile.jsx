@@ -8,7 +8,6 @@ import {
 	getPaymentsByUser,
   deleteClient
 } from "../../redux/actions/actions";
-import { getClientDetail, deleteClient } from '../../redux/actions/actions';
 import image from '../../assets/img/dumbelldBgd.jpg';
 import swal from 'sweetalert';
 
