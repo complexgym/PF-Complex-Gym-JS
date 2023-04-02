@@ -227,7 +227,7 @@ export default function Blog() {
 
 						{/* REDES */}
 						<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
-							<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white font-subtitle'>
+							<h2 className='mb-4 font-text font-extrabold drop-shadow-xl text-3xl lg:text-4xl tracking-tight text-gray-900 dark:text-white'>
 								Nuestras redes
 							</h2>
 						</div>

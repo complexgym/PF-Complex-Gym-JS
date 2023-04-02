@@ -13,7 +13,7 @@ export default function SinglePlan({ plan, option }) {
 	const dispatch = useDispatch();
 
 	const {allClients, actual_plan} = useSelector((state) => state);
-	console.log(actual_plan);
+	console.log();
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
@@ -40,7 +40,7 @@ export default function SinglePlan({ plan, option }) {
 
 		
 		//*Does he have an active plan?
-		if(!actual_plan.status==="active"){
+		if(!actual_plan.status){
 
 			//*Is he registered?
 			if(matchId){
@@ -63,7 +63,7 @@ export default function SinglePlan({ plan, option }) {
 				}
 		
 				axios.post("/payments", purchase).then((res)=>{
-					return window.location.href=res?.data?.response?.body?.init_point
+					return window.location.href=res?.data?.body?.init_point
 				})
 			}
 	
