@@ -9,7 +9,6 @@ export default function SingleBlog({ blog }) {
 		newContent = newContent.substring(0, 120)
 	}
 
-
 	return (
 		<article
 			className="blog-card font-mono bg-white rounded-sm border border-gray-200 shadow-xl
@@ -63,8 +62,7 @@ export default function SingleBlog({ blog }) {
 						{/* content's title */}
 						<h2 className="flex items-center mb-2 text-lg font-bold tracking-tight lighter-blue">
 							{/* > */}
-							{/* <img className="w-3 h-3 mr-1" src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1679247513/play-blog_tctqkq.png"/> */}
-							<p className="font-bold text-black">{blog?.title}</p>
+							<p className="font-bold underline text-black">{blog?.title}</p>
 						</h2>
 
 						{/* released date, pasando a formato 17/03/2023 */}

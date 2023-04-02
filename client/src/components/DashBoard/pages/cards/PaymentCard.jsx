@@ -8,8 +8,8 @@ const PaymentCard = ({ payment, clientName }) => {
 		dispatch(getAllPayments())
 		dispatch(getActualPlan())
 	}
-	const {payments_user, actual_plan} = useSelector(s=>s)
-	console.log({payments_user}, {actual_plan});
+
+	console.log(payment?.paymentsId?.toString()?.length < 10);
 
 	return (
 		<tr>
@@ -33,7 +33,7 @@ const PaymentCard = ({ payment, clientName }) => {
 
 			{/* payment type */}
 			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				{payment?.id?.length>8 ? "Mercado Pago" : "Efectivo"}
+				{payment?.paymentsId?.toString()?.length < 10 ? "Efectivo" : "Mercado Pago"}
 			</td>
 
 			{/* payment date */}

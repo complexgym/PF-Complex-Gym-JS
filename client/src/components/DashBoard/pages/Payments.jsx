@@ -66,7 +66,6 @@ const Payments = () => {
 			let end = new Date(finishedDateStamp);
 
 			//*user already has a plan
-			console.log(today > start && today < end);
 			if (today > start && today < end) {
 				swal({
 					title: "Usuario ya tiene plan!",
