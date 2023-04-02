@@ -15,7 +15,9 @@ export default function Validate(input) {
 			"La url debe empezar en https://instagram.com/ o https://www.instagram.com/";
 	}
 
-	console.log(input.isInstagram);
+	if (!input.isInstagram && !regexImg.test(input.image)) {
+		errors.image = "Debe cargar una imagen!";
+	}
 
 	if (!input.isInstagram) {
 		if (input?.content?.length < 100) {
