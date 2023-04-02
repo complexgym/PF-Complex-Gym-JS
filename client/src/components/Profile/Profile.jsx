@@ -56,6 +56,7 @@ export default function Profile() {
 	const handleNoPdf = (e) => {
 		swal({
 			title: "No tenés una rutina asignada!",
+			text: "Habla con tu profe para que te arme una...",
 			icon: "info",
 			button: "Volver",
 		  });
