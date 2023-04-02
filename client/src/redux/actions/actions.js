@@ -10,6 +10,7 @@ import {
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
 	DELETE_CLIENT,
+	GET_DELETED_CLIENTS,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
@@ -314,6 +315,21 @@ export const deleteClient = (id) => async (dispatch) => {
 		dispatch({
 			type: DELETE_CLIENT,
 			payload: id,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getDeletedClients = () => async (dispatch) => {
+	try {
+		let response = await axios("/clients/softDeleted");
+
+		let data = response.data.responseAll;
+
+		return dispatch({
+			type: GET_DELETED_CLIENTS,
+			payload: data,
 		});
 	} catch (error) {
 		console.log(error);

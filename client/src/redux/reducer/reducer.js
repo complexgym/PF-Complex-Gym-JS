@@ -9,6 +9,7 @@ import {
 	GET_POST_BY_ID,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
+	GET_DELETED_CLIENTS,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
@@ -44,6 +45,7 @@ import {
 const initialState = {
 	allClients: [],
 	clientDetail: [],
+	allDeletedClients: [],
 	initial_posts: [],
 	matched_posts: [],
 	ig_posts: [],
@@ -129,6 +131,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				allClients: state.allClients.filter((client) => client.id !== payload),
+			};
+		case GET_DELETED_CLIENTS:
+			return {
+				...state,
+				allDeletedClients: payload,
 			};
 		case POST_BLOG:
 			return {
