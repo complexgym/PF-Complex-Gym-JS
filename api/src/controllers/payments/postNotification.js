@@ -52,3 +52,4 @@ const postNotification = async (req, res) => {
 	res.send();
 };
 module.exports = postNotification;
+

@@ -1407,6 +1407,10 @@ module.exports = {
 				".bg-lighter-blue": {
 					backgroundColor: "#2563eb",
 				},
+				".bg-off": {
+					backgroundColor: "#94a3b8",
+				},
+
 				".bg-image-testimonials": {
 					backgroundImage:
 						"url('https://res.cloudinary.com/dpxucxgwg/image/upload/v1679703696/fondo_qgvn3u.svg')",
