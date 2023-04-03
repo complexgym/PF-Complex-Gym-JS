@@ -17,7 +17,6 @@ const TestimonyCard = ({ testimony }) => {
 		fav: testimony?.fav,
 		rate: testimony?.rate,
 	});
-
 	const handleFav = (id) => {
 		const review = testimony;
 		setData({
