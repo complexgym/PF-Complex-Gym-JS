@@ -1,24 +1,14 @@
-const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
+// const regexUser = /^[a-zA-Z0-9._-]{3,16}$/;
+// const regexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/;
-const regexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const regexPhone = /^\+(?:\d[\-\s]?){8,14}\d$/;
-const regexDni = /^[0-9]{6,9}$/;
+const regexDni = /^[0-9]{6,10}$/;
 
 export default function Validate(input) {
 	let errors = {};
 
-	if (!input.user) {
-		errors.user = 'El campo Nombre de usuario debe rellenarse obligatoriamente';
-	} else if (!regexUser.test(input.user)) {
-		errors.user = 'Sólo se aceptan letras y números sin espacios.';
-	} else if (input.user.length < 3) {
-		errors.user = 'El Nombre de usuario es demasiado corto, Min 3 caracteres.';
-	} else if (input.user.length > 16) {
+	if (input.user.length > 16) {
 		errors.user = 'El Nombre de usuario es demasiado largo, Max 16 caracteres.';
-	} else if (!input.mail) {
-		errors.mail = 'El campo Correo electrónico debe rellenarse obligatoriamente';
-	} else if (!regexMail.test(input.mail)) {
-		errors.mail = 'Ingrese un email valido';
 	} else if (input.about.length > 500) {
 		errors.about = 'La Descripción es demasiado larga, Max 500 caracteres.';
 	} else if (!input.name) {
@@ -45,20 +35,18 @@ export default function Validate(input) {
 		errors.dni = 'El campo DNI debe rellenarse obligatoriamente';
 	} else if (!regexDni.test(input.dni)) {
 		errors.dni = 'Debe ingresar un Dni valido';
-	} else if (input.dni.length > 9) {
+	} else if (input.dni.length > 10) {
 		errors.dni = 'El DNI muy largo.';
 	} else if (input.dni.length < 6) {
 		errors.dni = 'El DNI muy corto.';
-	} else if (!input.age) {
-		errors.age = 'El campo Edad debe rellenarse obligatoriamente';
-	} else if (!input.weight) {
-		errors.weight = 'El campo Peso debe rellenarse obligatoriamente';
-	} else if (!input.height) {
-		errors.height = 'El campo Estatura debe rellenarse obligatoriamente';
-	} else if (!input.address) {
-		errors.address = 'El campo Dirección debe rellenarse obligatoriamente';
-	} else if (!input.city) {
-		errors.city = 'El campo Ciudad debe rellenarse obligatoriamente';
+	} else if (input.age.length > 3) {
+		errors.age = 'Debe ingresar una Edad valida';
+	} else if (input.age > 120) {
+		errors.age = '¿Tienes más de 120 Años? Dame un consejo para llegar a esa Edad!';
+	} else if (input.weight > 1000) {
+		errors.weight = 'Ingrese un peso más rasonable';
+	} else if (!input.height.length > 3) {
+		errors.height = 'Debe ingresar una Estatura valida. En centímetros Ej: 180';
 	}
 
 	return errors;

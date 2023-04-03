@@ -34,6 +34,7 @@ export default function Blog() {
 	};
 
 	useEffect(() => {
+		dispatch(getAllPosts());
 		if (search_blog) {
 			setSearch(search_blog);
 			dispatch(searchPosts(filters, search_blog));
@@ -113,7 +114,7 @@ export default function Blog() {
 					<div className='pb-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:pb-8 lg:px-6 '>
 						{/* BLOG */}
 						<div className='mx-auto max-w-screen-sm text-center lg:mb-8 mb-4'>
-							<h2 className='mb-4 font-subtitle text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>
+							<h2 className='mb-4 font-text font-extrabold drop-shadow-xl text-3xl lg:text-4xl tracking-tight text-gray-900 dark:text-white'>
 								Nuestro Blog
 							</h2>
 						</div>
@@ -124,7 +125,7 @@ export default function Blog() {
 							<div className='mr-4 w-full'>
 								<label
 									for='search'
-									className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
+									className='block py-3 font-text font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70'
 								>
 									Búsqueda por título
 								</label>
@@ -142,7 +143,7 @@ export default function Blog() {
 							<div className='mr-4 w-full'>
 								<label
 									for='tag'
-									className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
+									className='block py-3 font-text font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70'
 								>
 									Por tema
 								</label>
@@ -167,7 +168,7 @@ export default function Blog() {
 							<div className='mr-4 w-full'>
 								<label
 									for='per_date'
-									className='block font-subtitle mb-2 text-sm font-medium text-gray-900 dark:text-white'
+									className='block py-3 font-text font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70'
 								>
 									Orden por fecha
 								</label>
@@ -189,7 +190,7 @@ export default function Blog() {
 							{/* CLEAR FILTERS */}
 							<button
 								onClick={handleClearFilters}
-								className='flex justify-start lighter-blue
+								className='text-left underline uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70
 							'
 							>
 								Borrar filtros
@@ -226,7 +227,7 @@ export default function Blog() {
 
 						{/* REDES */}
 						<div className='mx-auto max-w-screen-sm text-center mt-4 lg:mb-8 mb-4'>
-							<h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white font-subtitle'>
+							<h2 className='mb-4 font-text font-extrabold drop-shadow-xl text-3xl lg:text-4xl tracking-tight text-gray-900 dark:text-white'>
 								Nuestras redes
 							</h2>
 						</div>

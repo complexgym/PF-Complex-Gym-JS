@@ -25,12 +25,22 @@ const calendarDate = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        class : {
+        classes : {
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+        
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+          },
 
-    }, { timestamps: false })
+    }, {
+        paranoid: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: true,
+			}
+    })
 }
 
 module.exports = calendarDate

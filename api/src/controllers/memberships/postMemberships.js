@@ -8,8 +8,7 @@ const postMemberships = async ({
     startDate,
     finishDate,
     paymentId,
-}) => {
-
+}) => {    
 	const newMemberships = await memberships.create({
 	clientId,
     planName,

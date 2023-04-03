@@ -9,7 +9,7 @@ import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import Plans from './components/Plans/Plans';
 import Profile from './components/Profile/Profile';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -21,6 +21,8 @@ import {
 	getAllClients,
 	getCalendar,
 	getAllPayments,
+	getTrainers,
+	getPaymentsByUser,
 } from './redux/actions/actions';
 import Landing from './components/Landing/Landing.jsx';
 import BlogDetails from './components/Blog/BlogDetails';
@@ -35,7 +37,14 @@ import UpdateClient from './components/Profile/UpdateClient/UpdateClient';
 import ClasesCalendar from './components/DashBoard/pages/ClassCalendar';
 import Loading from './components/Loading/Loading';
 import Payments from './components/DashBoard/pages/Payments';
-// axios.defaults.baseURL = "http://localhost:3001"
+import Activities from './components/DashBoard/pages/Activities';
+import Trainers from './components/DashBoard/pages/Trainers';
+import AllTestimonials from './components/DashBoard/pages/AllTestimonials';
+import AllPlans from './components/DashBoard/pages/AllPlans';
+import CreateReview from './components/CreateReview/CreateReview';
+import PaymentHistory from './components/PaymentHistory/PaymentHistory';
+import { getActualPlan } from './redux/actions/actions';
+// axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
 function App() {
@@ -46,25 +55,45 @@ function App() {
 	const { user, isAuthenticated } = useAuth0();
 	const [isLoaded, setIsLoaded] = useState(false);
 
+	const { allClients } = useSelector((state) => state);
+
+	let matchEmail = user && allClients.find((m) => m.mail === user.email);
+
+	const matchId = matchEmail && matchEmail.id;
+
 	useEffect(() => {
-		dispatch(getAllClients());
+		// dispatch(getAllClients());
 		dispatch(getAllActivities());
 		dispatch(getAllPlans());
-		dispatch(getCalendar());
+		// dispatch(getCalendar());
 		dispatch(getAllTestimonials());
-		dispatch(getAllPosts());
+		// dispatch(getAllPosts());
 		dispatch(getAllAdmin());
-		dispatch(getAllPayments())
+		dispatch(getAllPayments());
 
 		setTimeout(() => {
 			setIsLoaded(true);
-		}, [3000]);
+		}, [4500]);
 
 		// if (isAuthenticated && !hasRedirected) {
 		// 	navigate('/home');
 		// 	setHasRedirected(true);
 		// }
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
+
+	const { allPayments } = useSelector((state) => state);
+
+	useEffect(() => {
+		dispatch(getPaymentsByUser(matchId));
+		dispatch(getActualPlan());
+	}, [dispatch, allPayments, matchId]);
+
+	// console.log(new Date() > startDate && new Date < endDate);
+	// if (new Date() > startDate && new Date() < endDate) {
+	// 	console.log('✅ date is between the 2 dates');
+	// } else {
+	// 	console.log('⛔️ date is not in the range');
+	// }
 
 	const { pathname } = location;
 
@@ -83,9 +112,9 @@ function App() {
 		pathname === '/calendario' ||
 		pathname === '/planes' ||
 		pathname === '/perfil' ||
+		pathname === '/historialDePagos' ||
 		pathname === '/blog' ||
-		arrIDsBlogs?.some((path) => path === pathname) ||
-		pathname === '/blog/create';
+		arrIDsBlogs?.some((path) => path === pathname);
 
 	//??? checking if he is admin ???
 	// const {allAdmin} = useSelector(s=>s)
@@ -103,7 +132,10 @@ function App() {
 
 					<Routes>
 						<Route path={'/'} element={<Landing />} />
-						<Route path={'/home'} element={<Home />} />
+						<Route
+							path={'/home'}
+							element={<Home user={user} isAuthenticated={isAuthenticated} />}
+						/>
 						<Route path={'/nosotros'} element={<About />} />
 						<Route path={'/calendario'} element={<Calendar />} />
 						<Route path={'/blog'} element={<Blog />} />
@@ -121,7 +153,12 @@ function App() {
 							<Route path={'/dashboard/publicaciones'} element={<Publications />} />
 							<Route path={'/dashboard/calendario'} element={<ClasesCalendar />} />
 							<Route path={'/dashboard/pagos'} element={<Payments />} />
+							<Route path={'/dashboard/actividades'} element={<Activities />} />
+							<Route path={'/dashboard/entrenadores'} element={<Trainers />} />
+							<Route path={'/dashboard/testimonios'} element={<AllTestimonials />} />
+							<Route path={'/dashboard/planes'} element={<AllPlans />} />
 						</Route>
+						<Route path={'/historialDePagos'} element={<PaymentHistory />} />
 						<Route path={'*'} element={<Error404 />} />
 					</Routes>
 

@@ -1,38 +1,61 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import SideNav from './SideNav';
+import {
+	getAllClients,
+	getAllPayments,
+	getAllPosts,
+	getCalendar,
+	getTrainers,
+} from '../../redux/actions/actions';
+import { useNavigate } from 'react-router-dom';
+
+const regexImg = /\.(jpeg|jpg|gif|png)$/;
 
 const DashBoard = () => {
+	const dispatch = useDispatch();
+
 	const allClients = useSelector((state) => state.allClients);
 
 	const initial_posts = useSelector((state) => state.initial_posts);
 
 	const allPayments = useSelector((state) => state.allPayments);
 
-	const client1 = allClients.at(-1);
-	const client2 = allClients.at(-2);
-	const client3 = allClients.at(-3);
-	const client4 = allClients.at(-4);
+	const client1 = allClients[allClients.length - 1];
+	const client2 = allClients[allClients.length - 2];
+	const client3 = allClients[allClients.length - 3];
+	const client4 = allClients[allClients.length - 4];
 
-	const post1 = initial_posts.at(-1);
-	const post2 = initial_posts.at(-2);
-	const post3 = initial_posts.at(-3);
-	const post4 = initial_posts.at(-4);
+	const post1 = initial_posts[initial_posts.length - 1];
+	const post2 = initial_posts[initial_posts.length - 2];
+	const post3 = initial_posts[initial_posts.length - 3];
+	const post4 = initial_posts[initial_posts.length - 4];
 
-	const pay1 = allPayments.at(-1);
-	const pay2 = allPayments.at(-2);
-	const pay3 = allPayments.at(-3);
-	const pay4 = allPayments.at(-4);
+	const allPay = allPayments.reverse();
+	const pay1 = allPay[0];
+	const pay2 = allPay[1];
+	const pay3 = allPay[2];
+	const pay4 = allPay[3];
+
+	useEffect(() => {
+		dispatch(getAllClients());
+		dispatch(getTrainers());
+		dispatch(getCalendar());
+		dispatch(getAllPosts());
+		dispatch(getAllPayments())
+	}, []);
+
+	const navigate = useNavigate()
 
 	return (
-		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+		<div className=''>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
+				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
 				{/* <!-- sidenav  --> */}
 				<SideNav />
 				{/* <!-- end sidenav --> */}
 
-				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
+				<main className='relative h-full transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
 					{/* <!-- Navbar --> */}
 					<nav className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'>
 						<div className='flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit'>
@@ -51,21 +74,6 @@ const DashBoard = () => {
 								</ol>
 								<h6 className='mb-0 font-bold text-white capitalize'>Dashboard</h6>
 							</nav>
-
-							<div className='flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto'>
-								<div className='flex items-center md:ml-auto md:pr-4'>
-									<div className='relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease'>
-										<span className='text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all'>
-											<i className='fas fa-search'></i>
-										</span>
-										<input
-											type='text'
-											className='pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
-											placeholder='Type here...'
-										/>
-									</div>
-								</div>
-							</div>
 						</div>
 					</nav>
 
@@ -218,13 +226,13 @@ const DashBoard = () => {
 														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src={client1?.picture}
+																	src={regexImg.test(client1?.picture) ? client1?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
 																	alt='user1'
 																/>
 															</div>
 															<div className='flex flex-col justify-center'>
-																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
+																<h6 className='mb-0 text-sm leading-normal dark:text-white capitalize'>
 																	{client1?.name} {client1?.lastName}
 																</h6>
 															</div>
@@ -257,13 +265,13 @@ const DashBoard = () => {
 														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src={client2?.picture}
+																	src={regexImg.test(client2?.picture) ? client2?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
 																	alt='user2'
 																/>
 															</div>
 															<div className='flex flex-col justify-center'>
-																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
+																<h6 className='mb-0 text-sm leading-normal dark:text-white capitalize'>
 																	{client2?.name} {client2?.lastName}
 																</h6>
 															</div>
@@ -296,13 +304,13 @@ const DashBoard = () => {
 														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src={client3?.picture}
+																	src={regexImg.test(client3?.picture) ? client3?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
 																	alt='user3'
 																/>
 															</div>
 															<div className='flex flex-col justify-center'>
-																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
+																<h6 className='mb-0 text-sm leading-normal dark:text-white capitalize'>
 																	{client3?.name} {client3?.lastName}
 																</h6>
 															</div>
@@ -335,13 +343,13 @@ const DashBoard = () => {
 														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src={client4?.picture}
+																	src={regexImg.test(client4?.picture) ? client4?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
 																	alt='user4'
 																/>
 															</div>
 															<div className='flex flex-col justify-center'>
-																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
+																<h6 className='mb-0 text-sm leading-normal dark:text-white capitalize'>
 																	{client4?.name} {client4?.lastName}
 																</h6>
 															</div>
@@ -395,12 +403,13 @@ const DashBoard = () => {
 															{post1?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post1?.tag}
+															{post1?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
 												<div className='flex'>
-													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'>
+													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'
+													onClick={()=>navigate(`/blog/${post1?.id}`)}>
 														<i
 															className='ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200'
 															aria-hidden='true'
@@ -422,12 +431,13 @@ const DashBoard = () => {
 															{post2?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post2?.tag}
+															{post2?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
 												<div className='flex'>
-													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'>
+													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'
+													onClick={()=>navigate(`/blog/${post2?.id}`)}>
 														<i
 															className='ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200'
 															aria-hidden='true'
@@ -449,12 +459,13 @@ const DashBoard = () => {
 															{post3?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post3?.tag}
+															{post3?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
 												<div className='flex'>
-													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'>
+													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'
+													onClick={()=>navigate(`/blog/${post3?.id}`)}>
 														<i
 															className='ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200'
 															aria-hidden='true'
@@ -476,12 +487,13 @@ const DashBoard = () => {
 															{post4?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post4?.tag}
+															{post4?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
 												<div className='flex'>
-													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'>
+													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'
+													onClick={()=>navigate(`/blog/${post4?.id}`)}>
 														<i
 															className='ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200'
 															aria-hidden='true'

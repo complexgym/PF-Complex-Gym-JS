@@ -11,8 +11,8 @@ const postPayments = async (req, res) => {
 	//TODO
 	let obj = {
 		category_id: data.id_User, //id user
-		title: data.name, 
-		unit_price: data.price, 
+		title: data.name,
+		unit_price: data.price,
 		quantity: data.amount,
 	};
 
@@ -30,9 +30,10 @@ const postPayments = async (req, res) => {
 	mercadopago.preferences
 		.create(preference)
 		.then(function (response) {
-			res.json({
+			res.send(response);
+			/*res.json({
 				response
-			});
+			});*/
 		})
 		.catch(function (error) {
 			console.log(error.message);

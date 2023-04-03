@@ -55,7 +55,6 @@ export default function UpdateClient() {
 			swal({
 				title: 'Faltan Información',
 				text: `${
-					error.mail ||
 					error.user ||
 					error.name ||
 					error.lastName ||
@@ -64,8 +63,7 @@ export default function UpdateClient() {
 					error.age ||
 					error.weight ||
 					error.height ||
-					error.address ||
-					error.city
+					error.address
 				}`,
 				icon: 'warning',
 				dangerMode: true,
@@ -139,6 +137,7 @@ export default function UpdateClient() {
 											className='block text-sm font-medium leading-6 text-gray-900'
 										>
 											Correo electrónico
+											<span className='text-red-500'>*</span>
 										</label>
 										<input
 											type='text'
@@ -232,6 +231,7 @@ export default function UpdateClient() {
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												Nombre
+												<span className='text-red-500'>*</span>
 											</label>
 											<input
 												type='text'
@@ -256,6 +256,7 @@ export default function UpdateClient() {
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												Apellido
+												<span className='text-red-500'>*</span>
 											</label>
 											<input
 												type='text'
@@ -280,6 +281,7 @@ export default function UpdateClient() {
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												Teléfono
+												<span className='text-red-500'>*</span>
 											</label>
 											<input
 												type='text'
@@ -305,9 +307,10 @@ export default function UpdateClient() {
 												className='block text-sm font-medium leading-6 text-gray-900'
 											>
 												DNI
+												<span className='text-red-500'>*</span>
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='dni'
 												id='dni'
 												value={input.dni}
@@ -331,7 +334,7 @@ export default function UpdateClient() {
 												Edad
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='age'
 												id='age'
 												value={input.age}
@@ -355,7 +358,7 @@ export default function UpdateClient() {
 												Peso
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='weight'
 												id='weight'
 												value={input.weight}
@@ -380,7 +383,7 @@ export default function UpdateClient() {
 												Estatura
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='height'
 												id='height'
 												value={input.height}
@@ -472,7 +475,7 @@ export default function UpdateClient() {
 												ZIP / Código Postal
 											</label>
 											<input
-												type='text'
+												type='number'
 												name='postalCode'
 												id='postalCode'
 												value={input.postalCode}
@@ -489,7 +492,7 @@ export default function UpdateClient() {
 									{/* BUTTON BACK */}
 									<div className=''>
 										<Link to={`/home`}>
-											<button className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-darker-blue'>
+											<button className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-darker-blue'>
 												Volver
 											</button>
 										</Link>

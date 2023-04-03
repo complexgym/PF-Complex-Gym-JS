@@ -7,9 +7,13 @@ router.post('/sendmail', async(req, res)=>{
     try {
 
         // console.log(req.body)
+        // console.log(req.query)
 
-        console.log(await sendMail(req.body, req.query))
-        res.json({
+        if (!req.query.type) throw Error('missing data query')
+        if(!req.body) throw Error('missing data body')
+
+        const response = await sendMail(req.body, req.query)
+            res.json({
             message: 'mail enviado'
         })
     } catch (error) {

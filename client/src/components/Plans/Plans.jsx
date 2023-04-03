@@ -9,7 +9,7 @@ export default function Plans() {
 	const plans = useSelector((s) => s.plans);
 
 	return (
-		<div className='bg-image-testimonials relative w-full h-full pb-8 font-text'>
+		<div className='bg-image-testimonials relative w-full h-full min-h-[80vh] pb-8 font-text'>
 			<div className='absolute hidden w-full lg:block h-96' />
 
 			<div className='relative px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-[85vw] md:px-24 lg:px-8 lg:py-8'>
@@ -23,10 +23,11 @@ export default function Plans() {
 				</div>
 
 				{/* content */}
-				<div className='mb-4 border-b border-gray-200 dark:border-gray-700'>
-					{/* tabs */}
+				<div className='mb-4 border-b border-gray-300 dark:border-gray-700'>
+					
+					{/* tabs form */}
 					<ul
-						className='flex flex-wrap justify-center text-sm text-white font-medium text-center'
+						className='flex flex-wrap justify-center text-sm  font-medium text-center'
 						id='myTab'
 						data-tabs-toggle='#myTabContent'
 						role='tablist'
@@ -58,7 +59,7 @@ export default function Plans() {
 							<button
 								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${
 									option === 'Libre' &&
-									'text-yellow-400 border-yellow-400 font-bold  border-b-4'
+									'text-white border-white font-bold  border-b-4'
 								}`}
 								onClick={() => setOption('Libre')}
 							>
@@ -69,7 +70,7 @@ export default function Plans() {
 						<li className='mr-2' role='presentation'>
 							<button
 								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${
-									option === 'Otros' && 'text-slate-400 border-blue font-bold border-b-4'
+									option === 'Otros' && 'text-[#231F20] border-[#231F20] font-bold border-b-4'
 								}`}
 								onClick={() => setOption('Otros')}
 							>
@@ -78,8 +79,10 @@ export default function Plans() {
 						</li>
 					</ul>
 				</div>
+
+				{/* plans */}
 				<div className='grid max-w-screen row-gap gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 sm:mx-auto'>
-					{plans?.[option].map((plan) => {
+					{plans?.[option]?.map((plan) => {
 						return <SinglePlan plan={plan} option={option} />;
 					})}
 				</div>

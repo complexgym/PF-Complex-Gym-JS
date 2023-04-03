@@ -5,14 +5,14 @@ const OAuth2 = google.auth.OAuth2
 require('dotenv').config()
 
 const { ID_CLIENTE, SECRETO_CLIENTE, REFRESH_TOKEN } = process.env
-const {defaultTemplate} = require('./templates/index')
+const {templateRegister, templateNotificationMP, templateReview} = require('./templates/index')
 
 
 
 /**
  * 
- * @param {{to: string, title:string, subject: string, html: {name: string}}} email 
- * @param {*} querys 
+ * @param {{to: string, title:string, subject: string, html: {name: string} | {client: string, plain: string}}} email 
+ * @param {{type: "REGISTER" | "MERCADOPAGO" | "REVIEW" }} querys 
  */
 const sendMail = async (email, querys) => {
 
@@ -52,15 +52,22 @@ const sendMail = async (email, querys) => {
         transporter.verify().then(() => console.log('logueado')).catch((e) => console.log('un error en verify: ', e.message))
 
         try {
+
+            let htmlMail = ''
+
+            if(querys.type === 'REGISTER') htmlMail = templateRegister(email.html.name)
+            else if (querys.type === 'MERCADOPAGO') htmlMail = templateNotificationMP(email.html.client, email.html.plain)
+            else if (querys.type === 'REVIEW') htmlMail = templateReview(email.html.name)
+
             let info = await transporter.sendMail({
                 from: `"${email.title}" <proyecto.complex.gym@gmail.com>`, // sender address
                 to: email.to, // list of receivers
                 subject: email.subject, // Subject line
                 // text: "email desde nodemailer", // plain text body
-                html: defaultTemplate(email.html.name), // html body
+                html: htmlMail, // html body
             });
 
-            console.log("Message sent: %s", info.messageId);
+            console.log("Message sent: %s", info.envelope.to);
         } catch (error) {
             console.log('un error en el envio : ', error.message)
         }

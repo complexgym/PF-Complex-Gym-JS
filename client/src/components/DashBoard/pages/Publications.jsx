@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SideNav from '../SideNav';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBlog } from '../../../redux/actions/actions';
+import { deleteBlog, getAllPosts } from '../../../redux/actions/actions';
 
 const Publications = () => {
+	const dispatch = useDispatch();
+
 	const { initial_posts, ig_posts } = useSelector((s) => s);
+
+	useEffect(() => {
+		dispatch(getAllPosts());
+	}, []);
 
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500'>
-				<div className='absolute w-full h-full bg-blue-500 dark:hidden min-h-75'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
+				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
 
 				<SideNav />
 
-				<main className='relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
+				<main className='relative h-full transition-all duration-200 ease-in-out xl:ml-68 rounded-xl'>
 					{/* <!-- Navbar --> */}
 					<nav className='relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start'>
 						<div className='flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit'>
@@ -35,21 +41,6 @@ const Publications = () => {
 								</ol>
 								<h6 className='mb-0 font-bold text-white capitalize'>Publicaciones</h6>
 							</nav>
-
-							<div className='flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto'>
-								<div className='flex items-center md:ml-auto md:pr-4'>
-									<div className='relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease'>
-										<span className='text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all'>
-											<i className='fas fa-search'></i>
-										</span>
-										<input
-											type='text'
-											className='pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
-											placeholder='Type here...'
-										/>
-									</div>
-								</div>
-							</div>
 						</div>
 					</nav>
 
@@ -58,8 +49,12 @@ const Publications = () => {
 							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className=' grid grid-cols-2 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
-										<div className=''>
-											<h6 className='dark:text-white'>Tabla de Publicaciones</h6>
+										<div className='grid justify-start '>
+											<Link to='/blog'>
+												<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
+													Visitar el Blog
+												</button>
+											</Link>
 										</div>
 										<div className='grid justify-end '>
 											<Link to='/blog/create'>
@@ -75,19 +70,21 @@ const Publications = () => {
 											<table className='items-center justify-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500'>
 												<thead className='align-bottom'>
 													<tr>
-														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Tipo de publicación
 														</th>
-														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Titulo
 														</th>
-														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Tag's
 														</th>
-														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Calificación
 														</th>
-														<th className='px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap'></th>
+														<th className='py-3 pl-2 font-bold uppercase text-left align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															¿Borrar?
+														</th>
 													</tr>
 												</thead>
 												<tbody className='border-t'>
@@ -112,7 +109,24 @@ const SinglePublication = ({ post }) => {
 	const dispatch = useDispatch();
 
 	const handleDelete = () => {
-		dispatch(deleteBlog(post.id));
+		swal({
+			title: "Querés borrar esta publicación?",
+			text: "Si es así, click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(deleteBlog(post.id));
+				swal({
+					title: "Publicación borrada!",
+					icon: "success",
+				});
+			} else {
+				swal("Borrado descartado", "", "info");
+			}
+		});
+		
 	};
 
 	return (
@@ -179,11 +193,9 @@ const SinglePublication = ({ post }) => {
 			{/* delete btn */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
-					<i
-						className='fa fa-times mr-4 text-red-500'
-						aria-hidden='true'
-						onClick={handleDelete}
-					></i>
+									<i class="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
+					onClick={handleDelete}
+				></i>
 					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
 				</button>
 			</td>

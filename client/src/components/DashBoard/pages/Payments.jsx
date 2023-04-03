@@ -1,14 +1,131 @@
 import SideNav from "../SideNav";
-import {useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import PaymentCard from "./cards/PaymentCard";
+import { useState } from "react";
+import {
+	getAllPayments,
+	postPaymentCash,
+} from "../../../redux/actions/actions";
 
 const Payments = () => {
-	const {allPayments} = useSelector(s=>s)
+	const [data, setData] = useState({
+		clientId: "",
+		status: "",
+		total_amount: "",
+		date_payments: "",
+		plans: "",
+	});
+
+	const { allPayments, initial_plans, allClients, actual_plan } = useSelector(
+		(s) => s
+	);
+
+	console.log(actual_plan);
+
+	const dispatch = useDispatch();
+
+	const plansName = initial_plans?.map((plan) => plan);
+
+	/* all clients name for select student */
+	const allClientsNames = allClients?.map((client) => {
+		return { name: client?.name + " " + client?.lastName, id: client?.id };
+	});
+
+	/* onchange client */
+	const handleChangeClient = (e) => {
+		setData({
+			...data,
+			clientId: e.target.value,
+		});
+	};
+
+	/* onchange plan */
+	const handleChangePlan = (e) => {
+		initial_plans.forEach((plan) => {
+			if (plan?.name === e.target.value) {
+				setData({
+					...data,
+					plans: e.target.value,
+					total_amount: plan?.price,
+				});
+			}
+		});
+	};
+
+	/* submit payment */
+	const handleSubmitPayment = async (e) => {
+		e.preventDefault();
+
+		const filter = allPayments
+		?.filter((pay) => {
+			return pay?.clientId === data?.clientId;
+		})
+		?.sort(
+			(a, b) =>
+				new Date(a.paymentsDateStamp).getTime() -
+				new Date(b.paymentsDateStamp).getTime()
+		);
+
+		const lastPay = filter[filter.length - 1];
+
+		if (lastPay) {
+			let { paymentsDateStamp, finishedDateStamp } = lastPay;
+			let today = new Date();
+			let start = new Date(paymentsDateStamp);
+			let end = new Date(finishedDateStamp);
+
+			//*user already has a plan
+			if (today > start && today < end) {
+				swal({
+					title: "Usuario ya tiene plan!",
+					text: `El usuario ya tiene el plan ${lastPay?.plansPayments} que vence el ${lastPay?.finishedDate}`,
+					icon: "warning",
+				});
+			}
+			//*the plan is elder
+			else {
+				let newData = {
+					...data,
+					date_payments: new Date().toISOString(),
+					status: "approved",
+				};
+
+				dispatch(postPaymentCash(newData));
+
+				dispatch(getAllPayments());
+
+				swal({
+					title: "Gracias!",
+					text: "¡Información creada correctamente!",
+					icon: "success",
+				});
+			}
+		} else {
+			let newData = {
+				...data,
+				date_payments: new Date().toISOString(),
+				status: "approved",
+			};
+
+			dispatch(postPaymentCash(newData));
+
+			dispatch(getAllPayments());
+
+			swal({
+				title: "Gracias!",
+				text: "¡Información creada correctamente!",
+				icon: "success",
+			});
+		}
+	};
 
 	return (
 		<div>
-			<body className="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500">
-				<div className="absolute w-full h-full bg-blue-500 dark:hidden min-h-75"></div>
+			<body
+				className="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500
+			bg-blue-500 min-h-screen"
+			>
+				<div className="w-full h-full bg-blue-500 dark:hidden"></div>
 
 				<SideNav />
 
@@ -32,32 +149,71 @@ const Payments = () => {
 										className="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
 										aria-current="page"
 									>
-										Clientes
+										Pagos
 									</li>
 								</ol>
-								<h6 className="mb-0 font-bold text-white capitalize">Clientes</h6>
+								<h6 className="mb-0 font-bold text-white capitalize">Pagos</h6>
 							</nav>
-
-							<div className="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-								<div className="flex items-center md:ml-auto md:pr-4">
-									<div className="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
-										<span className="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
-											<i className="fas fa-search"></i>
-										</span>
-										<input
-											type="text"
-											className="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
-											placeholder="Type here..."
-										/>
-									</div>
-								</div>
-							</div>
 						</div>
 					</nav>
 
 					<div className="w-full px-6 py-6 mx-auto">
 						<div className="flex flex-wrap -mx-3">
 							<div className="flex-none w-full max-w-full px-3">
+								{/* form */}
+								<form
+									onSubmit={handleSubmitPayment}
+									className="py-10 px-10 mt-4 gap-8
+									bg-white rounded-xl mb-8"
+								>
+									<div className="border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+										<h6 className="dark:text-white">Carga de pagos en efectivo</h6>
+									</div>
+									{/* client */}
+									<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center">
+										<div className="my-6 w-full">
+											<label className="font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+												Alumno
+											</label>
+											<select
+												className="flex w-full md:w-54
+											bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mr-0 md:mr-4"
+												onChange={handleChangeClient}
+												value={data.clientId}
+											>
+												<option value="">Seleccione un alumno...</option>
+												{allClientsNames?.map((client) => {
+													return <option value={client?.id}>{client?.name}</option>;
+												})}
+											</select>
+										</div>
+
+										{/* plan */}
+										<div className="w-full">
+											<label className="font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+												Plan
+											</label>
+											<select
+												className="flex w-full md:w-54
+											bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+												onChange={handleChangePlan}
+											>
+												<option>Seleccione un plan...</option>
+												{plansName?.map((client) => {
+													return <option value={client?.name}>{client?.name}</option>;
+												})}
+											</select>
+										</div>
+										<div className="w-full">
+											<button
+												type="submit"
+												className="inline-block ml-4 w-full md:w-32 h-12 py-2 px-4 mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 rounded-xl relative right-4 md:right-0 mt-8"
+											>
+												Crear pago
+											</button>
+										</div>
+									</div>
+								</form>
 								<div className="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
 									<div className="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
 										<h6 className="dark:text-white">Tabla Clientes</h6>
@@ -68,7 +224,7 @@ const Payments = () => {
 												<thead className="align-bottom">
 													<tr>
 														<th className="px-6 text-center py-3 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70">
-															Cliente ID
+															Cliente
 														</th>
 														<th className="px-6 text-center py-3 pl-2 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Plan
@@ -76,14 +232,35 @@ const Payments = () => {
 														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Pago
 														</th>
-                            <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+														<th className="px-6 text-center py-3 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70">
+															Forma de pago
+														</th>
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Fecha
+														</th>
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															Hora
+														</th>
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															Fin plan
+														</th>
+														{/* delete */}
+														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+															<span>¿Borrar? </span>
+															<br></br>
+															<small>(efectivo)</small>
 														</th>
 													</tr>
 												</thead>
 												<tbody>
 													{allPayments?.map((payment) => {
-														return <PaymentCard payment={payment}/>
+														let clientName = allClientsNames.find((el) => {
+															return el?.id === payment?.clientId;
+														});
+
+														return (
+															<PaymentCard payment={payment} clientName={clientName?.name} />
+														);
 													})}
 												</tbody>
 											</table>
@@ -100,3 +277,4 @@ const Payments = () => {
 };
 
 export default Payments;
+//
