@@ -45,7 +45,23 @@ const PlansCard = ({ plans }) => {
 	};
 
 	const handleDelete = () => {
-		dispatch(deletePlan(plans.id));
+		swal({
+			title: 'Querés borrar este plan?',
+			text: 'Si es así, click en Ok',
+			icon: 'warning',
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(deletePlan(plans.id));
+				swal({
+					title: 'Plan borrado!',
+					icon: 'success',
+				});
+			} else {
+				swal('Borrado descartado', '', 'info');
+			}
+		});
 	};
 
 	return (
@@ -116,18 +132,18 @@ const PlansCard = ({ plans }) => {
 						className={`fa fa-paper-plane text-sm cursor-pointer ${
 							!editable && 'text-gray-500 cursor-auto'
 						}`}
+						aria-hidden="true"
 						aria-hidden='true'
 					></i>
 				</button>
 			</td>
 
-			<td className='text-center p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
-					<img
-						src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679368276/test_complex/gas3ewhonfe4sqiqcqyy.png'
-						className='w-5 text-center'
+			<td>
+				<button className="inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400">
+					<i
+						className="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
 						onClick={handleDelete}
-					/>
+					></i>
 					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
 				</button>
 			</td>
