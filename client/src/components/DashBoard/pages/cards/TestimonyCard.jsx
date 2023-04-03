@@ -15,24 +15,6 @@ const TestimonyCard = ({ testimony }) => {
 		rate: testimony?.rate,
 	});
 
-	const handleFav = (id) => {
-		const review = testimony;
-		setData({
-			...review,
-			fav: !review.fav,
-		});
-		dispatch(
-			putTestimonials(id, {
-				...review,
-				fav: !review.fav,
-			})
-		);
-		setTimeout(() => {
-			dispatch(getAllTestimonials());
-		}, 200);
-	};
-
-
   const handleFav = (id) => {
     const review = testimony
     setData({
