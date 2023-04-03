@@ -19,7 +19,7 @@ export default function SingleBlog({ blog }) {
 				
 			{/* img, no padding */}
 			<div className="flex justify-between w-full items-center mb-5 text-white overflow-hidden">
-				<img className="bg-center bg-cover rounded-tl-sm rounded-tr-sm w-full h-48 hover:scale-110 duration-300 " src={blog?.image} />
+				<img className="bg-center object-cover rounded-tl-sm rounded-tr-sm w-full h-48 hover:scale-110 duration-300 " src={blog?.image} />
 			</div>
 
 			{/* info, padding */}
