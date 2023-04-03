@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
 	restoreClient,
-	getDeletedClients
+	getDeletedClients,
+	getAllClients
 } from "../../../../redux/actions/actions";
 
 const DeletedClientCard = ({ client }) => {
 	
+	const [updateCounter, setUpdateCounter] = useState(0);
 	const dispatch = useDispatch();
 
 	const handleReactivate= () =>{
@@ -23,6 +25,7 @@ const DeletedClientCard = ({ client }) => {
 					title: "Cuenta reactivada!",
 					icon: "success",
 				});
+				setUpdateCounter(prevState => prevState + 1);
 			} else {
 				swal("Reactivación descartada", "", "info");
 			}
@@ -31,7 +34,8 @@ const DeletedClientCard = ({ client }) => {
 
 	useEffect(() => {
 		dispatch(getDeletedClients());
-	}, []);
+		dispatch(getAllClients());
+	}, [updateCounter]);
 
 	return (
 		<tr>
