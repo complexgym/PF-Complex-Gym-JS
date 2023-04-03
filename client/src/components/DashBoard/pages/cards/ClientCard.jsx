@@ -4,6 +4,7 @@ import {
 	getAllAdmin,
 	postAdmin,
 	removeAdmin,
+	deleteClient
 } from "../../../../redux/actions/actions";
 
 const regexImg = /\.(jpeg|jpg|gif|png)$/;
@@ -50,6 +51,26 @@ const ClientCard = ({ client }) => {
 			setIsAdmin(true);
 		}
 	}
+
+	const handleDeactivate= () =>{
+		swal({
+			title: "Querés desactivar esta cuenta?",
+			text: "Si es así, click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(deleteClient(client.id));
+				swal({
+					title: "Cuenta desactivada!",
+					icon: "success",
+				});
+			} else {
+				swal("Desactivación descartada", "", "info");
+			}
+		});
+	};
 
 	return (
 		<tr>
@@ -116,6 +137,11 @@ const ClientCard = ({ client }) => {
 						onClick={handleAddAdmin}
 					></i>
 				)}
+			</td>
+			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+				<i class="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
+					onClick={handleDeactivate}
+				></i>
 			</td>
 		</tr>
 	);
