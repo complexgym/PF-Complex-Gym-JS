@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
-	restoreClient
+	restoreClient,
+	getDeletedClients
 } from "../../../../redux/actions/actions";
 
 const DeletedClientCard = ({ client }) => {
@@ -27,6 +28,10 @@ const DeletedClientCard = ({ client }) => {
 			}
 		});
 	};
+
+	useEffect(() => {
+		dispatch(getDeletedClients());
+	}, []);
 
 	return (
 		<tr>
