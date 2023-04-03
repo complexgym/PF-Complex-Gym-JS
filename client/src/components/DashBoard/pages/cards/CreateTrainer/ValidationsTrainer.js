@@ -40,6 +40,8 @@ export default function ValidateTrainer(input) {
 		errors.phone = 'El úmero de Teléfono debe ser formato internacional válido';
 	} else if (!input.address) {
 		errors.address = 'El campo Dirección debe rellenarse obligatoriamente';
+	} else if (!input.about) {
+		errors.about = 'El campo Dirección debe rellenarse obligatoriamente';
 	}
 
 	return errors;
