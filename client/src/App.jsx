@@ -44,8 +44,8 @@ import AllPlans from './components/DashBoard/pages/AllPlans';
 import CreateReview from './components/CreateReview/CreateReview';
 import PaymentHistory from './components/PaymentHistory/PaymentHistory';
 import { getActualPlan } from './redux/actions/actions';
-axios.defaults.baseURL = 'http://localhost:3001';
-// axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
+// axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
 function App() {
 	const location = useLocation();
