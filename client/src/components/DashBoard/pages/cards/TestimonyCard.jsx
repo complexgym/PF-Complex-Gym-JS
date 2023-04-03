@@ -1,21 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAllTestimonials, putTestimonials, 
-  deleteTestimonials
-} from "../../../../redux/actions/actions";
+import { getAllTestimonials, putTestimonials, deleteTestimonials } from "../../../../redux/actions/actions";
 import ReadMoreButton from "../../../ReadMoreButton/ReadMoreButton";
 
+
 const TestimonyCard = ({ testimony }) => {
+	const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
+	const [data, setData] = useState({
+		url: testimony?.url,
+		name: testimony?.name,
+		review: testimony?.review,
+		fav: testimony?.fav,
+		rate: testimony?.rate,
+	});
 
-  const [data, setData] = useState({
-    url: testimony?.url,
-    name: testimony?.name,
-    review: testimony?.review,
-    fav: testimony?.fav,
-    rate: testimony?.rate,
-  });
+	const handleFav = (id) => {
+		const review = testimony;
+		setData({
+			...review,
+			fav: !review.fav,
+		});
+		dispatch(
+			putTestimonials(id, {
+				...review,
+				fav: !review.fav,
+			})
+		);
+		setTimeout(() => {
+			dispatch(getAllTestimonials());
+		}, 200);
+	};
+
 
   const handleFav = (id) => {
     const review = testimony
@@ -100,5 +116,5 @@ const TestimonyCard = ({ testimony }) => {
   );
 }
 
+
 export default TestimonyCard;
-//
