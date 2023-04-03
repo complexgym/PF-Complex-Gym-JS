@@ -63,7 +63,7 @@ export default function Home({ user }) {
 
 			<Testimonials user={user} />
 
-			<a href="" className="btn-whatsapp-pulse">
+			<a href="" className="btn-whatsapp-pulse" onClick={openWpp} target="_blank">
 				<i className="fab fa-whatsapp"></i>
 			</a>
 		</div>

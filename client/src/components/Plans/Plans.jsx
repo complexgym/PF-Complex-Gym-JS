@@ -27,7 +27,7 @@ export default function Plans() {
 					
 					{/* tabs form */}
 					<ul
-						className='flex flex-wrap justify-center text-sm text-white font-medium text-center'
+						className='flex flex-wrap justify-center text-sm  font-medium text-center'
 						id='myTab'
 						data-tabs-toggle='#myTabContent'
 						role='tablist'

@@ -11,6 +11,8 @@ import {
 import image from "../../assets/img/dumbelldBgd.jpg";
 import swal from "sweetalert";
 
+const regexImg = /\.(jpeg|jpg|gif|png)$/;
+
 export default function Profile() {
 	const dispatch = useDispatch();
 
@@ -49,18 +51,15 @@ export default function Profile() {
 		});
 	};
 
-	const { actual_plan } = useSelector((state) => state);
-
-	console.log(actual_plan);
-
 	const handleNoPdf = (e) => {
 		swal({
 			title: "No tenés una rutina asignada!",
-			text: "Habla con tu profe para que te arme una...",
 			icon: "info",
 			button: "Volver",
 		  });
 	}
+
+	const { actual_plan } = useSelector((state) => state);
 
 	return (
 		<div className="profile-page">
@@ -105,7 +104,7 @@ export default function Profile() {
 									<div className="relative">
 										<img
 											alt="..."
-											src={matchEmail?.picture}
+											src={regexImg.test(matchEmail?.picture) ? matchEmail?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 											className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
 										/>
 									</div>
@@ -208,11 +207,8 @@ export default function Profile() {
 									) : (
 										<div>
 											<button onClick={handleNoPdf}
-											className="inline-flex justify-center rounded-md bg-off py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue">
-												<a href={matchEmail?.routine}
-													target="_blank">
-													Última Rutina
-												</a>
+											className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue">
+												Última Rutina
 											</button>
 										</div>
 									)}
@@ -220,7 +216,6 @@ export default function Profile() {
 									{/* showing payment history */}
 									<div>
 										<button	className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
-
 										>
 										<a href={"/historialDePagos"}>Historial de pagos</a>
 										</button>

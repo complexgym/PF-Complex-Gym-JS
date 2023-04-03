@@ -24,10 +24,10 @@ const Clients = () => {
 	}
 
 	const allClientsNames = allClients?.map((client) => {
-		return { name: client?.name + ' ' + client?.lastName, id: client?.id };
+		return { name: client?.name + " " + client?.lastName, id: client?.id };
 	});
 
-	const split = newPdf.split('.');
+	const split = newPdf.split(".");
 	const fileExtension = split[split.length - 1];
 
 	/* updating routine */
@@ -37,36 +37,57 @@ const Clients = () => {
 			//*client exists
 			if (clientId) {
 				//*extension pdf
-				if (fileExtension === 'pdf') {
+				if (fileExtension === "pdf") {
 					const response = await axios.put(`/clients/${clientId}`, {
 						routine: newPdf,
 					});
 					dispatch(getAllClients());
 					swal({
-						title: '¡Listo!',
-						text: '¡Rutina guardada correctamente!',
-						icon: 'success',
+						title: "¡Listo!",
+						text: "¡Rutina guardada correctamente!",
+						icon: "success",
 					});
 				} else {
 					swal({
-						title: '¡Atención!',
-						text: '¡Archivo debe ser extensión .pdf!',
-						icon: 'warning',
+						title: "¡Atención!",
+						text: "¡Archivo debe ser extensión .pdf!",
+						icon: "warning",
 					});
 				}
 			} else {
 				swal({
-					title: '¡Atención!',
-					text: '¡Debe seleccionar un cliente!',
-					icon: 'warning',
+					title: "¡Atención!",
+					text: "¡Debe seleccionar un cliente!",
+					icon: "warning",
 				});
 			}
 		} else {
 			swal({
-				title: 'Falta Información',
+				title: "Falta Información",
 				text: `Agregué un PDF por favor`,
-				icon: 'warning',
+				icon: "warning",
 				dangerMode: true,
+			});
+		}
+	};
+
+	/* updating routine */
+	const handleRemovePDF = async () => {
+		//*pdf exists
+		if (clientId) {
+			const response = await axios.put(`/clients/${clientId}`, {
+				routine: "",
+			});
+			swal({
+				title: "¡Genial!",
+				text: "¡Rutina eliminada éxitosamente!",
+				icon: "success",
+			});
+		} else {
+			swal({
+				title: "¡Atención!",
+				text: "¡Debe seleccionar un cliente!",
+				icon: "warning",
 			});
 		}
 	};
@@ -185,6 +206,19 @@ const Clients = () => {
 								<CloudinaryUploadPdf onUpload={handleUpload} />
 							</div>
 							<div className="flex justify-center">
+								<button
+									type="button"
+									class="text-white bg-blue-700 
+									hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 
+									font-medium rounded-lg text-xs mr-2 mb-2 
+									dark:bg-blue-600 dark:hover:bg-blue-700 
+									focus:outline-none dark:focus:ring-blue-800 first-letter
+									py-2 px-8 mt-10 md:mt-0 flex items-center"
+									onClick={handleRemovePDF}
+								>
+									Eliminar PDF <br></br>
+									a cliente
+								</button>
 								<button
 									type="button"
 									class="text-white bg-blue-700 

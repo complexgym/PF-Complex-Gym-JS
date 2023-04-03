@@ -80,7 +80,7 @@ export default function PaymentHistory() {
 										{/* payments price */}
 										<td>
 											<p className="mb-0 text-center text-xs md:text-lg leading-tight dark:text-white dark:opacity-80">
-												${pay?.paymentsAmount}
+											{pay?.paymentsAmount ? "$" + pay?.paymentsAmount : "No registrado"}
 											</p>
 										</td>
 
