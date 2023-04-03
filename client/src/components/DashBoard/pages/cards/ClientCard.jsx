@@ -6,6 +6,8 @@ import {
 	removeAdmin,
 } from "../../../../redux/actions/actions";
 
+const regexImg = /\.(jpeg|jpg|gif|png)$/;
+
 const ClientCard = ({ client }) => {
 	const dispatch = useDispatch();
 	const [seeAdmin, setSeeAdmin] = useState(false);
@@ -55,7 +57,7 @@ const ClientCard = ({ client }) => {
 				<div className="flex px-2 py-1">
 					<div>
 						<img
-							src={client?.picture}
+							src={regexImg.test(client?.picture) ? client?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 							className="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
 							alt="user"
 						/>

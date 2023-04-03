@@ -22,6 +22,7 @@ export default function Footer() {
 
       {/* SECTION 1 */}
       <div className="flex 2xl:flex-row 2xl:justify-between 2xl:w-screen 2xl:px-40 xl:flex-row xl:justify-between xl:w-screen xl:px-40 md:flex-row md:justify-between md:w-screen md:px-30 mt-4 mb-4 xs:w-[85vw] xs:flex-col xs:gap-4">
+        {/* direcc */}
         <div className="flex xs:w-[100%] xs:justify-start">
           <img
             className="w-5 h-6 mr-1"
@@ -34,17 +35,8 @@ export default function Footer() {
           </label>
         </div>
 
-        <div className="flex xs:w-[100%] xs:justify-start">
-          <img
-            className="w-5 h-6 mr-1"
-            src={
-              "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196395/email_zfgv3n.png"
-            }
-          />
-          <label className="md:text-[13px] xl:text-[16px] 2xl:text-[16px]">Email</label>
-        </div>
-
-        <div className="flex xs:w-[100%] xs:justify-start">
+        {/* phone */}
+        <div className="flex xs:w-[100%] xs:justify-center">
           <img
             className="w-5 h-6 mr-1"
             src={
@@ -54,6 +46,7 @@ export default function Footer() {
           <label className="md:text-[13px] xl:text-[16px] 2xl:text-[16px]">+54 3442 48-0617</label>
         </div>
 
+        {/* hours */}
         <div className="flex xs:w-[100%] xs:justify-start xl:justify-end">
           <img
             className="w-5 h-6 mr-1"
@@ -81,14 +74,13 @@ export default function Footer() {
           </div>
 
           <div className="ml-2">
-            <img
-              className="w-8 cursor-pointer"
-              src={
-                "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196395/instagram_pozow5.png"
-              }
-              alt="instagram"
-              onClick={openIg}
-            />
+            <i className="fa fa-instagram text-4 p-1 rounded-full cursor-pointer text-white bg-lighter-blue" 
+            aria-hidden="true"
+            src={
+              "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196395/instagram_pozow5.png"
+            }
+            alt="instagram"
+            onClick={openIg}></i>
           </div>
         </div>
       </div>

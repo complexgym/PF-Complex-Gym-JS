@@ -6,7 +6,6 @@ import {
 	getAllPayments,
 	postPaymentCash,
 } from "../../../redux/actions/actions";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const Payments = () => {
 	const [data, setData] = useState({
@@ -17,7 +16,11 @@ const Payments = () => {
 		plans: "",
 	});
 
-	const { allPayments, initial_plans, allClients } = useSelector((s) => s);
+	const { allPayments, initial_plans, allClients, actual_plan } = useSelector(
+		(s) => s
+	);
+
+	console.log(actual_plan);
 
 	const dispatch = useDispatch();
 
@@ -53,9 +56,15 @@ const Payments = () => {
 	const handleSubmitPayment = async (e) => {
 		e.preventDefault();
 
-		const filter = allPayments?.filter((pay) => {
+		const filter = allPayments
+		?.filter((pay) => {
 			return pay?.clientId === data?.clientId;
-		});
+		})
+		?.sort(
+			(a, b) =>
+				new Date(a.paymentsDateStamp).getTime() -
+				new Date(b.paymentsDateStamp).getTime()
+		);
 
 		const lastPay = filter[filter.length - 1];
 
@@ -237,7 +246,8 @@ const Payments = () => {
 														</th>
 														{/* delete */}
 														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
-															<span>¿Borrar? </span><br></br>
+															<span>¿Borrar? </span>
+															<br></br>
 															<small>(efectivo)</small>
 														</th>
 													</tr>

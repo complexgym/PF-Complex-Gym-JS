@@ -9,8 +9,6 @@ const PaymentCard = ({ payment, clientName }) => {
 		dispatch(getActualPlan())
 	}
 
-	console.log(payment?.paymentsId?.toString()?.length < 10);
-
 	return (
 		<tr>
 			{/* client name/id */}
@@ -28,7 +26,7 @@ const PaymentCard = ({ payment, clientName }) => {
 
 			{/* price */}
 			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				${payment?.paymentsAmount}
+				{payment?.paymentsAmount ? "$" + payment?.paymentsAmount : "No registrado"}
 			</td>
 
 			{/* payment type */}

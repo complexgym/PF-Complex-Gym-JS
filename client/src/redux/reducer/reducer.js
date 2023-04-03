@@ -256,11 +256,18 @@ const rootReducer = (state = initialState, action) => {
 		case GET_PAYMENTS_BY_USER:
 			return {
 				...state,
-				payments_user: state?.allPayments?.filter((d) => {
-					return d?.clientId === payload;
-				}),
+				payments_user: state?.allPayments
+					?.filter((d) => {
+						return d?.clientId === payload;
+					})
+					?.sort(
+						(a, b) =>
+							new Date(a.paymentsDateStamp).getTime() -
+							new Date(b.paymentsDateStamp).getTime()
+					),
 			};
 		case GET_ACTUAL_PLAN:
+			//last pay of the current user
 			const lastPay = state.payments_user?.[state.payments_user.length - 1];
 			//*have a last pay
 			if (lastPay) {

@@ -78,6 +78,11 @@ const AllPlans = () => {
 			price: '',
 			tags: [],
 		});
+		swal({
+			title: "Gracias!",
+			text: "¡Plan creado correctamente!",
+			icon: "success",
+		});
 	};
 
 	return (

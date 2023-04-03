@@ -11,6 +11,8 @@ import {
 import image from "../../assets/img/dumbelldBgd.jpg";
 import swal from "sweetalert";
 
+const regexImg = /\.(jpeg|jpg|gif|png)$/;
+
 export default function Profile() {
 	const dispatch = useDispatch();
 
@@ -50,8 +52,6 @@ export default function Profile() {
 	};
 
 	const { actual_plan } = useSelector((state) => state);
-
-	console.log(actual_plan);
 
 	return (
 		<div className="profile-page">
@@ -96,7 +96,7 @@ export default function Profile() {
 									<div className="relative">
 										<img
 											alt="..."
-											src={matchEmail?.picture}
+											src={regexImg.test(matchEmail?.picture) ? matchEmail?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 											className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
 										/>
 									</div>

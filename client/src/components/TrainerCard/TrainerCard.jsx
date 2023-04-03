@@ -27,7 +27,12 @@ export default function TrainerCard() {
 						</div>
 						<div className='flex 2xl:mt-6  xl:mt-6 lg:mt-6 mb-3 xs:mt-2'>
 							<div className='text-center'>
-								<p className='text-lg font-normal text-[#2c2c2c]'> {trainer.mail} </p>
+								{/* <p className='text-lg font-normal text-[#2c2c2c]'>{trainer?.mail} </p> */}
+								<p className='text-lg font-normal text-[#2c2c2c]'>
+									{trainer?.name==="Leonardo" && "Profesor de educación física, entrenador y deportista."}
+									{trainer?.name==="Julieta" && "Profesora de educación física, entrenadora y antropometrista."}
+									{trainer?.name==="Agustín" && " Profesor de Educación física, entrenador, masoterapeuta, antropometrista y deportista"}
+								</p>
 							</div>
 						</div>
 					</div>
