@@ -132,16 +132,15 @@ const PlansCard = ({ plans }) => {
 						className={`fa fa-paper-plane text-sm cursor-pointer ${
 							!editable && 'text-gray-500 cursor-auto'
 						}`}
-						aria-hidden="true"
 						aria-hidden='true'
 					></i>
 				</button>
 			</td>
 
 			<td>
-				<button className="inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400">
+				<button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
 					<i
-						className="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
+						className='fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500'
 						onClick={handleDelete}
 					></i>
 					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
