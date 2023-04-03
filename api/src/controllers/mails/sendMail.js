@@ -70,7 +70,6 @@ const sendMail = async (email, querys) => {
             console.log("Message sent: %s", info.messageId);
         } catch (error) {
             console.log('un error en el envio : ', error.message)
-            return {error: error.message}
         }
     })
 }
