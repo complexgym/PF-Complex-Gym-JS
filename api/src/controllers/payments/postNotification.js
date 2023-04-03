@@ -21,9 +21,7 @@ const postNotification = async (req, res) => {
 	switch (topic) {
 		case "payment":
 			const paymentId = query.id || query["data.id"];
-
 			Payment = await mercadopago.payment.findById(paymentId);
-			console.log(paymentId);
 			let data = {
 				clientId: Payment.body.additional_info.items[0].category_id,
 				id: Payment.body.id,
