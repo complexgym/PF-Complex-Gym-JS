@@ -71,9 +71,15 @@ const Clients = () => {
 		}
 	};
 
+	const handleSearchDeleted = (e) => {
+		e.preventDefault();
+		const search = e.target;
+		if (search) {
+			dispatch(getDeletedClients());
+		}
+	};
 	useEffect(() => {
 		dispatch(getAllClients());
-		dispatch(getDeletedClients());
 	}, []);
 
 	return (
@@ -198,6 +204,14 @@ const Clients = () => {
 								<div className="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
 									<div className="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
 										<h6 className="dark:text-white">Clientes desactivados</h6>
+										<button
+											name="search"
+											type="button"
+											class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 first-letter py-2 px-8 mt-10 md:mt-0 flex items-center"
+											onClick={handleSearchDeleted}
+										>
+											Buscar
+										</button>
 									</div>
 									<div className="flex-auto px-0 pt-0 pb-2">
 										<div className="p-0 overflow-x-auto">
