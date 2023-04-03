@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAllTestimonials, putTestimonials } from "../../../../redux/actions/actions";
+import { getAllTestimonials, putTestimonials, 
+  deleteTestimonials
+} from "../../../../redux/actions/actions";
 import ReadMoreButton from "../../../ReadMoreButton/ReadMoreButton";
 
 const TestimonyCard = ({ testimony }) => {
@@ -28,8 +30,28 @@ const TestimonyCard = ({ testimony }) => {
     setTimeout(() => {
       dispatch(getAllTestimonials());
     }, 200);
-
   };
+
+    const handleDelete = () =>{
+      swal({
+        title: "Querés borrar este testimonio?",
+        text: "Si es así, click en Ok",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((result) => {
+        if (result) {
+          dispatch(deleteTestimonials(testimony.id));
+          swal({
+            title: "Testimonio borrado!",
+            icon: "success",
+          });
+        } else {
+          swal("Borrado descartado", "", "info");
+        }
+      });
+    };
+  
 
   return (
     <tr>
@@ -68,6 +90,12 @@ const TestimonyCard = ({ testimony }) => {
           {testimony?.fav ? "SI" : "NO"}
         </button>
       </td>
+      {/* DELETE */}
+			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+				<i class="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
+					onClick={handleDelete}
+				></i>
+			</td>
     </tr>
   );
 }
