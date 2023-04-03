@@ -26,7 +26,6 @@ const postPayments = async (req, res) => {
 	mercadopago.preferences
 		.create(preference)
 		.then(function (response) {
-			console.log(response);
 			res.json({
 				response,
 			});

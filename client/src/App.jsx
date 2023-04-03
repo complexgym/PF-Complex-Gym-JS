@@ -55,20 +55,14 @@ function App() {
 	const { user, isAuthenticated } = useAuth0();
 	const [isLoaded, setIsLoaded] = useState(false);
 
-	const { allClients } = useSelector((state) => state);
-
-	let matchEmail = user && allClients.find((m) => m.mail === user.email);
-
-	const matchId = matchEmail && matchEmail.id;
-
 	useEffect(() => {
-		// dispatch(getAllClients());
+		dispatch(getAllClients());
 		dispatch(getAllActivities());
 		dispatch(getAllPlans());
 		// dispatch(getCalendar());
 		dispatch(getAllTestimonials());
 		// dispatch(getAllPosts());
-		dispatch(getAllAdmin());
+		// dispatch(getAllAdmin());
 		dispatch(getAllPayments());
 
 		setTimeout(() => {
@@ -81,7 +75,11 @@ function App() {
 		// }
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
 
-	const { allPayments } = useSelector((state) => state);
+	const { allClients, allPayments } = useSelector((state) => state);
+
+	let matchEmail = user && allClients.find((m) => m.mail === user.email);
+
+	const matchId = matchEmail && matchEmail.id;
 
 	useEffect(() => {
 		dispatch(getPaymentsByUser(matchId));

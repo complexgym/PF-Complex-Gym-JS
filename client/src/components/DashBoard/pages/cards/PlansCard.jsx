@@ -5,10 +5,13 @@ import { deletePlan, editPlans, getAllPlans } from '../../../../redux/actions/ac
 const PlansCard = ({ plans }) => {
 	const [data, setData] = useState({
 		...plans,
+		id: plans?.id,
 		name: plans?.name,
 		price: plans?.price,
 		tags: plans?.tags,
 	});
+
+	console.log(plans.id);
 
 	const [editable, setEditable] = useState(false);
 

@@ -162,8 +162,10 @@ const rootReducer = (state = initialState, action) => {
 		case DELETE_TESTIMONIALS:
 			return {
 				...state,
-				testimonials: state.testimonials.filter((testimony) => testimony.id !== payload),
-				};
+				testimonials: state.testimonials.filter(
+					(testimony) => testimony.id !== payload
+				),
+			};
 		case GET_ALL_ACTIVITIES:
 			return {
 				...state,
@@ -327,6 +329,12 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				trainers: state.trainers.filter((trainer) => trainer.id !== payload),
+			};
+		case DELETE_BLOG:
+			return {
+				...state,
+				initial_posts: state.initial_posts.filter((el) => el.id !== payload),
+				matched_posts: state.matched_posts.filter((el) => el.id !== payload),
 			};
 		default:
 			return {

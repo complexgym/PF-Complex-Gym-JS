@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTrainer } from '../../../../redux/actions/actions';
 
+const regexImg = /\.(jpeg|jpg|gif|png)$/;
+
 const TrainersCard = ({ trainer }) => {
 	const dispatch = useDispatch();
 
@@ -30,7 +32,7 @@ const TrainersCard = ({ trainer }) => {
 				<div className="flex px-2 py-1">
 					<div>
 						<img
-							src={trainer?.picture}
+							src={regexImg.test(trainer?.picture) ? trainer?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 							className="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
 							alt="user"
 						/>
