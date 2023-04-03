@@ -17,13 +17,13 @@ export default function Home({ user, isAuthenticated }) {
 				{/* desktop */}
 				<div className='z-20 absolute text-6xl hidden 2xl:block xl:block text-white w-1/2 top-1/2 left-36 bg-[#231f20] bg-opacity-40 p-6 rounded-4 drop-shadow-2xl '>
 					<h1 className='mb-10 text-5xl text-white font-title tracking-wider'>
-						¿Qué es para nosotros?{' '}
+						¿Qué es para nosotros?
 					</h1>
 					<p className='text-xl'>
 						Es un centro de movimiento, especializado en preparación física deportiva,
 						actividad física para la salud y estética. Contamos con valores muy sólidos
-						con respecto a la formación y capacitación interna. No lo vendemos como una
-						receta mágica, valoramos mucho la disciplina, constancia y dedicación
+						con respecto a la formación y capacitación interna. Valoramos mucho la
+						disciplina, constancia y dedicación.
 					</p>
 				</div>
 
@@ -37,13 +37,13 @@ export default function Home({ user, isAuthenticated }) {
 				<div className='z-20 block 2xl:hidden xl:hidden text-[#d3d3d3] bg-black pb-16'>
 					<div className='w-10/12 mx-auto pt-8'>
 						<h1 className='mb-10 text-5xl text-white font-title tracking-wider xs:text-2xl'>
-							¿Qué es para nosotros?{' '}
+							¿Qué es para nosotros?
 						</h1>
 						<p className='text-md md:text-lg xs:text-sm'>
 							Es un centro de movimiento, especializado en preparación física deportiva,
 							actividad física para la salud y estética. Contamos con valores muy sólidos
-							con respecto a la formación y capacitación interna. No lo vendemos como una
-							receta mágica, valoramos mucho la disciplina, constancia y dedicación
+							con respecto a la formación y capacitación interna. Valoramos mucho la
+							disciplina, constancia y dedicación.
 						</p>
 					</div>
 				</div>
