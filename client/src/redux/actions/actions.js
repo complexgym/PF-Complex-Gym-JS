@@ -325,7 +325,7 @@ export const getDeletedClients = () => async (dispatch) => {
 	try {
 		let response = await axios("/clients/softDeleted");
 
-		let data = response.data.responseAll;
+		let data = response.data;
 
 		return dispatch({
 			type: GET_DELETED_CLIENTS,
