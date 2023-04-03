@@ -13,6 +13,7 @@ import {
 	RESTORE_CLIENT,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
+	DELETE_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
@@ -158,6 +159,11 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				testimonials: payload,
 			};
+		case DELETE_TESTIMONIALS:
+			return {
+				...state,
+				testimonials: state.testimonials.filter((testimony) => testimony.id !== payload),
+				};
 		case GET_ALL_ACTIVITIES:
 			return {
 				...state,

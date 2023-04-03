@@ -37,6 +37,7 @@ export const POST_ACTIVITIES = "POST_ACTIVITIES";
 export const PUT_TESTIMONIALS = "PUT_TESTIMONIALS";
 export const REVIEW = "REVIEW";
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
+export const DELETE_TESTIMONIALS = "DELETE_TESTIMONIALS";
 
 //todo Calendario
 export const GET_CALENDAR = "GET_CALENDAR";

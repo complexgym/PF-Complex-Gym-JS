@@ -14,6 +14,7 @@ import {
 	RESTORE_CLIENT,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
+	DELETE_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
@@ -353,6 +354,20 @@ export const getAllTestimonials = () => {
 			return dispatch({
 				type: GET_ALL_TESTIMONIALS,
 				payload: response.data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const deleteTestimonials = (id) => {
+	return async function (dispatch) {
+		try {
+			const response = await axios.delete(`/testimonials/${id}`);
+			return dispatch({
+				type: DELETE_TESTIMONIALS,
+				payload: id,
 			});
 		} catch (error) {
 			console.log(error);
