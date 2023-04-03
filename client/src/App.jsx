@@ -159,6 +159,7 @@ function App() {
 							<Route path={'/dashboard/planes'} element={<AllPlans />} />
 						</Route>
 						<Route path={'/historialDePagos'} element={<PaymentHistory />} />
+						<Route path={'/review'} element={<CreateReview />} />
 						<Route path={'*'} element={<Error404 />} />
 					</Routes>
 
