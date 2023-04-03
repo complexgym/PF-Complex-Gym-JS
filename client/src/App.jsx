@@ -42,7 +42,7 @@ import Trainers from './components/DashBoard/pages/Trainers';
 import AllTestimonials from './components/DashBoard/pages/AllTestimonials';
 import AllPlans from './components/DashBoard/pages/AllPlans';
 import CreateReview from './components/CreateReview/CreateReview';
-import PaymentHistory from "./components/PaymentHistory/PaymentHistory";
+import PaymentHistory from './components/PaymentHistory/PaymentHistory';
 import { getActualPlan } from './redux/actions/actions';
 axios.defaults.baseURL = 'http://localhost:3001';
 // axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
@@ -85,7 +85,7 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getPaymentsByUser(matchId));
-		dispatch(getActualPlan())
+		dispatch(getActualPlan());
 	}, [dispatch, allPayments, matchId]);
 
 	// console.log(new Date() > startDate && new Date < endDate);
@@ -107,13 +107,13 @@ function App() {
 		/* condition show nav and footer */
 	}
 	const boolAddComponent =
-		pathname === "/home" ||
-		pathname === "/nosotros" ||
-		pathname === "/calendario" ||
-		pathname === "/planes" ||
-		pathname === "/perfil" ||
-		pathname === "/historialDePagos" ||
-		pathname === "/blog" ||
+		pathname === '/home' ||
+		pathname === '/nosotros' ||
+		pathname === '/calendario' ||
+		pathname === '/planes' ||
+		pathname === '/perfil' ||
+		pathname === '/historialDePagos' ||
+		pathname === '/blog' ||
 		arrIDsBlogs?.some((path) => path === pathname);
 
 	//??? checking if he is admin ???
@@ -132,7 +132,10 @@ function App() {
 
 					<Routes>
 						<Route path={'/'} element={<Landing />} />
-						<Route path={'/home'} element={<Home user={user} />} />
+						<Route
+							path={'/home'}
+							element={<Home user={user} isAuthenticated={isAuthenticated} />}
+						/>
 						<Route path={'/nosotros'} element={<About />} />
 						<Route path={'/calendario'} element={<Calendar />} />
 						<Route path={'/blog'} element={<Blog />} />
