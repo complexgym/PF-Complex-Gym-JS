@@ -233,7 +233,7 @@ export default function Blog() {
 						</div>
 
 						<div
-							className='w-[90vw] grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
+							className='grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 
 					2xl:grid-cols-4 py-8'
 						>
 							{ig_posts.map((post) => {
