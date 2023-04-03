@@ -36,9 +36,3 @@ const postPayments = async (req, res) => {
 };
 
 module.exports = postPayments;
-
-const mercadopago = require("mercadopago");
-
-mercadopago.configure({
-	access_token: process.env.ACCESS_TOKEN_MP,
-});
