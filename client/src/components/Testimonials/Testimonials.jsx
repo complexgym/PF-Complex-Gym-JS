@@ -3,7 +3,7 @@ import '../../styles/testimonials.css';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 
-export default function Testimonials({ user }) {
+export default function Testimonials({ user, isAuthenticated }) {
 	const dispatch = useDispatch();
 
 	const { testimonials } = useSelector((s) => s);
@@ -90,14 +90,16 @@ export default function Testimonials({ user }) {
 								);
 						})}
 					</div>
-					<div className='py-12 text-center'>
-						<button
-							className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue'
-							onClick={handleSend}
-						>
-							Deja tu opinión
-						</button>
-					</div>
+					{isAuthenticated ? (
+						<div className='py-12 text-center'>
+							<button
+								className='inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue'
+								onClick={handleSend}
+							>
+								Deja tu opinión
+							</button>
+						</div>
+					) : null}
 				</section>
 			</div>
 		</div>
