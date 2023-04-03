@@ -73,7 +73,7 @@ function App() {
 
 		setTimeout(() => {
 			setIsLoaded(true);
-		}, [4500]);
+		}, [2000]);
 
 		// if (isAuthenticated && !hasRedirected) {
 		// 	navigate('/home');

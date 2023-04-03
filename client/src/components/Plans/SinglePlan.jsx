@@ -63,7 +63,7 @@ export default function SinglePlan({ plan, option }) {
 				}
 		
 				axios.post("/payments", purchase).then((res)=>{
-					return window.location.href=res?.data?.body?.init_point
+					return window.location.href=res?.data?.response?.body?.init_point
 				})
 			}
 	
