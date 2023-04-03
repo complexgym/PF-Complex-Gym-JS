@@ -10,6 +10,7 @@ import {
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
 	GET_DELETED_CLIENTS,
+	RESTORE_CLIENT,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
@@ -136,6 +137,10 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				allDeletedClients: payload,
+			};
+		case RESTORE_CLIENT:
+			return {
+				...state,
 			};
 		case POST_BLOG:
 			return {

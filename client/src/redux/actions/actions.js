@@ -11,6 +11,7 @@ import {
 	GET_CLIENTS,
 	DELETE_CLIENT,
 	GET_DELETED_CLIENTS,
+	RESTORE_CLIENT,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
@@ -331,6 +332,15 @@ export const getDeletedClients = () => async (dispatch) => {
 			type: GET_DELETED_CLIENTS,
 			payload: data,
 		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const restoreClient = (id) => async () => {
+	try {
+		const response = await axios.put(`/clients/restore/${id}`);
+		return response;
 	} catch (error) {
 		console.log(error);
 	}
