@@ -51,6 +51,14 @@ export default function Profile() {
 		});
 	};
 
+	const handleNoPdf = (e) => {
+		swal({
+			title: "No tenés una rutina asignada!",
+			icon: "info",
+			button: "Volver",
+		  });
+	}
+
 	const { actual_plan } = useSelector((state) => state);
 
 	return (
@@ -186,31 +194,31 @@ export default function Profile() {
 								</div>
 
 								{/* showing or not routine */}
-								<div className="flex justify-center mt-4">
+								<div className="flex justify-center gap-4 mt-4">
 									{matchEmail?.routine ? (
 										<div>
-											<a
-												href={matchEmail?.routine}
-												className="bg-[#4c5259] active:bg-[#4c5259] uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 "
-												target="_blank"
-											>
-												Última Rutina
-											</a>
+											<button className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue">
+												<a href={matchEmail?.routine}
+													target="_blank">
+													Última Rutina
+												</a>
+											</button>
 										</div>
 									) : (
-										<p className="text-pink-500 underline">
-											Usted no tiene ninguna rutina
-										</p>
+										<div>
+											<button onClick={handleNoPdf}
+											className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue">
+												Última Rutina
+											</button>
+										</div>
 									)}
 
 									{/* showing payment history */}
 									<div>
-										<a
-											href={"/historialDePagos"}
-											className="bg-[#4c5259] active:bg-[#4c5259] uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+										<button	className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 										>
-											Historial de pagos
-										</a>
+										<a href={"/historialDePagos"}>Historial de pagos</a>
+										</button>
 									</div>
 								</div>
 
