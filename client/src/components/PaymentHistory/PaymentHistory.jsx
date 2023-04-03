@@ -31,7 +31,6 @@ export default function PaymentHistory() {
 	// }, [dispatch, allPayments, matchId]);
 
 	const { payments_user } = useSelector((state) => state);
-	console.log(payments_user);
 
 	return (
 		<div className="my-12 min-h-[60vh] w-full justify-center items-center">

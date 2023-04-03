@@ -18,8 +18,6 @@ const CreateReview = () => {
 		rate: 1,
 	});
 
-	console.log(input.rate);
-
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
