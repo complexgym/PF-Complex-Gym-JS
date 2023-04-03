@@ -58,7 +58,7 @@ const TestimonyCard = ({ testimony }) => {
 	return (
 		<tr>
 			{/* IMAGE */}
-			<td className='px-2 py-3 pl-4 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+			<td className='text-center px-2 py-3 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<img
 					src={
 						testimony?.url
@@ -70,14 +70,14 @@ const TestimonyCard = ({ testimony }) => {
 			</td>
 
 			{/* NAME */}
-			<td className='px-2 py-3 pl-11 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+			<td className='text-center px-2 py-3 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<p className='mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60 capitalize'>
 					{testimony?.name}
 				</p>
 			</td>
 
 			{/* TEXT*/}
-			<td className='px-2 py-3 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+			<td className='text-center px-2 py-3 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<p className='mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60 capitalize'>
 					<ReadMoreButton text={testimony?.review} maxChars={20} />
 				</p>
