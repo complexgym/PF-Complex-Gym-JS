@@ -18,10 +18,8 @@ const filters = async(req,res)=>{
         //checking if it has already a search by
         if(title){
             let allPublicationSearch = await blog.findAll({})
-            console.log(allPublicationSearch);
             let publicationName = await allPublicationSearch?.filter(el => el.title.toLowerCase().includes(title.toLowerCase()))
             allPublications = publicationName
-            console.log(allPublications);
         }
 
         if (tag){
@@ -43,7 +41,6 @@ const filters = async(req,res)=>{
         res.status(200).json({
             message: 'filter by tag or date',
             querys: {tag, date},
-            // allPublications,
             filteredPublication
         })
     } catch (error) {

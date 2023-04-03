@@ -617,11 +617,11 @@ export const editPlans = (id, data) => async (dispatch) => {
 
 export const postPlans = (data) => async (dispatch) => {
 	try {
-		await axios.post("/plans", data);
+		const response = await axios.post("/plans", data);
 
 		return dispatch({
 			type: POST_PLANS,
-			payload: data,
+			payload: response.data,
 		});
 	} catch (error) {
 		console.log(error);
@@ -643,11 +643,11 @@ export const postReview = (review) => async () => {
 
 export const postTrainer = (trainer) => async (dispatch) => {
 	try {
-		const data = await axios.post("/trainer", trainer);
+		const response = await axios.post("/trainer", trainer);
 
 		return dispatch({
 			type: POST_TRAINER,
-			payload: data,
+			payload: response.data,
 		});
 	} catch (error) {
 		console.log(error);
@@ -667,11 +667,10 @@ export const deletePlan = (id) => async (dispatch) => {
 
 export const postActivity = (activity) => async (dispatch) => {
 	try {
-		const data = await axios.post("/activities", activity);
-
+		const response = await axios.post("/activities", activity);
 		return dispatch({
 			type: POST_ACTIVITIES,
-			payload: data,
+			payload: response.data,
 		});
 	} catch (error) {
 		console.log(error);

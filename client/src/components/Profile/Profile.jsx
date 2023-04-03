@@ -7,6 +7,7 @@ import {
 	getClientDetail,
 	getPaymentsByUser,
 	deleteClient,
+	getAllClients,
 } from "../../redux/actions/actions";
 import image from "../../assets/img/dumbelldBgd.jpg";
 import swal from "sweetalert";
@@ -27,8 +28,13 @@ export default function Profile() {
 	const matchId = matchEmail && matchEmail.id;
 
 	useEffect(() => {
+		if(allClients.length===0){
+			dispatch(getAllClients())
+		}
 		dispatch(getClientDetail(matchId));
 	}, [dispatch]);
+
+	// { allClients } = useSelector((state) => state);
 
 	const handleClick = () => {
 		swal({

@@ -26,7 +26,7 @@ export default function Navbar() {
 	const [open, setOpen] = useState(true);
 
 	useEffect(() => {
-		dispatch(getAllClients());
+		// dispatch(getAllClients());
 		dispatch(getClientDetail(matchId));
 	}, []);
 

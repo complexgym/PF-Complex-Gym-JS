@@ -13,7 +13,6 @@ export default function SinglePlan({ plan, option }) {
 	const dispatch = useDispatch();
 
 	const {allClients, actual_plan} = useSelector((state) => state);
-	console.log();
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
