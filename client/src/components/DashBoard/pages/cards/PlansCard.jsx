@@ -67,13 +67,15 @@ const PlansCard = ({ plans }) => {
 	return (
 		<tr>
 			{/* plan name */}
-			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-				<p className="mb-0 text-left text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
+			<td className='text-center p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+				<p className='mb-0 text-left text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
 					<input
-						className={`border-none font-normal ${!editable && 'text-gray-500'}`}
-						name="name"
+						className={`w-full text-center border-none font-normal ${
+							!editable && 'text-gray-500'
+						}`}
+						name='name'
 						onChange={handleChange}
-						type="text"
+						type='text'
 						value={data?.name}
 						disabled={!editable}
 					></input>
@@ -81,54 +83,57 @@ const PlansCard = ({ plans }) => {
 			</td>
 
 			{/* price */}
-			<td className="p-2 flex items-center text-sm leading-normal text-left align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+			<td className='text-center p-2 flex items-center text-sm leading-normal align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<input
-					className={`border-none font-normal ${!editable && 'text-gray-500'}`}
-					name="price"
+					className={`w-full text-center border-none font-normal ${
+						!editable && 'text-gray-500'
+					}`}
+					name='price'
 					onChange={handleChange}
-					type="number"
+					type='number'
 					value={data?.price}
 					disabled={!editable}
 				></input>
 			</td>
 
 			{/* tags */}
-			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+			<td className='text-center p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<input
 					className={`border-none font-normal w-64 ${!editable && 'text-gray-500'}`}
-					name="tags"
+					name='tags'
 					onChange={handleChange}
-					type="text"
+					type='text'
 					value={data?.tags}
 					disabled={!editable}
 				></input>
 			</td>
 
 			{/* edit */}
-			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+			<td className='text-center p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				{editable ? (
 					<i
-						className="fa fa-check w-8 cursor-pointer mr-2 text-green-600"
-						aria-hidden="true"
+						className='fa fa-check w-8 cursor-pointer mr-2 text-green-600'
+						aria-hidden='true'
 						onClick={() => setEditable(false)}
 					></i>
 				) : (
 					<i
-						className="fa fa-times text-sm cursor-pointer w-8 mr-2 text-red-500"
-						aria-hidden="true"
+						className='fa fa-times text-sm cursor-pointer w-8 mr-2 text-red-500'
+						aria-hidden='true'
 						onClick={() => setEditable(true)}
 					></i>
 				)}
 			</td>
 
 			{/* send */}
-			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+			<td className='text-center p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<button disabled={editable === false} onClick={handleClick}>
 					<i
 						className={`fa fa-paper-plane text-sm cursor-pointer ${
 							!editable && 'text-gray-500 cursor-auto'
 						}`}
 						aria-hidden="true"
+						aria-hidden='true'
 					></i>
 				</button>
 			</td>
@@ -136,7 +141,7 @@ const PlansCard = ({ plans }) => {
 			<td>
 				<button className="inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400">
 					<i
-						class="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
+						className="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
 						onClick={handleDelete}
 					></i>
 					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}

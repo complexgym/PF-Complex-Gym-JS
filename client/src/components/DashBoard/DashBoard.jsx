@@ -403,7 +403,7 @@ const DashBoard = () => {
 															{post1?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post1?.tag}
+															{post1?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
@@ -431,7 +431,7 @@ const DashBoard = () => {
 															{post2?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post2?.tag}
+															{post2?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
@@ -459,7 +459,7 @@ const DashBoard = () => {
 															{post3?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post3?.tag}
+															{post3?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
@@ -487,7 +487,7 @@ const DashBoard = () => {
 															{post4?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post4?.tag}
+															{post4?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
