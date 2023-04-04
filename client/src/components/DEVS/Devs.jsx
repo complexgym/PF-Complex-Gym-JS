@@ -44,7 +44,7 @@ const Devs = () => {
 		},
 		{
 			image:
-				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680633768/devs/a99bfa2d-6b16-45c4-9f4c-820e67afca63_qseu4a.jpg',
+				'https://res.cloudinary.com/dpxucxgwg/image/upload/c_crop,h_719,w_719/v1680633768/devs/a99bfa2d-6b16-45c4-9f4c-820e67afca63_qseu4a.jpg',
 			name: 'Martín',
 			lastName: 'Couadeau',
 			email: 'martin_couadeau1@hotmail.com',
