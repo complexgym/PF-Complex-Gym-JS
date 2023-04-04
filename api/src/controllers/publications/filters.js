@@ -34,11 +34,11 @@ const filters = async (req, res) => {
 		if (date) {
 			if (date === "ancient") {
 				filteredPublication.sort((a, b) => {
-					return b.createdAt.getTime() - a.createdAt.getTime();
+					return a.createdAt.getTime() - b.createdAt.getTime();
 				});
 			} else if (date === "recent") {
 				filteredPublication.sort((a, b) => {
-					return a.createdAt.getTime() - b.createdAt.getTime();
+					return b.createdAt.getTime() - a.createdAt.getTime();
 				});
 			}
 		}
