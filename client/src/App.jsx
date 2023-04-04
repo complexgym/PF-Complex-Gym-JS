@@ -31,6 +31,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import DashBoard from "./components/DashBoard/DashBoard";
 import Clients from "./components/DashBoard/pages/Clients";
+import ClientDetail from "./components/DashBoard/pages/ClientDetail";
 import Publications from "./components/DashBoard/pages/Publications";
 import Form from "./components/Form/Form";
 import UpdateClient from "./components/Profile/UpdateClient/UpdateClient";
@@ -158,6 +159,7 @@ function App() {
 							<Route path={"/dashboard/clientes"} element={<Clients />} />
 							<Route path={"/dashboard/publicaciones"} element={<Publications />} />
 							<Route path={"/dashboard/calendario"} element={<ClasesCalendar />} />
+							<Route path={"/dashboard/perfil/:id"} element={<ClientDetail />} />
 							{isAdmin && (
 								<>
 									<Route path={"/dashboard/pagos"} element={<Payments />} />
