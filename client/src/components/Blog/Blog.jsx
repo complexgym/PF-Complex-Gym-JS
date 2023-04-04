@@ -24,87 +24,60 @@ export default function Blog() {
 	const handleChangeSearch = (e) => {
 		setSearch(e.target.value);
 		dispatch(updateSearch(e.target.value));
+		dispatch(filterPosts(filters, e.target.value));
 	};
 
-	useEffect(() => {
+	useEffect(()=>{
 		dispatch(getAllPosts());
-		if (search_blog) {
-			setSearch(search_blog);
-			dispatch(searchPosts(filters, search_blog));
-			setIsLoaded(false)
-			setTimeout(() => {
-				setIsLoaded(true);
-			}, [1500]);
-		}
-	}, [search]);
-
-	//*get all posts in case search and filters are null
-	useEffect(() => {
-		if (search_blog === '' && !Object.values(filters).find((f) => f !== '')) {
-			dispatch(getAllPosts());
-		} else {
-			dispatch(searchPosts(filters, search_blog));
-		}
-	}, [search_blog]);
+	}, [dispatch])
 
 	//*change filters!!!
 	const handleChangeFilters = (e) => {
+		setIsLoaded(false)
 		setFilters({
 			...filters,
 			[e.target.name]: e.target.value,
 		});
-
-		//*if there are filters, we update the global filters
-		const findFilters = Object.values(filters).find((f) => f !== '');
-		if (findFilters) {
-			dispatch(
-				updateFilters({
-					...filters,
-					[e.target.name]: e.target.value,
-				})
-			);
-
-			dispatch(filterPosts({
+		dispatch(
+			updateFilters({
 				...filters,
 				[e.target.name]: e.target.value,
-			}, search_blog));
+			})
+		);
+		dispatch(filterPosts({
+			...filters,
+			[e.target.name]: e.target.value,
+		}, search_blog));
 
-			setTimeout(() => {
-				setIsLoaded(true);
-			}, [1500]);
-
-		} else {
-			dispatch(getAllPosts());
-		}
+		setTimeout(() => {
+			setIsLoaded(true);
+		}, [1500]);
 	};
-
-	//*handling filters!!!
-	useEffect(() => {
-		const findFilters = Object.values(filters).find((f) => f !== '');
-		if (findFilters) {
-			dispatch(filterPosts(filters, search_blog));
-			setIsLoaded(false)
-			setTimeout(() => {
-				setIsLoaded(true);
-			}, [1500]);
-		}
-		if (!findFilters && !search_blog) {
-			dispatch(getAllPosts());
-		}
-	}, [filters]);
 
 	//*clear filter!!!
 	const handleClearFilters = (e) => {
 		e.preventDefault();
+		setIsLoaded(false)
 		setFilters({ tag: '', date: '' });
 		setSearch('');
 		dispatch(updateSearch(''));
 		dispatch(updateFilters({ tag: '', date: '' }));
+		dispatch(getAllPosts());
+		setTimeout(() => {
+			setIsLoaded(true);
+		}, [1500]);
 	};
 
 	filters_blog = useSelector((s) => s.filters_blog);
 
 	search_blog  = useSelector((s) => s.search_blog);
+
+	// useEffect(()=>{
+	// 	if(!search_blog && !Object.values(filters_blog).find(el=>el!=="")){
+	// 		dispatch(getAllPosts());
+	// 	}
+	// }, [search_blog, filters])
+
 
 	return (
 		<div>
@@ -132,7 +105,7 @@ export default function Blog() {
 									type='text'
 									id='search'
 									onChange={handleChangeSearch}
-									value={search}
+									value={search_blog}
 									className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder:text-gray-700'
 									placeholder='5 ejercicios para tonificar'
 								/>
@@ -151,7 +124,7 @@ export default function Blog() {
 									className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 									name='tag'
 									onChange={handleChangeFilters}
-									value={filters_blog.tag}
+									value={filters_blog?.tag}
 								>
 									<option value='' selected>
 										Seleccione una opción...
@@ -218,11 +191,11 @@ export default function Blog() {
 									alt='not found img'
 									className='w-[150px] md:w-[250px] rounded-xl'
 								/> */}
-									<p className='text-red-500 text-lg font-text font-bold flex flex-col align-middle items-center pb-4'>
+									<p className='text-[#0a0093] text-lg font-text font-bold flex flex-col align-middle items-center pb-4'>
 										<img src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1680613422/cara_triste-removebg-preview_eosuso.png" alt="cara triste"
 										className='mb-4'/>
 										{search_blog
-											? 'Perdon, ¡ningún blog cumple la condición!'
+											? 'Perdón, ¡ningún blog cumple la condición!'
 											: 'Ningún blog encontrado!'}
 									</p>
 								</div>

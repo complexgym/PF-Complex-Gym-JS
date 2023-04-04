@@ -68,7 +68,7 @@ const Devs = () => {
 		},
 		{
 			image:
-				'https://res.cloudinary.com/dpxucxgwg/image/upload/c_crop,h_600,w_600/v1680620158/devs/nico_igjnmy.jpg',
+				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680636234/yo_t28xvc.jpg',
 			name: 'Nicolás',
 			lastName: 'Von Mühlinen',
 			email: 'nicovon24@gmail.com',

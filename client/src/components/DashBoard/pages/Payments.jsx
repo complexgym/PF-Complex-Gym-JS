@@ -55,14 +55,14 @@ const Payments = () => {
 		e.preventDefault();
 
 		const filter = allPayments
-		?.filter((pay) => {
-			return pay?.clientId === data?.clientId;
-		})
-		?.sort(
-			(a, b) =>
-				new Date(a.paymentsDateStamp).getTime() -
-				new Date(b.paymentsDateStamp).getTime()
-		);
+			?.filter((pay) => {
+				return pay?.clientId === data?.clientId;
+			})
+			?.sort(
+				(a, b) =>
+					new Date(a.paymentsDateStamp).getTime() -
+					new Date(b.paymentsDateStamp).getTime()
+			);
 
 		const lastPay = filter[filter.length - 1];
 
@@ -116,6 +116,12 @@ const Payments = () => {
 			});
 		}
 	};
+
+	let totalPayments = 0
+
+	allPayments?.forEach((amount)=>{
+		totalPayments+=amount.paymentsAmount
+	});
 
 	return (
 		<div>
@@ -260,7 +266,33 @@ const Payments = () => {
 															<PaymentCard payment={payment} clientName={clientName?.name} />
 														);
 													})}
+
+<td className="p-4 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+														<p className="mb-0 text-center text-md font-semibold leading-tight dark:text-white dark:opacity-80 lighter-blue underline">
+															Total
+														</p>
+													</td>
+													<td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent lighter-blue">
+														-
+													</td>
+													<td className="p-2 leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent lighter-blue underline">
+														${totalPayments}
+													</td>
+													<td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent lighter-blue">
+														-
+													</td>
+													<td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent lighter-blue">
+														-
+													</td>
+													<td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent lighter-blue">
+														-
+													</td>
+													<td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent lighter-blue">
+														-
+													</td>
+													
 												</tbody>
+												
 											</table>
 										</div>
 									</div>
