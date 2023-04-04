@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllClients, postClient } from '../../redux/actions/actions';
+import { getAllClients, postClient, getDeletedClients, restoreClient } from '../../redux/actions/actions';
 import Validate from './Validations';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
@@ -8,89 +8,122 @@ import { useNavigate, Link } from 'react-router-dom';
 import CloudinaryUploadImg from '../CloudinaryUploadImg/CloudinaryUploadImg';
 
 export default function Form() {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const { user } = useAuth0();
+  const { user } = useAuth0();
 
-	const allClient = useSelector((state) => state.allClients);
+  const allClient = useSelector((state) => state.allClients);
+  const { allDeletedClients } = useSelector((s) => s);
 
-	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+  const [matchDeletedEmail, setMatchDeletedEmail] = useState(null);
+  useEffect(() => {
+    const fetchDeletedClients = async () => {
+      await dispatch(getDeletedClients());
+      const deletedClient = allDeletedClients.find((m) => m.mail === user.email);
+      setMatchDeletedEmail(deletedClient);
+    };
+    fetchDeletedClients();
+  }, [dispatch, user.email, allDeletedClients]);
 
-	const matchId = matchEmail && matchEmail.id;
+  const matchEmail = user && allClient.find((m) => m.mail === user.email);
+  const matchId = matchEmail && matchEmail.id;
+  const matchDeletedId = matchDeletedEmail && matchDeletedEmail.id;
 
-	const [input, setInput] = useState({
-		user: user.name,
-		mail: user.email,
-		picture: user.picture,
-		about: '',
-		name: user.given_name,
-		lastName: user.family_name,
-		phone: '',
-		dni: '',
-		age: '',
-		height: '',
-		weight: '',
-		address: '',
-		city: '',
-		region: '',
-		postalCode: '',
-	});
+  const [input, setInput] = useState({
+    user: user.name,
+    mail: user.email,
+    picture: user.picture,
+    about: '',
+    name: user.given_name,
+    lastName: user.family_name,
+    phone: '',
+    dni: '',
+    age: '',
+    height: '',
+    weight: '',
+    address: '',
+    city: '',
+    region: '',
+    postalCode: '',
+  });
 
-	const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
-	const handleChange = (e) => {
-		setInput({
-			...input,
-			[e.target.name]: e.target.value,
-		});
-		setErrors(
-			Validate({
-				...input,
-				[e.target.name]: e.target.value,
-			})
-		);
-	};
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    setErrors(
+      Validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setErrors(Validate(input));
-		let error = Validate(input);
-		if (Object.values(error).length !== 0) {
-			swal({
-				title: 'Faltan Información',
-				text: `${
-					error.user ||
-					error.name ||
-					error.lastName ||
-					error.phone ||
-					error.dni ||
-					error.age ||
-					error.weight ||
-					error.height ||
-					error.address
-				}`,
-				icon: 'warning',
-				dangerMode: true,
-			});
-		} else {
-			dispatch(postClient(input));
-			swal({
-				title: 'Gracias!',
-				text: '¡Información creada correctamente!',
-				icon: 'success',
-			});
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrors(Validate(input));
+    let error = Validate(input);
+    if (Object.values(error).length !== 0) {
+      swal({
+        title: 'Faltan Información',
+        text: `${
+          error.user ||
+          error.name ||
+          error.lastName ||
+          error.phone ||
+          error.dni ||
+          error.age ||
+          error.weight ||
+          error.height ||
+          error.address
+        }`,
+        icon: 'warning',
+        dangerMode: true,
+      });
+    } else {
+      if (matchDeletedId) {
+		swal({
+			title: "Existe una cuenta desactivada con este mail",
+			text: "Queres reactivar ésta cuenta? Click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: false,
+		}).then((result) => {
+			if (result) {
+				dispatch(restoreClient(matchDeletedEmail.id));
+				swal({
+					title: "Cuenta reactivada!",
+					icon: "success",
+				});
+			} else {
+				swal("Reactivación descartada", "Debe autenticarse con otro mail si no reactiva la cuenta", "info");
+			}
 			navigate(`/home`);
-		}
-	};
-
-	function handleUpload(picture) {
-		setInput({
-			...input,
-			picture,
 		});
-	}
+      } else {
+        dispatch(postClient(input));
+        swal({
+          title: 'Gracias!',
+          text: '¡Información creada correctamente!',
+          icon: 'success',
+        });
+        navigate(`/home`);
+      }
+    }
+  };
+
+  function handleUpload(picture) {
+    setInput({
+      ...input,
+      picture,
+    });
+  }
+
 
 	return (
 		<>
