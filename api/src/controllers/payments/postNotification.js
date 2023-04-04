@@ -1,6 +1,7 @@
 const mercadopago = require("mercadopago");
 const postMercadoPago = require("./postMercadoPago.js");
 const postMembershipsmp = require("../memberships/postmembershipsMP");
+const fetch = require("cross-fetch");
 
 mercadopago.configure({
 	access_token: process.env.ACCESS_TOKEN_MP,
@@ -21,17 +22,16 @@ const postNotification = async (req, res) => {
 	switch (topic) {
 		case "payment":
 			const paymentId = query.id || query["data.id"];
-			Payment = await mercadopago.payment.findById(paymentId);
+			Payment = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {headers: {Authorization: `Bearer ${process.env.ACCESS_TOKEN_MP}`}}).then((res) => res.json());		
 			let data = {
-				clientId: Payment.body.additional_info.items[0].category_id,
-				id: Payment.body.id,
-				status: Payment.body.status,
-				date_payments: Payment.body.date_approved,
-				total_amount: Payment.body.transaction_amount,
-				plans: Payment.body.description,
-				order: Payment.body.order.id,
+				clientId: Payment.additional_info.items[0].category_id,
+				id: Payment.id,
+				status: Payment.status,
+				date_payments: Payment.date_approved,
+				total_amount: Payment.transaction_amount,
+				plans: Payment.description,
+				order: Payment.order.id,
 			};
-			console.log(data);
 			// let membership = {
 			// 	clientId: Payment.body.additional_info.items[0].category_id,
 			// 	planName: Payment.body.description,
