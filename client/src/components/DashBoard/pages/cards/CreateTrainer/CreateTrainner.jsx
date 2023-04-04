@@ -16,6 +16,7 @@ const CreateTrainner = () => {
 		phone: '',
 		mail: '',
 		address: '',
+		about: '',
 		permits: [],
 		classes: [],
 	});
@@ -68,6 +69,7 @@ const CreateTrainner = () => {
 				phone: '',
 				mail: '',
 				address: '',
+				about: '',
 			});
 		}
 	};
@@ -244,6 +246,31 @@ const CreateTrainner = () => {
 												{errors?.address && (
 													<p className=' text-red-500'>
 														<i>{errors.address}</i>
+													</p>
+												)}
+											</div>
+
+											{/* ABOUT */}
+											<div className='col-span-6'>
+												<label
+													htmlFor='about'
+													className='block text-sm font-medium leading-6 text-gray-900'
+												>
+													Descripción
+												</label>
+												<input
+													type='text'
+													name='about'
+													id='about'
+													value={input.about}
+													autoComplete='address'
+													className=' indent-2 mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:border-lighter-blue sm:text-sm sm:leading-6'
+													onChange={handleChange}
+													placeholder='Ej: "Profesora de educación física, entrenadora y antropometrista"'
+												/>
+												{errors?.about && (
+													<p className=' text-red-500'>
+														<i>{errors.about}</i>
 													</p>
 												)}
 											</div>

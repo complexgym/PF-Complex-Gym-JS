@@ -13,7 +13,6 @@ export default function SinglePlan({ plan, option }) {
 	const dispatch = useDispatch();
 
 	const {allClients, actual_plan} = useSelector((state) => state);
-	console.log();
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
@@ -63,7 +62,7 @@ export default function SinglePlan({ plan, option }) {
 				}
 		
 				axios.post("/payments", purchase).then((res)=>{
-					return window.location.href=res?.data?.body?.init_point
+					return window.location.href=res?.data?.response?.body?.init_point
 				})
 			}
 	

@@ -13,62 +13,33 @@ export default function SingleBlog({ blog }) {
 		<article
 			className="blog-card font-mono bg-white rounded-sm border border-gray-200 shadow-xl
 			flex flex-col justify-around pb-4 w-10/12 md:w-8/12 xl:w-11/12 mx-auto
-			relative transition ease-in-out delay-150 transform hover:-translate-y-1" 
+			relative " 
 		>
 			<div>
 				
 			{/* img, no padding */}
 			<div className="flex justify-between w-full items-center mb-5 text-white overflow-hidden">
-				<img className="bg-center bg-cover rounded-tl-sm rounded-tr-sm w-full h-48 hover:scale-110 duration-300 " src={blog?.image} />
+				<img className="bg-center object-cover rounded-tl-sm rounded-tr-sm w-full h-48 hover:scale-110 duration-600 " src={blog?.image} />
 			</div>
 
 			{/* info, padding */}
 			<div className="info-blog px-4">
 				<div className="flex flex-col justify-between mb-5 text-white">
-					{/* <span className="bg-primary-100 text-primary-800 text-xs 
-					font-medium inline-flex items-center px-2.5 py-0.5 rounded 
-					">  */}
-						{/* tags */}
-						 {/* {blog?.tag?.map((b, index) => {
-							return (
-								<div key={index} className="flex ">
-									<div className={`border-2 rounded-sm px-1 
-									${b==="Entrenamiento" && "border-violet-500 text-violet-500"}
-									${b==="Salud" && "border-green-500 text-green-500"}
-									${b==="Fitness" && "border-yellow-500 text-yellow-500"}
-									${b==="Administrativo" && "border-black text-black"}
-									flex`}>
-										<svg
-											className="mr-1 w-3 h-3"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<path
-												fill-rule="evenodd"
-												d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-												clip-rule="evenodd"
-											></path>
-											<path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
-										</svg>
-										{b}
-									</div>
-								</div>
-							);
-						})}  */}
-					{/* </span> */}
-
-
+					
 						{/* content's title */}
 						<h2 className="flex items-center mb-2 text-lg font-bold tracking-tight lighter-blue">
-							{/* > */}
 							<p className="font-bold underline text-black">{blog?.title}</p>
 						</h2>
 
 						{/* released date, pasando a formato 17/03/2023 */}
-						<span className="text-sm lighter-blue">{
-							blog?.createdAt.substring(0,10).replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1')}
-						</span>
+						<div className="flex justify-between">
+							<span className="text-sm lighter-blue">{
+								blog?.createdAt.substring(0,10).replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1')}
+							</span>
+							{blog?.tag?.length>2 ? <small className="text-black pb-2">{blog?.tag?.slice(0,2)?.join(", ")} y más...</small>
+							: <small className="text-black pb-2">{blog?.tag?.slice(0,2)?.join(", ")}</small>}
+
+						</div>
 					</div>
 
 					{/* content/message */}

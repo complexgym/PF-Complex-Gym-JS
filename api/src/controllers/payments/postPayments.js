@@ -2,7 +2,7 @@ const mercadopago = require("mercadopago");
 
 mercadopago.configure({
 	access_token: process.env.ACCESS_TOKEN_MP,
-});	
+});
 
 const postPayments = async (req, res) => {
 	const data = req.body;
@@ -10,12 +10,12 @@ const postPayments = async (req, res) => {
 	let preference = {
 		items: [
 			{
-			  category_id:data.id_User,
-			  title: data.name,
-			  unit_price: data.price,
-			  quantity: data.amount,
-			}
-		  ],
+				category_id: data.id_User,
+				title: data.name,
+				unit_price: data.price,
+				quantity: data.amount,
+			},
+		],
 		back_urls: {
 			success: `${process.env.SUCCESS}`,
 		},
@@ -27,7 +27,7 @@ const postPayments = async (req, res) => {
 		.create(preference)
 		.then(function (response) {
 			res.json({
-				response
+				response,
 			});
 		})
 		.catch(function (error) {

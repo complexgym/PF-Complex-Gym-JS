@@ -7,6 +7,7 @@ import {
 	getClientDetail,
 	getPaymentsByUser,
 	deleteClient,
+	getAllClients,
 } from "../../redux/actions/actions";
 import image from "../../assets/img/dumbelldBgd.jpg";
 import swal from "sweetalert";
@@ -27,8 +28,13 @@ export default function Profile() {
 	const matchId = matchEmail && matchEmail.id;
 
 	useEffect(() => {
+		if(allClients.length===0){
+			dispatch(getAllClients())
+		}
 		dispatch(getClientDetail(matchId));
 	}, [dispatch]);
+
+	// { allClients } = useSelector((state) => state);
 
 	const handleClick = () => {
 		swal({
@@ -207,7 +213,7 @@ export default function Profile() {
 									) : (
 										<div>
 											<button onClick={handleNoPdf}
-											className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue">
+											className="inline-flex justify-center rounded-md bg-off py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue">
 												Última Rutina
 											</button>
 										</div>

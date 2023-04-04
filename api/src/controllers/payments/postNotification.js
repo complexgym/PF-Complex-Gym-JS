@@ -32,6 +32,7 @@ const postNotification = async (req, res) => {
 				plans: Payment.description,
 				order: Payment.order.id,
 			};
+			console.log(data);
 			// let membership = {
 			// 	clientId: Payment.body.additional_info.items[0].category_id,
 			// 	planName: Payment.body.description,
@@ -51,4 +52,3 @@ const postNotification = async (req, res) => {
 	res.send();
 };
 module.exports = postNotification;
-

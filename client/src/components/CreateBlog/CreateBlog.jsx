@@ -167,7 +167,7 @@ export default function CreateBlog() {
 													onClick={handleChange}
 													className='pb-10'
 												/>
-												{errors?.image && (
+												{errors?.image && !errors?.image.startsWith("La url debe empezar") && (
 													<p className=' text-red-500'>
 														<i>{errors?.image}</i>
 													</p>
