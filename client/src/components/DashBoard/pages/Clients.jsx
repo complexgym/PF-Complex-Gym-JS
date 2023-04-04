@@ -18,7 +18,7 @@ const Clients = () => {
 	const [clientId, setClientId] = useState('');
 	const [newPdf, setNewPdf] = useState('');
 	const { user } = useAuth0();
-
+	const [isLoaded, setIsLoaded] = useState(false);
 	const dispatch = useDispatch();
 
 	function handleUpload(pdf) {
@@ -104,7 +104,10 @@ const Clients = () => {
 	useEffect(() => {
 		dispatch(getAllClients());
 		dispatch(getDeletedClients());
-	}, [allClients]);
+		setTimeout(() => {
+			setIsLoaded(true);
+		})
+	}, [1000]);
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
@@ -163,6 +166,9 @@ const Clients = () => {
 													<tr>
 														<th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70">
 															Cliente
+														</th>
+														<th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70">
+															Perfil
 														</th>
 														<th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Información
