@@ -277,7 +277,7 @@ const SideNav = () => {
               </a>
             </li>
 
-            <li className="mt-0.5 w-full">
+            {isAdmin && <li className="mt-0.5 w-full">
               <a
                 className={`${
                   location === "/dashboard/pagos" && "bg-blue-500/13"
@@ -294,9 +294,9 @@ const SideNav = () => {
                 </Link>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease"></span>
               </a>
-            </li>
+            </li>}
 
-            <li className="mt-0.5 w-full">
+            {isAdmin && <li className="mt-0.5 w-full">
               <a
                 className={`${
                   location === "/dashboard/actividades" && "bg-blue-500/13"
@@ -308,9 +308,9 @@ const SideNav = () => {
                 <Link to="/dashboard/actividades">Actividades</Link>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease"></span>
               </a>
-            </li>
+            </li>}
 
-            <li className="mt-0.5 w-full">
+            {isAdmin && <li className="mt-0.5 w-full">
               <a
                 className={`${
                   location === "/dashboard/entrenadores" && "bg-blue-500/13"
@@ -322,9 +322,9 @@ const SideNav = () => {
                 <Link to="/dashboard/entrenadores">Entrenadores</Link>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease"></span>
               </a>
-            </li>
+            </li>}
 
-            <li className="mt-0.5 w-full">
+            {isAdmin && <li className="mt-0.5 w-full">
               <a
                 className={`${
                   location === "/dashboard/testimonios" && "bg-blue-500/13"
@@ -336,9 +336,9 @@ const SideNav = () => {
                 <Link to="/dashboard/testimonios">Testimonios</Link>
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease"></span>
               </a>
-            </li>
+            </li>}
 
-            <li className="mt-0.5 w-full">
+            {isAdmin && <li className="mt-0.5 w-full">
               <a
                 className={`${
                   location === "/dashboard/planes" && "bg-blue-500/13"
@@ -351,6 +351,7 @@ const SideNav = () => {
                 <span className="ml-1 duration-300 opacity-100 pointer-events-none ease"></span>
               </a>
             </li>
+            }
           </ul>
         </div>
         </div>
