@@ -23,6 +23,8 @@ export default function Navbar() {
 
 	const matchId = matchEmail && matchEmail.id;
 
+	let isTrainer = matchEmail?.trainer;
+
 	const [open, setOpen] = useState(true);
 
 	useEffect(() => {
@@ -72,7 +74,7 @@ export default function Navbar() {
 						{!isAuthenticated && <LoginBtn />}
 
 						{isActive && <NavLink to={`/perfil/${matchId}`}>Perfil</NavLink>}
-						{!!isAdmin && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
+						{(!!isAdmin || isTrainer) && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
 						{!isAuthenticated ? null : (
 								<NavLink to={'/registro'} className={isActiveStyle}>
 									Registro
