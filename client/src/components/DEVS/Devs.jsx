@@ -93,7 +93,7 @@ const Devs = () => {
 		},
 		{
 			image:
-				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680621804/devs/1674864876315_frkcze.jpg',
+				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680632499/devs/c25a9bbd-48d1-4758-8a56-3bff51f33fc3_p5reuj.jpg',
 			name: 'Yosemar',
 			lastName: 'Castillo',
 			email: 'Yojecava@outlook.com',
