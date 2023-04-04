@@ -44,6 +44,7 @@ import AllPlans from './components/DashBoard/pages/AllPlans';
 import CreateReview from './components/CreateReview/CreateReview';
 import PaymentHistory from './components/PaymentHistory/PaymentHistory';
 import { getActualPlan } from './redux/actions/actions';
+import Devs from './components/DEVS/Devs';
 axios.defaults.baseURL = 'http://localhost:3001';
 // axios.defaults.baseURL = 'https://pf-complex-gym-js-production.up.railway.app/';
 
@@ -159,6 +160,8 @@ function App() {
 						<Route path={'/historialDePagos'} element={<PaymentHistory />} />
 						<Route path={'/review'} element={<CreateReview />} />
 						<Route path={'*'} element={<Error404 />} />
+
+						<Route exact path='/developers' element={<Devs />} />
 					</Routes>
 
 					{boolAddComponent && <Footer />}
