@@ -115,8 +115,6 @@ export default function CreateBlog() {
 		);
 	}
 
-	console.log(errors?.image);
-
 	return (
 		<>
 			<div className=' relative pt-8 pb-10 px-10 '>
@@ -169,7 +167,7 @@ export default function CreateBlog() {
 													onClick={handleChange}
 													className='pb-10'
 												/>
-												{errors?.image && (
+												{errors?.image && !errors?.image.startsWith("La url debe empezar") && (
 													<p className=' text-red-500'>
 														<i>{errors?.image}</i>
 													</p>

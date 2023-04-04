@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from 'react';
 import InstagramPost from './InstaPost';
 import SingleBlog from './SingleBlog';
+import { LoadingBlog } from '../Loading/Loading';
 
 //todo blog container
 export default function Blog() {
@@ -17,13 +18,7 @@ export default function Blog() {
 		useSelector((s) => s);
 	const [search, setSearch] = useState('');
 	const [filters, setFilters] = useState({ tag: '', date: '' });
-	const [isLoaded, setIsLoaded] = useState(false);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setIsLoaded(true);
-		}, [1500]);
-	}, []);
+	const [isLoaded, setIsLoaded] = useState(true);
 
 	//* search
 	const handleChangeSearch = (e) => {
@@ -36,6 +31,10 @@ export default function Blog() {
 		if (search_blog) {
 			setSearch(search_blog);
 			dispatch(searchPosts(filters, search_blog));
+			setIsLoaded(false)
+			setTimeout(() => {
+				setIsLoaded(true);
+			}, [1500]);
 		}
 	}, [search]);
 
@@ -48,13 +47,7 @@ export default function Blog() {
 		}
 	}, [search_blog]);
 
-	//*filters
-	useEffect(() => {
-		if (search_blog) {
-			setSearch(search_blog);
-		}
-	}, [dispatch]);
-
+	//*change filters!!!
 	const handleChangeFilters = (e) => {
 		setFilters({
 			...filters,
@@ -76,21 +69,31 @@ export default function Blog() {
 				[e.target.name]: e.target.value,
 			}, search_blog));
 
+			setTimeout(() => {
+				setIsLoaded(true);
+			}, [1500]);
+
 		} else {
 			dispatch(getAllPosts());
 		}
 	};
 
+	//*handling filters!!!
 	useEffect(() => {
 		const findFilters = Object.values(filters).find((f) => f !== '');
 		if (findFilters) {
 			dispatch(filterPosts(filters, search_blog));
+			setIsLoaded(false)
+			setTimeout(() => {
+				setIsLoaded(true);
+			}, [1500]);
 		}
 		if (!findFilters && !search_blog) {
 			dispatch(getAllPosts());
 		}
 	}, [filters]);
 
+	//*clear filter!!!
 	const handleClearFilters = (e) => {
 		e.preventDefault();
 		setFilters({ tag: '', date: '' });
@@ -106,7 +109,7 @@ export default function Blog() {
 	return (
 		<div>
 			<section className='bg-gray-100 w-screen pt-8 min-h-[80vh]'>
-				{initial_posts.length !== 0 ? (
+				{initial_posts?.length !== 0 ? (
 					<div className='pb-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:pb-8 lg:px-6 '>
 						{/* BLOG */}
 						<div className='mx-auto max-w-screen-sm text-center lg:mb-8 mb-4'>
@@ -194,13 +197,16 @@ export default function Blog() {
 						</form>
 
 						{/* posts, can be initial posts, filtered, or searched posts */}
-						{matched_posts.length > 0 ? (
+						{matched_posts?.length > 0 ? (
 							//get more than 1 post
-							<div className='cards grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8'>
+							
+								isLoaded ? <div className='cards grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8'>
 								{matched_posts?.map((b, index) => {
 									return <SingleBlog key={index} blog={b} />;
-								})}
-							</div>
+								}) }
+								</div>
+								: <LoadingBlog />
+							
 						) : (
 							//get null posts
 							isLoaded && (
@@ -212,9 +218,11 @@ export default function Blog() {
 									alt='not found img'
 									className='w-[150px] md:w-[250px] rounded-xl'
 								/> */}
-									<p className='text-red-500 font-text font-bold flex justify-center pb-4'>
+									<p className='text-red-500 text-lg font-text font-bold flex flex-col align-middle items-center pb-4'>
+										<img src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1680613422/cara_triste-removebg-preview_eosuso.png" alt="cara triste"
+										className='mb-4'/>
 										{search_blog
-											? 'Perdon, ningún blog cumple la condicion!'
+											? 'Perdon, ¡ningún blog cumple la condición!'
 											: 'Ningún blog encontrado!'}
 									</p>
 								</div>
