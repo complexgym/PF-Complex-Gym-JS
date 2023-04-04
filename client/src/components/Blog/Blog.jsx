@@ -24,11 +24,15 @@ export default function Blog() {
 	const handleChangeSearch = (e) => {
 		setSearch(e.target.value);
 		dispatch(updateSearch(e.target.value));
-		dispatch(filterPosts(filters, e.target.value));
+		dispatch(searchPosts(filters, e.target.value));
 	};
-
+	
 	useEffect(()=>{
-		dispatch(getAllPosts());
+		if(Object.values(filters_blog).find(el=>el!=="") || search_blog){
+			dispatch(searchPosts(filters_blog, search_blog));
+		} else{
+			dispatch(getAllPosts());
+		}
 	}, [dispatch])
 
 	//*change filters!!!
@@ -191,9 +195,9 @@ export default function Blog() {
 									alt='not found img'
 									className='w-[150px] md:w-[250px] rounded-xl'
 								/> */}
-									<p className='text-[#0a0093] text-lg font-text font-bold flex flex-col align-middle items-center pb-4'>
-										<img src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1680613422/cara_triste-removebg-preview_eosuso.png" alt="cara triste"
-										className='mb-4'/>
+									<p className='text-[#222bfc] text-lg font-text font-bold flex flex-col align-middle items-center pb-4'>
+										<img src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1680650451/404_fkvi1e.png" alt="cara triste"
+										className='mb-4 w-100'/>
 										{search_blog
 											? 'Perdón, ¡ningún blog cumple la condición!'
 											: 'Ningún blog encontrado!'}

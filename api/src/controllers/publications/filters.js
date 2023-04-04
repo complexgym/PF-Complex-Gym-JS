@@ -19,10 +19,11 @@ const filters = async (req, res) => {
 		//checking if it has already a search by
 		if (title) {
 			let allPublicationSearch = await blog.findAll({});
-			let publicationName = await allPublicationSearch?.filter((el) =>
-				el.title.toLowerCase().includes(title.toLowerCase())
-			);
+			let publicationName = await allPublicationSearch.filter((el) => {
+				return el.dataValues.title.toLowerCase().includes(title.toLowerCase());
+			});
 			allPublications = publicationName;
+			console.log(publicationName);
 		}
 
 		if (tag) {
