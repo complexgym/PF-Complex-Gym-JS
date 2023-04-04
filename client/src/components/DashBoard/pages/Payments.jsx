@@ -20,8 +20,6 @@ const Payments = () => {
 		(s) => s
 	);
 
-	console.log(actual_plan);
-
 	const dispatch = useDispatch();
 
 	const plansName = initial_plans?.map((plan) => plan);
