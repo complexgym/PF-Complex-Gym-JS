@@ -109,14 +109,12 @@ export function searchPosts({ tag, date }, title) {
 
 			//*tag and search
 			if (!date && tag && search) {
-				response = await axios(`/publications/filters?tag=${tag}&title=${search}`);
+				response = await axios(`/publications/filters?tag=${tag}&title=${title}`);
 			}
 
 			//*date and search
 			if (date && !tag && search) {
-				response = await axios(
-					`/publications/filters?date=${date}&title=${search}`
-				);
+				response = await axios(`/publications/filters?date=${date}&title=${title}`);
 			}
 
 			//*date and tag
@@ -127,7 +125,7 @@ export function searchPosts({ tag, date }, title) {
 			//*date, tag and search
 			if (date && tag && search) {
 				response = await axios(
-					`/publications/filters?tag=${tag}&date=${date}&title=${search}`
+					`/publications/filters?tag=${tag}&date=${date}&title=${title}`
 				);
 			}
 

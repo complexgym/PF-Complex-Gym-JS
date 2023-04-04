@@ -20,8 +20,6 @@ const SideNav = () => {
 
   let isAdmin = matchEmail?.admin;
 
-  console.log(isAdmin, isTrainer);
-
   const [open, setOpen] = useState(true);
 
   return (

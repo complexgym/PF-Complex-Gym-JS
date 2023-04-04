@@ -106,8 +106,7 @@ const Clients = () => {
 		dispatch(getDeletedClients());
 		setTimeout(() => {
 			setIsLoaded(true);
-		})
-	}, [1000]);
+		}, [1000]);
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
