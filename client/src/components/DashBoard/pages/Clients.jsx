@@ -103,7 +103,8 @@ const Clients = () => {
 	};
 	useEffect(() => {
 		dispatch(getAllClients());
-	}, []);
+		dispatch(getDeletedClients());
+	}, [allClients]);
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 

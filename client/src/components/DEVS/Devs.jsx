@@ -11,7 +11,7 @@ const Devs = () => {
 				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680621556/devs/alejo_dgrwfk.jpg',
 			name: 'Alejo',
 			lastName: 'Fariña',
-			email: 'scaramouch11@gmail.com',
+			email: 'adrianalejof@gmail.com',
 			country: 'Argentina',
 			about: 'Team Back',
 			ig: 'https://www.instagram.com/petisoma/',
