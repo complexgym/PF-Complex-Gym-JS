@@ -70,10 +70,13 @@ export default function Footer() {
 			<div className='flex 2xl:flex-row 2xl:justify-between 2xl:w-screen 2xl:px-40 xl:flex-row md:flex-row md:justify-between md:w-screen md:px-30 xl:justify-between xl:w-screen xl:px-40 mt-4 mb-4 xs:w-[85vw] xs:flex-col xs:gap-4'>
 				<div className='flex xs:w-[100%] xs:justify-start'>
 					<span className=' flex xs:flex-col lg:flex-row xl:flex-row 2xl:flex-row md:flex-row'>
-						Creada por alumnos de&nbsp;
-						<Link to='/developers' className='lighter-blue cursor-pointer'>
-							Soy Henry
+						<Link to='/developers' className='lighter-blue cursor-pointer text-lg'>
+							Desarrollado por
 						</Link>
+						<a
+							href='/developers'
+							className='pl-4 pt-2 fa fa-chevron-circle-right text-blue-600'
+						/>
 					</span>
 				</div>
 
