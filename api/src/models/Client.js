@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 const clients = (sequelize) => {
 	sequelize.define(
-		'client',
+		"client",
 		{
 			id: {
 				type: DataTypes.UUID,
@@ -92,6 +92,11 @@ const clients = (sequelize) => {
 				allowNull: true,
 			},
 			admin: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+				allowNull: true,
+			},
+			trainer: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
 				allowNull: true,
