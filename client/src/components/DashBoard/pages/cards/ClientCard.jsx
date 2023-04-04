@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {
 	getAllAdmin,
@@ -77,6 +78,11 @@ const ClientCard = ({ client, isUserAdmin }) => {
 						</p>
 					</div>
 				</div>
+			</td>
+			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+				<Link to={`/dashboard/perfil/${client.id}`}>
+					<i class="fa fa-light fa-user text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-lighter-blue"></i>
+				</Link>
 			</td>
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<p className="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
