@@ -15,7 +15,7 @@ export default function Plans() {
 			<div className='relative px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-[85vw] md:px-24 lg:px-8 lg:py-8'>
 				{/* initial msg */}
 				<div className='max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12'>
-					<h2 className='max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto'>
+					<h2 className='max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto flex justify-center pt-16'>
 						<span className='relative inline-block'>
 							<span className='relative uppercase text-black'>Planes actuales</span>
 						</span>{' '}
@@ -34,7 +34,7 @@ export default function Plans() {
 					>
 						<li className='mr-2' role='presentation'>
 							<button
-								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${
+								className={`inline-block p-4 border-b-2 text-md md:text-xl text-black rounded-t-lg ${
 									option === 'Todos' && 'lighter-blue border-blue font-bold border-b-4'
 								}`}
 								onClick={() => setOption('Todos')}
@@ -45,7 +45,7 @@ export default function Plans() {
 
 						<li className='mr-2' role='presentation'>
 							<button
-								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${
+								className={`inline-block p-4 text-md md:text-xl border-b-2 text-black rounded-t-lg ${
 									option === '2 por semana' &&
 									'text-green-700 border-green-700 font-bold border-b-4'
 								}`}
@@ -57,7 +57,7 @@ export default function Plans() {
 
 						<li className='mr-2' role='presentation'>
 							<button
-								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${
+								className={`inline-block p-4 border-b-2 text-md md:text-xl  text-black rounded-t-lg ${
 									option === 'Libre' &&
 									'text-white border-white font-bold  border-b-4'
 								}`}
@@ -69,7 +69,7 @@ export default function Plans() {
 
 						<li className='mr-2' role='presentation'>
 							<button
-								className={`inline-block p-4 border-b-2 text-black rounded-t-lg ${
+								className={`inline-block p-4 border-b-2 text-md md:text-xl  text-black rounded-t-lg ${
 									option === 'Otros' && 'text-[#231F20] border-[#231F20] font-bold border-b-4'
 								}`}
 								onClick={() => setOption('Otros')}

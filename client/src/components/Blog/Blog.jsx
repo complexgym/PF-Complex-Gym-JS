@@ -9,13 +9,11 @@ import {
 import { useEffect, useState } from 'react';
 import InstagramPost from './InstaPost';
 import SingleBlog from './SingleBlog';
-// import { LoadingBlog } from '../Loading/Loading';
-import { NavLink } from 'react-router-dom';
 
 //todo blog container
 export default function Blog() {
 	const dispatch = useDispatch();
-	const { initial_posts, matched_posts, ig_posts, search_blog, filters_blog } =
+	let { initial_posts, matched_posts, ig_posts, search_blog, filters_blog } =
 		useSelector((s) => s);
 	const [search, setSearch] = useState('');
 	const [filters, setFilters] = useState({ tag: '', date: '' });
@@ -73,7 +71,11 @@ export default function Blog() {
 				})
 			);
 
-			dispatch(filterPosts(filters, search_blog));
+			dispatch(filterPosts({
+				...filters,
+				[e.target.name]: e.target.value,
+			}, search_blog));
+
 		} else {
 			dispatch(getAllPosts());
 		}
@@ -89,16 +91,6 @@ export default function Blog() {
 		}
 	}, [filters]);
 
-	//todo to load the ig posts before (no andaaa)
-	// const instagramPosts = (
-	// 	<>
-	// 		<InstagramPost url={'https://www.instagram.com/p/CpSkKuMgP_u/'} />
-	// 		<InstagramPost url={'https://www.instagram.com/p/CpkRaEKjOsA/'} />
-	// 		<InstagramPost url={'https://www.instagram.com/p/CoqESveJj-b/'} />
-	// 		<InstagramPost url={'https://www.instagram.com/p/CpyI4RXuaOI/'} />
-	// 	</>
-	// );
-
 	const handleClearFilters = (e) => {
 		e.preventDefault();
 		setFilters({ tag: '', date: '' });
@@ -106,6 +98,10 @@ export default function Blog() {
 		dispatch(updateSearch(''));
 		dispatch(updateFilters({ tag: '', date: '' }));
 	};
+
+	filters_blog = useSelector((s) => s.filters_blog);
+
+	search_blog  = useSelector((s) => s.search_blog);
 
 	return (
 		<div>
