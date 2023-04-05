@@ -65,7 +65,6 @@ const UpdateActivity = () => {
 			image,
 		});
 	}
-	//console.log(toEdit)
 	return (
 		<>
 			

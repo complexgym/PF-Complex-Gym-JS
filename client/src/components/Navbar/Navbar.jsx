@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginBtn from '../LoginBtn/LoginBtn';
 import LogoutBtn from '../LogoutBtn/LogoutBtn';
-import { getAllClients, getClientDetail } from '../../redux/actions/actions';
+import { getClientDetail } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Spline from '@splinetool/react-spline';

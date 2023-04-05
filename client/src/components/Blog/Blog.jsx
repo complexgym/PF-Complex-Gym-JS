@@ -76,13 +76,6 @@ export default function Blog() {
 
 	search_blog  = useSelector((s) => s.search_blog);
 
-	// useEffect(()=>{
-	// 	if(!search_blog && !Object.values(filters_blog).find(el=>el!=="")){
-	// 		dispatch(getAllPosts());
-	// 	}
-	// }, [search_blog, filters])
-
-
 	return (
 		<div>
 			<section className='bg-gray-100 w-screen pt-8 min-h-[80vh]'>
@@ -188,13 +181,6 @@ export default function Blog() {
 							//get null posts
 							isLoaded && (
 								<div className='flex flex-col items-center pt-0 pb-4'>
-									{/* <img
-									src={
-										'https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196370/not-found-blog_ly0lcw.png'
-									}
-									alt='not found img'
-									className='w-[150px] md:w-[250px] rounded-xl'
-								/> */}
 									<p className='text-[#222bfc] text-lg font-text font-bold flex flex-col align-middle items-center pb-4'>
 										<img src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1680650451/404_fkvi1e.png" alt="cara triste"
 										className='mb-4 w-100'/>
@@ -231,7 +217,3 @@ export default function Blog() {
 		</div>
 	);
 }
-
-//*https://sugarshin.github.io/react-instagram-embed/
-
-//*https://developers.facebook.com/apps/954092502440648/instagram-basic-display/basic-display-rate-limiting/

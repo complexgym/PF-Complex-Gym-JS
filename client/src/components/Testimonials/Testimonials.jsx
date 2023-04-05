@@ -51,8 +51,6 @@ export default function Testimonials({ user, isAuthenticated }) {
 													'https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196355/quote_s5hblr.png'
 												}
 											/>
-											{/* <FontAwesomeIcon className="quote-icon" icon={faQuoteLeft}/> */}
-											{/* <h3 className='card-title lighter-blue'>I loved it</h3> */}
 											<p className='card-body min-h-54  pt-4 text-[#2a2a2a] 2xl:text-lg  xl:text-xs lg:text-[14px] md:text-[13px] xs:text-[13px] font-semibold overflow-hidden'>
                         <ReadMoreButton text={s?.review} maxChars={260} />
 											</p>
