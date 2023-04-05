@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import SideNav from '../SideNav';
 import TestimonyCard from './cards/TestimonyCard';
 

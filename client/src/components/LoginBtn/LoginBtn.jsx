@@ -4,7 +4,6 @@ import style from "./style.module.css"
 const LoginBtn = () => {
 	const { loginWithRedirect } = useAuth0();
 
-
 	const handleLogin = async () => {
 		await loginWithRedirect({
 			appState: {
@@ -12,7 +11,6 @@ const LoginBtn = () => {
 			},
 		})
 	};
-
 
 	return (
 		<div className={style.login}>

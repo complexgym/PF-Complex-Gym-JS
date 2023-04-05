@@ -1,24 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
-	getAllPayments,
 	getClientDetail,
-	getPaymentsByUser,
-	deleteClient,
-	getAllClients,
 } from "../../../redux/actions/actions";
 import image from "../../../assets/img/dumbelldBgd.jpg";
 import swal from "sweetalert";
 
 const regexImg = /\.(jpeg|jpg|gif|png)$/;
 
-export default function ClientDetail() {
+export default function ClientDetail({id}) {
 	const client = useSelector( (state)=>state.clientDetail )
-	const { id } = useParams();
-	console.log(client);
+	const {allClients} = useSelector(s=>s)
 	const dispatch = useDispatch();
-
 
 	useEffect(() => {
 		dispatch(getClientDetail(id));
@@ -83,17 +77,7 @@ export default function ClientDetail() {
 									</div>
 								</div>
 								<div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-									<div className="flex justify-end gap-1 py-6 px-3 mt-32 sm:mt-0">
-										<Link to={`/editar/${client.id}`}>
-											<button
-												className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
-												type="button"
-											>
-												Editar Perfil
-											</button>
-										</Link>
-										<br></br>
-									</div>
+									
 								</div>
 								<div className="w-full lg:w-4/12 px-4 lg:order-1">
 									<div className="flex justify-center py-4 lg:pt-4 pt-8">

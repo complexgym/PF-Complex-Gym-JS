@@ -13,7 +13,7 @@ const {
 } = require("../controllers/index");
 
 const router = Router();
-router.get("/filters", filters); // filtros
+router.get("/filters", filters);
 router.get("/all", getAllPublications);
 router.get("/:id", getPublicationsByID);
 router.get("/", getPublicationsByName);

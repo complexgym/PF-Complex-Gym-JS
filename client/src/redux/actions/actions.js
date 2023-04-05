@@ -39,6 +39,9 @@ import {
 	REGISTER,
 	DELETE_ACTIVITY,
 	DELETE_TRAINER,
+	PUT_ACTIVITY,
+	FILL_ACTIVITY,
+	EMPTY_ACTIVITY,
 	GET_ACTUAL_PLAN,
 	DELETE_PAYMENT_CASH,
 } from "./action-types.js";
@@ -109,14 +112,12 @@ export function searchPosts({ tag, date }, title) {
 
 			//*tag and search
 			if (!date && tag && search) {
-				response = await axios(`/publications/filters?tag=${tag}&title=${search}`);
+				response = await axios(`/publications/filters?tag=${tag}&title=${title}`);
 			}
 
 			//*date and search
 			if (date && !tag && search) {
-				response = await axios(
-					`/publications/filters?date=${date}&title=${search}`
-				);
+				response = await axios(`/publications/filters?date=${date}&title=${title}`);
 			}
 
 			//*date and tag
@@ -127,7 +128,7 @@ export function searchPosts({ tag, date }, title) {
 			//*date, tag and search
 			if (date && tag && search) {
 				response = await axios(
-					`/publications/filters?tag=${tag}&date=${date}&title=${search}`
+					`/publications/filters?tag=${tag}&date=${date}&title=${title}`
 				);
 			}
 
@@ -272,14 +273,16 @@ export const getAllClients = () => async (dispatch) => {
 
 export const getClientDetail = (id) => async (dispatch) => {
 	try {
-		let response = await axios(`/clients/${id}`);
+		let response = await axios(`/clients?id=${id}`);
+
+		// console.log(response.data);
 
 		return dispatch({
 			type: GET_CLIENT_DETAIL,
 			payload: response.data,
 		});
 	} catch (error) {
-		// console.log(error);
+		console.log(error);
 	}
 };
 
@@ -698,9 +701,6 @@ export const postPaymentCash = (data) => async (dispatch) => {
 
 export const getPaymentsByUser = (id) => async (dispatch) => {
 	try {
-		// const filter = allPayments?.filter((d) => {
-		// 	return d?.clientId === id;
-		// });
 		return dispatch({
 			type: GET_PAYMENTS_BY_USER,
 			payload: id,
@@ -735,6 +735,33 @@ export const deleteActivity = (id) => async (dispatch) => {
 			payload: id,
 		});
 	} catch (error) {}
+};
+
+export const putActivity = (acti) => async (dispatch) => {
+	try {
+		const response = await axios.put(`/activities/${acti.id}`, acti);
+
+		//console.log("console de acti",acti)
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const fillActivity = (acti) => async (dispatch) => {
+	try {
+		return dispatch({
+			type: FILL_ACTIVITY,
+			payload: { acti },
+		});
+	} catch (error) {}
+};
+
+export const emptyActivity = () => async (dispatch) => {
+	return dispatch({
+		type: EMPTY_ACTIVITY,
+		payload: [],
+	});
 };
 
 export const deleteTrainer = (id) => async (dispatch) => {

@@ -1,4 +1,4 @@
-const { trainer, activities } = require('../../db');
+const { trainer } = require('../../db');
 
 const postTrainer = async ({
 	user,
@@ -24,13 +24,6 @@ const postTrainer = async ({
 		address,
 		about
 	});
-
-	//     const Activities = await activities.findAll({
-	//             where: {
-	//                 name : activities.name
-	//             }
-	//         })
-	//         await newTrainer.addactivities(Activities)
 
 	return newTrainer;
 };

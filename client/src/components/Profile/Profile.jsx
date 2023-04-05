@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
-	getAllPayments,
 	getClientDetail,
-	getPaymentsByUser,
 	deleteClient,
 	getAllClients,
 } from "../../redux/actions/actions";
@@ -33,8 +31,6 @@ export default function Profile() {
 		}
 		dispatch(getClientDetail(matchId));
 	}, [dispatch]);
-
-	// { allClients } = useSelector((state) => state);
 
 	const handleClick = () => {
 		swal({

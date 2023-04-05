@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { postPayment } from "../../redux/actions/actions";
 import useScript from "./useScript";
 import axios from "axios";
 
@@ -45,7 +44,7 @@ export default function SinglePlan({ plan, option }) {
 			if(matchId){
 
 				const mercadopago = new MercadoPago(keyMP, {
-					locale: "es-AR", // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+					locale: "es-AR", 
 				});
 		
 				function createCheckoutButton(preferenceId) {

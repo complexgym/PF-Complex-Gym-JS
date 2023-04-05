@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPayments, getPaymentsByUser } from "../../redux/actions/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -17,18 +16,10 @@ export default function PaymentHistory() {
 	const matchId = matchEmail && matchEmail.id;
 
 	useEffect(() => {
-		// dispatch(getAllPayments());
-
 		setTimeout(() => {
 			setIsLoaded(true);
 		}, [2000]);
 	}, [dispatch]);
-
-	// const { allPayments } = useSelector((state) => state);
-
-	// useEffect(() => {
-	// 	dispatch(getPaymentsByUser(allPayments, matchId));
-	// }, [dispatch, allPayments, matchId]);
 
 	const { payments_user } = useSelector((state) => state);
 

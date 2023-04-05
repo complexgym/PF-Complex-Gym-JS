@@ -63,7 +63,6 @@ const TrainersCard = ({ trainer }) => {
 						class="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
 						onClick={handleDelete}
 					></i>
-					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
 				</button>
 			</td>
 		</tr>

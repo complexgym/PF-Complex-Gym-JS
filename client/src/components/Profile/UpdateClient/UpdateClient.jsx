@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllClients, putClient } from '../../../redux/actions/actions';
+import { putClient } from '../../../redux/actions/actions';
 import Validate from './UpdateValidations';
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';

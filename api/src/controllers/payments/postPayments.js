@@ -19,7 +19,6 @@ const postPayments = async (req, res) => {
 		back_urls: {
 			success: `${process.env.SUCCESS}`,
 		},
-		//auto_return: "approved",
 		notification_url: `${process.env.NOTIFICATION_URL}/payments/notification`,
 	};
 
