@@ -533,7 +533,7 @@ export const getAllPayments = () => async (dispatch) => {
 	try {
 		const response = await axios.get("/payments");
 
-		let map = response.data.map((d) => {
+		let map = response?.data?.map((d) => {
 			const date = new Date(d?.paymentsDate);
 
 			/* payment date*/
