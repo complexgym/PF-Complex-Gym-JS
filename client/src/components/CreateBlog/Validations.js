@@ -5,17 +5,25 @@ const regexIg = /\bhttps?:\/\/(www\.)?instagram\.com\/p\/[a-zA-Z0-9_-]+\/?\b/;
 export default function Validate(input) {
 	let errors = {};
 
+	console.log(Boolean(input.isInstagram));
+
 	if (!regexTitle.test(input.title)) {
 		errors.title =
 			"El título debe ser sólo letras y tener un mínimo de 4 y máximo de 80 letras!";
 	}
 
-	if (input.isInstagram && !regexIg.test(input.image)) {
+	if (Boolean(input.isInstagram) && !regexIg.test(input.image)) {
 		errors.image =
 			"La url debe empezar en https://instagram.com/ o https://www.instagram.com/";
 	}
 
-	console.log(input.isInstagram);
+	if (!Boolean(input.isInstagram) && !regexImg.test(input.image)) {
+		errors.image = "Debe cargar una imagen!";
+	}
+
+	if (!input.isInstagram && !input.title) {
+		errors.image = "";
+	}
 
 	if (!input.isInstagram) {
 		if (input?.content?.length < 100) {

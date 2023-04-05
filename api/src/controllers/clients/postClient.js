@@ -18,6 +18,7 @@ const postClient = async ({
 	activitie,
 	routine,
 	about,
+	trainer
 }) => {
 	const active = true;
 	const debt = false;
@@ -44,6 +45,7 @@ const postClient = async ({
 		active,
 		debt,
 		debtAmount,
+		trainer
 	});
 	/*
     const Activities = await activities.findAll({

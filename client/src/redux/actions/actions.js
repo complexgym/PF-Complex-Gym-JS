@@ -10,8 +10,11 @@ import {
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
 	DELETE_CLIENT,
+	GET_DELETED_CLIENTS,
+	RESTORE_CLIENT,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
+	DELETE_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
@@ -39,6 +42,8 @@ import {
 	PUT_ACTIVITY,
 	FILL_ACTIVITY,
 	EMPTY_ACTIVITY
+	GET_ACTUAL_PLAN,
+	DELETE_PAYMENT_CASH,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -107,14 +112,12 @@ export function searchPosts({ tag, date }, title) {
 
 			//*tag and search
 			if (!date && tag && search) {
-				response = await axios(`/publications/filters?tag=${tag}&title=${search}`);
+				response = await axios(`/publications/filters?tag=${tag}&title=${title}`);
 			}
 
 			//*date and search
 			if (date && !tag && search) {
-				response = await axios(
-					`/publications/filters?date=${date}&title=${search}`
-				);
+				response = await axios(`/publications/filters?date=${date}&title=${title}`);
 			}
 
 			//*date and tag
@@ -125,7 +128,7 @@ export function searchPosts({ tag, date }, title) {
 			//*date, tag and search
 			if (date && tag && search) {
 				response = await axios(
-					`/publications/filters?tag=${tag}&date=${date}&title=${search}`
+					`/publications/filters?tag=${tag}&date=${date}&title=${title}`
 				);
 			}
 
@@ -311,15 +314,39 @@ export const putClient = (client, matchId) => async () => {
 
 export const deleteClient = (id) => async (dispatch) => {
 	try {
-	  await axios.delete(`/clients/${id}`);
-	  dispatch({
-		type: DELETE_CLIENT,
-		payload: id,
-	  });
+		await axios.delete(`/clients/${id}`);
+		dispatch({
+			type: DELETE_CLIENT,
+			payload: id,
+		});
 	} catch (error) {
-	  console.log(error);
+		console.log(error);
 	}
-  };
+};
+
+export const getDeletedClients = () => async (dispatch) => {
+	try {
+		let response = await axios("/clients/softDeleted");
+
+		let data = response.data;
+
+		return dispatch({
+			type: GET_DELETED_CLIENTS,
+			payload: data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const restoreClient = (id) => async () => {
+	try {
+		const response = await axios.put(`/clients/restore/${id}`);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 export const getAllTestimonials = () => {
 	return async function (dispatch) {
@@ -328,6 +355,20 @@ export const getAllTestimonials = () => {
 			return dispatch({
 				type: GET_ALL_TESTIMONIALS,
 				payload: response.data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const deleteTestimonials = (id) => {
+	return async function (dispatch) {
+		try {
+			const response = await axios.delete(`/testimonials/${id}`);
+			return dispatch({
+				type: DELETE_TESTIMONIALS,
+				payload: id,
 			});
 		} catch (error) {
 			console.log(error);
@@ -489,7 +530,8 @@ export const postPayment = (purchase) => async () => {
 export const getAllPayments = () => async (dispatch) => {
 	try {
 		const response = await axios.get("/payments");
-		let map = response?.data?.map((d) => {
+
+		let map = response.data.map((d) => {
 			const date = new Date(d?.paymentsDate);
 
 			/* payment date*/
@@ -507,6 +549,9 @@ export const getAllPayments = () => async (dispatch) => {
 				Number(date.getMonth() + 2) +
 				"/" +
 				date.getFullYear();
+
+			const date2 = date;
+			date2.setMonth(date.getMonth() + 1); //getting next month
 
 			/* time of payment */
 			let hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
@@ -531,8 +576,11 @@ export const getAllPayments = () => async (dispatch) => {
 				paymentsDate: startDate,
 				hour: time,
 				finishedDate,
+				paymentsDateStamp: d?.paymentsDate,
+				finishedDateStamp: date2,
 			};
 		});
+
 		return dispatch({
 			type: GET_ALL_PAYMENTS,
 			payload: map,
@@ -570,11 +618,11 @@ export const editPlans = (id, data) => async (dispatch) => {
 
 export const postPlans = (data) => async (dispatch) => {
 	try {
-		await axios.post("/plans", data);
+		const response = await axios.post("/plans", data);
 
 		return dispatch({
 			type: POST_PLANS,
-			payload: data,
+			payload: response.data,
 		});
 	} catch (error) {
 		console.log(error);
@@ -596,11 +644,11 @@ export const postReview = (review) => async () => {
 
 export const postTrainer = (trainer) => async (dispatch) => {
 	try {
-		const data = await axios.post("/trainer", trainer);
+		const response = await axios.post("/trainer", trainer);
 
 		return dispatch({
 			type: POST_TRAINER,
-			payload: data,
+			payload: response.data,
 		});
 	} catch (error) {
 		console.log(error);
@@ -620,11 +668,10 @@ export const deletePlan = (id) => async (dispatch) => {
 
 export const postActivity = (activity) => async (dispatch) => {
 	try {
-		const data = await axios.post("/activities", activity);
-
+		const response = await axios.post("/activities", activity);
 		return dispatch({
 			type: POST_ACTIVITIES,
-			payload: data,
+			payload: response.data,
 		});
 	} catch (error) {
 		console.log(error);
@@ -650,14 +697,14 @@ export const postPaymentCash = (data) => async (dispatch) => {
 	} catch (error) {}
 };
 
-export const getPaymentsByUser = (allPayments, id) => async (dispatch) => {
+export const getPaymentsByUser = (id) => async (dispatch) => {
 	try {
-		const filter = allPayments?.filter((d) => {
-			return d?.clientId === id;
-		});
+		// const filter = allPayments?.filter((d) => {
+		// 	return d?.clientId === id;
+		// });
 		return dispatch({
 			type: GET_PAYMENTS_BY_USER,
-			payload: filter,
+			payload: id,
 		});
 	} catch (error) {
 		console.log(error);
@@ -734,4 +781,22 @@ export const deleteTrainer = (id) => async (dispatch) => {
 			payload: id,
 		});
 	} catch (error) {}
+};
+
+export const getActualPlan = () => {
+	return {
+		type: GET_ACTUAL_PLAN,
+	};
+};
+
+export const deletePaymentCash = (id) => async (dispatch) => {
+	try {
+		const response = await axios.delete(`/payments/cash/${id}`);
+		return dispatch({
+			type: DELETE_PAYMENT_CASH,
+			payload: id,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };

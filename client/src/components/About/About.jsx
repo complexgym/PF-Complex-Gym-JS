@@ -42,7 +42,7 @@ export default function About() {
 				{/*Img*/}
 				<div className=''>
 					<img
-						className='w-full rounded-3xl'
+						className='w-full rounded-tl-3xl rounded-tr-3xl md:rounded-tl-3xl md:rounded-bl-3xl md:rounded-br-0'
 						src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679073922/IMG-20230301-WA0052_ouc60i.jpg'
 						alt='A group of People'
 					/>
@@ -76,7 +76,7 @@ export default function About() {
 				{/*Img*/}
 				<div className=''>
 					<img
-						className='rounded-3xl '
+						className='rounded-bl-3xl rounded-br-3xl md:rounded-br-3xl md:rounded-tr-3xl md:rounded-tl-0 md:rounded-bl-0'
 						src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679167386/IMG-20230317-WA0023_nvamgh.jpg'
 						alt='A group of People'
 					/>
@@ -92,3 +92,4 @@ export default function About() {
 		</div>
 	);
 }
+//

@@ -1,4 +1,4 @@
-export default function ValidateCalendar(input) {
+export default function ValidatePlan(input) {
 	const error = {};
 
 	if (input.name.length === 0) {
@@ -12,8 +12,8 @@ export default function ValidateCalendar(input) {
 	if (input.price === 0) {
 		error.price = "El precio es obligatorio";
 	}
-	if (input.price > 100000) {
-		error.price = "El precio debe ser menor a 7 cifras";
+	if (input.price >= 1000000000) {
+		error.price = "El precio debe ser menor a 10 cifras";
 	}
 
 	return error;

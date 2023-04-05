@@ -1,8 +1,8 @@
-const { client } = require('../../db')
+const { client } = require("../../db");
 
 /**
- * 
- * @param {string} id 
+ *
+ * @param {string} id
  * @param {{
  * id: string,
  *  user: string,
@@ -13,32 +13,32 @@ const { client } = require('../../db')
  *  height: number,
  *  weight: number,
  *  age: number,
- *  phone: number, 
+ *  phone: number,
  *  mail: string,
  *  adress: string,
  *  active: boolean,
  *  debt: boolean,
  *  debtAmount: number,
  *  routine: string
- * }} newData 
+ *  trainer: boolean
+ * }} newData
  */
 const updateClientById = async (id, newData) => {
-    try {
-        const responseUpdate = await client.update(newData, {
-            where: {
-                id: id
-            }
-        })
+	try {
+		const responseUpdate = await client.update(newData, {
+			where: {
+				id: id,
+			},
+		});
 
-        if (responseUpdate[0] === 0) throw Error('id not found')
+		if (responseUpdate[0] === 0) throw Error("id not found");
 
-        const responseResult = await client.findByPk(id)
-        
-        return responseResult
-    } catch (error) {
-        return {error: error.message}
-    }
-}
+		const responseResult = await client.findByPk(id);
 
+		return responseResult;
+	} catch (error) {
+		return { error: error.message };
+	}
+};
 
-module.exports = updateClientById
+module.exports = updateClientById;
