@@ -692,9 +692,10 @@ export const putTestimonials = (id, data) => async () => {
 export const postPaymentCash = (data) => async (dispatch) => {
 	try {
 		const response = await axios.post("/payments/cash", data);
+		console.log(response.data);
 		return dispatch({
 			type: POST_PAYMENT_CASH,
-			payload: data,
+			payload: response.data,
 		});
 	} catch (error) {}
 };
