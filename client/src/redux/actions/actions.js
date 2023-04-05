@@ -39,6 +39,9 @@ import {
 	REGISTER,
 	DELETE_ACTIVITY,
 	DELETE_TRAINER,
+	PUT_ACTIVITY,
+	FILL_ACTIVITY,
+	EMPTY_ACTIVITY
 	GET_ACTUAL_PLAN,
 	DELETE_PAYMENT_CASH,
 } from "./action-types.js";
@@ -736,6 +739,40 @@ export const deleteActivity = (id) => async (dispatch) => {
 		});
 	} catch (error) {}
 };
+
+
+export const putActivity = (acti) => async (dispatch) => {
+	try {
+		const response = await axios.put(`/activities/${acti.id}`, acti);
+
+		//console.log("console de acti",acti)
+		return response;
+	} catch (error) {
+		console.log(error)
+	}
+};
+
+
+export const fillActivity = (acti) => async (dispatch) => {
+	try {
+		//const response = await axios.put(`/activities/${id}`, acti);
+		//console.log(acti)
+		return dispatch({
+			type: FILL_ACTIVITY,
+			payload: {acti}
+		});
+	} catch (error) {}
+};
+
+
+export const emptyActivity = () => async(dispatch) => {
+	return dispatch({
+	type: EMPTY_ACTIVITY,
+	payload: [],
+	})
+}
+
+
 
 export const deleteTrainer = (id) => async (dispatch) => {
 	try {

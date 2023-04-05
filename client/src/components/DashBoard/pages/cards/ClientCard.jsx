@@ -82,7 +82,7 @@ const ClientCard = ({ client, isUserAdmin }) => {
 			</td>
 			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<Link to={`/dashboard/perfil/${client?.id}`}>
-					<i class="fa fa-light fa-user text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-lighter-blue"></i>
+					<i class="fa fa-light fa-user text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:lighter-blue"></i>
 				</Link>
 			</td>
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">

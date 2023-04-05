@@ -107,7 +107,7 @@ const Clients = () => {
 		setTimeout(() => {
 			setIsLoaded(true);
 		})
-	}, [1000]);
+		}, [1000]); 
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
@@ -264,7 +264,7 @@ const Clients = () => {
 										<button
 											name="search"
 											type="button"
-											class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 first-letter py-2 px-8 mt-10 md:mt-0 flex items-center"
+											class="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 											onClick={handleSearchDeleted}
 										>
 											Buscar
