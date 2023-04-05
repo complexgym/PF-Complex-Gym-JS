@@ -159,7 +159,9 @@ function App() {
 							<Route path={"/dashboard/clientes"} element={<Clients />} />
 							<Route path={"/dashboard/publicaciones"} element={<Publications />} />
 							<Route path={"/dashboard/calendario"} element={<ClasesCalendar />} />
-							<Route path={"/dashboard/perfil/:id"} element={<ClientDetail />} />
+							{allClients?.map(client=>{
+								return <Route path={`/dashboard/perfil/${client?.id}`} element={<ClientDetail id={client?.id} />} />
+							})}
 							{isAdmin && (
 								<>
 									<Route path={"/dashboard/pagos"} element={<Payments />} />
@@ -172,7 +174,7 @@ function App() {
 						</Route>
 						<Route path={"/historialDePagos"} element={<PaymentHistory />} />
 						<Route path={"/review"} element={<CreateReview />} />
-						<Route path={"*"} element={<Error404 />} />
+						{/* <Route path={"*"} element={<Error404 />} /> */}
 
 						<Route exact path="/developers" element={<Devs />} />
 					</Routes>

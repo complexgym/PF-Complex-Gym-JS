@@ -270,14 +270,16 @@ export const getAllClients = () => async (dispatch) => {
 
 export const getClientDetail = (id) => async (dispatch) => {
 	try {
-		let response = await axios(`/clients/${id}`);
+		let response = await axios(`/clients?id=${id}`);
+
+		// console.log(response.data);
 
 		return dispatch({
 			type: GET_CLIENT_DETAIL,
 			payload: response.data,
 		});
 	} catch (error) {
-		// console.log(error);
+		console.log(error);
 	}
 };
 
