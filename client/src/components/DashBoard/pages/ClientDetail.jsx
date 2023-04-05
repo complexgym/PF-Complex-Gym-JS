@@ -167,7 +167,7 @@ export default function ClientDetail({id}) {
 									<div>
 										<button	className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 										>
-										<a href={"/historialDePagos"}>Historial de pagos</a>
+										<a href={`/historialDePagos/${client?.id}`}>Historial de pagos</a>
 										</button>
 									</div>
 								</div>

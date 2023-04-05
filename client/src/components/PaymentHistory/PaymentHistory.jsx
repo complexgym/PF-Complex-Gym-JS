@@ -1,27 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function PaymentHistory() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [payments, setPayments] = useState([]);
+
+	const { id } = useParams()
 
 	const { user } = useAuth0();
 
-	const { allClients } = useSelector((state) => state);
+	const { allClients, allPayments } = useSelector((state) => state);
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
 	const matchId = matchEmail && matchEmail.id;
 
+	const { payments_user } = useSelector((state) => state);
+
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoaded(true);
 		}, [2000]);
-	}, [dispatch]);
 
-	const { payments_user } = useSelector((state) => state);
+		if(!id){
+			setPayments(payments_user)
+		}
+		else{
+			setPayments(allPayments?.filter(pay=>pay?.clientId===id));
+		}
+	}, [dispatch]);
 
 	return (
 		<div className="my-12 min-h-[60vh] w-full justify-center items-center">
@@ -33,7 +43,7 @@ export default function PaymentHistory() {
 			</h1>
 
 			{isLoaded ? (
-				payments_user?.length > 0 ? (
+				payments?.length > 0 ? (
 					<table
 						className="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500
       h-full"
@@ -57,7 +67,7 @@ export default function PaymentHistory() {
 							</tr>
 						</thead>
 						<tbody>
-							{payments_user?.map((pay, index) => {
+							{payments?.map((pay, index) => {
 								return (
 									<tr key={index} className="font-text">
 										{/* payments name */}
