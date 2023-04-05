@@ -44,6 +44,7 @@ import {
 	EMPTY_ACTIVITY,
 	GET_ACTUAL_PLAN,
 	DELETE_PAYMENT_CASH,
+	EMPTY_DETAIL
 } from "./action-types.js";
 import axios from "axios";
 
@@ -285,6 +286,15 @@ export const getClientDetail = (id) => async (dispatch) => {
 		console.log(error);
 	}
 };
+
+
+export const emptyDetail = () => async (dispatch) => {
+	return dispatch({
+	type: EMPTY_DETAIL,
+	payload: [],
+	})
+}
+
 
 export const postClient = (client) => async (dispatch) => {
 	try {

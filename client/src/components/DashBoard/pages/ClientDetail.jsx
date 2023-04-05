@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
 	getClientDetail,
+	emptyDetail
 } from "../../../redux/actions/actions";
 import image from "../../../assets/img/dumbelldBgd.jpg";
 import swal from "sweetalert";
@@ -15,6 +16,7 @@ export default function ClientDetail({id}) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		dispatch(emptyDetail())
 		dispatch(getClientDetail(id));
 	}, [dispatch, id]);
 
@@ -167,7 +169,7 @@ export default function ClientDetail({id}) {
 									<div>
 										<button	className="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-md font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 										>
-										<a href={`/historialDePagos/${client?.id}`}>Historial de pagos</a>
+										<a href={"/historialDePagos"}>Historial de pagos</a>
 										</button>
 									</div>
 								</div>

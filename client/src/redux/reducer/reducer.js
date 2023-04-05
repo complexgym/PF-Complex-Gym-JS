@@ -45,6 +45,7 @@ import {
 	DELETE_TRAINER,
 	GET_ACTUAL_PLAN,
 	DELETE_PAYMENT_CASH,
+	EMPTY_DETAIL
 } from "../actions/action-types.js";
 
 const initialState = {
@@ -144,6 +145,11 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				allClients: state.allClients.filter((client) => client.id !== payload),
 			};
+			case EMPTY_DETAIL:
+				return{
+						...state,
+						clientDetail: []
+				}
 		case GET_DELETED_CLIENTS:
 			return {
 				...state,
