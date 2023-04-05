@@ -4,7 +4,6 @@ import image from '../../assets/img/dumbelldBgd.jpg';
 export default function TrainerCard() {
 	const trainers = useSelector((state) => state.trainers);
 	return (
-		// <div className='grid md:grid-cols-2 w-screen xl:grid-cols-3 xl:w-11/12 2xl:w-9/12 gap-16 mx-auto items-center'>
 		<div className='flex flex-row flex-wrap 2xl:gap-10 xl:gap-10 lg:gap-10 2xl:p-10 xl:p-10 lg:p-10 xs:p-5 xs:gap-5'>
 			{trainers.map((trainer) => {
 				return (

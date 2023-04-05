@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 					}}
 					useRefreshTokens={ true }
       		cacheLocation="localstorage" 
-				>                 {/* storing user data in login */}
+				>                
 					<App />
 				</Auth0Provider>
 			</BrowserRouter>

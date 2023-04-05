@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
-	getAllPayments,
 	getClientDetail,
-	getPaymentsByUser,
-	deleteClient,
-	getAllClients,
 } from "../../../redux/actions/actions";
 import image from "../../../assets/img/dumbelldBgd.jpg";
 import swal from "sweetalert";

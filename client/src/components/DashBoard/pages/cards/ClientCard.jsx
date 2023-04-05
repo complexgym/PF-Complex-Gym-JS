@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {
-	getAllAdmin,
-	postAdmin,
-	removeAdmin,
 	deleteClient,
 	putClient,
-	getAllClients
 } from "../../../../redux/actions/actions";
 
 const regexImg = /\.(jpeg|jpg|gif|png)$/;

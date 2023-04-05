@@ -14,14 +14,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	getAllActivities,
-	getAllAdmin,
 	getAllPlans,
-	getAllPosts,
 	getAllTestimonials,
 	getAllClients,
-	getCalendar,
 	getAllPayments,
-	getTrainers,
 	getPaymentsByUser,
 } from "./redux/actions/actions";
 import Landing from "./components/Landing/Landing.jsx";
@@ -61,20 +57,12 @@ function App() {
 		dispatch(getAllClients());
 		dispatch(getAllActivities());
 		dispatch(getAllPlans());
-		// dispatch(getCalendar());
 		dispatch(getAllTestimonials());
-		// dispatch(getAllPosts());
-		// dispatch(getAllAdmin());
 		dispatch(getAllPayments());
 
 		setTimeout(() => {
 			setIsLoaded(true);
 		}, [2000]);
-
-		// if (isAuthenticated && !hasRedirected) {
-		// 	navigate('/home');
-		// 	setHasRedirected(true);
-		// }
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
 
 	const { allClients, allPayments } = useSelector((state) => state);
@@ -90,13 +78,6 @@ function App() {
 		dispatch(getPaymentsByUser(matchId));
 		dispatch(getActualPlan());
 	}, [dispatch, allPayments, matchId]);
-
-	// console.log(new Date() > startDate && new Date < endDate);
-	// if (new Date() > startDate && new Date() < endDate) {
-	// 	console.log('✅ date is between the 2 dates');
-	// } else {
-	// 	console.log('⛔️ date is not in the range');
-	// }
 
 	const { pathname } = location;
 
@@ -118,14 +99,6 @@ function App() {
 		pathname === "/historialDePagos" ||
 		pathname === "/blog" ||
 		arrIDsBlogs?.some((path) => path === pathname);
-
-	//??? checking if he is admin ???
-	// const {allAdmin} = useSelector(s=>s)
-
-	// useEffect(()=>{
-	// 	let findAdmin = allAdmin?.find(a=>a?.user===user?.nickname);
-	// 	if(findAdmin) console.log(`${user?.nickname} is admin`);
-	// }, [])
 
 	return (
 		<div className="App">
@@ -174,7 +147,7 @@ function App() {
 						</Route>
 						<Route path={"/historialDePagos"} element={<PaymentHistory />} />
 						<Route path={"/review"} element={<CreateReview />} />
-						{/* <Route path={"*"} element={<Error404 />} /> */}
+						<Route path={"*"} element={<Error404 />} />
 
 						<Route exact path="/developers" element={<Devs />} />
 					</Routes>
@@ -188,4 +161,3 @@ function App() {
 	);
 }
 export default App;
-//

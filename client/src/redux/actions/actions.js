@@ -701,9 +701,6 @@ export const postPaymentCash = (data) => async (dispatch) => {
 
 export const getPaymentsByUser = (id) => async (dispatch) => {
 	try {
-		// const filter = allPayments?.filter((d) => {
-		// 	return d?.clientId === id;
-		// });
 		return dispatch({
 			type: GET_PAYMENTS_BY_USER,
 			payload: id,
@@ -753,8 +750,6 @@ export const putActivity = (acti) => async (dispatch) => {
 
 export const fillActivity = (acti) => async (dispatch) => {
 	try {
-		//const response = await axios.put(`/activities/${id}`, acti);
-		//console.log(acti)
 		return dispatch({
 			type: FILL_ACTIVITY,
 			payload: { acti },
