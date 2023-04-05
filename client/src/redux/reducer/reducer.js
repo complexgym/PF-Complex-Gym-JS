@@ -372,6 +372,11 @@ const rootReducer = (state = initialState, action) => {
 				initial_posts: state.initial_posts.filter((el) => el.id !== payload),
 				matched_posts: state.matched_posts.filter((el) => el.id !== payload),
 			};
+		case POST_PAYMENT_CASH:
+			return {
+				...state,
+				allPayments: [...state.allPayments, payload],
+			};
 		default:
 			return {
 				...state,
