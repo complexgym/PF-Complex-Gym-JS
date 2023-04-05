@@ -117,10 +117,10 @@ const Payments = () => {
 		}
 	};
 
-	let totalPayments = 0
+	let totalPayments = 0;
 
-	allPayments?.forEach((amount)=>{
-		totalPayments+=amount.paymentsAmount
+	allPayments?.forEach((amount) => {
+		totalPayments += amount.paymentsAmount;
 	});
 
 	return (
@@ -267,7 +267,7 @@ const Payments = () => {
 														);
 													})}
 
-<td className="p-4 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+													<td className="p-4 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 														<p className="mb-0 text-center text-md font-semibold leading-tight dark:text-white dark:opacity-80 lighter-blue underline">
 															Total
 														</p>
@@ -290,9 +290,7 @@ const Payments = () => {
 													<td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent lighter-blue">
 														-
 													</td>
-													
 												</tbody>
-												
 											</table>
 										</div>
 									</div>

@@ -51,17 +51,6 @@ export default function SingleBlog({ blog }) {
 					
 					{/* author and read more */}
 					<div className="h-full flex justify-between items-end">
-						{/* <div className="flex items-center space-x-4">
-							<>
-								<img
-								className="w-7 h-7 rounded-full"
-								src={blog?.author_image}
-								alt={`${blog?.author_image} avatar`}
-								/>
-								<span className="font-medium lighter-blue">{blog?.author_name}</span>
-							</>
-						</div> */}
-						{/*  */}
 						<NavLink
 							to={`/blog/${blog.id}`}
 							className="inline-flex items-center font-medium dark:text-primary-500 lighter-blue uppercase hover:underline"

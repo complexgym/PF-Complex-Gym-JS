@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {
-	getAllAdmin,
-	postAdmin,
-	removeAdmin,
 	deleteClient,
 	putClient,
-	getAllClients
 } from "../../../../redux/actions/actions";
 
 const regexImg = /\.(jpeg|jpg|gif|png)$/;
@@ -93,17 +89,6 @@ const ClientCard = ({ client, isUserAdmin }) => {
 					{isClientAdmin && isClientTrainer && "Administrador y entrenador"}
 				</p>
 			</td>
-			{/* <td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-				{client?.active ? (
-					<span className="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-						Activo
-					</span>
-				) : (
-					<span className="bg-gradient-to-tl from-red-400 to-red-600 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-						Inactivo
-					</span>
-				)}
-			</td> */}
 			<td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
 					{client?.age} / {client?.weight}kg / {client?.height}cm

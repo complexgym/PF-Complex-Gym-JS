@@ -119,20 +119,6 @@ export default function BlogDetails() {
 								else return <span>{el}</span>;
 							})}
 						</p>
-
-						{/* {contentArr?.map((word, index)=>{
-                        // if(word.match(/\.(jpeg|jpg|gif|png)$/)) {
-                        //     return <img src={word} className="pt-8 pb-8 rounded-md h-80 w-full" alt="text img"/>
-                        // }
-                        // else if(word?.toLowerCase()?.startsWith("subtitle:")) {
-                        //     return <h1 className="text-3xl capitalize lighter-blue pt-6">{word.substring(9)} </h1>
-                        // }
-                        // else {
-                            return(
-                                <span>{newContent}</span>
-                            )
-                        // }
-                    })} */}
 					</div>
 					<div className="w-full mt-4 flex flex-col items-start mb-4">
 						<Link
