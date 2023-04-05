@@ -3,9 +3,12 @@ import SideNav from '../SideNav';
 import { useSelector } from 'react-redux';
 import ActivityCard from './cards/ActivityCard';
 import CreateActivity from './cards/CreateActivity/CreateActivity';
+import UpdateActivity from './cards/UpdateActivity/UpdateActivity';
 
 const Activities = () => {
 	const activities = useSelector((state) => state.activities);
+	const editBtn = useSelector((state) => state.edit_button)
+
 
 	return (
 		<div>
@@ -43,7 +46,7 @@ const Activities = () => {
 							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className='grid border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
-										<CreateActivity />
+											{editBtn ? <CreateActivity /> : <UpdateActivity/>}
 									</div>
 								</div>
 							</div>
@@ -73,6 +76,9 @@ const Activities = () => {
 														</th>
 														<th className='font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Descripción
+														</th>
+														<th className='text-center font-bold uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
+															¿Editar?
 														</th>
 														<th className='font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Borrar

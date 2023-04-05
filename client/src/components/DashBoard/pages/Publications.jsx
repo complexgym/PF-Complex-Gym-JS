@@ -79,9 +79,6 @@ const Publications = () => {
 														<th className='px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															Tag's
 														</th>
-														<th className='px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
-															Calificación
-														</th>
 														<th className='py-3 pl-2 font-bold uppercase text-left align-middle bg-transparent border-b shadow-none dark:border-white/40 dark:text-white text-s border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70'>
 															¿Borrar?
 														</th>
@@ -110,23 +107,22 @@ const SinglePublication = ({ post }) => {
 
 	const handleDelete = () => {
 		swal({
-			title: "Querés borrar esta publicación?",
-			text: "Si es así, click en Ok",
-			icon: "warning",
+			title: 'Querés borrar esta publicación?',
+			text: 'Si es así, click en Ok',
+			icon: 'warning',
 			buttons: true,
 			dangerMode: true,
 		}).then((result) => {
 			if (result) {
 				dispatch(deleteBlog(post.id));
 				swal({
-					title: "Publicación borrada!",
-					icon: "success",
+					title: 'Publicación borrada!',
+					icon: 'success',
 				});
 			} else {
-				swal("Borrado descartado", "", "info");
+				swal('Borrado descartado', '', 'info');
 			}
 		});
-		
 	};
 
 	return (
@@ -170,33 +166,13 @@ const SinglePublication = ({ post }) => {
 				</span>
 			</td>
 
-			{/* qualification*/}
-			<td className='p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<div className='flex items-center justify-center'>
-					<span className='mr-2 text-xs font-semibold leading-tight dark:text-white dark:opacity-60'>
-						60%
-					</span>
-					<div>
-						<div className='text-xs h-0.75 w-30 m-0 flex overflow-visible rounded-lg bg-gray-200'>
-							<div
-								className='flex flex-col justify-center w-3/5 h-auto overflow-hidden text-center text-white transition-all bg-blue-500 rounded duration-600 ease bg-gradient-to-tl from-blue-700 to-cyan-500 whitespace-nowrap'
-								role='progressbar'
-								aria-valuenow='60'
-								aria-valuemin='0'
-								aria-valuemax='100'
-							></div>
-						</div>
-					</div>
-				</div>
-			</td>
-
 			{/* delete btn */}
 			<td className='p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<button className='inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400'>
-									<i class="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
-					onClick={handleDelete}
-				></i>
-					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
+					<i
+						class='fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500'
+						onClick={handleDelete}
+					></i>
 				</button>
 			</td>
 		</tr>

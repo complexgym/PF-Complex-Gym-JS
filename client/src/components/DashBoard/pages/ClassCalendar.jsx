@@ -52,6 +52,13 @@ const ClasesCalendar = () => {
 				text: '¡Clase creada correctamente!',
 				icon: 'success',
 			});
+			setInput({
+				day: 0,
+				month: 0,
+				year: 0,
+				hour: '',
+				classes: '',
+			})
 		}
 	};
 
@@ -138,7 +145,7 @@ const ClasesCalendar = () => {
 													value={input.day}
 													autoComplete='off'
 													onChange={handleChange}
-													className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
+													className='text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
 													placeholder='Día'
 												/>
 												<input
@@ -148,7 +155,7 @@ const ClasesCalendar = () => {
 													value={input.month}
 													autoComplete='off'
 													onChange={handleChange}
-													className='ml-4 text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
+													className='text-center text-sm focus:shadow-primary-outline ease  leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow'
 													placeholder='Mes'
 												/>
 												<input

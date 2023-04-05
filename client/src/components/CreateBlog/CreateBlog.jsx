@@ -167,7 +167,7 @@ export default function CreateBlog() {
 													onClick={handleChange}
 													className='pb-10'
 												/>
-												{errors?.image && (
+												{errors?.image && !errors?.image.startsWith("La url debe empezar") && (
 													<p className=' text-red-500'>
 														<i>{errors?.image}</i>
 													</p>
@@ -334,16 +334,3 @@ export default function CreateBlog() {
 		</>
 	);
 }
-
-// {
-//     id: 1,
-//     authorId: 1,
-//     title: 'Fitoasdjodas',
-//     content: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
-//     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThjFMwZ8wX771Lvk-KTRVczkIUtu3AYk1YEA&usqp=CAU',
-//     tag: [
-//       'Entrenamiento'
-//     ],
-//     createdAt: '2023-03-17T14:09:45.414Z',
-//     updatedAt: '2023-03-17T14:09:45.414Z'
-//   },

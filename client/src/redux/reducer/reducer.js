@@ -39,6 +39,9 @@ import {
 	PUT_CALENDAR,
 	REVIEW,
 	DELETE_ACTIVITY,
+	PUT_ACTIVITY,
+	FILL_ACTIVITY,
+	EMPTY_ACTIVITY,
 	DELETE_TRAINER,
 	GET_ACTUAL_PLAN,
 	DELETE_PAYMENT_CASH,
@@ -66,6 +69,13 @@ const initialState = {
 	plans: [],
 	initial_plans: [],
 	payments_user: [],
+	edit_activity: {
+		id: "",
+		name: "",
+		description: "",
+		image: "",
+	},
+	edit_button: true,
 	actual_plan: [],
 };
 
@@ -162,8 +172,10 @@ const rootReducer = (state = initialState, action) => {
 		case DELETE_TESTIMONIALS:
 			return {
 				...state,
-				testimonials: state.testimonials.filter((testimony) => testimony.id !== payload),
-				};
+				testimonials: state.testimonials.filter(
+					(testimony) => testimony.id !== payload
+				),
+			};
 		case GET_ALL_ACTIVITIES:
 			return {
 				...state,
@@ -323,10 +335,42 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				activities: state.activities.filter((activity) => activity.id !== payload),
 			};
+		case FILL_ACTIVITY:
+			return {
+				...state,
+				edit_button: false,
+				edit_activity: {
+					id: payload.acti.id,
+					name: payload.acti.name,
+					description: payload.acti.description,
+					image: payload.acti.image,
+				},
+			};
+		case PUT_ACTIVITY:
+			return {
+				...state,
+			};
+		case EMPTY_ACTIVITY:
+			return {
+				...state,
+				edit_button: true,
+				edit_activity: {
+					id: "",
+					name: "",
+					description: "",
+					image: "",
+				},
+			};
 		case DELETE_TRAINER:
 			return {
 				...state,
 				trainers: state.trainers.filter((trainer) => trainer.id !== payload),
+			};
+		case DELETE_BLOG:
+			return {
+				...state,
+				initial_posts: state.initial_posts.filter((el) => el.id !== payload),
+				matched_posts: state.matched_posts.filter((el) => el.id !== payload),
 			};
 		default:
 			return {

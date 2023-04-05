@@ -2,7 +2,7 @@ const mercadopago = require("mercadopago");
 
 mercadopago.configure({
 	access_token: process.env.ACCESS_TOKEN_MP,
-});	
+});
 
 const postPayments = async (req, res) => {
 	const data = req.body;
@@ -19,7 +19,6 @@ const postPayments = async (req, res) => {
 		back_urls: {
 			success: `${process.env.SUCCESS}`,
 		},
-		//auto_return: "approved",
 		notification_url: `${process.env.NOTIFICATION_URL}/payments/notification`,
 	};
 

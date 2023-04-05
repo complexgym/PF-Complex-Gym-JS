@@ -1,56 +1,103 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {
-	getAllAdmin,
-	postAdmin,
-	removeAdmin,
-	deleteClient
+	deleteClient,
+	putClient,
 } from "../../../../redux/actions/actions";
 
 const regexImg = /\.(jpeg|jpg|gif|png)$/;
 
-const ClientCard = ({ client }) => {
+const ClientCard = ({ client, isUserAdmin }) => {
 	const dispatch = useDispatch();
-	const [seeAdmin, setSeeAdmin] = useState(false);
-	const [isAdmin, setIsAdmin] = useState(false);
+	// const [seeAdmin, setSeeAdmin] = useState(false);
+	const [isClientAdmin, setIsClientAdmin] = useState(client?.admin);
+	const [isClientTrainer, setIsClientTrainer] = useState(client?.trainer);
 
-	const { user, name, lastName, picture } = client;
-
-	const newClient = { user, name, lastName, picture, permits: [] };
-
-	const { allAdmin } = useSelector((s) => s);
-
-	useEffect(()=>{
-		const find = allAdmin.find((a) => a.user === user);
-		if (find) {
-			setIsAdmin(true);
-		}
-	}, [])
-
-	const handleAddAdmin = () => {
-		dispatch(postAdmin(newClient));
-		dispatch(getAllAdmin());
-		setIsAdmin(true)
+	const handleAddAdmin = async () => {
+		swal({
+			title: "Querés hacer admin a ésta persona?",
+			text: "Si es así, click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(putClient({...client, admin: true}, client?.id))
+		setIsClientAdmin(prev=>!prev)
+				swal({
+					title: "Ya es admin!",
+					icon: "success",
+				});
+			} else {
+				swal("Descartado", "", "info");
+			}
+		});
 	};
 
-	const handleRemoveAdmin = () => {
-		const find = allAdmin?.find((a) => a.user === user);
-
-		dispatch(removeAdmin(find?.id));
-
-		dispatch(getAllAdmin());
-
-		setIsAdmin(false)
+	const handleRemoveAdmin = async () => {
+		swal({
+			title: "Querés sacar el permiso de admin a ésta persona?",
+			text: "Si es así, click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(putClient({...client, admin: false}, client?.id))
+				setIsClientAdmin(prev=>!prev)
+				swal({
+					title: "No es más admin!",
+					icon: "success",
+				});
+			} else {
+				swal("Descartado", "", "info");
+			}
+		});
 	};
+	
 
-	function handleSeeIsAdmin(e) {
-		e.preventDefault();
-		setSeeAdmin(true);
-		const find = allAdmin.find((a) => a.user === user);
-		if (find) {
-			setIsAdmin(true);
+	const handleAddTrainer = async () => {
+	swal({
+		title: "Querés hacer entrenador/a a ésta persona?",
+		text: "Si es así, click en Ok",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	}).then((result) => {
+		if (result) {
+			dispatch(putClient({...client, trainer: true}, client?.id))
+			setIsClientTrainer(prev=>!prev)
+			swal({
+				title: "Ya es entrenador/a!",
+				icon: "success",
+			});
+		} else {
+			swal("Descartado", "", "info");
 		}
-	}
+	});
+  };
+
+	const handleRemoveTrainer = async () => {
+	swal({
+		title: "Querés sacar el permiso de entrenador/a a ésta persona?",
+		text: "Si es así, click en Ok",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	}).then((result) => {
+		if (result) {
+			dispatch(putClient({...client, trainer: false}, client?.id))
+			setIsClientTrainer(prev=>!prev)
+			swal({
+				title: "No es más entrenador/a!",
+				icon: "success",
+			});
+		} else {
+			swal("Descartado", "", "info");
+		}
+	});
+  };
 
 	const handleDeactivate= () =>{
 		swal({
@@ -71,6 +118,7 @@ const ClientCard = ({ client }) => {
 			}
 		});
 	};
+
 
 	return (
 		<tr>
@@ -93,56 +141,62 @@ const ClientCard = ({ client }) => {
 					</div>
 				</div>
 			</td>
+			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+				<Link to={`/dashboard/perfil/${client?.id}`}>
+					<i class="fa fa-light fa-user text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:lighter-blue"></i>
+				</Link>
+			</td>
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<p className="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
-					Manager
+					{!isClientAdmin && !isClientTrainer && "Cliente"}
+					{isClientAdmin && !isClientTrainer && "Administrador"}
+					{isClientTrainer && !isClientAdmin && "Entrenador"}
+					{isClientAdmin && isClientTrainer && "Administrador y entrenador"}
 				</p>
-				<p className="mb-0 text-xs leading-tight dark:text-white dark:opacity-80 text-slate-400">
-					Undefined
-				</p>
-			</td>
-			<td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-				{client?.active ? (
-					<span className="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-						Activo
-					</span>
-				) : (
-					<span className="bg-gradient-to-tl from-red-400 to-red-600 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-						Inactivo
-					</span>
-				)}
 			</td>
 			<td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
 					{client?.age} / {client?.weight}kg / {client?.height}cm
 				</span>
 			</td>
+			{isUserAdmin && 
+			<>
 			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-				{!seeAdmin ? (
-					<i
-						className="fa fa-eye cursor-pointer lighter-blue"
-						aria-hidden="true"
-						onClick={handleSeeIsAdmin}
-					></i>
-				) : isAdmin ? (
+				{isClientAdmin ? 
 					<i
 						className="fa fa-check w-8 cursor-pointer mr-2 text-green-600"
 						aria-hidden="true"
 						onClick={handleRemoveAdmin}
 					></i>
-				) : (
+				: 
 					<i
 						className="fa fa-times text-sm cursor-pointer w-8 mr-2 text-red-500"
 						aria-hidden="true"
 						onClick={handleAddAdmin}
 					></i>
-				)}
+				}
+			</td>
+			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+				{isClientTrainer ? 
+					<i
+						className="fa fa-check w-8 cursor-pointer mr-2 text-green-600"
+						aria-hidden="true"
+						onClick={handleRemoveTrainer}
+					></i>
+				: 
+					<i
+						className="fa fa-times text-sm cursor-pointer w-8 mr-2 text-red-500"
+						aria-hidden="true"
+						onClick={handleAddTrainer}
+					></i>
+				}
 			</td>
 			<td className="p-2 text-center bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<i class="fa fa-trash-can text-xl cursor-pointer w-8 mr-2 text-grey-500 hover:text-red-500"
 					onClick={handleDeactivate}
 				></i>
 			</td>
+			</>}
 		</tr>
 	);
 };

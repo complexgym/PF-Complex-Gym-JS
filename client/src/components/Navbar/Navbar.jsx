@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginBtn from '../LoginBtn/LoginBtn';
 import LogoutBtn from '../LogoutBtn/LogoutBtn';
-import { getAllClients, getClientDetail } from '../../redux/actions/actions';
+import { getClientDetail } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Spline from '@splinetool/react-spline';
@@ -23,10 +23,12 @@ export default function Navbar() {
 
 	const matchId = matchEmail && matchEmail.id;
 
+	let isTrainer = matchEmail?.trainer;
+
 	const [open, setOpen] = useState(true);
 
 	useEffect(() => {
-		dispatch(getAllClients());
+		// dispatch(getAllClients());
 		dispatch(getClientDetail(matchId));
 	}, []);
 
@@ -72,7 +74,7 @@ export default function Navbar() {
 						{!isAuthenticated && <LoginBtn />}
 
 						{isActive && <NavLink to={`/perfil/${matchId}`}>Perfil</NavLink>}
-						{!!isAdmin && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
+						{(!!isAdmin || isTrainer) && <NavLink to={'/dashboard'}>Dashboard</NavLink>}
 						{!isAuthenticated ? null : (
 								<NavLink to={'/registro'} className={isActiveStyle}>
 									Registro

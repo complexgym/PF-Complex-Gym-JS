@@ -9,108 +9,77 @@ import {
 import { useEffect, useState } from 'react';
 import InstagramPost from './InstaPost';
 import SingleBlog from './SingleBlog';
-// import { LoadingBlog } from '../Loading/Loading';
-import { NavLink } from 'react-router-dom';
+import { LoadingBlog } from '../Loading/Loading';
 
 //todo blog container
 export default function Blog() {
 	const dispatch = useDispatch();
-	const { initial_posts, matched_posts, ig_posts, search_blog, filters_blog } =
+	let { initial_posts, matched_posts, ig_posts, search_blog, filters_blog } =
 		useSelector((s) => s);
 	const [search, setSearch] = useState('');
 	const [filters, setFilters] = useState({ tag: '', date: '' });
-	const [isLoaded, setIsLoaded] = useState(false);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setIsLoaded(true);
-		}, [1500]);
-	}, []);
+	const [isLoaded, setIsLoaded] = useState(true);
 
 	//* search
 	const handleChangeSearch = (e) => {
 		setSearch(e.target.value);
 		dispatch(updateSearch(e.target.value));
+		dispatch(searchPosts(filters, e.target.value));
 	};
-
-	useEffect(() => {
-		dispatch(getAllPosts());
-		if (search_blog) {
-			setSearch(search_blog);
-			dispatch(searchPosts(filters, search_blog));
-		}
-	}, [search]);
-
-	//*get all posts in case search and filters are null
-	useEffect(() => {
-		if (search_blog === '' && !Object.values(filters).find((f) => f !== '')) {
+	
+	useEffect(()=>{
+		if(Object.values(filters_blog).find(el=>el!=="") || search_blog){
+			dispatch(searchPosts(filters_blog, search_blog));
+		} else{
 			dispatch(getAllPosts());
-		} else {
-			dispatch(searchPosts(filters, search_blog));
 		}
-	}, [search_blog]);
+	}, [dispatch])
 
-	//*filters
-	useEffect(() => {
-		if (search_blog) {
-			setSearch(search_blog);
-		}
-	}, [dispatch]);
-
+	//*change filters!!!
 	const handleChangeFilters = (e) => {
+		setIsLoaded(false)
 		setFilters({
 			...filters,
 			[e.target.name]: e.target.value,
 		});
+		dispatch(
+			updateFilters({
+				...filters,
+				[e.target.name]: e.target.value,
+			})
+		);
+		dispatch(filterPosts({
+			...filters,
+			[e.target.name]: e.target.value,
+		}, search_blog));
 
-		//*if there are filters, we update the global filters
-		const findFilters = Object.values(filters).find((f) => f !== '');
-		if (findFilters) {
-			dispatch(
-				updateFilters({
-					...filters,
-					[e.target.name]: e.target.value,
-				})
-			);
-
-			dispatch(filterPosts(filters, search_blog));
-		} else {
-			dispatch(getAllPosts());
-		}
+		setTimeout(() => {
+			setIsLoaded(true);
+		}, [1500]);
 	};
 
-	useEffect(() => {
-		const findFilters = Object.values(filters).find((f) => f !== '');
-		if (findFilters) {
-			dispatch(filterPosts(filters, search_blog));
-		}
-		if (!findFilters && !search_blog) {
-			dispatch(getAllPosts());
-		}
-	}, [filters]);
-
-	//todo to load the ig posts before (no andaaa)
-	// const instagramPosts = (
-	// 	<>
-	// 		<InstagramPost url={'https://www.instagram.com/p/CpSkKuMgP_u/'} />
-	// 		<InstagramPost url={'https://www.instagram.com/p/CpkRaEKjOsA/'} />
-	// 		<InstagramPost url={'https://www.instagram.com/p/CoqESveJj-b/'} />
-	// 		<InstagramPost url={'https://www.instagram.com/p/CpyI4RXuaOI/'} />
-	// 	</>
-	// );
-
+	//*clear filter!!!
 	const handleClearFilters = (e) => {
 		e.preventDefault();
+		setIsLoaded(false)
 		setFilters({ tag: '', date: '' });
 		setSearch('');
 		dispatch(updateSearch(''));
 		dispatch(updateFilters({ tag: '', date: '' }));
+		dispatch(getAllPosts());
+		setTimeout(() => {
+			setIsLoaded(true);
+		}, [1500]);
 	};
+
+	filters_blog = useSelector((s) => s.filters_blog);
+
+	search_blog  = useSelector((s) => s.search_blog);
 
 	return (
 		<div>
 			<section className='bg-gray-100 w-screen pt-8 min-h-[80vh]'>
-				{initial_posts.length !== 0 ? (
+				{initial_posts?.length !== 0 ? (
 					<div className='pb-8 px-4 mx-auto max-w-screen 2xl:max-w-[90vw] lg:pb-8 lg:px-6 '>
 						{/* BLOG */}
 						<div className='mx-auto max-w-screen-sm text-center lg:mb-8 mb-4'>
@@ -133,7 +102,7 @@ export default function Blog() {
 									type='text'
 									id='search'
 									onChange={handleChangeSearch}
-									value={search}
+									value={search_blog}
 									className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder:text-gray-700'
 									placeholder='5 ejercicios para tonificar'
 								/>
@@ -152,7 +121,7 @@ export default function Blog() {
 									className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 									name='tag'
 									onChange={handleChangeFilters}
-									value={filters_blog.tag}
+									value={filters_blog?.tag}
 								>
 									<option value='' selected>
 										Seleccione una opción...
@@ -198,27 +167,25 @@ export default function Blog() {
 						</form>
 
 						{/* posts, can be initial posts, filtered, or searched posts */}
-						{matched_posts.length > 0 ? (
+						{matched_posts?.length > 0 ? (
 							//get more than 1 post
-							<div className='cards grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8'>
+							
+								isLoaded ? <div className='cards grid gap-0 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 py-8'>
 								{matched_posts?.map((b, index) => {
 									return <SingleBlog key={index} blog={b} />;
-								})}
-							</div>
+								}) }
+								</div>
+								: <LoadingBlog />
+							
 						) : (
 							//get null posts
 							isLoaded && (
 								<div className='flex flex-col items-center pt-0 pb-4'>
-									{/* <img
-									src={
-										'https://res.cloudinary.com/dpxucxgwg/image/upload/v1679196370/not-found-blog_ly0lcw.png'
-									}
-									alt='not found img'
-									className='w-[150px] md:w-[250px] rounded-xl'
-								/> */}
-									<p className='text-red-500 font-text font-bold flex justify-center pb-4'>
+									<p className='text-[#222bfc] text-lg font-text font-bold flex flex-col align-middle items-center pb-4'>
+										<img src="https://res.cloudinary.com/dpxucxgwg/image/upload/v1680650451/404_fkvi1e.png" alt="cara triste"
+										className='mb-4 w-100'/>
 										{search_blog
-											? 'Perdon, ningún blog cumple la condicion!'
+											? 'Perdón, ¡ningún blog cumple la condición!'
 											: 'Ningún blog encontrado!'}
 									</p>
 								</div>
@@ -250,7 +217,3 @@ export default function Blog() {
 		</div>
 	);
 }
-
-//*https://sugarshin.github.io/react-instagram-embed/
-
-//*https://developers.facebook.com/apps/954092502440648/instagram-basic-display/basic-display-rate-limiting/

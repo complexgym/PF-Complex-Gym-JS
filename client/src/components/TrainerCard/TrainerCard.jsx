@@ -4,7 +4,6 @@ import image from '../../assets/img/dumbelldBgd.jpg';
 export default function TrainerCard() {
 	const trainers = useSelector((state) => state.trainers);
 	return (
-		// <div className='grid md:grid-cols-2 w-screen xl:grid-cols-3 xl:w-11/12 2xl:w-9/12 gap-16 mx-auto items-center'>
 		<div className='flex flex-row flex-wrap 2xl:gap-10 xl:gap-10 lg:gap-10 2xl:p-10 xl:p-10 lg:p-10 xs:p-5 xs:gap-5'>
 			{trainers.map((trainer) => {
 				return (
@@ -28,11 +27,7 @@ export default function TrainerCard() {
 						<div className='flex 2xl:mt-6  xl:mt-6 lg:mt-6 mb-3 xs:mt-2'>
 							<div className='text-center'>
 								{/* <p className='text-lg font-normal text-[#2c2c2c]'>{trainer?.mail} </p> */}
-								<p className='text-lg font-normal text-[#2c2c2c]'>
-									{trainer?.name==="Leonardo" && "Profesor de educación física, entrenador y deportista."}
-									{trainer?.name==="Julieta" && "Profesora de educación física, entrenadora y antropometrista."}
-									{trainer?.name==="Agustín" && " Profesor de Educación física, entrenador, masoterapeuta, antropometrista y deportista"}
-								</p>
+								<p className='text-lg font-normal text-[#2c2c2c]'>{trainer?.about}</p>
 							</div>
 						</div>
 					</div>

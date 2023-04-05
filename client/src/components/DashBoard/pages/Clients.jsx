@@ -10,13 +10,15 @@ import {
 	getDeletedClients,
 } from '../../../redux/actions/actions';
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Clients = () => {
 	const { allClients } = useSelector((s) => s);
 	const { allDeletedClients } = useSelector((s) => s);
 	const [clientId, setClientId] = useState('');
 	const [newPdf, setNewPdf] = useState('');
-
+	const { user } = useAuth0();
+	const [isLoaded, setIsLoaded] = useState(false);
 	const dispatch = useDispatch();
 
 	function handleUpload(pdf) {
@@ -101,7 +103,16 @@ const Clients = () => {
 	};
 	useEffect(() => {
 		dispatch(getAllClients());
-	}, []);
+		dispatch(getDeletedClients());
+		setTimeout(() => {
+			setIsLoaded(true);
+		})
+		}, [1000]); 
+
+	let matchEmail = user && allClients.find((m) => m.mail === user.email);
+
+	let isUserAdmin = matchEmail?.admin;
+	let isUserTrainer = matchEmail?.trainer;
 
 	return (
 		<div>
@@ -156,27 +167,38 @@ const Clients = () => {
 														<th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70">
 															Cliente
 														</th>
+														<th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-slate-400 text-sm opacity-70">
+															Perfil
+														</th>
 														<th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Información
 														</th>
-														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
+														{/* <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70">
 															Estado
-														</th>
+														</th> */}
 														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-sm border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
 															Edad / Peso / Estatura
 														</th>
 
-														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-sm border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-															¿Es admin?
-														</th>
-														<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-sm border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-															Desactivar
-														</th>
+														{isUserAdmin && 
+															<>
+																<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-sm border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+																¿Es admin?
+															</th>
+
+															<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-sm border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+																¿Es trainer?
+															</th>
+
+															<th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-sm border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+																Desactivar
+															</th>
+														</>}
 													</tr>
 												</thead>
 												<tbody>
 													{allClients.map((client) => {
-														return <ClientCard client={client} />;
+														return <ClientCard client={client} isUserAdmin={isUserAdmin} />;
 													})}
 												</tbody>
 											</table>
@@ -187,7 +209,7 @@ const Clients = () => {
 						</div>
 
 						{/* SUBMIT PDF */}
-						<div
+						{isUserTrainer && <div
 							className="w-full xl:w-[50vw] mb-16
 						rounded-screen bg-white py-10 px-4 rounded-2xl"
 						>
@@ -232,8 +254,9 @@ const Clients = () => {
 									Enviar
 								</button>
 							</div>
-						</div>
-						<div className="flex flex-wrap -mx-3">
+						</div>}
+						
+						{isUserAdmin && <div className="flex flex-wrap -mx-3">
 							<div className="flex-none w-full max-w-full px-3">
 								<div className="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
 									<div className="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
@@ -241,7 +264,7 @@ const Clients = () => {
 										<button
 											name="search"
 											type="button"
-											class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 first-letter py-2 px-8 mt-10 md:mt-0 flex items-center"
+											class="inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue"
 											onClick={handleSearchDeleted}
 										>
 											Buscar
@@ -270,7 +293,7 @@ const Clients = () => {
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>}
 					</div>
 				</main>
 			</body>
