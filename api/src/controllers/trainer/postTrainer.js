@@ -25,13 +25,6 @@ const postTrainer = async ({
 		about
 	});
 
-	//     const Activities = await activities.findAll({
-	//             where: {
-	//                 name : activities.name
-	//             }
-	//         })
-	//         await newTrainer.addactivities(Activities)
-
 	return newTrainer;
 };
 

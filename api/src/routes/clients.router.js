@@ -13,13 +13,10 @@ const {
 
 const router = Router();
 
-// TEST DATA
-//const {testData} = require('../dataTest/index.test')
 
 router.get("/", async (req, res) => {
 	const { name, id } = req.query;
 
-	// FIND BY NAME CASE
 	if (id) {
 		let clientid = await getClientById(id);
 		return res.status(200).send(clientid);
@@ -38,15 +35,6 @@ router.get("/", async (req, res) => {
 	}
 });
 
-// router.get("/", async (req, res) => {
-// 	const { id } = req.query;
-// 	try {
-// 		let clientid = await getClientById(id);
-// 		return res.status(200).send(clientid);
-// 	} catch (error) {
-// 		res.status(400).send("Something went wrong");
-// 	}
-// });
 
 router.post("/", async (req, res) => {
 	try {
