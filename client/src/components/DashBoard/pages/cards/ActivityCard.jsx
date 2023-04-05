@@ -24,7 +24,6 @@ const ActivityCard = ({ activity }) => {
 
 	function handleClick(event){
 		event.preventDefault(activity)
-		console.log("put")
 			setEditable({
 				...editable,
 				value: true
@@ -34,7 +33,6 @@ const ActivityCard = ({ activity }) => {
 
 	function handleEmpty(event) {
 		event.preventDefault(activity)
-		console.log("empty")
 		setEditable({
 			...editable,
 			value: false
