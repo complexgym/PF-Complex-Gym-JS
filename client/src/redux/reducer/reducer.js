@@ -70,12 +70,12 @@ const initialState = {
 	initial_plans: [],
 	payments_user: [],
 	edit_activity: {
-		id: '',
-		name: '',
-		description: '',
-		image: ''
+		id: "",
+		name: "",
+		description: "",
+		image: "",
 	},
-	edit_button: true
+	edit_button: true,
 	actual_plan: [],
 };
 
@@ -336,31 +336,31 @@ const rootReducer = (state = initialState, action) => {
 				activities: state.activities.filter((activity) => activity.id !== payload),
 			};
 		case FILL_ACTIVITY:
-        return {
-          ...state,
-          edit_button: false,
-          edit_activity: {
-            id: payload.acti.id,
-            name: payload.acti.name,
-            description: payload.acti.description,
-            image: payload.acti.image
-          }
-        }
+			return {
+				...state,
+				edit_button: false,
+				edit_activity: {
+					id: payload.acti.id,
+					name: payload.acti.name,
+					description: payload.acti.description,
+					image: payload.acti.image,
+				},
+			};
 		case PUT_ACTIVITY:
-				return {
-					...state
-				}
+			return {
+				...state,
+			};
 		case EMPTY_ACTIVITY:
-				return {
-					...state,
-					edit_button: true,
-					edit_activity: {
-						id: '',
-						name: '',
-						description: '',
-						image: ''
-					}
-				}
+			return {
+				...state,
+				edit_button: true,
+				edit_activity: {
+					id: "",
+					name: "",
+					description: "",
+					image: "",
+				},
+			};
 		case DELETE_TRAINER:
 			return {
 				...state,

@@ -110,7 +110,7 @@ const ActivityCard = ({ activity }) => {
 						src='https://res.cloudinary.com/dpxucxgwg/image/upload/v1679368276/test_complex/gas3ewhonfe4sqiqcqyy.png'
 						className='w-5'
 						onClick={handleDelete}
-					></i>
+					/>
 					{/* <i className="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> */}
 				</button>
 			</td>
