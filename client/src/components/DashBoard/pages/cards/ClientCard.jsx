@@ -19,23 +19,88 @@ const ClientCard = ({ client, isUserAdmin }) => {
 	const [isClientTrainer, setIsClientTrainer] = useState(client?.trainer);
 
 	const handleAddAdmin = async () => {
-		dispatch(putClient({...client, admin: true}, client?.id))
+		swal({
+			title: "Querés hacer admin a ésta persona?",
+			text: "Si es así, click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(putClient({...client, admin: true}, client?.id))
 		setIsClientAdmin(prev=>!prev)
+				swal({
+					title: "Ya es admin!",
+					icon: "success",
+				});
+			} else {
+				swal("Descartado", "", "info");
+			}
+		});
 	};
 
 	const handleRemoveAdmin = async () => {
-		dispatch(putClient({...client, admin: false}, client?.id))
-		setIsClientAdmin(prev=>!prev)
+		swal({
+			title: "Querés sacar el permiso de admin a ésta persona?",
+			text: "Si es así, click en Ok",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(putClient({...client, admin: false}, client?.id))
+				setIsClientAdmin(prev=>!prev)
+				swal({
+					title: "No es más admin!",
+					icon: "success",
+				});
+			} else {
+				swal("Descartado", "", "info");
+			}
+		});
 	};
+	
 
 	const handleAddTrainer = async () => {
-    dispatch(putClient({...client, trainer: true}, client?.id))
-    setIsClientTrainer(prev=>!prev)
+	swal({
+		title: "Querés hacer entrenador/a a ésta persona?",
+		text: "Si es así, click en Ok",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	}).then((result) => {
+		if (result) {
+			dispatch(putClient({...client, trainer: true}, client?.id))
+			setIsClientTrainer(prev=>!prev)
+			swal({
+				title: "Ya es entrenador/a!",
+				icon: "success",
+			});
+		} else {
+			swal("Descartado", "", "info");
+		}
+	});
   };
 
 	const handleRemoveTrainer = async () => {
-    dispatch(putClient({...client, trainer: false}, client?.id))
-    setIsClientTrainer(prev=>!prev)
+	swal({
+		title: "Querés sacar el permiso de entrenador/a a ésta persona?",
+		text: "Si es así, click en Ok",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	}).then((result) => {
+		if (result) {
+			dispatch(putClient({...client, trainer: false}, client?.id))
+			setIsClientTrainer(prev=>!prev)
+			swal({
+				title: "No es más entrenador/a!",
+				icon: "success",
+			});
+		} else {
+			swal("Descartado", "", "info");
+		}
+	});
   };
 
 	const handleDeactivate= () =>{
@@ -93,17 +158,6 @@ const ClientCard = ({ client, isUserAdmin }) => {
 					{isClientAdmin && isClientTrainer && "Administrador y entrenador"}
 				</p>
 			</td>
-			{/* <td className="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-				{client?.active ? (
-					<span className="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-						Activo
-					</span>
-				) : (
-					<span className="bg-gradient-to-tl from-red-400 to-red-600 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">
-						Inactivo
-					</span>
-				)}
-			</td> */}
 			<td className="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
 					{client?.age} / {client?.weight}kg / {client?.height}cm
