@@ -109,6 +109,14 @@ const Payments = () => {
 
 			dispatch(getAllPayments());
 
+			setData({
+				clientId: "",
+				status: "",
+				total_amount: "",
+				date_payments: "",
+				plans: "",
+			})
+
 			swal({
 				title: "Gracias!",
 				text: "¡Información creada correctamente!",
@@ -201,6 +209,7 @@ const Payments = () => {
 												className="flex w-full md:w-54
 											bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
 												onChange={handleChangePlan}
+												value={data?.plans}
 											>
 												<option>Seleccione un plan...</option>
 												{plansName?.map((client) => {
