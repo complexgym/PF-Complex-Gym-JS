@@ -36,6 +36,9 @@ import {
 	PUT_CALENDAR,
 	REVIEW,
 	DELETE_ACTIVITY,
+	PUT_ACTIVITY,
+	FILL_ACTIVITY,
+	EMPTY_ACTIVITY,
 	DELETE_TRAINER,
 } from '../actions/action-types.js';
 
@@ -60,6 +63,13 @@ const initialState = {
 	plans: [],
 	initial_plans: [],
 	payments_user: [],
+	edit_activity: {
+		id: '',
+		name: '',
+		description: '',
+		image: ''
+	},
+	edit_button: true
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -272,6 +282,32 @@ const rootReducer = (state = initialState, action) => {
 					(activity) => activity.id !== payload
 				),
 			};
+			case FILL_ACTIVITY:
+					return {
+						...state,
+						edit_button: false,
+						edit_activity: {
+							id: payload.acti.id,
+							name: payload.acti.name,
+							description: payload.acti.description,
+							image: payload.acti.image
+						}
+					}
+			case PUT_ACTIVITY:
+				return {
+					...state
+				}
+			case EMPTY_ACTIVITY:
+				return {
+					...state,
+					edit_button: true,
+					edit_activity: {
+						id: '',
+						name: '',
+						description: '',
+						image: ''
+					}
+				}
 			case DELETE_TRAINER:
 			return {
 				...state,
