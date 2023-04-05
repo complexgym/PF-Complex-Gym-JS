@@ -8,7 +8,6 @@ mercadopago.configure({
 });
 const axios = require("axios");
 const { payment } = require("mercadopago");
-//const {getPaymentValidation} = require("./getPaymentValidation")
 
 function sumarDias(fecha, dias) {
 	fecha.setDate(fecha.getDate() + dias);
@@ -32,14 +31,7 @@ const postNotification = async (req, res) => {
 				plans: Payment.description,
 				order: Payment.order.id,
 			};
-			// let membership = {
-			// 	clientId: Payment.body.additional_info.items[0].category_id,
-			// 	planName: Payment.body.description,
-			// 	price: Payment.body.transaction_amount,
-			// 	paymentId: Payment.body.id,
-			// };
 			postMercadoPago(data);
-			// postMembershipsmp(membership);
 			break;
 
 		case "merchant_order":

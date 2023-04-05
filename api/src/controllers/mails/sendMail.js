@@ -20,24 +20,24 @@ const sendMail = async (email, querys) => {
         service: 'gmail',
         host: "smtp.gmail.com",
         port: 587,
-        secure: true, // true for 465, false for other ports
+        secure: true,
         auth: {
             type: 'OAuth2',
             user: 'proyecto.complex.gym@gmail.com',
-            clientId: ID_CLIENTE, //CLIENTID
-            clientSecret: SECRETO_CLIENTE, //CLIENTSECRET
-            refreshToken: REFRESH_TOKEN //REFRESHTOKEN
+            clientId: ID_CLIENTE,
+            clientSecret: SECRETO_CLIENTE,
+            refreshToken: REFRESH_TOKEN
         },
     }
 
     const OAuth2Client = new OAuth2(
-        ID_CLIENTE, //CLIENTID
-        SECRETO_CLIENTE, //CLIENTSECRET
+        ID_CLIENTE,
+        SECRETO_CLIENTE,
         'https://developers.google.com/oauthplayground/'
     )
 
     OAuth2Client.setCredentials({
-        refresh_token: REFRESH_TOKEN, //REFRESHTOKEN
+        refresh_token: REFRESH_TOKEN,
         tls: {
             rejectUnauthorized: false
         }
@@ -60,11 +60,10 @@ const sendMail = async (email, querys) => {
             else if (querys.type === 'REVIEW') htmlMail = templateReview(email.html.name)
 
             let info = await transporter.sendMail({
-                from: `"${email.title}" <proyecto.complex.gym@gmail.com>`, // sender address
-                to: email.to, // list of receivers
-                subject: email.subject, // Subject line
-                // text: "email desde nodemailer", // plain text body
-                html: htmlMail, // html body
+                from: `"${email.title}" <proyecto.complex.gym@gmail.com>`,
+                to: email.to,
+                subject: email.subject,
+                html: htmlMail,
             });
 
             console.log("Message sent: %s", info.envelope.to);

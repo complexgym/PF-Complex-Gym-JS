@@ -14,5 +14,4 @@ const deletePublication = async (req, res) => {
         res.status(400).send(error)
     }
 }
-// faltan validaciones
 module.exports = deletePublication
