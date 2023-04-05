@@ -8,6 +8,9 @@ import {
 	getCalendar,
 	getTrainers,
 } from '../../redux/actions/actions';
+import { useNavigate } from 'react-router-dom';
+
+const regexImg = /\.(jpeg|jpg|gif|png)$/;
 
 const DashBoard = () => {
 	const dispatch = useDispatch();
@@ -41,6 +44,8 @@ const DashBoard = () => {
 		dispatch(getAllPosts());
 		dispatch(getAllPayments())
 	}, []);
+
+	const navigate = useNavigate()
 
 	return (
 		<div className=''>
@@ -221,13 +226,13 @@ const DashBoard = () => {
 														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src={client1?.picture}
+																	src={regexImg.test(client1?.picture) ? client1?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
 																	alt='user1'
 																/>
 															</div>
 															<div className='flex flex-col justify-center'>
-																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
+																<h6 className='mb-0 text-sm leading-normal dark:text-white capitalize'>
 																	{client1?.name} {client1?.lastName}
 																</h6>
 															</div>
@@ -260,13 +265,13 @@ const DashBoard = () => {
 														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src={client2?.picture}
+																	src={regexImg.test(client2?.picture) ? client2?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
 																	alt='user2'
 																/>
 															</div>
 															<div className='flex flex-col justify-center'>
-																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
+																<h6 className='mb-0 text-sm leading-normal dark:text-white capitalize'>
 																	{client2?.name} {client2?.lastName}
 																</h6>
 															</div>
@@ -299,13 +304,13 @@ const DashBoard = () => {
 														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src={client3?.picture}
+																	src={regexImg.test(client3?.picture) ? client3?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
 																	alt='user3'
 																/>
 															</div>
 															<div className='flex flex-col justify-center'>
-																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
+																<h6 className='mb-0 text-sm leading-normal dark:text-white capitalize'>
 																	{client3?.name} {client3?.lastName}
 																</h6>
 															</div>
@@ -338,13 +343,13 @@ const DashBoard = () => {
 														<div className='flex px-2 py-1'>
 															<div>
 																<img
-																	src={client4?.picture}
+																	src={regexImg.test(client4?.picture) ? client4?.picture : "https://res.cloudinary.com/dpxucxgwg/image/upload/v1679450694/anonimo_uim8xm.png"}
 																	className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
 																	alt='user4'
 																/>
 															</div>
 															<div className='flex flex-col justify-center'>
-																<h6 className='mb-0 text-sm leading-normal dark:text-white'>
+																<h6 className='mb-0 text-sm leading-normal dark:text-white capitalize'>
 																	{client4?.name} {client4?.lastName}
 																</h6>
 															</div>
@@ -398,12 +403,13 @@ const DashBoard = () => {
 															{post1?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post1?.tag}
+															{post1?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
 												<div className='flex'>
-													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'>
+													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'
+													onClick={()=>navigate(`/blog/${post1?.id}`)}>
 														<i
 															className='ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200'
 															aria-hidden='true'
@@ -425,12 +431,13 @@ const DashBoard = () => {
 															{post2?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post2?.tag}
+															{post2?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
 												<div className='flex'>
-													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'>
+													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'
+													onClick={()=>navigate(`/blog/${post2?.id}`)}>
 														<i
 															className='ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200'
 															aria-hidden='true'
@@ -452,12 +459,13 @@ const DashBoard = () => {
 															{post3?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post3?.tag}
+															{post3?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
 												<div className='flex'>
-													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'>
+													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'
+													onClick={()=>navigate(`/blog/${post3?.id}`)}>
 														<i
 															className='ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200'
 															aria-hidden='true'
@@ -479,12 +487,13 @@ const DashBoard = () => {
 															{post4?.title}
 														</h6>
 														<span className='text-xs leading-tight dark:text-white/80'>
-															{post4?.tag}
+															{post4?.tag?.join(", ")}
 														</span>
 													</div>
 												</div>
 												<div className='flex'>
-													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'>
+													<button className='group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all dark:text-white'
+													onClick={()=>navigate(`/blog/${post4?.id}`)}>
 														<i
 															className='ni ease-bounce text-2xs group-hover:translate-x-1.25 ni-bold-right transition-all duration-200'
 															aria-hidden='true'

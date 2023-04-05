@@ -52,6 +52,13 @@ const ClasesCalendar = () => {
 				text: '¡Clase creada correctamente!',
 				icon: 'success',
 			});
+			setInput({
+				day: 0,
+				month: 0,
+				year: 0,
+				hour: '',
+				classes: '',
+			})
 		}
 	};
 

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import ReadMoreButton from '../../../ReadMoreButton/ReadMoreButton';
 import {
-	getAllActivities,
 	deleteActivity,
 	fillActivity,
 	emptyActivity
@@ -10,8 +9,25 @@ import {
 
 const ActivityCard = ({ activity }) => {
 	const dispatch = useDispatch();
+
 	const handleDelete = () => {
-		dispatch(deleteActivity(activity.id));
+		swal({
+			title: 'Querés borrar esta actividad?',
+			text: 'Si es así, click en Ok',
+			icon: 'warning',
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				dispatch(deleteActivity(activity.id));
+				swal({
+					title: 'Actividad borrada!',
+					icon: 'success',
+				});
+			} else {
+				swal('Borrado descartado', '', 'info');
+			}
+		});
 	};
 
 	const [editable, setEditable] = useState({
@@ -43,10 +59,10 @@ const ActivityCard = ({ activity }) => {
 	return (
 		<tr>
 			{/* IMAGE */}
-			<td className='px-2 py-3 pl-11 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
+			<td className="px-2 py-3 pl-11 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<img
 					src={activity?.image}
-					className='inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl'
+					className="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
 				/>
 			</td>
 
@@ -58,8 +74,8 @@ const ActivityCard = ({ activity }) => {
 			</td>
 
 			{/* DESCRIPTION */}
-			<td className='px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<span className='text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400'>
+			<td className="px-2 py-3 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+				<span className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
 					<ReadMoreButton text={activity?.description} maxChars={50} />
 				</span>
 			</td>

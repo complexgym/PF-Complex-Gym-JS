@@ -9,8 +9,11 @@ import {
 	GET_POST_BY_ID,
 	CLEAR_POST_DETAILS,
 	GET_CLIENTS,
+	GET_DELETED_CLIENTS,
+	RESTORE_CLIENT,
 	POST_BLOG,
 	GET_ALL_TESTIMONIALS,
+	DELETE_TESTIMONIALS,
 	GET_ALL_ACTIVITIES,
 	GET_ALL_PLANS,
 	UPDATE_CLIENT,
@@ -40,19 +43,22 @@ import {
 	FILL_ACTIVITY,
 	EMPTY_ACTIVITY,
 	DELETE_TRAINER,
-} from '../actions/action-types.js';
+	GET_ACTUAL_PLAN,
+	DELETE_PAYMENT_CASH,
+} from "../actions/action-types.js";
 
 const initialState = {
 	allClients: [],
 	clientDetail: [],
+	allDeletedClients: [],
 	initial_posts: [],
 	matched_posts: [],
 	ig_posts: [],
 	post_details: {},
-	search_blog: '',
+	search_blog: "",
 	filters_blog: {
-		tag: '',
-		date: '',
+		tag: "",
+		date: "",
 	},
 	testimonials: [],
 	activities: [],
@@ -64,12 +70,13 @@ const initialState = {
 	initial_plans: [],
 	payments_user: [],
 	edit_activity: {
-		id: '',
-		name: '',
-		description: '',
-		image: ''
+		id: "",
+		name: "",
+		description: "",
+		image: "",
 	},
-	edit_button: true
+	edit_button: true,
+	actual_plan: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -134,8 +141,17 @@ const rootReducer = (state = initialState, action) => {
 			};
 		case DELETE_CLIENT:
 			return {
-			  ...state,
-			  allClients: state.allClients.filter((client) => client.id !== payload),
+				...state,
+				allClients: state.allClients.filter((client) => client.id !== payload),
+			};
+		case GET_DELETED_CLIENTS:
+			return {
+				...state,
+				allDeletedClients: payload,
+			};
+		case RESTORE_CLIENT:
+			return {
+				...state,
 			};
 		case POST_BLOG:
 			return {
@@ -152,6 +168,13 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				testimonials: payload,
+			};
+		case DELETE_TESTIMONIALS:
+			return {
+				...state,
+				testimonials: state.testimonials.filter(
+					(testimony) => testimony.id !== payload
+				),
 			};
 		case GET_ALL_ACTIVITIES:
 			return {
@@ -185,7 +208,7 @@ const rootReducer = (state = initialState, action) => {
 					(calendar) => calendar.id !== payload
 				),
 			};
-			case PUT_CALENDAR:
+		case PUT_CALENDAR:
 			return {
 				...state,
 			};
@@ -209,28 +232,22 @@ const rootReducer = (state = initialState, action) => {
 			};
 		case GET_ALL_PAYMENTS:
 			if (!payload.error) {
-				const payments = payload
-					?.map((pay) => {
-						const find = state?.allClients.find((client) => client?.id === pay?.clientId);
-						if (find) {
-							const { name, lastName, picture } = find;
-							return {
-								...pay,
-								clientName: name + ' ' + lastName,
-								picture,
-							};
-						}
-					})
-					?.sort((a, b) => a?.clientName?.localeCompare(b?.clientName));
 				return {
 					...state,
-					allPayments: payments,
+					allPayments: payload?.sort((a, b) =>
+						a?.clientId?.localeCompare(b?.clientId)
+					),
 				};
 			}
 		case POST_PAYMENT_CASH:
 			return {
 				...state,
 				allPayments: [...state.allPayments, payload],
+			};
+		case DELETE_PAYMENT_CASH:
+			return {
+				...state,
+				allPayments: state.allPayments.filter((el) => el?.paymentsId !== payload),
 			};
 		case GET_TRAINERS:
 			return {
@@ -269,51 +286,91 @@ const rootReducer = (state = initialState, action) => {
 		case GET_PAYMENTS_BY_USER:
 			return {
 				...state,
-				payments_user: payload,
+				payments_user: state?.allPayments
+					?.filter((d) => {
+						return d?.clientId === payload;
+					})
+					?.sort(
+						(a, b) =>
+							new Date(a.paymentsDateStamp).getTime() -
+							new Date(b.paymentsDateStamp).getTime()
+					),
 			};
+		case GET_ACTUAL_PLAN:
+			//last pay of the current user
+			const lastPay = state.payments_user?.[state.payments_user.length - 1];
+			//*have a last pay
+			if (lastPay) {
+				let { paymentsDateStamp, finishedDateStamp } = lastPay;
+				let today = new Date();
+				let start = new Date(paymentsDateStamp);
+				let end = new Date(finishedDateStamp);
+				let { plansPayments, finishedDate } = lastPay;
+
+				if (today > start && today < end) {
+					return {
+						...state,
+						actual_plan: { status: "active", plansPayments, finishedDate },
+					};
+				} else {
+					return {
+						...state,
+						actual_plan: {},
+					};
+				}
+
+				//*have not a las pay
+			} else {
+				return {
+					...state,
+					actual_plan: {},
+				};
+			}
 		case REVIEW:
 			return {
 				...state,
 			};
-			case DELETE_ACTIVITY:
+		case DELETE_ACTIVITY:
 			return {
 				...state,
-				activities: state.activities.filter(
-					(activity) => activity.id !== payload
-				),
+				activities: state.activities.filter((activity) => activity.id !== payload),
 			};
-			case FILL_ACTIVITY:
-					return {
-						...state,
-						edit_button: false,
-						edit_activity: {
-							id: payload.acti.id,
-							name: payload.acti.name,
-							description: payload.acti.description,
-							image: payload.acti.image
-						}
-					}
-			case PUT_ACTIVITY:
-				return {
-					...state
-				}
-			case EMPTY_ACTIVITY:
-				return {
-					...state,
-					edit_button: true,
-					edit_activity: {
-						id: '',
-						name: '',
-						description: '',
-						image: ''
-					}
-				}
-			case DELETE_TRAINER:
+		case FILL_ACTIVITY:
 			return {
 				...state,
-				trainers: state.trainers.filter(
-					(trainer) => trainer.id !== payload
-				),
+				edit_button: false,
+				edit_activity: {
+					id: payload.acti.id,
+					name: payload.acti.name,
+					description: payload.acti.description,
+					image: payload.acti.image,
+				},
+			};
+		case PUT_ACTIVITY:
+			return {
+				...state,
+			};
+		case EMPTY_ACTIVITY:
+			return {
+				...state,
+				edit_button: true,
+				edit_activity: {
+					id: "",
+					name: "",
+					description: "",
+					image: "",
+				},
+			};
+		case DELETE_TRAINER:
+			return {
+				...state,
+				trainers: state.trainers.filter((trainer) => trainer.id !== payload),
+			};
+		case DELETE_BLOG:
+			return {
+				...state,
+				initial_posts: state.initial_posts.filter((el) => el.id !== payload),
+				matched_posts: state.matched_posts.filter((el) => el.id !== payload),
 			};
 		default:
 			return {

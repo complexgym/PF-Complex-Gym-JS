@@ -107,6 +107,12 @@ export default function CreateBlog() {
 			...input,
 			image,
 		});
+		setErrors(
+			Validate({
+				...input,
+				image
+			})
+		);
 	}
 
 	return (
@@ -154,12 +160,19 @@ export default function CreateBlog() {
 
 										{/* post image */}
 										{input.isInstagram === false && (
-											<CloudinaryUploadImg
-												onUpload={handleUpload}
-												name='image'
-												onClick={handleChange}
-												className='pb-10'
-											/>
+											<>
+												<CloudinaryUploadImg
+													onUpload={handleUpload}
+													name='image'
+													onClick={handleChange}
+													className='pb-10'
+												/>
+												{errors?.image && !errors?.image.startsWith("La url debe empezar") && (
+													<p className=' text-red-500'>
+														<i>{errors?.image}</i>
+													</p>
+												)}
+											</>
 										)}
 
 										{/* link instagram */}
@@ -229,7 +242,7 @@ export default function CreateBlog() {
 											defaultValue={''}
 											onChange={handleChange}
 										/>
-										{errors?.content && !errors.title && (
+										{errors?.content && !errors.title && !errors.image && (
 											<p className=' text-red-500'>
 												<i>{errors.content}</i>
 											</p>

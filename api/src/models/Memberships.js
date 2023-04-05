@@ -30,7 +30,7 @@ const memberships = (sequelize) => {
 				allowNull: true,
 			},
 			paymentId: {
-				type: DataTypes.UUID,
+				type: DataTypes.INTEGER,
 				allowNull: true,
 			},
 		},

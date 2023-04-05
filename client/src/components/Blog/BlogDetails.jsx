@@ -7,6 +7,11 @@ import Error404 from "../Error404/Error404";
 export default function BlogDetails() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+    dispatch(getPostById(id));
+  }, [dispatch, id]);
+
 	const { post_details } = useSelector((s) => s);
 
 	useEffect(() => {
@@ -66,10 +71,10 @@ export default function BlogDetails() {
 						{details?.author_name && <p>by {details?.author_name} &nbsp; </p>}
 
 						{/* tag */}
-						{details?.tag?.map((tag) => {
+						{details?.tag?.map((tag, index) => {
 							return (
 								<span className="text-xs md:text-sm lighter-blue font-normal uppercase underline">
-									{tag}
+									{index===details?.tag?.length - 1 ? tag  : tag + "/ "}
 								</span>
 							);
 						})}

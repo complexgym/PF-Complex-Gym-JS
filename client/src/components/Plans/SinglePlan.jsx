@@ -12,15 +12,13 @@ export default function SinglePlan({ plan, option }) {
 
 	const dispatch = useDispatch();
 
-	const allClient = useSelector((state) => state.allClients);
+	const {allClients, actual_plan} = useSelector((state) => state);
 
-	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
 	const isActive = matchEmail && matchEmail.active;
 
 	const matchId = matchEmail && matchEmail.id;
-
-	//todo ¡¡¡¡¡todo ASEGURAR ESTEMOS REGISTRADOS!!!!!!
 
 	const [purchase, setPurchase] = useState({
 		id_User: matchId, //id user
@@ -28,10 +26,6 @@ export default function SinglePlan({ plan, option }) {
 		price: plan?.price,
 		amount: 1,
 	});
-
-	// useEffect(() => {
-  //   fetchCheckout();
-  // }, []);
 
 	const keyMP = import.meta.env.VITE_PUBLIC_KEY;
 
@@ -43,39 +37,52 @@ export default function SinglePlan({ plan, option }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if(matchId){
+		
+		//*Does he have an active plan?
+		if(!actual_plan.status){
 
-			const mercadopago = new MercadoPago(keyMP, {
-				locale: "es-AR", // The most common are: 'pt-BR', 'es-AR' and 'en-US'
-			});
-	
-			function createCheckoutButton(preferenceId) {
-				// Initialize the checkout
-				mercadopago.checkout({
-					preference: {
-						id: matchId,
-					},
-					render: {
-						container: `.render-btn`, // Class name where the payment button will be displayed
-						label: `Pagar`, // Change the payment button text (optional)
-					},
+			//*Is he registered?
+			if(matchId){
+
+				const mercadopago = new MercadoPago(keyMP, {
+					locale: "es-AR", // The most common are: 'pt-BR', 'es-AR' and 'en-US'
 				});
+		
+				function createCheckoutButton(preferenceId) {
+					// Initialize the checkout
+					mercadopago.checkout({
+						preference: {
+							id: matchId,
+						},
+						render: {
+							container: `.render-btn`, // Class name where the payment button will be displayed
+							label: `Pagar`, // Change the payment button text (optional)
+						},
+					});
+				}
+		
+				axios.post("/payments", purchase).then((res)=>{
+					return window.location.href=res?.data?.response?.body?.init_point
+				})
 			}
 	
-			axios.post("/payments", purchase).then((res)=>{
-				console.log(res);
-				return window.location.href=res?.data?.response?.body?.init_point
-			})
+			else{
+				swal({
+					title: "Atento",
+					text: `Debe estar registrado para poder inscribirse en un plan, regístrese e intente nuevamente.`,
+					icon: "warning",
+					dangerMode: true,
+				});
+			}
 		}
-
 		else{
-			swal({
-				title: "Atento",
-				text: `Debe estar registrado para poder inscribirse en un plan, regístrese e intente nuevamente.`,
-				icon: "warning",
-				dangerMode: true,
-			});
-		}
+				swal({
+					title: "Atento",
+					text: `Ya está inscripto al plan ${actual_plan?.plansPayments} que vence el ${actual_plan?.finishedDate}. Espere que finalice para volver a inscribirse.`,
+					icon: "warning",
+					dangerMode: true,
+				});
+			}
 	};
 
 	return (
