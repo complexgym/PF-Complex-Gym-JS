@@ -44,16 +44,9 @@ PaymentsinCash(db);
 
 const {
 	activities,
-	admin,
-	testimonials,
 	blog,
 	client,
 	trainer,
-	memberships,
-	plans,
-	mercadopago,
-	calendardate,
-	paymentsincash,
 } = db.models;
 
 activities.belongsToMany(client, { through: "ActivitiesClient" });

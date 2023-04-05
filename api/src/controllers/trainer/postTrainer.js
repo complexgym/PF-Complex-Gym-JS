@@ -1,4 +1,4 @@
-const { trainer, activities } = require('../../db');
+const { trainer } = require('../../db');
 
 const postTrainer = async ({
 	user,
