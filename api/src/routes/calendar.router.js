@@ -23,7 +23,6 @@ router.get('/', async (req, res) => {
 	}
 });
 
-// req.body => { day : number, month: number , year: number , hour: string , class: string }
 router.post('/', async (req, res) => {
 	try {
 		const { day, month, year, hour } = req.body;
@@ -41,7 +40,6 @@ router.post('/', async (req, res) => {
 
 		res.status(200).json(response);
 	} catch (error) {
-		// console.log(error)
 		res.status(400).json({
 			error: error.message,
 		});

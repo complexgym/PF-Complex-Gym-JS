@@ -25,13 +25,11 @@ const getAllCalendar = async (date) => {
                 }
             })
 
-            // if (response.length === 0) throw Error('date of calendar not found')
             return response
         }
 
         const response = await calendardate.findAll()
 
-        // if (response.length === 0) throw Error('date of calendar not found')
         return response
     } catch (error) {
         console.log(error)

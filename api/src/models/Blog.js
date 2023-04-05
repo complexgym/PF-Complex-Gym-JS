@@ -25,11 +25,9 @@ const publication = (sequelize) => {
         },
         author_name: {
             type: DataTypes.TEXT,
-            // allowNull: false
         },
         author_image: {
             type: DataTypes.TEXT,
-            // allowNull: false
         },
         deletedAt: {
             type: DataTypes.DATE,

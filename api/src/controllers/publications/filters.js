@@ -16,7 +16,6 @@ const filters = async (req, res) => {
 
 		let filteredPublication = [];
 
-		//checking if it has already a search by
 		if (title) {
 			let allPublicationSearch = await blog.findAll({});
 			let publicationName = await allPublicationSearch.filter((el) => {

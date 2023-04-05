@@ -47,14 +47,6 @@ const postClient = async ({
 		debtAmount,
 		trainer
 	});
-	/*
-    const Activities = await activities.findAll({
-            where: {
-                name : activitie
-            }
-        })
-        await newClient.addactivities(Activities)/
-    we need to wait for createActivitie to add this*/
 
 	return newClient;
 };
