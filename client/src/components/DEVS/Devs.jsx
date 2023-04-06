@@ -8,7 +8,7 @@ const Devs = () => {
 	const devs = [
 		{
 			image:
-				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680621556/devs/alejo_dgrwfk.jpg',
+				'https://res.cloudinary.com/dv6s8en3e/image/upload/v1680800505/profile-pic_tlgxiu.png',
 			name: 'Alejo',
 			lastName: 'Fariña',
 			email: 'adrianalejof@gmail.com',
@@ -32,7 +32,7 @@ const Devs = () => {
 		},
 		{
 			image:
-				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680630248/devs/tban.jpg',
+				'https://res.cloudinary.com/dwup9qwkg/image/upload/v1680800544/tbanfb_itxjgu.jpg',
 			name: 'Esteban',
 			lastName: 'Marín',
 			email: 'mrtban.dev@gmail.com',
@@ -68,7 +68,7 @@ const Devs = () => {
 		},
 		{
 			image:
-				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680636234/yo_t28xvc.jpg',
+				'https://res.cloudinary.com/dpxucxgwg/image/upload/v1680661039/test_complex/xdutksaof4q8gqzrikxi.jpg',
 			name: 'Nicolás',
 			lastName: 'Von Mühlinen',
 			email: 'nicovon24@gmail.com',
