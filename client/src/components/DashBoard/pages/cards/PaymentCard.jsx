@@ -36,7 +36,7 @@ const PaymentCard = ({ payment, clientName }) => {
 			{/* client name/id */}
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<p className="mb-0 text-center text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
-					{clientName}
+					{clientName ? clientName : "Cliente deshabilitado"}
 				</p>
 			</td>
 
