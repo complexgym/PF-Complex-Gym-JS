@@ -7,13 +7,13 @@ import CloudinaryUploadImg from '../../../../CloudinaryUploadImg/CloudinaryUploa
 
 const UpdateActivity = () => {
 	const dispatch = useDispatch();
-	const toEdit = useSelector((state) => state.edit_activity)
+	const toEdit = useSelector((state) => state.edit_activity);
 
 	const [input, setInput] = useState({
 		id: toEdit.id,
 		image: toEdit.image,
 		name: toEdit.name,
-		description:  toEdit.description,
+		description: toEdit.description,
 		days: [],
 		schedule: [],
 	});
@@ -67,7 +67,6 @@ const UpdateActivity = () => {
 	}
 	return (
 		<>
-			
 			<div className=' relative font-text pt-1 px-1 '>
 				<div className='md:grid md:grid-cols-2 md:gap-6 justify-center'>
 					<div className='mt-1 md:col-span-2 md:mt-0'>
@@ -144,7 +143,7 @@ const UpdateActivity = () => {
 											<div className=' grid content-end bg-gray-50 col-span-6 sm:col-span-6 lg:col-span-1'>
 												<button
 													type='submit'
-													className=' w-full inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue'
+													className=' w-full inline-flex justify-center rounded-md bg-lighter-blue py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-darker-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-vlighter-blue'
 												>
 													Editar
 												</button>

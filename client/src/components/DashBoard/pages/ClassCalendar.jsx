@@ -58,7 +58,7 @@ const ClasesCalendar = () => {
 				year: 0,
 				hour: '',
 				classes: '',
-			})
+			});
 		}
 	};
 
@@ -68,8 +68,8 @@ const ClasesCalendar = () => {
 
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
-				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-light-gray min-h-screen'>
+				<div className='w-full h-full bg-light-gray dark:hidden'></div>
 
 				<SideNav />
 
@@ -180,7 +180,7 @@ const ClasesCalendar = () => {
 												/>
 												<button
 													type='submit'
-													className='inline-block w-fit py-2 px-4 mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'
+													className='inline-block w-fit py-2 px-4 mb-0 font-bold text-white capitalize shadow-sm fill-current bg-lighter-blue dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'
 												>
 													Crear Clase
 												</button>
