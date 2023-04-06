@@ -146,6 +146,7 @@ function App() {
 							)}
 						</Route>
 						<Route path={"/historialDePagos"} element={<PaymentHistory />} />
+						<Route path={"/historialDePagos/:id"} element={<PaymentHistory />} />
 						<Route path={"/review"} element={<CreateReview />} />
 						<Route path={"*"} element={<Error404 />} />
 
