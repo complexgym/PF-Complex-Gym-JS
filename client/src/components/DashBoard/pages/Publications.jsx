@@ -15,8 +15,8 @@ const Publications = () => {
 
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
-				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-light-gray min-h-screen'>
+				<div className='w-full h-full bg-light-gray dark:hidden'></div>
 
 				<SideNav />
 
@@ -51,14 +51,14 @@ const Publications = () => {
 									<div className=' grid grid-cols-2 p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
 										<div className='grid justify-start '>
 											<Link to='/blog'>
-												<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
+												<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-lighter-blue dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
 													Visitar el Blog
 												</button>
 											</Link>
 										</div>
 										<div className='grid justify-end '>
 											<Link to='/blog/create'>
-												<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-blue-500 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
+												<button className='inline-block w-fit  py-2 px-4 text-center mb-0 font-bold text-white capitalize shadow-sm fill-current bg-lighter-blue dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl'>
 													Crear Publicación
 												</button>
 											</Link>

@@ -7,13 +7,12 @@ import UpdateActivity from './cards/UpdateActivity/UpdateActivity';
 
 const Activities = () => {
 	const activities = useSelector((state) => state.activities);
-	const editBtn = useSelector((state) => state.edit_button)
-
+	const editBtn = useSelector((state) => state.edit_button);
 
 	return (
 		<div>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-blue-500 min-h-screen'>
-				<div className='w-full h-full bg-blue-500 dark:hidden'></div>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-light-gray min-h-screen'>
+				<div className='w-full h-full bg-light-gray dark:hidden'></div>
 
 				<SideNav />
 
@@ -46,7 +45,7 @@ const Activities = () => {
 							<div className='flex-none w-full max-w-full px-3'>
 								<div className='relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border'>
 									<div className='grid border-b-0 border-b-solid rounded-t-2xl border-b-transparent'>
-											{editBtn ? <CreateActivity /> : <UpdateActivity/>}
+										{editBtn ? <CreateActivity /> : <UpdateActivity />}
 									</div>
 								</div>
 							</div>
