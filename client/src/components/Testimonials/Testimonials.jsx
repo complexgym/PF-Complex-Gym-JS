@@ -3,6 +3,7 @@ import '../../styles/testimonials.css';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import ReadMoreButton from '../ReadMoreButton/ReadMoreButton';
+import { useEffect, useState } from 'react';
 
 export default function Testimonials({ user, isAuthenticated }) {
 	const dispatch = useDispatch();
@@ -10,6 +11,13 @@ export default function Testimonials({ user, isAuthenticated }) {
 	const { testimonials } = useSelector((s) => s);
 
 	const client = { mail: user?.email, name: user?.given_name };
+
+	const [shuffledTestimonials, setShuffledTestimonials] = useState([]);
+
+	useEffect(() => {
+	  const shuffledArray = [...testimonials].sort(() => 0.5 - Math.random());
+	  setShuffledTestimonials(shuffledArray);
+	}, [testimonials]);
 
 	const handleSend = () => {
 		dispatch(sendMailReview(client));
@@ -31,12 +39,12 @@ export default function Testimonials({ user, isAuthenticated }) {
 					</div>
 
 					<div className='swiper customer-reviews grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 xl:grid-cols-3'>
-						{testimonials?.map((s, index) => {
-							let rating = 0;
-							let numRating = [];
-							for (let i = 1; i <= s?.rate; i++) {
-								numRating.push(i);
-							}
+					{shuffledTestimonials.slice(0, 3).map((s, index) => {
+              let rating = 0;
+              let numRating = [];
+              for (let i = 1; i <= s?.rate; i++) {
+                numRating.push(i);
+              }
 							rating = s.rate;
 							if (s.fav)
 								return (
