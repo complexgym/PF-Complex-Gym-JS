@@ -49,7 +49,7 @@ const DashBoard = () => {
 
 	return (
 		<div className=''>
-			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-light-gray min-h-screen'>
+			<body className='m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default text-slate-500 bg-light-gray min-h-screen '>
 				<div className='w-full h-full bg-light-gray dark:hidden'></div>
 				{/* <!-- sidenav  --> */}
 				<SideNav />
