@@ -116,6 +116,10 @@ const CreateReview = () => {
 										>
 											Calificación
 										</label>
+										<span className='block text-sm font-medium leading-6 text-gray-900'>
+											Mueve la barra de rango para escoger tu calificación
+										</span>
+
 										<input
 											type='range'
 											min={1}
@@ -126,6 +130,10 @@ const CreateReview = () => {
 											className=' indent-2 mt-2 w-[20vw] block py-1.5 text-gray-900 sm:text-sm sm:leading-6'
 											onChange={handleChange}
 										/>
+										{input.rate}
+										<span className='block text-sm font-medium leading-6 text-gray-900'>
+											Califica del 1 al 5, siendo 5 la mejor puntuación
+										</span>
 										{errors?.rate && (
 											<p className=' text-red-500'>
 												<i>{errors.rate}</i>
