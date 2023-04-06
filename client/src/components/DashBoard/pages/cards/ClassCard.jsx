@@ -12,6 +12,7 @@ const ClassCard = ({ calendar }) => {
 	const [data, setData] = useState({
 		...calendar,
 	});
+	const [sendMsgEditable, setSendMsgEditable] = useState(false);
 
 	const handleChange = (e) => {
 		setData({
@@ -70,13 +71,27 @@ const ClassCard = ({ calendar }) => {
 		}
 	};
 
+	const handleChangeEditable = () => {
+		setEditable(prev=>!prev)
+
+		if(!sendMsgEditable) {
+			setSendMsgEditable(true) //showing only once the msg
+
+			swal({
+				title: '¡Información del editado!',
+				icon: 'info',
+				text: '¡Para editar, debe cambiar al menos una palabra o frase de su izquierda, y apretar el botón enviar a su derecha!',
+			});
+		}
+	}
+
 	return (
 		<tr>
-			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent grid">
 				<p className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
 					<input
-						className={`border-none font-normal w-full text-center ${
-							!editable && 'text-gray-500'
+						className={`w-full text-center outline-0 border-none font-normal ${
+							editable ? 'border-input-dash rounded-xl' : 'text-gray-500'
 						}`}
 						name="classes"
 						onChange={handleChange}
@@ -89,8 +104,8 @@ const ClassCard = ({ calendar }) => {
 			<td className="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<p className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
 					<input
-						className={`border-none font-normal w-full text-center ${
-							!editable && 'text-gray-500'
+						className={`w-full text-center outline-0 border-none font-normal ${
+							editable ? 'border-input-dash rounded-xl' : 'text-gray-500'
 						}`}
 						name="day"
 						onChange={handleChange}
@@ -103,8 +118,8 @@ const ClassCard = ({ calendar }) => {
 			<td className="align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<p className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
 					<input
-						className={`border-none font-normal w-full text-center ${
-							!editable && 'text-gray-500'
+						className={`w-full text-center outline-0 border-none font-normal ${
+							editable ? 'border-input-dash rounded-xl' : 'text-gray-500'
 						}`}
 						name="month"
 						onChange={handleChange}
@@ -117,8 +132,8 @@ const ClassCard = ({ calendar }) => {
 			<td className="align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<p className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
 					<input
-						className={`border-none font-normal w-full text-center ${
-							!editable && 'text-gray-500'
+						className={`ml-2 mr-2 w-full text-center outline-0 border-none font-normal ${
+							editable ? 'border-input-dash rounded-xl' : 'text-gray-500'
 						}`}
 						name="year"
 						onChange={handleChange}
@@ -132,8 +147,8 @@ const ClassCard = ({ calendar }) => {
 			<td className="align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
 				<p className="text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
 					<input
-						className={`border-none font-normal w-full text-center ${
-							!editable && 'text-gray-500'
+						className={`w-11/12 ml-4 text-center outline-0 border-none font-normal ${
+							editable ? 'border-input-dash rounded-xl' : 'text-gray-500'
 						}`}
 						name="hour"
 						onChange={handleChange}
@@ -150,13 +165,13 @@ const ClassCard = ({ calendar }) => {
 					<i
 						className="fa fa-check cursor-pointer text-green-600 w-full text-center"
 						aria-hidden="true"
-						onClick={() => setEditable(false)}
+						onClick={() => handleChangeEditable()}
 					></i>
 				) : (
 					<i
 						className="fa fa-times text-sm cursor-pointer text-red-500 w-full text-center"
 						aria-hidden="true"
-						onClick={() => setEditable(true)}
+						onClick={() => handleChangeEditable()}
 					></i>
 				)}
 			</td>

@@ -11,9 +11,8 @@ const PlansCard = ({ plans }) => {
 		tags: plans?.tags,
 	});
 
-	console.log(plans.id);
-
 	const [editable, setEditable] = useState(false);
+	const [sendMsgEditable, setSendMsgEditable] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -24,8 +23,8 @@ const PlansCard = ({ plans }) => {
 		});
 	};
 
-	const handleClick = async () => {
-		if (plans.name !== data.name || plans.price !== data.price) {
+	const handleSend = async () => {
+		if (plans.name !== data.name || plans.price !== data.price || data.tags.toString()!==plans.tags.toString()) {
 			dispatch(
 				editPlans(plans?.id, {
 					...data,
@@ -67,14 +66,28 @@ const PlansCard = ({ plans }) => {
 		});
 	};
 
+	const handleChangeEditable = () => {
+		setEditable(prev=>!prev)
+
+		if(!sendMsgEditable) {
+			setSendMsgEditable(true) //showing only once the msg
+
+			swal({
+				title: '¡Información del editado!',
+				icon: 'info',
+				text: '¡Para editar, debe cambiar al menos una palabra o frase de su izquierda, y apretar el botón enviar a su derecha!',
+			});
+		}
+	}
+
 	return (
 		<tr>
 			{/* plan name */}
 			<td className='text-center p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<p className='mb-0 text-left text-xs font-semibold leading-tight dark:text-white dark:opacity-80'>
 					<input
-						className={`w-full text-center border-none font-normal ${
-							!editable && 'text-gray-500'
+						className={`w-full text-center outline-0 border-none font-normal ${
+							editable ? 'border-input-dash rounded-xl' : 'text-gray-500'
 						}`}
 						name='name'
 						onChange={handleChange}
@@ -88,8 +101,8 @@ const PlansCard = ({ plans }) => {
 			{/* price */}
 			<td className='text-center p-2 flex items-center text-sm leading-normal align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<input
-					className={`w-full text-center border-none font-normal ${
-						!editable && 'text-gray-500'
+					className={`w-full text-center outline-0 border-none font-normal ${
+						editable ? 'border-input-dash rounded-xl' : 'text-gray-500'
 					}`}
 					name='price'
 					onChange={handleChange}
@@ -102,7 +115,9 @@ const PlansCard = ({ plans }) => {
 			{/* tags */}
 			<td className='text-center p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
 				<input
-					className={`border-none font-normal w-64 ${!editable && 'text-gray-500'}`}
+					className={`w-full text-center outline-0 border-none font-normal ${
+						editable ? 'border-input-dash rounded-xl' : 'text-gray-500'
+					}`}
 					name='tags'
 					onChange={handleChange}
 					type='text'
@@ -117,20 +132,20 @@ const PlansCard = ({ plans }) => {
 					<i
 						className='fa fa-check w-8 cursor-pointer mr-2 text-green-600'
 						aria-hidden='true'
-						onClick={() => setEditable(false)}
+						onClick={() => handleChangeEditable()}
 					></i>
 				) : (
 					<i
 						className='fa fa-times text-sm cursor-pointer w-8 mr-2 text-red-500'
 						aria-hidden='true'
-						onClick={() => setEditable(true)}
+						onClick={() => handleChangeEditable()}
 					></i>
 				)}
 			</td>
 
 			{/* send */}
 			<td className='text-center p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent'>
-				<button disabled={editable === false} onClick={handleClick}>
+				<button disabled={editable === false} onClick={handleSend}>
 					<i
 						className={`fa fa-paper-plane text-sm cursor-pointer ${
 							!editable && 'text-gray-500 cursor-auto'
