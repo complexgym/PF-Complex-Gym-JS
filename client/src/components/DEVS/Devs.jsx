@@ -163,7 +163,7 @@ const Devs = () => {
 								</h3>
 								<div className='text-normal mt-0 mb-2 text-slate-400 font-bold'>
 									{/* EMAIL */}
-									<a href='mailto:elcorreoquequieres@correo.com'>
+									<a href={`mailto:${dev?.email}`}>
 										<h4 className='mr-2 text-slate-400 opacity-75'>{dev?.email}</h4>
 									</a>
 									{/* COUNTRY */}
