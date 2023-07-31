@@ -42,7 +42,7 @@ import CreateReview from "./components/CreateReview/CreateReview";
 import PaymentHistory from "./components/PaymentHistory/PaymentHistory";
 import { getActualPlan } from "./redux/actions/actions";
 import Devs from "./components/DEVS/Devs";
-axios.defaults.baseURL = 'https://complex-api.onrender.com/';
+axios.defaults.baseURL = 'https://complex-api.onrender.com';
 // axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
@@ -66,6 +66,7 @@ function App() {
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
 
 	const { allClients, allPayments } = useSelector((state) => state);
+	console.log(allClients);
 
 	let matchEmail = user && allClients.find((m) => m.mail === user.email);
 
@@ -132,7 +133,7 @@ function App() {
 							<Route path={"/dashboard/clientes"} element={<Clients />} />
 							<Route path={"/dashboard/publicaciones"} element={<Publications />} />
 							<Route path={"/dashboard/calendario"} element={<ClasesCalendar />} />
-							{allClients?.map(client=>{
+							{!allClients.error && allClients?.map(client=>{
 								return <Route path={`/dashboard/perfil/${client?.id}`} element={<ClientDetail id={client?.id} />} />
 							})}
 							{isAdmin && (
