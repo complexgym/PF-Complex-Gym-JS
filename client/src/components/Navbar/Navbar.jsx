@@ -15,7 +15,7 @@ export default function Navbar() {
 
 	const allClient = useSelector((state) => state.allClients);
 
-	let matchEmail = user && allClient.find((m) => m.mail === user.email);
+	let matchEmail = user && !allClient?.error &&  allClient?.find((m) => m.mail === user.email);
 
 	const isActive = matchEmail && matchEmail.active;
 

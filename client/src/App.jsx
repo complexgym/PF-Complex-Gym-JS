@@ -66,9 +66,9 @@ function App() {
 	}, [dispatch, isAuthenticated, navigate, hasRedirected]);
 
 	const { allClients, allPayments } = useSelector((state) => state);
-	console.log(allClients);
 
-	let matchEmail = user && allClients.find((m) => m.mail === user.email);
+	let matchEmail = user && !allClients?.error && allClients?.find((m) => m.mail === user.email);
+	// console.log(matchEmail);
 
 	const matchId = matchEmail && matchEmail.id;
 
